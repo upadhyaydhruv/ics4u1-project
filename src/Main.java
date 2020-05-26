@@ -14,7 +14,7 @@ import java.awt.event.*;
 // these methods can be run anywhere due to the mouse object being public and inside the Main class
 //
 //i put together a quick keyboard class in the same style
-//it only looks to the WASD keys right now
+//it only looks for the WASD keys right now
 // to test if a key is down use the Main.keyboard.getW()/Main.keyboard.getA()/Main.keyboard.getS()/Main.keyboard.getD()
 //                                                       (they will return a Boolean value)
 // this works anywhere just like the mouse class
