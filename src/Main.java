@@ -8,6 +8,8 @@ public class Main extends JPanel {
     private static final Screen currentScreen = new Screen("menu");
     private static String nextScreen = "";
 
+    public static Mouse mouse=new Mouse();
+
     public static void main(String[] args) throws InterruptedException {
         JFrame frame = new JFrame("doctor sex");
         frame.add(new Main());
@@ -16,10 +18,14 @@ public class Main extends JPanel {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+
+
+
+
         while (true) {
 
             //moves current screen and updates nextScreen
-            nextScreen = currentScreen.move();
+            nextScreen = currentScreen.move(mouse);
             if (nextScreen != "") {
                 currentScreen.changeScreen(nextScreen);
             }
@@ -54,10 +60,12 @@ public class Main extends JPanel {
             @Override
             public void mousePressed(MouseEvent event) {
                 currentScreen.mousePressed(event);
+                mouse.press(event);
             }
 
             @Override
             public void mouseReleased(MouseEvent event) {
+                mouse.press(event);
                 currentScreen.mouseReleased(event);
             }
 
@@ -74,6 +82,7 @@ public class Main extends JPanel {
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
                 currentScreen.mouseMoved(event);
+                mouse.update(event);
             }
         });
         setFocusable(true);

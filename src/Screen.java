@@ -25,10 +25,10 @@ public class Screen {
         }
     }
 
-    public String move() {
+    public String move(Mouse mouse) {
         switch (screenName) {
             case "menu":
-                return menu.move();
+                return menu.move(mouse);
             case "levelSelect":
                 return levelSelect.move();
             case "credits":

@@ -33,8 +33,9 @@ public class Menu {
         Yoffset = lastY / 24;
     }
 
-    public String move() {
-
+    public String move(Mouse mouse) {
+        Xoffset = mouse.getEvent().getX() / 24;
+        Yoffset = mouse.getEvent().getY() / 24;
         // stuff that moves on its own goes here
 
         return nextScreen;
@@ -92,9 +93,9 @@ public class Menu {
     }
 
     public void mouseMoved(MouseEvent event) {
-        if (mouseOn) {
-            Xoffset = event.getX() / 24;
-            Yoffset = event.getY() / 24;
-        }
+        //if (mouseOn) {
+        //    Xoffset = event.getX() / 24;
+        //    Yoffset = event.getY() / 24;
+        //}
     }
 }
