@@ -4,9 +4,9 @@ import java.awt.event.MouseEvent;
 public class screen {
     private String screenName;
     private int lastX,lastY;
-    private menu menu = new menu();
-    private levelSelect levelSelect = new levelSelect();
-    private credits credits = new credits();
+    private final menu menu = new menu();
+    private final levelSelect levelSelect = new levelSelect();
+    private final credits credits = new credits();
 
     screen(String screenName){
         this.screenName=screenName;
