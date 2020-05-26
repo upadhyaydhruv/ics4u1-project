@@ -8,6 +8,7 @@ public class Main extends JPanel {
     private static final Screen currentScreen = new Screen("menu");
     private static String nextScreen = "";
 
+    //this needs to be public so that everything can use it
     public static Mouse mouse=new Mouse();
 
     public static void main(String[] args) throws InterruptedException {
@@ -40,50 +41,46 @@ public class Main extends JPanel {
         addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent event) {
-                currentScreen.keyTyped(event);
+
             }
 
             @Override
             public void keyReleased(KeyEvent event) {
-                currentScreen.keyReleased(event);
+
             }
 
             @Override
             public void keyPressed(KeyEvent event) {
-                currentScreen.keyPressed(event);
+
             }
         });
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent event) {
-                currentScreen.mouseClicked(event);
             }
 
             @Override
             public void mousePressed(MouseEvent event) {
-                currentScreen.mousePressed(event);
                 mouse.press(event);
             }
 
             @Override
             public void mouseReleased(MouseEvent event) {
                 mouse.release(event);
-                currentScreen.mouseReleased(event);
             }
 
             @Override
             public void mouseEntered(MouseEvent event) {
-                currentScreen.mouseEntered(event);
+                mouse.entered();
             }
 
             @Override
             public void mouseExited(MouseEvent event) {
-                currentScreen.mouseExited(event);
+                mouse.exited();
             }
         });
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
-                currentScreen.mouseMoved(event);
                 mouse.update(event);
             }
         });

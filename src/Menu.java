@@ -27,19 +27,25 @@ public class Menu {
         }
     }
 
-    public void start(int lastX, int lastY) {
+    public void start() {
         nextScreen = "";
-        Xoffset = lastX / 24;
-        Yoffset = lastY / 24;
+        Xoffset = Main.mouse.getX() / 24;
+        Yoffset = Main.mouse.getY() / 24;
     }
 
     public String move() {
-        if(Main.mouse.getEvent()!=null) {
-            Xoffset = Main.mouse.getEvent().getX() / 24;
-            Yoffset = Main.mouse.getEvent().getY() / 24;
+        if(Main.mouse.isMouseOn()){
+            Xoffset = Main.mouse.getX() / 24;
+            Yoffset = Main.mouse.getY() / 24;
         }
-        // stuff that moves on its own goes here
-
+        if(Main.mouse.getLMB()) {
+            if (Main.mouse.intersects(startButtonRec)) {
+                nextScreen = "levelSelect";
+            }
+            if (Main.mouse.intersects(creditsButtonRec)) {
+                nextScreen = "credits";
+            }
+        }
         return nextScreen;
     }
 
@@ -54,40 +60,5 @@ public class Menu {
                 startButtonRec.height, null);
         thisFrame.drawImage(creditsButton, creditsButtonRec.x, creditsButtonRec.y, creditsButtonRec.width,
                 creditsButtonRec.height, null);
-    }
-
-
-
-    public void mouseClicked(MouseEvent event) {
-
-        if (Main.mouse.intersects(startButtonRec)) {
-            nextScreen = "levelSelect";
-        }
-        if (creditsButtonRec.intersects(event.getX(), event.getY(), 1, 1)) {
-            nextScreen = "credits";
-        }
-    }
-
-    public void mousePressed(MouseEvent event) {
-
-    }
-
-    public void mouseReleased(MouseEvent event) {
-
-    }
-
-    public void mouseEntered(MouseEvent event) {
-        mouseOn = true;
-    }
-
-    public void mouseExited(MouseEvent event) {
-        mouseOn = false;
-    }
-
-    public void mouseMoved(MouseEvent event) {
-        //if (mouseOn) {
-        //    Xoffset = event.getX() / 24;
-        //    Yoffset = event.getY() / 24;
-        //}
     }
 }
