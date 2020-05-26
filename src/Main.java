@@ -19,7 +19,7 @@ public class Main extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        //you guys can use commands yo access the mouses current position
+        //you guys can use commands to access the mouses current position
         // Main.mouse.getEvent().getX();
         // Main.mouse.getEvent().getY();
 
@@ -67,7 +67,7 @@ public class Main extends JPanel {
 
             @Override
             public void mouseReleased(MouseEvent event) {
-                mouse.press(event);
+                mouse.release(event);
                 currentScreen.mouseReleased(event);
             }
 
