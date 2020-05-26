@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class levelSelect {
+public class LevelSelect {
     String nextScreen = "";
 
     BufferedImage back, green, blue, orange, pink, backButton;
@@ -15,7 +15,7 @@ public class levelSelect {
     int Xoffset, Yoffset;
     boolean mouseOn = true;
 
-    levelSelect() {
+    LevelSelect() {
         try {
             back = ImageIO.read(new File("res\\menu back.png"));
             green = ImageIO.read(new File("res\\green shard.png"));
