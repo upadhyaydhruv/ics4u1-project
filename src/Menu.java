@@ -16,12 +16,12 @@ public class Menu {
 
     Menu() {
         try {
-            bullets = ImageIO.read(new File("res\\bullets.png"));
-            slice = ImageIO.read(new File("res\\green slice.png"));
-            back = ImageIO.read(new File("res\\menu back.png"));
-            splat = ImageIO.read(new File("res\\pink splat.png"));
-            startButton = ImageIO.read(new File("res\\start button.png"));
-            creditsButton = ImageIO.read(new File("res\\credits button.png"));
+            bullets = ImageIO.read(Menu.class.getResourceAsStream("bullets.png"));
+            slice = ImageIO.read(Menu.class.getResourceAsStream("green slice.png"));
+            back = ImageIO.read(Menu.class.getResourceAsStream("menu back.png"));
+            splat = ImageIO.read(Menu.class.getResourceAsStream("pink splat.png"));
+            startButton = ImageIO.read(Menu.class.getResourceAsStream("start button.png"));
+            creditsButton = ImageIO.read(Menu.class.getResourceAsStream("credits button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }

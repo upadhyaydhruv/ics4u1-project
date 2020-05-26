@@ -17,12 +17,12 @@ public class LevelSelect {
 
     LevelSelect() {
         try {
-            back = ImageIO.read(new File("res\\menu back.png"));
-            green = ImageIO.read(new File("res\\green shard.png"));
-            blue = ImageIO.read(new File("res\\blue shard.png"));
-            orange = ImageIO.read(new File("res\\orange shard.png"));
-            pink = ImageIO.read(new File("res\\pink shard.png"));
-            backButton = ImageIO.read(new File("res\\back button.png"));
+            back = ImageIO.read(Menu.class.getResourceAsStream("menu back.png"));
+            green = ImageIO.read(Menu.class.getResourceAsStream("green shard.png"));
+            blue = ImageIO.read(Menu.class.getResourceAsStream("blue shard.png"));
+            orange = ImageIO.read(Menu.class.getResourceAsStream("orange shard.png"));
+            pink = ImageIO.read(Menu.class.getResourceAsStream("pink shard.png"));
+            backButton = ImageIO.read(Menu.class.getResourceAsStream("back button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
