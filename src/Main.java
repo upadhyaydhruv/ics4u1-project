@@ -4,13 +4,20 @@ import java.awt.event.*;
 
 // bobby's notes
 // you guys can use commands to access the mouses current position and buttons
-// Main.mouse.getEvent().getX() gives you the x value
-// Main.mouse.getEvent().getY() gives you the y value
+// Main.mouse.getX() gives you the x value
+// Main.mouse.getY() gives you the y value
 // LMB= left mouse button
 // SWB= scroll wheel button
 // RMB= right mouse button
 // use Main.mouse.getLMB()/Main.mouse.getSWB()/Main.mouse.getRMB() to test if a button is currently being pressed
+//                  (they will return a Boolean value)
 // these methods can be run anywhere due to the mouse object being public and inside the Main class
+//
+//i put together a quick keyboard class in the same style
+//it only looks to the WASD keys right now
+// to test if a key is down use the Main.keyboard.getW()/Main.keyboard.getA()/Main.keyboard.getS()/Main.keyboard.getD()
+//                                                       (they will return a Boolean value)
+// this works anywhere just like the mouse class
 
 public class Main extends JPanel {
     private static final int frameDelay = 10;
@@ -18,8 +25,10 @@ public class Main extends JPanel {
     private static final Screen currentScreen = new Screen("menu");
     private static String nextScreen = "";
 
-    //this needs to be public so that everything can use it
+    //this needs to be public so that everything can use it without re-directing it
     public static Mouse mouse=new Mouse();
+    public static Keyboard keyboard=new Keyboard();
+
 
     public static void main(String[] args) throws InterruptedException {
         JFrame frame = new JFrame("doctor sex");
@@ -50,12 +59,12 @@ public class Main extends JPanel {
 
             @Override
             public void keyReleased(KeyEvent event) {
-
+                keyboard.release(event);
             }
 
             @Override
             public void keyPressed(KeyEvent event) {
-
+                keyboard.press(event);
             }
         });
         addMouseListener(new MouseListener() {
