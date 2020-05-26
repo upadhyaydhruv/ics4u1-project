@@ -9,9 +9,9 @@ import java.io.IOException;
 public class LevelSelect {
     String nextScreen = "";
 
-    BufferedImage back, green, blue, orange, pink, backButton;
+    BufferedImage back, green, blue, orange, pink, backButton,testButton;
     Rectangle backButtonRec = new Rectangle(60, 60, 80, 80);
-
+    Rectangle testButtonRec = new Rectangle(400, 60, 160, 80);
     int Xoffset, Yoffset;
 
     LevelSelect() {
@@ -22,6 +22,7 @@ public class LevelSelect {
             orange = ImageIO.read(Menu.class.getResourceAsStream("orange shard.png"));
             pink = ImageIO.read(Menu.class.getResourceAsStream("pink shard.png"));
             backButton = ImageIO.read(Menu.class.getResourceAsStream("back button.png"));
+            testButton = ImageIO.read(Menu.class.getResourceAsStream("test button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -42,6 +43,9 @@ public class LevelSelect {
             if (Main.mouse.intersects(backButtonRec)) {
                 nextScreen = "menu";
             }
+            if (Main.mouse.intersects(testButtonRec)) {
+                nextScreen = "testLevel";
+            }
         }
         return nextScreen;
     }
@@ -56,6 +60,7 @@ public class LevelSelect {
 
         thisFrame.drawImage(backButton, backButtonRec.x, backButtonRec.y, backButtonRec.width, backButtonRec.height,
                 null);
-
+        thisFrame.drawImage(testButton, testButtonRec.x, testButtonRec.y, testButtonRec.width, testButtonRec.height,
+                null);
     }
 }

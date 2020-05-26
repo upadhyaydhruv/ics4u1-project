@@ -7,6 +7,7 @@ public class Screen {
     private final Menu menu = new Menu();
     private final LevelSelect levelSelect = new LevelSelect();
     private final Credits credits = new Credits();
+    private final TestLevel testLevel = new TestLevel();
 
     Screen(String screenName) {
         this.screenName = screenName;
@@ -17,10 +18,15 @@ public class Screen {
         switch (screenName) {
             case "menu":
                 menu.start();
+            break;
             case "levelSelect":
                 levelSelect.start();
+            break;
             case "credits":
                 credits.start();
+            break;
+                case "testLevel":
+                testLevel.start();
         }
     }
 
@@ -32,6 +38,8 @@ public class Screen {
                 return levelSelect.move();
             case "credits":
                 return credits.move();
+            case "testLevel":
+                return testLevel.move();
         }
         return "";
     }
@@ -47,6 +55,8 @@ public class Screen {
             case "credits":
                 credits.paint(thisFrame);
                 break;
+            case "testLevel":
+                testLevel.paint(thisFrame);
         }
 
     }

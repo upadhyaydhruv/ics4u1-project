@@ -49,8 +49,7 @@ public class Credits {
         thisFrame.drawImage(back, (Xoffset / 8) - 60, (Yoffset / 8) - 60, 1010, 1010, null);
         thisFrame.drawImage(monitor, (Xoffset / 4) + 225, 50 + (Yoffset / 4), 500, 600, null);
 
-        thisFrame.drawImage(backButton, backButtonRec.x, backButtonRec.y, backButtonRec.width, backButtonRec.height,
-                null);
+        thisFrame.drawImage(backButton, backButtonRec.x, backButtonRec.y, backButtonRec.width, backButtonRec.height, null);
 
     }
 }
