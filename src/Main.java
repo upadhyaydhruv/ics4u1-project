@@ -19,7 +19,9 @@ public class Main extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-
+        //you guys can use commands yo access the mouses current position
+        // Main.mouse.getEvent().getX();
+        // Main.mouse.getEvent().getY();
 
 
         while (true) {
