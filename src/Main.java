@@ -2,6 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+// bobby's notes
+// you guys can use commands to access the mouses current position and buttons
+// Main.mouse.getEvent().getX() gives you the x value
+// Main.mouse.getEvent().getY() gives you the y value
+// LMB= left mouse button
+// SWB= scroll wheel button
+// RMB= right mouse button
+// use Main.mouse.getLMB()/Main.mouse.getSWB()/Main.mouse.getRMB() to test if a button is currently being pressed
+// these methods can be run anywhere due to the mouse object being public and inside the Main class
+
 public class Main extends JPanel {
     private static final int frameDelay = 10;
 
@@ -18,12 +28,6 @@ public class Main extends JPanel {
         //720p 4:3 or standard HD (you guys should change this now if you don't like it)
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-        //you guys can use commands to access the mouses current position
-        // Main.mouse.getEvent().getX();
-        // Main.mouse.getEvent().getY();
-
 
         while (true) {
 
