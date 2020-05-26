@@ -33,10 +33,10 @@ public class Menu {
         Yoffset = lastY / 24;
     }
 
-    public String move(Mouse mouse) {
-        if(mouse.getEvent()!=null) {
-            Xoffset = mouse.getEvent().getX() / 24;
-            Yoffset = mouse.getEvent().getY() / 24;
+    public String move() {
+        if(Main.mouse.getEvent()!=null) {
+            Xoffset = Main.mouse.getEvent().getX() / 24;
+            Yoffset = Main.mouse.getEvent().getY() / 24;
         }
         // stuff that moves on its own goes here
 
@@ -56,21 +56,11 @@ public class Menu {
                 creditsButtonRec.height, null);
     }
 
-    public void keyTyped(KeyEvent event) {
 
-    }
-
-    public void keyReleased(KeyEvent event) {
-
-    }
-
-    public void keyPressed(KeyEvent event) {
-
-    }
 
     public void mouseClicked(MouseEvent event) {
 
-        if (startButtonRec.intersects(event.getX(), event.getY(), 1, 1)) {
+        if (Main.mouse.intersects(startButtonRec)) {
             nextScreen = "levelSelect";
         }
         if (creditsButtonRec.intersects(event.getX(), event.getY(), 1, 1)) {

@@ -25,7 +25,7 @@ public class Main extends JPanel {
         while (true) {
 
             //moves current screen and updates nextScreen
-            nextScreen = currentScreen.move(mouse);
+            nextScreen = currentScreen.move();
             if (nextScreen != "") {
                 currentScreen.changeScreen(nextScreen);
             }

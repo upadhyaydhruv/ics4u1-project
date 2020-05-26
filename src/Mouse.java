@@ -4,6 +4,7 @@ public class Mouse {
     private int X, Y;
     private MouseEvent event;
     public void update(MouseEvent event) {
+        this.event=event;
         X = event.getX();
         Y = event.getY();
     }

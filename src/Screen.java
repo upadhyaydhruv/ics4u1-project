@@ -25,10 +25,10 @@ public class Screen {
         }
     }
 
-    public String move(Mouse mouse) {
+    public String move() {
         switch (screenName) {
             case "menu":
-                return menu.move(mouse);
+                return menu.move();
             case "levelSelect":
                 return levelSelect.move();
             case "credits":
@@ -55,7 +55,7 @@ public class Screen {
     public void keyTyped(KeyEvent event) {
         switch (screenName) {
             case "menu":
-                menu.keyTyped(event);
+                //menu.keyTyped(event);
                 break;
             case "levelSelect":
                 levelSelect.keyTyped(event);
@@ -69,7 +69,7 @@ public class Screen {
     public void keyReleased(KeyEvent event) {
         switch (screenName) {
             case "menu":
-                menu.keyReleased(event);
+                //menu.keyReleased(event);
                 break;
             case "levelSelect":
                 levelSelect.keyReleased(event);
@@ -83,7 +83,7 @@ public class Screen {
     public void keyPressed(KeyEvent event) {
         switch (screenName) {
             case "menu":
-                menu.keyPressed(event);
+                //menu.keyPressed(event);
                 break;
             case "levelSelect":
                 levelSelect.keyPressed(event);
