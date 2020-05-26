@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class credits {
+public class Credits {
     String nextScreen = "";
 
     BufferedImage back, monitor, backButton;
@@ -15,7 +15,7 @@ public class credits {
     int Xoffset, Yoffset;
     boolean mouseOn = true;
 
-    credits() {
+    Credits() {
         try {
             back = ImageIO.read(new File("res\\menu back.png"));
             monitor = ImageIO.read(new File("res\\credit monitor.png"));

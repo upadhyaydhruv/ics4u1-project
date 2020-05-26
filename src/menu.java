@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class menu {
+public class Menu {
     String nextScreen = "";
     BufferedImage bullets, slice, back, splat, startButton, creditsButton;
     Rectangle startButtonRec = new Rectangle(375, 220, 200, 80);
@@ -14,7 +14,7 @@ public class menu {
     int Xoffset, Yoffset;
     boolean mouseOn = false;
 
-    menu() {
+    Menu() {
         try {
             bullets = ImageIO.read(new File("res\\bullets.png"));
             slice = ImageIO.read(new File("res\\green slice.png"));

@@ -5,7 +5,7 @@ import java.awt.event.*;
 public class Main extends JPanel {
     private static final int frameDelay = 10;
 
-    private static final screen currentScreen = new screen("menu");
+    private static final Screen currentScreen = new Screen("menu");
     private static String nextScreen = "";
 
     public static void main(String[] args) throws InterruptedException {

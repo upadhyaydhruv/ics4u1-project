@@ -2,14 +2,14 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
-public class screen {
+public class Screen {
     private String screenName;
     private int lastX, lastY;
-    private final menu menu = new menu();
-    private final levelSelect levelSelect = new levelSelect();
-    private final credits credits = new credits();
+    private final Menu menu = new Menu();
+    private final LevelSelect levelSelect = new LevelSelect();
+    private final Credits credits = new Credits();
 
-    screen(String screenName) {
+    Screen(String screenName) {
         this.screenName = screenName;
     }
 
