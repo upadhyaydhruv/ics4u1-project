@@ -7,6 +7,7 @@ public class Screen {
     private final LevelSelect levelSelect = new LevelSelect();
     private final Credits credits = new Credits();
     private final TestLevel testLevel = new TestLevel();
+    private final Settings settings = new Settings();
 
     Screen(String screenName) {
         this.screenName = screenName;
@@ -24,8 +25,11 @@ public class Screen {
             case "credits":
                 credits.start();
             break;
-                case "testLevel":
+            case "testLevel":
                 testLevel.start();
+            break;
+            case "settings":
+                settings.start();
         }
     }
 
@@ -39,6 +43,8 @@ public class Screen {
                 return credits.move();
             case "testLevel":
                 return testLevel.move();
+            case "settings":
+                return settings.move();
         }
         return "";
     }
@@ -56,6 +62,9 @@ public class Screen {
                 break;
             case "testLevel":
                 testLevel.paint(thisFrame);
+                break;
+            case "settings":
+                settings.paint(thisFrame);
         }
 
     }

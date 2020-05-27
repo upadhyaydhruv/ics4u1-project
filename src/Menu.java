@@ -5,9 +5,11 @@ import java.io.IOException;
 
 public class Menu {
     String nextScreen = "";
-    BufferedImage bullets, slice, back, splat, startButton, creditsButton;
+    BufferedImage bullets, slice, back, splat, startButton, creditsButton, settingsButton;
     Rectangle startButtonRec = new Rectangle(375, 220, 200, 80);
-    Rectangle creditsButtonRec = new Rectangle(375, 520, 200, 80);
+    Rectangle settingsButtonRec = new Rectangle(275, 420, 400, 80);
+    Rectangle creditsButtonRec = new Rectangle(325, 520, 300, 80);
+
     int Xoffset, Yoffset;
     boolean mouseOn = false;
 
@@ -19,6 +21,7 @@ public class Menu {
             splat = ImageIO.read(Menu.class.getResourceAsStream("pink splat.png"));
             startButton = ImageIO.read(Menu.class.getResourceAsStream("start button.png"));
             creditsButton = ImageIO.read(Menu.class.getResourceAsStream("credits button.png"));
+            settingsButton = ImageIO.read(Menu.class.getResourceAsStream("settings button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -42,6 +45,10 @@ public class Menu {
             if (Main.mouse.intersects(creditsButtonRec)) {
                 nextScreen = "credits";
             }
+            if (Main.mouse.intersects(settingsButtonRec)) {
+                nextScreen = "settings";
+            }
+
         }
         return nextScreen;
     }
@@ -57,5 +64,7 @@ public class Menu {
                 startButtonRec.height, null);
         thisFrame.drawImage(creditsButton, creditsButtonRec.x, creditsButtonRec.y, creditsButtonRec.width,
                 creditsButtonRec.height, null);
+        thisFrame.drawImage(settingsButton, settingsButtonRec.x, settingsButtonRec.y, settingsButtonRec.width,
+                settingsButtonRec.height, null);
     }
 }

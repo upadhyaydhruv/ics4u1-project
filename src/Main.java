@@ -20,7 +20,14 @@ import java.awt.event.*;
 // this works anywhere just like the mouse class
 
 public class Main extends JPanel {
-    private static final int frameDelay = 10;
+
+    private static int frameDelay = 10;
+    public static int getFrameDelay(){
+        return frameDelay;
+    }
+    public void setFrameDelay(int frameDelay){
+        this.frameDelay=frameDelay;
+    }
 
     private static final Screen currentScreen = new Screen("menu");
     private static String nextScreen = "";
@@ -37,6 +44,7 @@ public class Main extends JPanel {
         //720p 4:3 or standard HD (you guys should change this now if you don't like it)
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
 
         while (true) {
 
