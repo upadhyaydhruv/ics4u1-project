@@ -11,6 +11,8 @@ public class TestLevel {
     Rectangle backButtonRec = new Rectangle(160, 60, 80, 80);
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
+    Skuttler player = new Skuttler(Main.keyboard, 100, 100);
+
     TestLevel(){
         try {
             back = ImageIO.read(new File("res\\back button.png"));
@@ -30,9 +32,7 @@ public class TestLevel {
             if(Main.mouse.getLMB()&&Main.mouse.intersects(backButtonRec)) nextScreen = "levelSelect";
 
             }
-
-
-
+        player.move();
         return nextScreen;
     }
     public void paint(Graphics2D thisFrame) {
@@ -40,5 +40,6 @@ public class TestLevel {
         thisFrame.drawImage(back, backButtonRec.x, backButtonRec.y, backButtonRec.width, backButtonRec.height, null);
         thisFrame.drawImage(plat, platRec.x, platRec.y, platRec.width, platRec.height, null);
         thisFrame.drawImage(object, objectRec.x, objectRec.y, objectRec.width, objectRec.height, null);
+        player.paint(thisFrame);
     }
 }
