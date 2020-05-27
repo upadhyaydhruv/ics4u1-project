@@ -22,4 +22,31 @@ public class Player {
     public void hit(int x, int y){
         //TODO
     }
+
+    public int getHealth(){
+        return this.health;
+    }
+
+    public int getxPos(){
+        return this.xPos;
+    }
+
+    public int getyPos(){
+        return this.yPos;
+    }
+
+    public void move(){
+        if (keyboard.getA()){
+            xPos-=xVel;
+        }
+        if (keyboard.getD()){
+            xPos+=xVel;
+        }
+        if (keyboard.getW()) {
+            yPos-=yVel;
+        }
+        if (keyboard.getS()){
+            yPos+=yVel;
+        }
+    }
 }
