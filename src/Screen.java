@@ -9,6 +9,14 @@ public class Screen {
     private final TestLevel testLevel = new TestLevel();
     private final Settings settings = new Settings();
 
+    private int frameDelay = 10;
+    public int getFrameDelay(){
+        return frameDelay;
+    }
+    public void setFrameDelay(int frameDelay){
+        this.frameDelay=frameDelay;
+    }
+
     Screen(String screenName) {
         this.screenName = screenName;
     }
@@ -49,7 +57,7 @@ public class Screen {
         return "";
     }
 
-    public void paint(Graphics2D thisFrame) {
+    public void paint(Graphics2D thisFrame) throws InterruptedException{
         switch (screenName) {
             case "menu":
                 menu.paint(thisFrame);
@@ -66,6 +74,6 @@ public class Screen {
             case "settings":
                 settings.paint(thisFrame);
         }
-
+        Thread.sleep(frameDelay);
     }
 }
