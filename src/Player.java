@@ -5,11 +5,17 @@ public class Player {
     private int yPos;
     private int xVel;
     private int yVel;
-    private int enemyType;
+    private int mouseX;
+    private int mouseY;
+
     public Player(Keyboard kb, int xOrig, int yOrig){
         keyboard = kb;
         this.xPos = xOrig;
         this.yPos = yOrig;
+    }
+
+    public Player(){
+        //Default constructor required when coding subclass
     }
 
     public void increaseHealth(int differential){
