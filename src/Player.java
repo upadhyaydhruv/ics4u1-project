@@ -41,6 +41,13 @@ public class Player {
         return this.yPos;
     }
 
+    public void setxPos(int xPos){
+        this.xPos = xPos;
+    }
+    public void setYPos(int yPos){
+        this.yPos = yPos;
+    }
+
     public void move(){
         if (keyboard.getA()){
             xPos-=xVel;
