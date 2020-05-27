@@ -66,7 +66,7 @@ public class Settings {
         thisFrame.drawImage(green, 131 , 250+(Yoffset/2) , 138, 138, null);
         thisFrame.drawImage(orange, 5 , 350+(Yoffset/3) , 126, 126, null);
         thisFrame.drawImage(pink, 10 , 140+(Yoffset) , 90, 90, null);
-        Main.getFrameDelay();
+        //Main.getFrameDelay();
         thisFrame.drawImage(backButton, backButtonRec.x, backButtonRec.y, backButtonRec.width, backButtonRec.height, null);
         thisFrame.drawImage(gameSpeed, gameSpeedRec.x, gameSpeedRec.y, gameSpeedRec.width, gameSpeedRec.height, null);
         thisFrame.drawImage(upButton, upButtonRec.x, upButtonRec.y, upButtonRec.width, upButtonRec.height, null);

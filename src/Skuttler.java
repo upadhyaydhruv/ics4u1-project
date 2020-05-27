@@ -6,7 +6,8 @@ import java.io.IOException;
 public class Skuttler extends Player {
 
     private BufferedImage image;
-    public Skuttler(){
+    public Skuttler(Keyboard kb, int x, int y){
+        super(kb, x, y);
         try{
             this.image = ImageIO.read(this.getClass().getResource("skuttler.png"));
         } catch(IOException e){}
