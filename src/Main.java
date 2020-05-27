@@ -22,7 +22,7 @@ import java.awt.event.*;
 public class Main extends JPanel {
 
     private static int frameDelay = 10;
-    public static int getFrameDelay(){
+    public int getFrameDelay(){
         return frameDelay;
     }
     public void setFrameDelay(int frameDelay){
