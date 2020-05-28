@@ -20,7 +20,6 @@ public class Skuttler extends Player {
         super.move();
     }
 
-    public void paint(Graphics2D g){
-        g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
+    public void paint(Graphics2D g){g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
     }
 }

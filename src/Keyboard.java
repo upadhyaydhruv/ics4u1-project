@@ -1,27 +1,33 @@
 import java.awt.event.KeyEvent;
+import static java.awt.event.KeyEvent.*;
+
 import static java.lang.Character.toLowerCase;
 public class Keyboard {
-    private Boolean W,A,S,D;
+    private Boolean W=false,A=false,S=false,D=false,esc=false;
     public void press(KeyEvent event){
-        switch(toLowerCase(event.getKeyChar())){
-            case 'w': W=true;
+        switch(event.getKeyCode()){
+            case VK_W: W=true;
                 break;
-            case 'a': A=true;
+            case VK_A: A=true;
                 break;
-            case 's': S=true;
+            case VK_S: S=true;
                 break;
-            case 'd': D=true;
+            case VK_D: D=true;
+                break;
+            case VK_ESCAPE: esc=true;
         }
     }
     public void release(KeyEvent event){
-        switch(toLowerCase(event.getKeyChar())){
-            case 'w': W=false;
+        switch(event.getKeyCode()){
+            case VK_W : W=false;
                 break;
-            case 'a': A=false;
+            case VK_A: A=false;
                 break;
-            case 's': S=false;
+            case VK_S : S=false;
                 break;
-            case 'd': D=false;
+            case VK_D : D=false;
+                break;
+            case VK_ESCAPE: esc=false;
         }
     }
     public Boolean getW(){
@@ -35,5 +41,8 @@ public class Keyboard {
     }
     public Boolean getD(){
         return D;
+    }
+    public Boolean getEsc(){
+        return esc;
     }
 }
