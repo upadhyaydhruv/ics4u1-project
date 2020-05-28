@@ -8,6 +8,16 @@ public class Screen {
     private final Credits credits = new Credits();
     private final TestLevel testLevel = new TestLevel();
     private final Settings settings = new Settings();
+    private final Level1 L1 = new Level1();
+
+
+    private int frameDelay = 10;
+    public int getFrameDelay(){
+        return frameDelay;
+    }
+    public void setFrameDelay(int frameDelay){
+        this.frameDelay=frameDelay;
+    }
 
     Screen(String screenName) {
         this.screenName = screenName;
@@ -30,6 +40,9 @@ public class Screen {
             break;
             case "settings":
                 settings.start();
+                break;
+            case "L1":
+                L1.start();
         }
     }
 
@@ -45,11 +58,13 @@ public class Screen {
                 return testLevel.move();
             case "settings":
                 return settings.move();
+            case "L1":
+                return L1.move();
         }
         return "";
     }
 
-    public void paint(Graphics2D thisFrame) {
+    public void paint(Graphics2D thisFrame) throws InterruptedException{
         switch (screenName) {
             case "menu":
                 menu.paint(thisFrame);
@@ -65,7 +80,10 @@ public class Screen {
                 break;
             case "settings":
                 settings.paint(thisFrame);
+                break;
+            case "L1":
+                L1.paint(thisFrame);
         }
-
+        Thread.sleep(frameDelay);
     }
 }
