@@ -19,7 +19,7 @@ import java.awt.event.*;
 //                                                       (they will return a Boolean value)
 // this works anywhere just like the mouse class
 //
-// note that ive updated the levels so that you can use the escape key to backout to the level select
+// note that ive updated the levels so that you can use the escape key to backout to the level select screen
 
 public class Main extends JPanel {
 
