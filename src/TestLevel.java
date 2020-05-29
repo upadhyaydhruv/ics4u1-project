@@ -41,6 +41,9 @@ public class TestLevel {
     public void paint(Graphics2D thisFrame) {
         thisFrame.drawImage(water, (Xoffset / 8) - 60, (Yoffset / 8) - 60, 1010, 1010, null);
 
+        Screen.paint(platRec,plat,thisFrame);
+
+
         thisFrame.drawImage(plat, platRec.x, platRec.y, platRec.width, platRec.height, null);
         thisFrame.drawImage(object, objectRec.x, objectRec.y, objectRec.width, objectRec.height, null);
         //player.paint(thisFrame);

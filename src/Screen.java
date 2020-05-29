@@ -1,6 +1,5 @@
 import java.awt.*;
-
-
+import java.awt.image.BufferedImage;
 public class Screen {
     private String screenName;
     private final Menu menu = new Menu();
@@ -9,8 +8,6 @@ public class Screen {
     private final TestLevel testLevel = new TestLevel();
     private final Settings settings = new Settings();
     private final Level1 L1 = new Level1();
-
-
     private int frameDelay = 10;
     public int getFrameDelay(){
         return frameDelay;
@@ -18,11 +15,9 @@ public class Screen {
     public void setFrameDelay(int frameDelay){
         this.frameDelay=frameDelay;
     }
-
     Screen(String screenName) {
         this.screenName = screenName;
     }
-
     void changeScreen(String screenName) {
         this.screenName = screenName;
         switch (screenName) {
@@ -45,7 +40,6 @@ public class Screen {
                 L1.start();
         }
     }
-
     public String move() {
         switch (screenName) {
             case "menu":
@@ -63,7 +57,6 @@ public class Screen {
         }
         return "";
     }
-
     public void paint(Graphics2D thisFrame) throws InterruptedException{
         switch (screenName) {
             case "menu":
@@ -85,5 +78,8 @@ public class Screen {
                 L1.paint(thisFrame);
         }
         Thread.sleep(frameDelay);
+    }
+    public static void paint(Rectangle rec, BufferedImage img, Graphics2D thisFrame) {
+        thisFrame.drawImage(img, rec.x, rec.y, rec.width, rec.height, null);
     }
 }
