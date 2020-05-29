@@ -82,4 +82,8 @@ public class Screen {
     public static void paint(Rectangle rec, BufferedImage img, Graphics2D thisFrame) {
         thisFrame.drawImage(img, rec.x, rec.y, rec.width, rec.height, null);
     }
+    public static void waveMove(int step, int x,int y){
+
+    }
+
 }
