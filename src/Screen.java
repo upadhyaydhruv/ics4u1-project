@@ -8,13 +8,8 @@ public class Screen {
     private final TestLevel testLevel = new TestLevel();
     private final Settings settings = new Settings();
     private final Level1 L1 = new Level1();
-    private int frameDelay = 10;
-    public int getFrameDelay(){
-        return frameDelay;
-    }
-    public void setFrameDelay(int frameDelay){
-        this.frameDelay=frameDelay;
-    }
+    private final Level2 L2 = new Level2();
+
     Screen(String screenName) {
         this.screenName = screenName;
     }
@@ -38,6 +33,8 @@ public class Screen {
                 break;
             case "L1":
                 L1.start();
+            case "L2":
+                L2.start();
         }
     }
     public String move() {
@@ -54,6 +51,8 @@ public class Screen {
                 return settings.move();
             case "L1":
                 return L1.move();
+            case "L2":
+                return L2.move();
         }
         return "";
     }
@@ -76,14 +75,36 @@ public class Screen {
                 break;
             case "L1":
                 L1.paint(thisFrame);
+            break;
+                case "L2":
+                L2.paint(thisFrame);
         }
         Thread.sleep(frameDelay);
+    }
+
+    //bobby's secret code vault (i don't know where to put this so ima just leave it here for now)
+    private int frameDelay = 10;
+    public int getFrameDelay(){
+        return frameDelay;
+    }
+    public void setFrameDelay(int frameDelay){
+        this.frameDelay=frameDelay;
     }
     public static void paint(Rectangle rec, BufferedImage img, Graphics2D thisFrame) {
         thisFrame.drawImage(img, rec.x, rec.y, rec.width, rec.height, null);
     }
-    public static void waveMove(int step, int x,int y){
-
+    public static int[] waveMove(int[] wave){
+        if(wave[0]<30000000){
+            wave[1]=(int)(wave[0]* 0.000002);
+            wave[2]=(int)(wave[0]* 0.000001);
+            wave[0]++;
+        }
+        else if(wave[0]<60000000) {
+            wave[1] = 120+(int) (wave[0] * -0.000002);
+            wave[2] = 60+(int) (wave[0] * -0.000001);
+            wave[0]++;
+        }
+        else wave[0]=0;
+        return wave;
     }
-
 }

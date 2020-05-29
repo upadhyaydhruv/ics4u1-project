@@ -3,21 +3,21 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-public class Level1 {
+public class Level2 {
     String nextScreen = "";
 
-    private BufferedImage back,water,plat, barrels;
+    private BufferedImage back,water,plat, barrel;
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
-    Rectangle barrelsRec = new Rectangle(253, 460, 100, 140);
+    Rectangle barrelsRec = new Rectangle(430, 280, 40, 60);
 
     int[] waveHold=new int[3];
 
-    Level1(){
+    Level2(){
         try {
             back = ImageIO.read(new File("res\\back button.png"));
             water = ImageIO.read(new File("res\\storm water.png"));
-            plat = ImageIO.read(new File("res\\level 1 plat.png"));
-            barrels = ImageIO.read(new File("res\\barrels.png"));
+            plat = ImageIO.read(new File("res\\level 2 plat.png"));
+            barrel = ImageIO.read(new File("res\\barrel.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -43,7 +43,7 @@ public class Level1 {
         thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
         Screen.paint(platRec,plat,thisFrame);
 
-        Screen.paint(barrelsRec,barrels,thisFrame);
+        Screen.paint(barrelsRec,barrel,thisFrame);
         //player.paint(thisFrame);
     }
 }
