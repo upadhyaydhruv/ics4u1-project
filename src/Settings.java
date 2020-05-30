@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.lang.*;
 public class Settings {
     String nextScreen = "";
-    BufferedImage back,backButton,blue,green,orange,pink,gameSpeed,upButton,downButton,numberPlate;
+    BufferedImage back,backButton,blue,green,orange,pink,frameDelay,upButton,downButton,numberPlate;
     Rectangle backButtonRec = new Rectangle(60, 60, 80, 80);
-    Rectangle gameSpeedRec = new Rectangle(180,180, 360,80);
+    Rectangle frameDelayRec = new Rectangle(180,180, 360,80);
     Rectangle upButtonRec = new Rectangle(590,100,80,60);
     Rectangle numberPlateRec = new Rectangle(590,150,80,60);
     Rectangle downButtonRec = new Rectangle(590,200,80,60);
@@ -22,7 +22,7 @@ public class Settings {
             green = ImageIO.read(new File("res\\green bubble.png"));
             orange = ImageIO.read(new File("res\\orange bubble.png"));
             pink = ImageIO.read(new File("res\\pink bubble.png"));
-            gameSpeed = ImageIO.read(new File("res\\game speed.png"));
+            frameDelay = ImageIO.read(new File("res\\frame delay.png"));
             upButton = ImageIO.read(new File("res\\up button.png"));
             downButton = ImageIO.read(new File("res\\down button.png"));
             numberPlate = ImageIO.read(new File("res\\number plate.png"));
@@ -66,7 +66,7 @@ public class Settings {
         thisFrame.drawImage(orange, 5 , 350+(Yoffset/3) , 126, 126, null);
         thisFrame.drawImage(pink, 10 , 140+(Yoffset) , 90, 90, null);
         Screen.paint(backButtonRec,backButton,thisFrame);
-        Screen.paint(gameSpeedRec,gameSpeed,thisFrame);
+        Screen.paint(frameDelayRec,frameDelay,thisFrame);
         Screen.paint(upButtonRec,upButton,thisFrame);
         Screen.paint(numberPlateRec,numberPlate,thisFrame);
         Screen.paint(downButtonRec,downButton,thisFrame);
