@@ -8,9 +8,14 @@ public class Bulldog extends Enemy {
         private Image image;
         private BufferedImage resizedImage;
         private Player p;
+        private int xVel;
+        private int yVel;
+
         public Bulldog(Player p, int xPos, int yPos, int xVel, int yVel){
-            super(p, xPos, yPos, xVel, yVel);
+            super(p, xPos, yPos);
             this.p = p;
+            this.xVel = xVel;
+            this.yVel = yVel;
             try{
                 this.image = ImageIO.read(this.getClass().getResource("bulldog.png"));
                 image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
