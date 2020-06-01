@@ -7,8 +7,8 @@ public class Bulldog extends Enemy {
 
         private Image image;
         private BufferedImage resizedImage;
-        public Bulldog(Keyboard kb, int x, int y){
-            super(kb, x, y);
+        public Bulldog(Player p, int xPos, int yPos, int xVel, int yVel){
+            super(p, xPos, yPos, xVel, yVel);
             try{
                 this.image = ImageIO.read(this.getClass().getResource("bulldog.png"));
                 image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
@@ -16,8 +16,27 @@ public class Bulldog extends Enemy {
             } catch(IOException e){}
         }
 
+
+
         public void move(){
-            super.move();
+            if (p.getxPos() - this.xPos > 0) {
+                xPos += xVel;
+            }
+            else if (p.getxPos() - this.xPos < 0) {
+                xPos -= xVel;
+            }
+            else {
+            }
+
+            if (p.getyPos() - this.yPos < 0) {
+                yPos += yVel;
+            }
+            else if (p.getyPos() - this.yPos > 0) {
+                yPos -= yVel;
+            }
+            else {
+
+            }
         }
 
         public void paint(Graphics2D g){g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);

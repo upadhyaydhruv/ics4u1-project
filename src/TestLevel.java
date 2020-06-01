@@ -11,7 +11,7 @@ public class TestLevel {
 
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
-    //Skuttler player = new Skuttler(Main.keyboard, 100, 100);
+    // Skuttler player = new Skuttler(Main.keyboard, 100, 100);
 
     TestLevel(){
         try {

@@ -4,12 +4,14 @@ public class Enemy {
     private int yPos;
     private int xVel;
     private int yVel;
-    private int mouseX;
-    private int mouseY;
+    private Player p;
 
-    public Enemy(Keyboard kb, int xOrig, int yOrig){
+    public Enemy(Player p, int xOrig, int yOrig, int xVel, int yVel){
         this.xPos = xOrig;
         this.yPos = yOrig;
+        this.xVel = xVel;
+        this.yVel = yVel;
+        this.p = p;
     }
 
     public Enemy(){
@@ -35,6 +37,7 @@ public class Enemy {
     public int getyPos(){
         return this.yPos;
     }
+
 
     public void setxPos(int xPos){
         this.xPos = xPos;
