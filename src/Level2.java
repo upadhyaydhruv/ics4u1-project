@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Level2 {
     String nextScreen = "";
 
-    private BufferedImage back,water,plat, barrel,radar;
+    private BufferedImage water,plat, barrel,radar;
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle barrelsRec = new Rectangle(430, 280, 40, 60);
     Rectangle radarRec = new Rectangle(550, 15, 170, 130);
@@ -15,7 +15,7 @@ public class Level2 {
 
     Level2(){
         try {
-            back = ImageIO.read(new File("res\\back button.png"));
+
             water = ImageIO.read(new File("res\\storm water.png"));
             plat = ImageIO.read(new File("res\\level 2 plat.png"));
             barrel = ImageIO.read(new File("res\\barrel.png"));
@@ -30,7 +30,7 @@ public class Level2 {
     }
     public String move() {
 
-        waveHold=Screen.waveMove(waveHold);
+        Screen.waveMove(waveHold);
 
         if(Main.mouse.isMouseOn()){
 
