@@ -10,7 +10,7 @@ public class Bulldog extends Enemy {
         public Bulldog(Keyboard kb, int x, int y){
             super(kb, x, y);
             try{
-                this.image = ImageIO.read(this.getClass().getResource("skuttler.png"));
+                this.image = ImageIO.read(this.getClass().getResource("bulldog.png"));
                 image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
                 resizedImage = (BufferedImage) image;
             } catch(IOException e){}
