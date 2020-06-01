@@ -2,14 +2,12 @@ public class Enemy {
     private int health;
     private int xPos;
     private int yPos;
-    private int xVel;
-    private int yVel;
-    private int mouseX;
-    private int mouseY;
+    private Player p;
 
-    public Enemy(Keyboard kb, int xOrig, int yOrig){
+    public Enemy(Player p, int xOrig, int yOrig){
         this.xPos = xOrig;
         this.yPos = yOrig;
+        this.p = p;
     }
 
     public Enemy(){
@@ -17,7 +15,7 @@ public class Enemy {
     }
 
     public void decreaseHealth(int differential){
-        health-=differential;
+        health -= differential;
     }
 
     public void hit(int x, int y){
@@ -35,6 +33,8 @@ public class Enemy {
     public int getyPos(){
         return this.yPos;
     }
+
+
 
     public void setxPos(int xPos){
         this.xPos = xPos;
