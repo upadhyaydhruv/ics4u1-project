@@ -17,7 +17,7 @@ public class Enemy {
     }
 
     public void decreaseHealth(int differential){
-        health-=differential;
+        health -= differential;
     }
 
     public void hit(int x, int y){
