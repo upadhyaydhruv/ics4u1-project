@@ -10,12 +10,17 @@ public class Bulldog extends Enemy {
         private Player p;
         private int xVel;
         private int yVel;
+        private int xPos;
+        private int yPos;
 
-        public Bulldog(Player p, int xPos, int yPos, int xVel, int yVel){
-            super(p, xPos, yPos);
+        public Bulldog(Player p, int xOrig, int yOrig, int xVel, int yVel){
+            super(p, xOrig, yOrig);
             this.p = p;
             this.xVel = xVel;
             this.yVel = yVel;
+            this.xPos = xOrig;
+            this.yPos = yOrig;
+
             try{
                 this.image = ImageIO.read(this.getClass().getResource("bulldog.png"));
                 image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
@@ -25,26 +30,26 @@ public class Bulldog extends Enemy {
 
 
 
-        //public void move(){
-        //    if (p.getxPos() - this.xPos > 0) {
-        //        xPos += xVel;
-        //    }
-        //    else if (p.getxPos() - this.xPos < 0) {
-        //        xPos -= xVel;
-        //    }
-        //    else {
-        //    }
+        public void move(){
+            if (p.getxPos() - this.xPos > 0) {
+                xPos += xVel;
+            }
+            else if (p.getxPos() - this.xPos < 0) {
+                xPos -= xVel;
+            }
+            else {
+            }
 
-        //    if (p.getyPos() - this.yPos < 0) {
-        //        yPos += yVel;
-        //    }
-        //    else if (p.getyPos() - this.yPos > 0) {
-        //        yPos -= yVel;
-        //    }
-        //    else {
+            if (p.getyPos() - this.yPos < 0) {
+              yPos += yVel;
+          }
+           else if (p.getyPos() - this.yPos > 0) {
+               yPos -= yVel;
+          }
+           else {
 
-        //    }
-        //}
+            }
+        }
 
         public void paint(Graphics2D g){g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
         }
