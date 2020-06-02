@@ -9,6 +9,7 @@ public class Screen {
     private final Settings settings = new Settings();
     private final Level1 L1 = new Level1();
     private final Level2 L2 = new Level2();
+    private final Level3 L3 = new Level3();
 
     Screen(String screenName) {
         this.screenName = screenName;
@@ -33,8 +34,12 @@ public class Screen {
                 break;
             case "L1":
                 L1.start();
+                break;
             case "L2":
                 L2.start();
+                break;
+            case "L3":
+                L3.start();
         }
     }
     public String move() {
@@ -53,6 +58,8 @@ public class Screen {
                 return L1.move();
             case "L2":
                 return L2.move();
+            case "L3":
+                return L3.move();
         }
         return "";
     }
@@ -78,6 +85,9 @@ public class Screen {
             break;
                 case "L2":
                 L2.paint(thisFrame);
+                    break;
+            case "L3":
+                L3.paint(thisFrame);
         }
         Thread.sleep(frameDelay);
     }

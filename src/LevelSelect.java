@@ -4,11 +4,12 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 public class LevelSelect {
     String nextScreen = "";
-    BufferedImage back, green, blue, orange, pink, backButton,testButton,L1Button,L2Button;
+    BufferedImage back, green, blue, orange, pink, backButton,testButton,L1Button,L2Button,L3Button;
     Rectangle backButtonRec = new Rectangle(60, 60, 80, 80);
     Rectangle testButtonRec = new Rectangle(400, 60, 160, 80);
     Rectangle L1ButtonRec = new Rectangle(100, 200, 160, 80);
     Rectangle L2ButtonRec = new Rectangle(300, 200, 160, 80);
+    Rectangle L3ButtonRec = new Rectangle(500, 200, 160, 80);
     int Xoffset, Yoffset;
     LevelSelect() {
         try {
@@ -21,6 +22,7 @@ public class LevelSelect {
             testButton = ImageIO.read(Menu.class.getResourceAsStream("test button.png"));
             L1Button = ImageIO.read(Menu.class.getResourceAsStream("level 1 button.png"));
             L2Button = ImageIO.read(Menu.class.getResourceAsStream("level 2 button.png"));
+            L3Button = ImageIO.read(Menu.class.getResourceAsStream("level 3 button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -49,6 +51,9 @@ public class LevelSelect {
             if (Main.mouse.intersects(L2ButtonRec)) {
                 nextScreen = "L2";
             }
+            if (Main.mouse.intersects(L3ButtonRec)) {
+                nextScreen = "L3";
+            }
         }
         return nextScreen;
     }
@@ -62,5 +67,6 @@ public class LevelSelect {
         Screen.paint(testButtonRec,testButton,thisFrame);
         Screen.paint(L1ButtonRec,L1Button,thisFrame);
         Screen.paint(L2ButtonRec,L2Button,thisFrame);
+        Screen.paint(L3ButtonRec,L3Button,thisFrame);
     }
 }
