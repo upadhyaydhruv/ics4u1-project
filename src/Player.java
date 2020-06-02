@@ -50,7 +50,44 @@ public class Player {
     public void setXVel(int xVel){this.xVel = xVel;}
     public void setYVel(int yVel) {this.yVel = yVel;}
 
-    public void move(){
+    public void move(){ //The delay (10000) prevents the spaceships from zipping through the arena too fast
+        if (Main.keyboard.getA()&&Main.keyboard.getW()){
+            ticker++;
+            if (ticker%10000==0){
+                xPos-=xVel;
+                yPos-=yVel;
+                ticker = 0;
+            }
+        }
+
+        if (Main.keyboard.getD()&&Main.keyboard.getW()){
+            ticker++;
+            if (ticker%10000==0){
+                xPos+=xVel;
+                yPos-=yVel;
+                ticker = 0;
+            }
+        }
+
+        if (Main.keyboard.getS()&&Main.keyboard.getD()){
+            ticker++;
+            if (ticker%10000==0){
+                xPos+=xVel;
+                yPos+=yVel;
+                ticker = 0;
+            }
+        }
+
+
+        if (Main.keyboard.getS()&&Main.keyboard.getA()){
+            ticker++;
+            if (ticker%10000==0){
+                xPos-=xVel;
+                yPos+=yVel;
+                ticker = 0;
+            }
+        }
+
         if (Main.keyboard.getA()){
             ticker++;
             if (ticker%10000==0) {
