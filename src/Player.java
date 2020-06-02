@@ -49,16 +49,16 @@ public class Player {
     }
 
     public void move(){
-        if (keyboard.getA()){
+        if (Main.keyboard.getA()){
             xPos-=xVel;
         }
-        if (keyboard.getD()){
+        if (Main.keyboard.getD()){
             xPos+=xVel;
         }
-        if (keyboard.getW()) {
+        if (Main.keyboard.getW()) {
             yPos-=yVel;
         }
-        if (keyboard.getS()){
+        if (Main.keyboard.getS()){
             yPos+=yVel;
         }
     }
