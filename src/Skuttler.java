@@ -1,18 +1,16 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 public class Skuttler extends Player {
-
     private BufferedImage image;
-    private BufferedImage resizedImage;
     public Skuttler(int x, int y){
         super(x, y);
+        super.setXVel(1);
+        super.setYVel(1);
         try{
-            image = ImageIO.read(new File("res\\skuttler.png"));
-
+            image = ImageIO.read(this.getClass().getResource("skuttler.png"));
         } catch(IOException e){}
     }
 
@@ -21,6 +19,6 @@ public class Skuttler extends Player {
     }
 
     public void paint(Graphics2D g){
-        g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
+        g.drawImage(image, super.getxPos(), super.getyPos(), null);
     }
 }
