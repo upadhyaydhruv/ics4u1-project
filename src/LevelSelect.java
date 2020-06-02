@@ -11,6 +11,7 @@ public class LevelSelect {
     Rectangle L2ButtonRec = new Rectangle(300, 200, 160, 80);
     Rectangle L3ButtonRec = new Rectangle(500, 200, 160, 80);
     int Xoffset, Yoffset;
+    boolean mousetoggle=false;
     LevelSelect() {
         try {
             back = ImageIO.read(Menu.class.getResourceAsStream("menu back.png"));
@@ -31,6 +32,7 @@ public class LevelSelect {
         nextScreen = "";
         Xoffset = Main.mouse.getX() / 4;
         Yoffset = Main.mouse.getY() / 4;
+        mousetoggle=false;
     }
 
     public String move() {
@@ -38,7 +40,8 @@ public class LevelSelect {
             Xoffset = Main.mouse.getX() / 4;
             Yoffset = Main.mouse.getY() / 4;
         }
-        if(Main.mouse.getLMB()) {
+        if(!Main.mouse.getLMB()&&!mousetoggle) { mousetoggle=true;}
+        if(Main.mouse.getLMB()&&mousetoggle) {
             if (Main.mouse.intersects(backButtonRec)) {
                 nextScreen = "menu";
             }
