@@ -25,26 +25,26 @@ public class Bulldog extends Enemy {
 
 
 
-        public void move(){
-            if (p.getxPos() - this.xPos > 0) {
-                xPos += xVel;
-            }
-            else if (p.getxPos() - this.xPos < 0) {
-                xPos -= xVel;
-            }
-            else {
-            }
+        //public void move(){
+        //    if (p.getxPos() - this.xPos > 0) {
+        //        xPos += xVel;
+        //    }
+        //    else if (p.getxPos() - this.xPos < 0) {
+        //        xPos -= xVel;
+        //    }
+        //    else {
+        //    }
 
-            if (p.getyPos() - this.yPos < 0) {
-                yPos += yVel;
-            }
-            else if (p.getyPos() - this.yPos > 0) {
-                yPos -= yVel;
-            }
-            else {
+        //    if (p.getyPos() - this.yPos < 0) {
+        //        yPos += yVel;
+        //    }
+        //    else if (p.getyPos() - this.yPos > 0) {
+        //        yPos -= yVel;
+        //    }
+        //    else {
 
-            }
-        }
+        //    }
+        //}
 
         public void paint(Graphics2D g){g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
         }
