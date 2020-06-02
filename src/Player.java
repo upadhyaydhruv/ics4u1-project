@@ -6,6 +6,7 @@ public class Player {
     private int yVel;
     private int mouseX;
     private int mouseY;
+    private int ticker = 0;
 
     public Player(int xOrig, int yOrig){
         this.xPos = xOrig;
@@ -46,18 +47,37 @@ public class Player {
         this.yPos = yPos;
     }
 
+    public void setXVel(int xVel){this.xVel = xVel;}
+    public void setYVel(int yVel) {this.yVel = yVel;}
+
     public void move(){
         if (Main.keyboard.getA()){
-            xPos-=xVel;
+            ticker++;
+            if (ticker%10000==0) {
+                xPos -= xVel;
+                ticker = 0;
+            }
         }
         if (Main.keyboard.getD()){
-            xPos+=xVel;
+            ticker++;
+            if (ticker%10000==0){
+                xPos+=xVel;
+                ticker = 0;
+            }
         }
         if (Main.keyboard.getW()) {
-            yPos-=yVel;
+            ticker++;
+            if (ticker%10000==0){
+                yPos-=yVel;
+                ticker = 0;
+            }
         }
         if (Main.keyboard.getS()){
-            yPos+=yVel;
+            ticker++;
+            if (ticker%10000==0){
+                yPos+=yVel;
+                ticker = 0;
+            }
         }
     }
 }
