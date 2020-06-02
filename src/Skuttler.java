@@ -5,14 +5,12 @@ import java.io.IOException;
 
 public class Skuttler extends Player {
 
-    private Image image;
+    private BufferedImage image;
     private BufferedImage resizedImage;
-    public Skuttler(Keyboard kb, int x, int y){
-        super(kb, x, y);
+    public Skuttler(int x, int y){
+        super(x, y);
         try{
-            this.image = ImageIO.read(this.getClass().getResource("skuttler.png"));
-            image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-            resizedImage = (BufferedImage) image;
+            image = ImageIO.read(this.getClass().getResource("car.png"));
         } catch(IOException e){}
     }
 
@@ -20,6 +18,7 @@ public class Skuttler extends Player {
         super.move();
     }
 
-    public void paint(Graphics2D g){g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
+    public void paint(Graphics2D g){
+        g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
     }
 }

@@ -11,11 +11,11 @@ public class TestLevel {
 
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
-    Skuttler player = new Skuttler(Main.keyboard, 100, 100);
+    Skuttler player;
 
     TestLevel(){
         try {
-
+            player = new Skuttler(100, 100);
             water = ImageIO.read(new File("res\\storm water.png"));
             plat = ImageIO.read(new File("res\\test plat.png"));
             object = ImageIO.read(new File("res\\test object.png"));
