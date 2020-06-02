@@ -1,5 +1,4 @@
 public class Player {
-    private Keyboard keyboard;
     private int health;
     private int xPos;
     private int yPos;
@@ -8,8 +7,7 @@ public class Player {
     private int mouseX;
     private int mouseY;
 
-    public Player(Keyboard kb, int xOrig, int yOrig){
-        keyboard = kb;
+    public Player(int xOrig, int yOrig){
         this.xPos = xOrig;
         this.yPos = yOrig;
     }
@@ -49,16 +47,16 @@ public class Player {
     }
 
     public void move(){
-        if (keyboard.getA()){
+        if (Main.keyboard.getA()){
             xPos-=xVel;
         }
-        if (keyboard.getD()){
+        if (Main.keyboard.getD()){
             xPos+=xVel;
         }
-        if (keyboard.getW()) {
+        if (Main.keyboard.getW()) {
             yPos-=yVel;
         }
-        if (keyboard.getS()){
+        if (Main.keyboard.getS()){
             yPos+=yVel;
         }
     }
