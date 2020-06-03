@@ -7,6 +7,9 @@ public class Skuttler extends Player {
     private BufferedImage image;
     private BufferedImage bullet;
     private BufferedImage sword;
+    private int bulletPosX;
+    private int bulletPosY;
+    private Machinegun shooter;
     public Skuttler(int x, int y){
         super(x, y);
         super.setXVel(1);
@@ -17,20 +20,23 @@ public class Skuttler extends Player {
         } catch(IOException e){}
     }
 
-    public void shoot(int x, int y){
-        int deltaX = x-super.getxPos();
-        int deltaY = y-super.getyPos();
-
+    public void shoot(){
+        Machinegun shot = new Machinegun(150, 150, bullet);
+        shooter = shot;
     }
 
     public void move(){
         super.move();
-        if (Main.mouse.getLMB()){
-            this.shoot(Main.mouse.getX(), Main.mouse.getY());
+        if (Main.mouse.getRMB()){
+            this.shoot();
+            shooter.move();
         }
     }
 
     public void paint(Graphics2D g){
         g.drawImage(image, super.getxPos(), super.getyPos(), null);
+        if (shooter!=null) {
+            shooter.paint(g);
+        }
     }
 }
