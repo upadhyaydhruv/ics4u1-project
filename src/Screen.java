@@ -42,7 +42,7 @@ public class Screen {
                 L3.start();
         }
     }
-    public String move() {
+    public String move() throws InterruptedException {
         switch (screenName) {
             case "menu":
                 return menu.move();
@@ -61,6 +61,7 @@ public class Screen {
             case "L3":
                 return L3.move();
         }
+        Thread.sleep(frameDelay);
         return "";
     }
     public void paint(Graphics2D thisFrame) throws InterruptedException{
