@@ -13,10 +13,12 @@ public class TestLevel {
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
     //Skuttler player;
     Esper player;
+    Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
 
     TestLevel(){
         try {
             player = new Esper(100, 100);
+            testMissile = new Missile(150, 150);
             water = ImageIO.read(new File("res\\storm water.png"));
             plat = ImageIO.read(new File("res\\test plat.png"));
             object = ImageIO.read(new File("res\\test object.png"));
@@ -34,6 +36,7 @@ public class TestLevel {
 
             }
         player.move();
+        testMissile.move();
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
         }
@@ -48,5 +51,6 @@ public class TestLevel {
         thisFrame.drawImage(plat, platRec.x, platRec.y, platRec.width, platRec.height, null);
         thisFrame.drawImage(object, objectRec.x, objectRec.y, objectRec.width, objectRec.height, null);
         player.paint(thisFrame);
+        testMissile.paint(thisFrame);
     }
 }
