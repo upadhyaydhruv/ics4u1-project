@@ -50,10 +50,17 @@ public class Missile {
         return gd.getDefaultConfiguration();
     }
 
+    //bobby's fix
+    Boolean RMBToggle=false;
     public void move(){
-        if (Main.mouse.getRMB()){
+        if (Main.mouse.getRMB()&&RMBToggle){
             this.flipVel();
+            RMBToggle=false;
         }
+        if (!Main.mouse.getRMB()){
+            RMBToggle=true;
+        }
+    //bobby's fix
 
         ticker++;
         if (ticker%50000==0) {
