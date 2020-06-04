@@ -36,5 +36,7 @@ public class Esper extends Player {
 
     public void paint(Graphics2D g){
         g.drawImage(image, super.getxPos(), super.getyPos(), null);
+        Main.rotate(this.image, super.getStates()[1]-super.getStates()[0]);
+        System.out.println(super.getStates()[0]+" "+super.getStates()[1]);
     }
 }

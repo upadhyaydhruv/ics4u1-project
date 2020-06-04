@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 
 // bobby's notes
 // you guys can use commands to access the mouses current position and buttons
@@ -31,7 +32,7 @@ public class Main extends JPanel {
     public static Keyboard keyboard=new Keyboard();
 
     public static void main(String[] args) throws InterruptedException {
-        JFrame frame = new JFrame("doctor sex");
+        JFrame frame = new JFrame("Game");
         frame.add(new Main());
         frame.setSize(960, 720);
         //720p 4:3 or standard HD (you guys should change this now if you don't like it)
@@ -101,6 +102,27 @@ public class Main extends JPanel {
         setFocusable(true);
     }
     //bobby: that try and catch is used to allow the screen class to stop and start the move class (its a long story)
+
+    //Dhruv: The methods below aid in rotating art assets, allowing them to point in the direction they are travelling in
+    public static BufferedImage rotate(BufferedImage image, double angle) {
+        double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
+        int w = image.getWidth(), h = image.getHeight();
+        int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
+        GraphicsConfiguration gc = getDefaultConfiguration();
+        BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
+        Graphics2D g = result.createGraphics();
+        g.translate((neww - w) / 2, (newh - h) / 2);
+        g.rotate(angle, w / 2, h / 2);
+        g.drawRenderedImage(image, null);
+        g.dispose();
+        return result;
+    }
+
+    private static GraphicsConfiguration getDefaultConfiguration() {
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        return gd.getDefaultConfiguration();
+    }
     public void paint (Graphics lastFrame) {
         super.paint(lastFrame);
         Graphics2D thisFrame = (Graphics2D) lastFrame;

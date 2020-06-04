@@ -7,6 +7,8 @@ public class Player {
     private int mouseX;
     private int mouseY;
     private int ticker = 0;
+    private double previousState = 0;
+    private double currentState = Math.PI/2;
 
     public Player(int xOrig, int yOrig){
         this.xPos = xOrig;
@@ -50,8 +52,15 @@ public class Player {
     public void setXVel(int xVel){this.xVel = xVel;}
     public void setYVel(int yVel) {this.yVel = yVel;}
 
+    public double[] getStates() {
+        double[] arr = {previousState, currentState};
+        return arr;
+    }
+
     public void move(){ //The delay (10000) prevents the spaceships from zipping through the arena too fast
         if (Main.keyboard.getA()&&Main.keyboard.getW()){
+            previousState = currentState;
+            currentState = (7*Math.PI)/4;
             ticker++;
             if (ticker%10000==0){
                 xPos-=xVel;
@@ -61,6 +70,9 @@ public class Player {
         }
 
         if (Main.keyboard.getD()&&Main.keyboard.getW()){
+            previousState = currentState;
+            currentState = Math.PI/4;
+            //state = 8;
             ticker++;
             if (ticker%10000==0){
                 xPos+=xVel;
@@ -70,6 +82,9 @@ public class Player {
         }
 
         if (Main.keyboard.getS()&&Main.keyboard.getD()){
+            previousState = currentState;
+            currentState = (3*Math.PI)/4;
+            //state = 2;
             ticker++;
             if (ticker%10000==0){
                 xPos+=xVel;
@@ -80,6 +95,9 @@ public class Player {
 
 
         if (Main.keyboard.getS()&&Main.keyboard.getA()){
+            previousState = currentState;
+            currentState = (5*Math.PI)/4;
+            //state = 4;
             ticker++;
             if (ticker%10000==0){
                 xPos-=xVel;
@@ -89,6 +107,9 @@ public class Player {
         }
 
         if (Main.keyboard.getA()){
+            previousState = currentState;
+            currentState = (3*Math.PI)/2;
+            //state = 5;
             ticker++;
             if (ticker%10000==0) {
                 xPos -= xVel;
@@ -96,6 +117,9 @@ public class Player {
             }
         }
         if (Main.keyboard.getD()){
+            previousState = currentState;
+            currentState = Math.PI/2;
+            //state = 1;
             ticker++;
             if (ticker%10000==0){
                 xPos+=xVel;
@@ -103,6 +127,9 @@ public class Player {
             }
         }
         if (Main.keyboard.getW()) {
+            previousState = currentState;
+            currentState = 0;
+            //state = 7;
             ticker++;
             if (ticker%10000==0){
                 yPos-=yVel;
@@ -110,6 +137,9 @@ public class Player {
             }
         }
         if (Main.keyboard.getS()){
+            previousState = currentState;
+            currentState = Math.PI;
+            //state = 3;
             ticker++;
             if (ticker%10000==0){
                 yPos+=yVel;
