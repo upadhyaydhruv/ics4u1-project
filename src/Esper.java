@@ -9,6 +9,7 @@ public class Esper extends Player {
     private int bulletPosX;
     private int bulletPosY;
     private Machinegun shooter;
+    private int ticker = 0;
     public Esper(int x, int y){
         super(x, y);
         super.setXVel(1);
@@ -31,12 +32,21 @@ public class Esper extends Player {
         if (Main.mouse.getLMB()){ //Adds teleporting functionality with left-click
             super.setxPos(Main.mouse.getX()-15);
             super.setYPos(Main.mouse.getY()-5);
+            this.image = super.rotateImageByDegrees(this.image, Math.PI/4);
         }
     }
 
     public void paint(Graphics2D g){
+        /*
+        if (ticker%100000==0) {
+            this.image = super.rotateImageByDegrees(image, (Math.PI) / 4);
+            ticker = 0;
+        }
+        */
+        ticker++;
         g.drawImage(image, super.getxPos(), super.getyPos(), null);
-        Main.rotate(this.image, super.getStates()[1]-super.getStates()[0]);
-        System.out.println(super.getStates()[0]+" "+super.getStates()[1]);
+        //Main.rotate(this.image, (Math.PI)/4);
+        //super.setPreviousState(super.getStates()[1]);
+        //System.out.println(super.getStates()[0]+" "+super.getStates()[1]);
     }
 }

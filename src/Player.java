@@ -1,3 +1,7 @@
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+
 public class Player {
     private int health;
     private int xPos;
@@ -57,9 +61,28 @@ public class Player {
         return arr;
     }
 
+    public void setCurrentState(double state){
+        this.currentState = state;
+    }
+
+    public void setPreviousState(double state){
+        this.previousState = state;
+    }
+
+    public BufferedImage rotateImageByDegrees(BufferedImage img, double angle) {
+
+        double rads = Math.toRadians(angle);
+        double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
+        int w = img.getWidth();
+        int h = img.getHeight();
+        int newWidth = (int) Math.floor(w * cos + h * sin);
+        int newHeight = (int) Math.floor(h * cos + w * sin);
+
+        return new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
+    }
+
     public void move(){ //The delay (10000) prevents the spaceships from zipping through the arena too fast
         if (Main.keyboard.getA()&&Main.keyboard.getW()){
-            previousState = currentState;
             currentState = (7*Math.PI)/4;
             ticker++;
             if (ticker%10000==0){
@@ -70,7 +93,6 @@ public class Player {
         }
 
         if (Main.keyboard.getD()&&Main.keyboard.getW()){
-            previousState = currentState;
             currentState = Math.PI/4;
             //state = 8;
             ticker++;
@@ -82,7 +104,6 @@ public class Player {
         }
 
         if (Main.keyboard.getS()&&Main.keyboard.getD()){
-            previousState = currentState;
             currentState = (3*Math.PI)/4;
             //state = 2;
             ticker++;
@@ -95,7 +116,6 @@ public class Player {
 
 
         if (Main.keyboard.getS()&&Main.keyboard.getA()){
-            previousState = currentState;
             currentState = (5*Math.PI)/4;
             //state = 4;
             ticker++;
@@ -107,7 +127,6 @@ public class Player {
         }
 
         if (Main.keyboard.getA()){
-            previousState = currentState;
             currentState = (3*Math.PI)/2;
             //state = 5;
             ticker++;
@@ -117,7 +136,6 @@ public class Player {
             }
         }
         if (Main.keyboard.getD()){
-            previousState = currentState;
             currentState = Math.PI/2;
             //state = 1;
             ticker++;
@@ -127,7 +145,6 @@ public class Player {
             }
         }
         if (Main.keyboard.getW()) {
-            previousState = currentState;
             currentState = 0;
             //state = 7;
             ticker++;
@@ -137,7 +154,6 @@ public class Player {
             }
         }
         if (Main.keyboard.getS()){
-            previousState = currentState;
             currentState = Math.PI;
             //state = 3;
             ticker++;

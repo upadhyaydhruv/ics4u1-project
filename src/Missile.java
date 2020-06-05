@@ -11,6 +11,8 @@ public class Missile {
     private int xVel = 1; //These are just placeholders for testing right now
     private int yVel = 1;
     private int ticker = 0; //This is to slow done speed of moving graphics objects using modular arithmetic
+    private boolean RMBToggle=false;
+
 
     public Missile(int xOrig, int yOrig) {
         try {
@@ -51,7 +53,6 @@ public class Missile {
     }
 
     //bobby's fix
-    Boolean RMBToggle=false;
     public void move(){
         if (Main.mouse.getRMB()&&RMBToggle){
             this.flipVel();
