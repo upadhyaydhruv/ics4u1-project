@@ -14,7 +14,7 @@ public class TestLevel {
     //Skuttler player;
     Esper player;
     Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
-    //Bulldog bulldog(player, xOrig, yOrig, xVel, yVel);
+    Bulldog bulldog = new Bulldog(5,5);
 
     TestLevel(){
         try {
@@ -38,6 +38,7 @@ public class TestLevel {
             }
         player.move();
         testMissile.move();
+        bulldog.move();
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
         }
@@ -53,5 +54,6 @@ public class TestLevel {
 
         player.paint(thisFrame);
         testMissile.paint(thisFrame);
+        bulldog.paint(thisFrame);
     }
 }
