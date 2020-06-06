@@ -32,7 +32,9 @@ public class Main extends JPanel {
     public static Keyboard keyboard=new Keyboard();
 
     public static void main(String[] args) throws InterruptedException {
+
         JFrame frame = new JFrame("Game");
+        frame.add(new MouseMotion());
         frame.add(new Main());
         frame.setSize(960, 720);
         //720p 4:3 or standard HD (you guys should change this now if you don't like it)
@@ -44,7 +46,7 @@ public class Main extends JPanel {
 
             //moves current screen and updates nextScreen
             nextScreen = currentScreen.move();
-            if (nextScreen != "") {
+            if (!nextScreen.equals("")) {
                 currentScreen.changeScreen(nextScreen);
             }
             frame.repaint();
@@ -69,6 +71,7 @@ public class Main extends JPanel {
                 keyboard.press(event);
             }
         });
+
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent event) {
@@ -76,31 +79,39 @@ public class Main extends JPanel {
 
             @Override
             public void mousePressed(MouseEvent event) {
-                mouse.press(event);
+                Main.mouse.press(event);
             }
 
             @Override
             public void mouseReleased(MouseEvent event) {
-                mouse.release(event);
+                Main.mouse.release(event);
             }
 
             @Override
             public void mouseEntered(MouseEvent event) {
-                mouse.entered();
+                Main.mouse.entered();
             }
 
             @Override
             public void mouseExited(MouseEvent event) {
-                mouse.exited();
+                Main.mouse.exited();
             }
+
         });
+
+
+
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
                 mouse.update(event);
             }
         });
         setFocusable(true);
+
+
+
     }
+
     //bobby: that try and catch is used to allow the screen class to stop and start the move class (its a long story)
 
     //Dhruv: The methods below aid in rotating art assets, allowing them to point in the direction they are travelling in
@@ -123,6 +134,8 @@ public class Main extends JPanel {
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         return gd.getDefaultConfiguration();
     }
+
+
     public void paint (Graphics lastFrame) {
         super.paint(lastFrame);
         Graphics2D thisFrame = (Graphics2D) lastFrame;
@@ -132,4 +145,21 @@ public class Main extends JPanel {
             e.printStackTrace();
         }
     }
+}
+
+
+class MouseMotion extends JPanel {
+    MouseMotion() {
+        System.out.print("a diet pepsi bozi buddy?");
+
+        addMouseMotionListener(new MouseMotionAdapter() {
+            public void mouseMoved(MouseEvent event) {
+                System.out.print("whose been drawing dicks?");
+                Main.mouse.update(event);
+            }
+        });
+
+
+    }
+
 }

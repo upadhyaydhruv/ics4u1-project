@@ -48,9 +48,9 @@ public class TestLevel {
 
         Screen.paint(platRec,plat,thisFrame);
 
-
         thisFrame.drawImage(plat, platRec.x, platRec.y, platRec.width, platRec.height, null);
         thisFrame.drawImage(object, objectRec.x, objectRec.y, objectRec.width, objectRec.height, null);
+
         player.paint(thisFrame);
         testMissile.paint(thisFrame);
     }

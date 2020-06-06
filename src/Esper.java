@@ -1,52 +1,58 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 public class Esper extends Player {
-    private BufferedImage image;
-    private BufferedImage bullet;
-    private int bulletPosX;
-    private int bulletPosY;
+    private BufferedImage esper,bullet;
+    private int bulletPosX,bulletPosY,ticker = 0;
     private Machinegun shooter;
-    private int ticker = 0;
+
+    //bobby's angle update
+    private double angle;
+    private AffineTransform transform = new AffineTransform();
+    private final int anchorX=25;
+    private final int anchorY=15;
+    //anchor X and Y tell the program which pixel on esper.png it should rotate around
+    // (this should be changed to fit different pictures in the future)
+
     public Esper(int x, int y){
         super(x, y);
         super.setXVel(1);
         super.setYVel(1);
         try{
-            image = ImageIO.read(this.getClass().getResource("esper.png"));
+            esper = ImageIO.read(this.getClass().getResource("esper.png"));
         } catch(IOException e){}
     }
 
-    /*
     public void shoot(){
         Machinegun shot = new Machinegun(150, 150, bullet);
         shooter = shot;
     }
-    */
 
     public void move(){
         super.move();
 
-        if (Main.mouse.getLMB()){ //Adds teleporting functionality with left-click
+        if (Main.mouse.getRMB()){ //Adds teleporting functionality with left-click
             super.setxPos(Main.mouse.getX()-15);
             super.setYPos(Main.mouse.getY()-5);
-            this.image = super.rotateImageByDegrees(this.image, Math.PI/4);
+
         }
+
+        //bobby's angle update
+        angle=450-(Math.atan2(Main.mouse.getX()-super.getxPos(), Main.mouse.getY()-super.getyPos())*180/Math.PI);
+        //(this part finds the angle between the player and the mouse)
+
     }
 
     public void paint(Graphics2D g){
-        /*
-        if (ticker%100000==0) {
-            this.image = super.rotateImageByDegrees(image, (Math.PI) / 4);
-            ticker = 0;
-        }
-        */
-        ticker++;
-        g.drawImage(image, super.getxPos(), super.getyPos(), null);
-        //Main.rotate(this.image, (Math.PI)/4);
-        //super.setPreviousState(super.getStates()[1]);
-        //System.out.println(super.getStates()[0]+" "+super.getStates()[1]);
+
+        //bobby's angle update(these must be in this order)
+        transform = new AffineTransform();
+        transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
+        transform.translate(super.getxPos(),super.getyPos());
+        g.drawImage(esper, transform, null);
+
     }
 }
