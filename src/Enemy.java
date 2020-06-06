@@ -1,7 +1,5 @@
 public class Enemy {
-    private int health;
-    private int xPos;
-    private int yPos;
+    private int health, xPos, yPos, xVel, yVel;
     private Player p;
 
     public Enemy(Player p, int xOrig, int yOrig){
@@ -32,6 +30,13 @@ public class Enemy {
 
     public int getyPos(){
         return this.yPos;
+    }
+
+    public int getxVel(){
+        return this.xVel;
+    }
+    public int getyVel(){
+        return this.yVel;
     }
 
     public void setxPos(int xPos){

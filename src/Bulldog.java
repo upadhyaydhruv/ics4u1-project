@@ -8,14 +8,10 @@ public class Bulldog extends Enemy {
         private Image image;
         private BufferedImage resizedImage;
         private Player p;
-        private int xVel;
-        private int yVel;
 
-        public Bulldog(super.getxPos(), super.getyPos(), int xVel, int yVel){
-            super(p, xPos, yPos);
-            this.p = p;
-            this.xVel = xVel;
-            this.yVel = yVel;
+        int X,Y;
+        public Bulldog(int x, int y){
+
 
             try{
                 this.image = ImageIO.read(this.getClass().getResource("bulldog.png"));
@@ -25,15 +21,16 @@ public class Bulldog extends Enemy {
         }
 
         public void move(){
-            if (p.getxPos() - this.xPos > 0) {
-                xPos += xVel;
+            if (p.getxPos() - super.getxPos() > 0) {
+                super.getxPos() += super.getxVel();
+
             }
-            else if (p.getxPos() - this.xPos < 0) {
-                xPos -= xVel;
+            else if (p.getxPos() - super.getxPos() < 0) {
+                super.getxPos() -=  super.getxVel();
             }
             else {
             }
-            xVel += 1;
+            super.getxVel() += 1;
 
             if (p.getyPos() - this.yPos < 0) {
               yPos += yVel;
