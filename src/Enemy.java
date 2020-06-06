@@ -2,10 +2,12 @@ public class Enemy {
     private int health, xPos, yPos, xVel, yVel;
     private Player p;
 
-    public Enemy(Player p, int xOrig, int yOrig){
-        this.xPos = xOrig;
-        this.yPos = yOrig;
+    public Enemy(Player p){
+        this.xPos = xPos;
+        this.yPos = yPos;
         this.p = p;
+        xVel = 1;
+        yVel = 1;
     }
 
     public Enemy(){
