@@ -5,22 +5,24 @@ import java.io.IOException;
 
 public class Bulldog extends Enemy {
 
-        private Image image;
-        private BufferedImage resizedImage;
-        private Player p;
+        private BufferedImage image;
+        //private BufferedImage resizedImage;
+
 
         int X,Y;
         public Bulldog(int x, int y){
 
 
             try{
-                this.image = ImageIO.read(this.getClass().getResource("bulldog.png"));
-                image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-                resizedImage = (BufferedImage) image;
-            } catch(IOException e){}
+                image = ImageIO.read(this.getClass().getResource("skuttler.png"));
+                // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
+                // resizedImage = (BufferedImage) image;
+            } catch(IOException e){
+                System.out.print("there");
+            }
         }
 
-        public void move(){
+        public void move(Player p){
             if (p.getxPos() - super.getxPos() > 0) {
                 super.setxPos(super.getxPos() + super.getxVel());
 
@@ -46,7 +48,7 @@ public class Bulldog extends Enemy {
            super.setxVel(super.getyVel() + 1);
         }
 
-        public void paint(Graphics2D g){g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
+        public void paint(Graphics2D g){g.drawImage(image, super.getxPos(), super.getyPos(), null);
         }
     }
 

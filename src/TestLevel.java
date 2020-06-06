@@ -38,7 +38,7 @@ public class TestLevel {
             }
         player.move();
         testMissile.move();
-        bulldog.move();
+        bulldog.move(player);
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
         }
