@@ -46,6 +46,14 @@ public class Enemy {
         this.yPos = yPos;
     }
 
+    public void setyVel(int yVel) {
+        this.yVel = yVel;
+    }
+
+    public void setxVel(int xVel) {
+        this.xVel = xVel;
+    }
+
     public void move(){
     }
 }
