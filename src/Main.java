@@ -108,9 +108,10 @@ public class Main extends JPanel {
         setFocusable(true);
     }
 
-    //bobby: that try and catch is used to allow the screen class to stop and start the move class (its a long story)
+
 
     //Dhruv: The methods below aid in rotating art assets, allowing them to point in the direction they are travelling in
+    // bobby: can we move this somewhere else for the sake of keeping the Main clean?
     public static BufferedImage rotate(BufferedImage image, double angle) {
         double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
         int w = image.getWidth(), h = image.getHeight();
@@ -124,13 +125,14 @@ public class Main extends JPanel {
         g.dispose();
         return result;
     }
-
     private static GraphicsConfiguration getDefaultConfiguration() {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         return gd.getDefaultConfiguration();
     }
 
+
+    //bobby: that try and catch is used to allow the screen class to stop and start the move class (its a long story)
     public void paint (Graphics lastFrame) {
         super.paint(lastFrame);
         Graphics2D thisFrame = (Graphics2D) lastFrame;

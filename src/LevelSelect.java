@@ -4,12 +4,13 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 public class LevelSelect {
     String nextScreen = "";
-    BufferedImage back, green, blue, orange, pink, backButton,testButton,L1Button,L2Button,L3Button;
+    BufferedImage back, green, blue, orange, pink, backButton,testButton,L1Button,L2Button,L3Button,L4Button;
     Rectangle backButtonRec = new Rectangle(60, 60, 80, 80);
     Rectangle testButtonRec = new Rectangle(400, 60, 160, 80);
     Rectangle L1ButtonRec = new Rectangle(100, 200, 160, 80);
     Rectangle L2ButtonRec = new Rectangle(300, 200, 160, 80);
     Rectangle L3ButtonRec = new Rectangle(500, 200, 160, 80);
+    Rectangle L4ButtonRec = new Rectangle(700, 200, 160, 80);
     int Xoffset, Yoffset;
     boolean mousetoggle=false;
     LevelSelect() {
@@ -24,6 +25,7 @@ public class LevelSelect {
             L1Button = ImageIO.read(Menu.class.getResourceAsStream("level 1 button.png"));
             L2Button = ImageIO.read(Menu.class.getResourceAsStream("level 2 button.png"));
             L3Button = ImageIO.read(Menu.class.getResourceAsStream("level 3 button.png"));
+            L4Button = ImageIO.read(Menu.class.getResourceAsStream("level 4 button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -45,17 +47,20 @@ public class LevelSelect {
             if (Main.mouse.intersects(backButtonRec)) {
                 nextScreen = "menu";
             }
-            if (Main.mouse.intersects(testButtonRec)) {
+            else if (Main.mouse.intersects(testButtonRec)) {
                 nextScreen = "testLevel";
             }
-            if (Main.mouse.intersects(L1ButtonRec)) {
+            else if (Main.mouse.intersects(L1ButtonRec)) {
                 nextScreen = "L1";
             }
-            if (Main.mouse.intersects(L2ButtonRec)) {
+            else if (Main.mouse.intersects(L2ButtonRec)) {
                 nextScreen = "L2";
             }
-            if (Main.mouse.intersects(L3ButtonRec)) {
+            else if (Main.mouse.intersects(L3ButtonRec)) {
                 nextScreen = "L3";
+            }
+            else if (Main.mouse.intersects(L4ButtonRec)) {
+                nextScreen = "L4";
             }
         }
         return nextScreen;
@@ -71,5 +76,6 @@ public class LevelSelect {
         Screen.paint(L1ButtonRec,L1Button,thisFrame);
         Screen.paint(L2ButtonRec,L2Button,thisFrame);
         Screen.paint(L3ButtonRec,L3Button,thisFrame);
+        Screen.paint(L4ButtonRec,L4Button,thisFrame);
     }
 }
