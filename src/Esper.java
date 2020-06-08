@@ -3,19 +3,22 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Esper extends Player {
     private BufferedImage esper,bullet;
     private int bulletPosX,bulletPosY,ticker = 0;
     private Machinegun shooter;
 
-    //bobby's angle update
+    //bobby's angle update3.
+
     private double angle;
     private AffineTransform transform = new AffineTransform();
     private final int anchorX=19;
     private final int anchorY=15;
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)
+    private ArrayList<Machinegun> guns = new ArrayList<>();
 
     public Esper(int x, int y){
         super(x, y);
@@ -23,16 +26,27 @@ public class Esper extends Player {
         super.setYVel(1);
         try{
             esper = ImageIO.read(this.getClass().getResource("esper.png"));
+            bullet = ImageIO.read(this.getClass().getResource("esper shot A.png"));
         } catch(IOException e){}
     }
 
     public void shoot(){
-        Machinegun shot = new Machinegun(150, 150);
-        shooter = shot;
+        ticker++;
+        if (ticker%1000000==0){
+            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet));
+            ticker = 0;
+        }
     }
 
     public void move(){
         super.move();
+
+        if (Main.mouse.getLMB()){
+            this.shoot();
+        }
+        for (Machinegun gun : guns){
+            gun.move();
+        }
 
         if (Main.mouse.getRMB()){ //Adds teleporting functionality with left-click
             super.setxPos(Main.mouse.getX()-15);
@@ -54,5 +68,8 @@ public class Esper extends Player {
         transform.translate(super.getxPos(),super.getyPos());
         g.drawImage(esper, transform, null);
 
+        for (Machinegun gun : guns){
+            gun.paint(g);
+        }
     }
 }

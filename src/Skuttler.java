@@ -31,7 +31,7 @@ public class Skuttler extends Player {
     public void shoot(){
         ticker++;
         if (ticker%1000000==0){
-            guns.add(new Machinegun(super.getxPos(), super.getyPos()));
+            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet));
             ticker = 0;
         }
     }

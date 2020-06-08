@@ -11,10 +11,8 @@ public class Machinegun {
     private BufferedImage image;
     private int ticker = 0;
 
-    public Machinegun(int xOrig, int yOrig){
-        try {
-            image = ImageIO.read(this.getClass().getResource("skuttler shot C.png"));
-        } catch(IOException e) {}
+    public Machinegun(int xOrig, int yOrig, BufferedImage image){
+        this.image = image;
         xPos = xOrig;
         yPos = yOrig;
         int xTar = Main.mouse.getX();

@@ -11,8 +11,8 @@ public class TestLevel {
 
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
-    //Esper player;
-    private Skuttler player;
+    private Esper player;
+    //private Skuttler player;
     Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
     //Machinegun test;
     //Bulldog bulldog = new Bulldog(5,5);
@@ -27,7 +27,7 @@ public class TestLevel {
         } catch (IOException e) {
             System.out.println("image not found!");
         }
-        player = new Skuttler(100, 100);
+        player = new Esper(100, 100);
         testMissile = new Missile(150, 150);
         //test = new Machinegun(200, 200);
     }
