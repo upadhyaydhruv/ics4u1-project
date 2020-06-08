@@ -12,7 +12,7 @@ public class Esper extends Player {
     //bobby's angle update
     private double angle;
     private AffineTransform transform = new AffineTransform();
-    private final int anchorX=25;
+    private final int anchorX=19;
     private final int anchorY=15;
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)

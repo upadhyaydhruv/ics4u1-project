@@ -13,8 +13,8 @@ public class Skuttler extends Player {
     private int bulletPosY;
     private int ticker = 0;
     private double angle;
-    private final int anchorX=25;
-    private final int anchorY=20;
+    private final int anchorX=38;
+    private final int anchorY=37;
     private AffineTransform transform = new AffineTransform();
     private ArrayList<Machinegun> guns = new ArrayList<>();
 

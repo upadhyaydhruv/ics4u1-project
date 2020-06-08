@@ -146,7 +146,7 @@ public class Main extends JPanel {
 class uselessClass extends JPanel {
     MouseMotion() {
         System.out.print("burn the communists!");
-        System.out.print("can't be delusionay if you don't subsrcibe the a concreate reality, am i right?");
+        System.out.print("can't be delusional if you don't subscribe the a concrete reality, am i right?");
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
                 System.out.print("whose been drawing nicks?");
