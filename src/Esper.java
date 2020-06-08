@@ -41,7 +41,7 @@ public class Esper extends Player {
         }
 
         //bobby's angle update
-        angle=450-(Math.atan2(Main.mouse.getX()-super.getxPos(), Main.mouse.getY()-super.getyPos())*180/Math.PI);
+        angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
         //(this part finds the angle between the player and the mouse)
 
     }

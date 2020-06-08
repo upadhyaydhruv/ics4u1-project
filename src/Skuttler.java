@@ -44,7 +44,7 @@ public class Skuttler extends Player {
         for (Machinegun gun : guns){
             gun.move();
         }
-        angle=450-(Math.atan2(Main.mouse.getX()-super.getxPos(), Main.mouse.getY()-super.getyPos())*180/Math.PI);
+        angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
     }
 
     public void paint(Graphics2D g){
