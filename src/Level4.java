@@ -6,9 +6,9 @@ import java.io.IOException;
 public class Level4 {
     String nextScreen = "";
 
-    private BufferedImage water,plat, bubbleTube;
+    private BufferedImage water,plat;
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
-    Rectangle bubbleTubeRec = new Rectangle(670, 50, 108, 220);
+    BubbleTube tube = new BubbleTube(670, 280);
 
     //Skuttler player= new Skuttler(Main.keyboard,10,10);
 
@@ -18,7 +18,7 @@ public class Level4 {
         try {
             water = ImageIO.read(new File("res\\storm water.png"));
             plat = ImageIO.read(new File("res\\level 4 plat.png"));
-            bubbleTube = ImageIO.read(new File("res\\bubble tube skeleton.png"));
+
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -30,6 +30,7 @@ public class Level4 {
     public String move() {
 
         Screen.waveMove(waveHold);
+        tube.move();
 
         if(Main.mouse.isMouseOn()){
 
@@ -45,7 +46,7 @@ public class Level4 {
     public void paint(Graphics2D thisFrame) {
         thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
         Screen.paint(platRec,plat,thisFrame);
-        Screen.paint(bubbleTubeRec,bubbleTube,thisFrame);
+        tube.paint(thisFrame);
 
 
         //player.paint(thisFrame);
