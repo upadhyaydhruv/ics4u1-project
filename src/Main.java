@@ -34,7 +34,6 @@ public class Main extends JPanel {
     public static void main(String[] args) throws InterruptedException {
 
         JFrame frame = new JFrame("Game");
-        frame.add(new MouseMotion());
         frame.add(new Main());
         frame.setSize(960, 720);
         //720p 4:3 or standard HD (you guys should change this now if you don't like it)
@@ -98,18 +97,15 @@ public class Main extends JPanel {
             }
 
         });
-
-
-
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
                 mouse.update(event);
             }
+            public void mouseDragged(MouseEvent event){
+                mouse.update(event);
+            }
         });
         setFocusable(true);
-
-
-
     }
 
     //bobby: that try and catch is used to allow the screen class to stop and start the move class (its a long story)
@@ -135,7 +131,6 @@ public class Main extends JPanel {
         return gd.getDefaultConfiguration();
     }
 
-
     public void paint (Graphics lastFrame) {
         super.paint(lastFrame);
         Graphics2D thisFrame = (Graphics2D) lastFrame;
@@ -147,19 +142,17 @@ public class Main extends JPanel {
     }
 }
 
-
-class MouseMotion extends JPanel {
+/*
+class uselessClass extends JPanel {
     MouseMotion() {
         System.out.print("burn the communists!");
-
+        System.out.print("can't be delusionay if you don't subsrcibe the a concreate reality, am i right?");
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
                 System.out.print("whose been drawing nicks?");
                 Main.mouse.update(event);
             }
         });
-
-
     }
-
 }
+*/
