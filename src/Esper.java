@@ -27,7 +27,7 @@ public class Esper extends Player {
     }
 
     public void shoot(){
-        Machinegun shot = new Machinegun(150, 150, bullet);
+        Machinegun shot = new Machinegun(150, 150);
         shooter = shot;
     }
 

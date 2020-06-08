@@ -64,7 +64,7 @@ public class Missile {
     //bobby's fix
 
         ticker++;
-        if (ticker%50000==0) {
+        if (ticker%5000==0) {
             xPos += xVel;
             yPos += yVel;
         }

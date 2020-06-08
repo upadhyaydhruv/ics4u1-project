@@ -43,7 +43,6 @@ public class Bulldog extends Enemy {
                 if (p.getyPos() - super.getyPos() < 0) {
                     super.setYPos(super.getyPos() - super.getyVel());
                     this.Y = super.getyPos();
-                    ;
                 } else if (p.getyPos() - super.getyPos() > 0) {
                     super.setYPos(super.getyPos() + super.getyVel());
                     this.Y = super.getyPos();

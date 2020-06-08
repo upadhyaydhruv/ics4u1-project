@@ -150,11 +150,11 @@ public class Main extends JPanel {
 
 class MouseMotion extends JPanel {
     MouseMotion() {
-        System.out.print("a diet pepsi bozi buddy?");
+        System.out.print("burn the communists!");
 
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
-                System.out.print("whose been drawing dicks?");
+                System.out.print("whose been drawing nicks?");
                 Main.mouse.update(event);
             }
         });

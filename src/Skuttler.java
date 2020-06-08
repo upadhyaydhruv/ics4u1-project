@@ -1,7 +1,9 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Skuttler extends Player {
     private BufferedImage image;
@@ -9,7 +11,13 @@ public class Skuttler extends Player {
     private BufferedImage sword;
     private int bulletPosX;
     private int bulletPosY;
-    private Machinegun shooter;
+    private int ticker = 0;
+    private double angle;
+    private final int anchorX=25;
+    private final int anchorY=20;
+    private AffineTransform transform = new AffineTransform();
+    private ArrayList<Machinegun> guns = new ArrayList<>();
+
     public Skuttler(int x, int y){
         super(x, y);
         super.setXVel(1);
@@ -21,22 +29,31 @@ public class Skuttler extends Player {
     }
 
     public void shoot(){
-        Machinegun shot = new Machinegun(150, 150, bullet);
-        shooter = shot;
+        ticker++;
+        if (ticker%1000000==0){
+            guns.add(new Machinegun(super.getxPos(), super.getyPos()));
+            ticker = 0;
+        }
     }
 
     public void move(){
         super.move();
-        if (Main.mouse.getRMB()){
+        if (Main.mouse.getLMB()){
             this.shoot();
-            shooter.move();
         }
+        for (Machinegun gun : guns){
+            gun.move();
+        }
+        angle=450-(Math.atan2(Main.mouse.getX()-super.getxPos(), Main.mouse.getY()-super.getyPos())*180/Math.PI);
     }
 
     public void paint(Graphics2D g){
-        g.drawImage(image, super.getxPos(), super.getyPos(), null);
-        if (shooter!=null) {
-            shooter.paint(g);
+        transform = new AffineTransform();
+        transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
+        transform.translate(super.getxPos(),super.getyPos());
+        g.drawImage(image, transform, null);
+        for (Machinegun gun : guns){
+            gun.paint(g);
         }
     }
 }
