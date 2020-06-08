@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 
 public class TestLevel {
     String nextScreen = "";
@@ -11,13 +12,16 @@ public class TestLevel {
 
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
-    private Esper player;
+    private Tiamat player;
     //private Skuttler player;
-    Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
+    //Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
     //Machinegun test;
     //Bulldog bulldog = new Bulldog(5,5);
 
     TestLevel(){
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch(InterruptedException e){}
         try {
             water = ImageIO.read(new File("res\\storm water.png"));
             plat = ImageIO.read(new File("res\\test plat.png"));
@@ -27,8 +31,8 @@ public class TestLevel {
         } catch (IOException e) {
             System.out.println("image not found!");
         }
-        player = new Esper(100, 100);
-        testMissile = new Missile(150, 150);
+        player = new Tiamat(100, 100);
+        //testMissile = new Missile(150, 150);
         //test = new Machinegun(200, 200);
     }
     public void start() {
@@ -41,7 +45,7 @@ public class TestLevel {
 
             }
         player.move();
-        testMissile.move();
+        //testMissile.move();
         //test.move();
         //bulldog.move(player);
         if (Main.keyboard.getEsc()) {
@@ -58,7 +62,7 @@ public class TestLevel {
         thisFrame.drawImage(object, objectRec.x, objectRec.y, objectRec.width, objectRec.height, null);
         //test.paint(thisFrame);
         player.paint(thisFrame);
-        testMissile.paint(thisFrame);
+        //testMissile.paint(thisFrame);
         //bulldog.paint(thisFrame);
     }
 }

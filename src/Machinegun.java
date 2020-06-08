@@ -1,7 +1,5 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Machinegun {
     private int xPos;
@@ -31,12 +29,7 @@ public class Machinegun {
         } else {
             yVel = (int) Math.ceil(((double) yDeff / dist)*7);
         }
-        }
-    /*
-    public void setImage(BufferedImage image){
-        this.image = image;
     }
-    */
 
     public void move(){
         ticker++;
@@ -44,7 +37,6 @@ public class Machinegun {
             xPos += xVel;
             yPos += yVel;
             ticker = 0;
-            //    }
         }
     }
 
