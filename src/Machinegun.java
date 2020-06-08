@@ -1,7 +1,5 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 public class Machinegun {
     private int xPos;
@@ -11,10 +9,8 @@ public class Machinegun {
     private BufferedImage image;
     private int ticker = 0;
 
-    public Machinegun(int xOrig, int yOrig){
-        try {
-            image = ImageIO.read(this.getClass().getResource("skuttler shot C.png"));
-        } catch(IOException e) {}
+    public Machinegun(int xOrig, int yOrig, BufferedImage image){
+        this.image = image;
         xPos = xOrig;
         yPos = yOrig;
         int xTar = Main.mouse.getX();
@@ -33,12 +29,7 @@ public class Machinegun {
         } else {
             yVel = (int) Math.ceil(((double) yDeff / dist)*7);
         }
-        }
-    /*
-    public void setImage(BufferedImage image){
-        this.image = image;
     }
-    */
 
     public void move(){
         ticker++;
@@ -46,12 +37,10 @@ public class Machinegun {
             xPos += xVel;
             yPos += yVel;
             ticker = 0;
-            //    }
         }
     }
 
     public void paint(Graphics2D g){
         g.drawImage(image,xPos, yPos,null);
     }
-
 }

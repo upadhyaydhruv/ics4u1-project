@@ -5,11 +5,11 @@ import java.io.IOException;
 
 public class Tiamat extends Player {
     private BufferedImage image;
-    private BufferedImage bullet;
     private BufferedImage sword;
     private int bulletPosX;
     private int bulletPosY;
-    private Machinegun shooter;
+    private Missile shooter;
+    private boolean missileReleased = false;
     public Tiamat(int x, int y){
         super(x, y);
         super.setXVel(1);
@@ -20,20 +20,22 @@ public class Tiamat extends Player {
     }
 
     public void shoot(){
+        if (!missileReleased){
+            shooter = new Missile(super.getxPos(), super.getyPos());
+            missileReleased = true;
+        }
     }
 
     public void move(){
         super.move();
-        if (Main.mouse.getRMB()){
+        if (Main.mouse.getSWB()){
             this.shoot();
-            shooter.move();
         }
+        if (missileReleased) shooter.move();
     }
 
     public void paint(Graphics2D g){
         g.drawImage(image, super.getxPos(), super.getyPos(), null);
-        if (shooter!=null) {
-            shooter.paint(g);
-        }
+        if (missileReleased) shooter.paint(g);
     }
 }

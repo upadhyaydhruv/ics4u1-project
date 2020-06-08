@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.concurrent.TimeUnit;
+
 public class Screen {
     private String screenName;
     private final Menu menu = new Menu();
