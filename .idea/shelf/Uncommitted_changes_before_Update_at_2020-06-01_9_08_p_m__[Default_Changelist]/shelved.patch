@@ -1,0 +1,56 @@
+Index: src/Skuttler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.imageio.ImageIO;\r\nimport java.awt.*;\r\nimport java.awt.image.BufferedImage;\r\nimport java.io.IOException;\r\n\r\npublic class Skuttler extends Player {\r\n\r\n    private BufferedImage image;\r\n    private BufferedImage resizedImage;\r\n    public Skuttler(int x, int y){\r\n        super(x, y);\r\n        try{\r\n            image = ImageIO.read(this.getClass().getResource(\"car.png\"));\r\n        } catch(IOException e){}\r\n    }\r\n\r\n    public void move(){\r\n        super.move();\r\n    }\r\n\r\n    public void paint(Graphics2D g){\r\n        g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Skuttler.java	(revision 5f031f8efe68792240e838d6ad33f50be2451377)
++++ src/Skuttler.java	(date 1591059358791)
+@@ -1,6 +1,7 @@
+ import javax.imageio.ImageIO;
+ import java.awt.*;
+ import java.awt.image.BufferedImage;
++import java.io.File;
+ import java.io.IOException;
+ 
+ public class Skuttler extends Player {
+@@ -10,7 +11,7 @@
+     public Skuttler(int x, int y){
+         super(x, y);
+         try{
+-            image = ImageIO.read(this.getClass().getResource("car.png"));
++            image = ImageIO.read(new File("res\\skuttler.png"));
+         } catch(IOException e){}
+     }
+ 
+@@ -19,6 +20,6 @@
+     }
+ 
+     public void paint(Graphics2D g){
+-        g.drawImage(resizedImage, super.getxPos(), super.getyPos(), null);
++        g.drawImage(image, super.getxPos(), super.getyPos(), null);
+     }
+ }
+Index: src/Player.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>public class Player {\r\n    private int health;\r\n    private int xPos;\r\n    private int yPos;\r\n    private int xVel;\r\n    private int yVel;\r\n    private int mouseX;\r\n    private int mouseY;\r\n\r\n    public Player(int xOrig, int yOrig){\r\n        this.xPos = xOrig;\r\n        this.yPos = yOrig;\r\n    }\r\n\r\n    public Player(){\r\n        //Default constructor required when coding subclass\r\n    }\r\n\r\n    public void increaseHealth(int differential){\r\n        health+=differential;\r\n    }\r\n    public void decreaseHealth(int differential){\r\n        health-=differential;\r\n    }\r\n\r\n    public void hit(int x, int y){\r\n        //TODO\r\n    }\r\n\r\n    public int getHealth(){\r\n        return this.health;\r\n    }\r\n\r\n    public int getxPos(){\r\n        return this.xPos;\r\n    }\r\n\r\n    public int getyPos(){\r\n        return this.yPos;\r\n    }\r\n\r\n    public void setxPos(int xPos){\r\n        this.xPos = xPos;\r\n    }\r\n    public void setYPos(int yPos){\r\n        this.yPos = yPos;\r\n    }\r\n\r\n    public void move(){\r\n        if (Main.keyboard.getA()){\r\n            xPos-=xVel;\r\n        }\r\n        if (Main.keyboard.getD()){\r\n            xPos+=xVel;\r\n        }\r\n        if (Main.keyboard.getW()) {\r\n            yPos-=yVel;\r\n        }\r\n        if (Main.keyboard.getS()){\r\n            yPos+=yVel;\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Player.java	(revision 5f031f8efe68792240e838d6ad33f50be2451377)
++++ src/Player.java	(date 1591060037089)
+@@ -48,10 +48,10 @@
+ 
+     public void move(){
+         if (Main.keyboard.getA()){
+-            xPos-=xVel;
++            xPos-= xVel;
+         }
+         if (Main.keyboard.getD()){
+-            xPos+=xVel;
++            xPos+= xVel;
+         }
+         if (Main.keyboard.getW()) {
+             yPos-=yVel;

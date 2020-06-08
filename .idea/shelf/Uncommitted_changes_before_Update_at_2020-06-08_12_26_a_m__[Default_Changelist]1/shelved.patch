@@ -1,0 +1,64 @@
+Index: src/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.swing.*;\r\nimport java.awt.*;\r\nimport java.awt.event.*;\r\nimport java.awt.image.BufferedImage;\r\n\r\n// bobby's notes\r\n// you guys can use commands to access the mouses current position and buttons\r\n// Main.mouse.getX() gives you the x value\r\n// Main.mouse.getY() gives you the y value\r\n// LMB= left mouse button\r\n// SWB= scroll wheel button\r\n// RMB= right mouse button\r\n// use Main.mouse.getLMB()/Main.mouse.getSWB()/Main.mouse.getRMB() to test if a button is currently being pressed\r\n//                  (they will return a Boolean value)\r\n// these methods can be run anywhere due to the mouse object being public and inside the Main class\r\n//\r\n//i put together a quick keyboard class in the same style\r\n//it only looks for the WASD and Esc keys right now\r\n// to test if a key is down use the Main.keyboard.getW()/Main.keyboard.getA()/Main.keyboard.getS()/Main.keyboard.getD()\r\n//                                                       (they will return a Boolean value)\r\n// this works anywhere just like the mouse class\r\n//\r\n// note that ive updated the levels so that you can use the escape key to backout to the level select screen\r\n\r\npublic class Main extends JPanel {\r\n\r\n    private static String nextScreen = \"\";\r\n\r\n    //this needs to be public so that everything can use it without re-directing it\r\n    public static Screen currentScreen = new Screen(\"menu\");\r\n    public static Mouse mouse=new Mouse();\r\n    public static Keyboard keyboard=new Keyboard();\r\n\r\n    public static void main(String[] args) throws InterruptedException {\r\n\r\n        JFrame frame = new JFrame(\"Game\");\r\n        frame.add(new MouseMotion());\r\n        frame.add(new Main());\r\n        frame.setSize(960, 720);\r\n        //720p 4:3 or standard HD (you guys should change this now if you don't like it)\r\n        frame.setVisible(true);\r\n        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);\r\n        frame.setResizable(false);\r\n\r\n        while (true) {\r\n\r\n            //moves current screen and updates nextScreen\r\n            nextScreen = currentScreen.move();\r\n            if (!nextScreen.equals(\"\")) {\r\n                currentScreen.changeScreen(nextScreen);\r\n            }\r\n            frame.repaint();\r\n\r\n        }\r\n    }\r\n\r\n    Main() {\r\n        addKeyListener(new KeyListener() {\r\n            @Override\r\n            public void keyTyped(KeyEvent event) {\r\n\r\n            }\r\n\r\n            @Override\r\n            public void keyReleased(KeyEvent event) {\r\n                keyboard.release(event);\r\n            }\r\n\r\n            @Override\r\n            public void keyPressed(KeyEvent event) {\r\n                keyboard.press(event);\r\n            }\r\n        });\r\n\r\n        addMouseListener(new MouseListener() {\r\n            @Override\r\n            public void mouseClicked(MouseEvent event) {\r\n            }\r\n\r\n            @Override\r\n            public void mousePressed(MouseEvent event) {\r\n                Main.mouse.press(event);\r\n            }\r\n\r\n            @Override\r\n            public void mouseReleased(MouseEvent event) {\r\n                Main.mouse.release(event);\r\n            }\r\n\r\n            @Override\r\n            public void mouseEntered(MouseEvent event) {\r\n                Main.mouse.entered();\r\n            }\r\n\r\n            @Override\r\n            public void mouseExited(MouseEvent event) {\r\n                Main.mouse.exited();\r\n            }\r\n\r\n        });\r\n\r\n\r\n\r\n        addMouseMotionListener(new MouseMotionAdapter() {\r\n            public void mouseMoved(MouseEvent event) {\r\n                mouse.update(event);\r\n            }\r\n        });\r\n        setFocusable(true);\r\n\r\n\r\n\r\n    }\r\n\r\n    //bobby: that try and catch is used to allow the screen class to stop and start the move class (its a long story)\r\n\r\n    //Dhruv: The methods below aid in rotating art assets, allowing them to point in the direction they are travelling in\r\n    public static BufferedImage rotate(BufferedImage image, double angle) {\r\n        double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));\r\n        int w = image.getWidth(), h = image.getHeight();\r\n        int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);\r\n        GraphicsConfiguration gc = getDefaultConfiguration();\r\n        BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);\r\n        Graphics2D g = result.createGraphics();\r\n        g.translate((neww - w) / 2, (newh - h) / 2);\r\n        g.rotate(angle, w / 2, h / 2);\r\n        g.drawRenderedImage(image, null);\r\n        g.dispose();\r\n        return result;\r\n    }\r\n\r\n    private static GraphicsConfiguration getDefaultConfiguration() {\r\n        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();\r\n        GraphicsDevice gd = ge.getDefaultScreenDevice();\r\n        return gd.getDefaultConfiguration();\r\n    }\r\n\r\n\r\n    public void paint (Graphics lastFrame) {\r\n        super.paint(lastFrame);\r\n        Graphics2D thisFrame = (Graphics2D) lastFrame;\r\n        try {\r\n            currentScreen.paint(thisFrame);\r\n        } catch (InterruptedException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\r\n\r\n\r\nclass MouseMotion extends JPanel {\r\n    MouseMotion() {\r\n        System.out.print(\"a diet pepsi bozi buddy?\");\r\n\r\n        addMouseMotionListener(new MouseMotionAdapter() {\r\n            public void mouseMoved(MouseEvent event) {\r\n                System.out.print(\"whose been drawing dicks?\");\r\n                Main.mouse.update(event);\r\n            }\r\n        });\r\n\r\n\r\n    }\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Main.java	(revision fcb7a8585e324dab3fcf7abb0cb02d1667fced04)
++++ src/Main.java	(date 1591467693316)
+@@ -150,16 +150,10 @@
+ 
+ class MouseMotion extends JPanel {
+     MouseMotion() {
+-        System.out.print("a diet pepsi bozi buddy?");
+-
+         addMouseMotionListener(new MouseMotionAdapter() {
+             public void mouseMoved(MouseEvent event) {
+-                System.out.print("whose been drawing dicks?");
+                 Main.mouse.update(event);
+             }
+         });
+-
+-
+     }
+-
+-}
++}
+\ No newline at end of file
+Index: src/Bulldog.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import javax.imageio.ImageIO;\r\nimport java.awt.*;\r\nimport java.awt.image.BufferedImage;\r\nimport java.io.IOException;\r\n\r\npublic class Bulldog extends Enemy {\r\n\r\n        private BufferedImage image;\r\n        //private BufferedImage resizedImage;\r\n\r\n\r\n        int X,Y;\r\n        public Bulldog(int x, int y){\r\n\r\n\r\n            try{\r\n                image = ImageIO.read(this.getClass().getResource(\"skuttler.png\"));\r\n                // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);\r\n                // resizedImage = (BufferedImage) image;\r\n            } catch(IOException e){\r\n                System.out.print(\"there\");\r\n            }\r\n        }\r\n\r\n        public void move(Player p){\r\n            if (p.getxPos() - super.getxPos() > 0) {\r\n                super.setxPos(super.getxPos() + super.getxVel());\r\n\r\n            }\r\n            else if (p.getxPos() - super.getxPos() < 0) {\r\n                super.setxPos(super.getxPos() - super.getxVel());\r\n            }\r\n            else {\r\n            }\r\n            super.setxVel(super.getxVel() + 1);\r\n            this.X = super.getxPos();\r\n\r\n            if (p.getyPos() - super.getyPos() < 0) {\r\n              super.setYPos(super.getyPos() + super.getyVel());;\r\n          }\r\n           else if (p.getyPos() - super.getyPos() > 0) {\r\n               super.setYPos(super.getyPos() - super.getyVel());\r\n          }\r\n           else {\r\n\r\n            }\r\n           this.Y = super.getyPos();\r\n           super.setxVel(super.getyVel() + 1);\r\n        }\r\n\r\n        public void paint(Graphics2D g){g.drawImage(image, super.getxPos(), super.getyPos(), null);\r\n        }\r\n    }\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/Bulldog.java	(revision fcb7a8585e324dab3fcf7abb0cb02d1667fced04)
++++ src/Bulldog.java	(date 1591468506908)
+@@ -32,17 +32,19 @@
+             }
+             else {
+             }
++
++
+             super.setxVel(super.getxVel() + 1);
+             this.X = super.getxPos();
+-
+-            if (p.getyPos() - super.getyPos() < 0) {
+-              super.setYPos(super.getyPos() + super.getyVel());;
+-          }
+-           else if (p.getyPos() - super.getyPos() > 0) {
+-               super.setYPos(super.getyPos() - super.getyVel());
++            //System.out.println(p.getyPos() - super.getyPos());
++            if (p.getyPos() - super.getyPos() > 0) {
++              super.setYPos(super.getyPos() - super.getyVel());
+           }
++           else if (p.getyPos() - super.getyPos() < 0) {
++               super.setYPos(super.getyPos() + super.getyVel());
++          }
+            else {
+-
++                System.out.println(p.getyPos() - super.getyPos());
+             }
+            this.Y = super.getyPos();
+            super.setxVel(super.getyVel() + 1);
