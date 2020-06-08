@@ -53,5 +53,4 @@ public class Machinegun {
     public void paint(Graphics2D g){
         g.drawImage(image,xPos, yPos,null);
     }
-
 }
