@@ -26,7 +26,7 @@ public class Esper extends Player {
         super.setYVel(1);
         try{
             esper = ImageIO.read(this.getClass().getResource("esper.png"));
-            bullet = ImageIO.read(this.getClass().getResource("esper shot A.png"));
+            bullet = ImageIO.read(this.getClass().getResource("esper shot.png"));
         } catch(IOException e){}
     }
 
