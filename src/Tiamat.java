@@ -22,9 +22,9 @@ public class Tiamat extends Player {
 
     private final ArrayList<Missile> missile = new ArrayList<>();
 
-    public Tiamat(int x, int y, BufferedImage sword){
+    public Tiamat(int x, int y){
         super(x, y);
-        this.sword = sword;
+        //this.sword = sword;
         super.setXVel(1);
         super.setYVel(1);
         try{
@@ -50,6 +50,7 @@ public class Tiamat extends Player {
         if (Main.mouse.getLMB()&&!LMBPressed){
             this.shoot();
             LMBPressed = true;
+
         }
 
         for (Missile missiles : missile){

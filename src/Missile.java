@@ -27,6 +27,8 @@ public class Missile {
         final int yDeff = -(yPos - yTar);
         double dist = Math.sqrt((double)xDeff*(double)xDeff+(double)yDeff*(double)yDeff);
 
+
+
         if (xDeff > 0) {
             xVel = (int) Math.ceil(((double) xDeff / dist)*7);
         } else {
@@ -49,7 +51,7 @@ public class Missile {
         return this.damage;
     }
 
-    //bobby's fix
+
     public void move(){
         if (Main.mouse.getRMB()&&RMBToggle){
             this.flipVel();
@@ -58,7 +60,7 @@ public class Missile {
         if (!Main.mouse.getRMB()){
             RMBToggle=true;
         }
-    //bobby's fix
+
 
         ticker++;
         if (ticker%50000==0) {
