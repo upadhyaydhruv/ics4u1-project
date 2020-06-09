@@ -27,8 +27,8 @@ public class Main extends JPanel {
     private static String nextScreen = "";
 
     //this needs to be public so that everything can use it without re-directing it
-    public static Screen currentScreen = new Screen("menu");
     public static Mouse mouse=new Mouse();
+    public static Screen currentScreen = new Screen("menu");
     public static Keyboard keyboard=new Keyboard();
 
     public static void main(String[] args) throws InterruptedException {
