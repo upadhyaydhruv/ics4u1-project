@@ -15,9 +15,9 @@ public class Menu {
             slice = ImageIO.read(Menu.class.getResourceAsStream("green slice.png"));
             back = ImageIO.read(Menu.class.getResourceAsStream("menu back.png"));
             splat = ImageIO.read(Menu.class.getResourceAsStream("pink splat.png"));
-            startButton = ImageIO.read(Menu.class.getResourceAsStream("start button.png"));
-            creditsButton = ImageIO.read(Menu.class.getResourceAsStream("credits button.png"));
-            settingsButton = ImageIO.read(Menu.class.getResourceAsStream("settings button.png"));
+            startButton = ImageIO.read(Menu.class.getResourceAsStream("button\\start button.png"));
+            creditsButton = ImageIO.read(Menu.class.getResourceAsStream("button\\credits button.png"));
+            settingsButton = ImageIO.read(Menu.class.getResourceAsStream("button\\settings button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }

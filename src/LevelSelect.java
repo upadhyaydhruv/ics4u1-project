@@ -20,12 +20,12 @@ public class LevelSelect {
             blue = ImageIO.read(Menu.class.getResourceAsStream("blue shard.png"));
             orange = ImageIO.read(Menu.class.getResourceAsStream("orange shard.png"));
             pink = ImageIO.read(Menu.class.getResourceAsStream("pink shard.png"));
-            backButton = ImageIO.read(Menu.class.getResourceAsStream("back button.png"));
-            testButton = ImageIO.read(Menu.class.getResourceAsStream("test button.png"));
-            L1Button = ImageIO.read(Menu.class.getResourceAsStream("level 1 button.png"));
-            L2Button = ImageIO.read(Menu.class.getResourceAsStream("level 2 button.png"));
-            L3Button = ImageIO.read(Menu.class.getResourceAsStream("level 3 button.png"));
-            L4Button = ImageIO.read(Menu.class.getResourceAsStream("level 4 button.png"));
+            backButton = ImageIO.read(Menu.class.getResourceAsStream("button\\back button.png"));
+            testButton = ImageIO.read(Menu.class.getResourceAsStream("button\\test button.png"));
+            L1Button = ImageIO.read(Menu.class.getResourceAsStream("button\\level 1 button.png"));
+            L2Button = ImageIO.read(Menu.class.getResourceAsStream("button\\level 2 button.png"));
+            L3Button = ImageIO.read(Menu.class.getResourceAsStream("button\\level 3 button.png"));
+            L4Button = ImageIO.read(Menu.class.getResourceAsStream("button\\level 4 button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }

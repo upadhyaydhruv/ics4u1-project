@@ -12,7 +12,7 @@ public class Credits {
         try {
             back = ImageIO.read(new File("res\\menu back.png"));
             monitor = ImageIO.read(new File("res\\credit monitor.png"));
-            backButton = ImageIO.read(new File("res\\back button.png"));
+            backButton = ImageIO.read(new File("res\\button\\back button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
