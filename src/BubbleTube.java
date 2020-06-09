@@ -7,15 +7,14 @@ public class BubbleTube {
     Rectangle bubbleTubeRec;
     BufferedImage bubbleTube;
     BubblePart[] bubbleParts= new BubblePart[4];
+    Rainbow color = new Rainbow();
     BubbleTube(int x,int y){
         bubbleTubeRec = new Rectangle(x, y, 108, 220);
         for (int a=0; a<bubbleParts.length; a++){
-            bubbleParts[a]= new BubblePart(x,y,a*44);
+            bubbleParts[a]= new BubblePart(x+50,y+165,(a*44)+16);
         }
-    }
-    public BubbleTube(){
         try {
-            bubbleTube = ImageIO.read(new File("res\\bubbles\\bubble tube skeleton.png"));
+            bubbleTube = ImageIO.read(new File("res\\bubbles\\bubble tube.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -39,11 +38,14 @@ public class BubbleTube {
         return null;
     }
     void move() {
+        color.move();
         for (BubblePart bubblePart : bubbleParts) {
             bubblePart.move();
         }
     }
     void paint(Graphics2D thisFrame) {
+        thisFrame.setColor(color.get());
+        thisFrame.fillRect(bubbleTubeRec.x+48,bubbleTubeRec.y+60,44,98);
         for (BubblePart bubblePart : bubbleParts){
             bubblePart.paint(thisFrame);
         }

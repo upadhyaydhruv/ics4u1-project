@@ -9,7 +9,7 @@ public class Level1 {
     private BufferedImage water,plat, barrels;
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle barrelsRec = new Rectangle(253, 460, 100, 140);
-
+    BubbleTube tube = new BubbleTube(30, 100);
     //Skuttler player= new Skuttler(Main.keyboard,10,10);
 
     int[] waveHold=new int[3];
@@ -34,7 +34,7 @@ public class Level1 {
         if(Main.mouse.isMouseOn()){
 
         }
-
+        tube.move();
         //player.move();
 
         if (Main.keyboard.getEsc()) {
@@ -48,6 +48,7 @@ public class Level1 {
 
         Screen.paint(barrelsRec,barrels,thisFrame);
 
+        tube.paint(thisFrame);
         //player.paint(thisFrame);
     }
 }

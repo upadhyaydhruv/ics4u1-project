@@ -14,7 +14,7 @@ public class BubblePart {
         if(frame==1000000) {
             frame=0;
             height++;
-            if (height == 176) reset();
+            if (height == 170) reset();
         }
     }
     void paint(Graphics2D thisFrame){
