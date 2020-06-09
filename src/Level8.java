@@ -6,19 +6,19 @@ import java.io.IOException;
 public class Level8 {
     String nextScreen = "";
 
-    private BufferedImage water,plat, barrels;
+    private BufferedImage plat, stone;
     Rectangle platRec = new Rectangle(0, 0, 960, 720);
-    Rectangle barrelsRec = new Rectangle(253, 460, 100, 140);
+    Rectangle stoneRec = new Rectangle(580, 350, 132, 222);
 
-
+    Glow glow=new Glow();
 
     int[] waveHold=new int[3];
 
     Level8(){
         try {
-            water = ImageIO.read(new File("res\\background\\beach water.png"));
+
             plat = ImageIO.read(new File("res\\background\\jungle2.png"));
-            barrels = ImageIO.read(new File("res\\rune stone.png"));
+            stone = ImageIO.read(new File("res\\rune stone.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -29,7 +29,7 @@ public class Level8 {
     }
     public String move() {
 
-        Screen.waveMove(waveHold);
+        glow.move();Screen.waveMove(waveHold);
 
         if(Main.mouse.isMouseOn()){
 
@@ -43,10 +43,11 @@ public class Level8 {
         return nextScreen;
     }
     public void paint(Graphics2D thisFrame) {
-        thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
+        thisFrame.setColor(glow.get());
+        thisFrame.fillRect(0,0,960, 720);
         Screen.paint(platRec,plat,thisFrame);
-
-        Screen.paint(barrelsRec,barrels,thisFrame);
+        thisFrame.fillRect(stoneRec.x+65,stoneRec.y+50,45, 100);
+        Screen.paint(stoneRec,stone,thisFrame);
 
 
         //player.paint(thisFrame);

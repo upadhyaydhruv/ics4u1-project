@@ -6,19 +6,20 @@ import java.io.IOException;
 public class Level7 {
     String nextScreen = "";
 
-    private BufferedImage water,plat, barrels;
+    private BufferedImage plat, barrels;
     Rectangle platRec = new Rectangle(0, 0, 960, 720);
     Rectangle barrelsRec = new Rectangle(253, 460, 100, 140);
 
+    Glow glow=new Glow();
 
 
     int[] waveHold=new int[3];
 
     Level7(){
         try {
-            water = ImageIO.read(new File("res\\background\\beach water.png"));
+
             plat = ImageIO.read(new File("res\\background\\jungle1.png"));
-            barrels = ImageIO.read(new File("res\\barrels.png"));
+
         } catch (IOException e) {
             System.out.println("image not found!");
         }
@@ -29,7 +30,7 @@ public class Level7 {
     }
     public String move() {
 
-        Screen.waveMove(waveHold);
+        glow.move();
 
         if(Main.mouse.isMouseOn()){
 
@@ -43,7 +44,8 @@ public class Level7 {
         return nextScreen;
     }
     public void paint(Graphics2D thisFrame) {
-        thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
+        thisFrame.setColor(glow.get());
+        thisFrame.fillRect(0,0,960, 720);
         Screen.paint(platRec,plat,thisFrame);
 
         //Screen.paint(barrelsRec,barrels,thisFrame);
