@@ -13,7 +13,10 @@ public class Screen {
     private final Level2 L2 = new Level2();
     private final Level3 L3 = new Level3();
     private final Level4 L4 = new Level4();
-
+    private final Level5 L5 = new Level5();
+    private final Level6 L6 = new Level6();
+    private final Level7 L7 = new Level7();
+    private final Level8 L8 = new Level8();
 
     Screen(String screenName) {
         this.screenName = screenName;
@@ -47,6 +50,18 @@ public class Screen {
                 break;
             case "L4":
                 L4.start();
+                break;
+            case "L5":
+                L5.start();
+                break;
+            case "L6":
+                L6.start();
+                break;
+            case "L7":
+                L7.start();
+                break;
+            case "L8":
+                L8.start();
         }
     }
     public String move() throws InterruptedException {
@@ -69,6 +84,14 @@ public class Screen {
                 return L3.move();
             case "L4":
                 return L4.move();
+            case "L5":
+                return L5.move();
+            case "L6":
+                return L6.move();
+            case "L7":
+                return L7.move();
+            case "L8":
+                return L8.move();
         }
         Thread.sleep(frameDelay);
         return "";
@@ -101,6 +124,18 @@ public class Screen {
                 break;
             case "L4":
                 L4.paint(thisFrame);
+                break;
+            case "L5":
+                L5.paint(thisFrame);
+                break;
+            case "L6":
+                L6.paint(thisFrame);
+                break;
+            case "L7":
+                L7.paint(thisFrame);
+                break;
+            case "L8":
+                L8.paint(thisFrame);
         }
         Thread.sleep(frameDelay);
     }
