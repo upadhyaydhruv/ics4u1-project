@@ -16,16 +16,16 @@ public class Settings {
     private boolean mouseToggle;
     Settings() {
         try {
-            back = ImageIO.read(new File("res\\menu back.png"));
+            back = ImageIO.read(new File("res\\menu\\menu back.png"));
             backButton = ImageIO.read(new File("res\\button\\back button.png"));
-            blue = ImageIO.read(new File("res\\blue bubble.png"));
-            green = ImageIO.read(new File("res\\green bubble.png"));
-            orange = ImageIO.read(new File("res\\orange bubble.png"));
-            pink = ImageIO.read(new File("res\\pink bubble.png"));
-            frameDelay = ImageIO.read(new File("res\\frame delay.png"));
+            blue = ImageIO.read(new File("res\\menu\\blue bubble.png"));
+            green = ImageIO.read(new File("res\\menu\\green bubble.png"));
+            orange = ImageIO.read(new File("res\\menu\\orange bubble.png"));
+            pink = ImageIO.read(new File("res\\menu\\pink bubble.png"));
+            frameDelay = ImageIO.read(new File("res\\menu\\frame delay.png"));
             upButton = ImageIO.read(new File("res\\button\\up button.png"));
             downButton = ImageIO.read(new File("res\\button\\down button.png"));
-            numberPlate = ImageIO.read(new File("res\\number plate.png"));
+            numberPlate = ImageIO.read(new File("res\\menu\\number plate.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }

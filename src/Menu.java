@@ -11,10 +11,10 @@ public class Menu {
     int Xoffset, Yoffset;
     Menu() {
         try {
-            bullets = ImageIO.read(Menu.class.getResourceAsStream("bullets.png"));
-            slice = ImageIO.read(Menu.class.getResourceAsStream("green slice.png"));
-            back = ImageIO.read(Menu.class.getResourceAsStream("menu back.png"));
-            splat = ImageIO.read(Menu.class.getResourceAsStream("pink splat.png"));
+            bullets = ImageIO.read(Menu.class.getResourceAsStream("menu\\bullets.png"));
+            slice = ImageIO.read(Menu.class.getResourceAsStream("menu\\green slice.png"));
+            back = ImageIO.read(Menu.class.getResourceAsStream("menu\\menu back.png"));
+            splat = ImageIO.read(Menu.class.getResourceAsStream("menu\\pink splat.png"));
             startButton = ImageIO.read(Menu.class.getResourceAsStream("button\\start button.png"));
             creditsButton = ImageIO.read(Menu.class.getResourceAsStream("button\\credits button.png"));
             settingsButton = ImageIO.read(Menu.class.getResourceAsStream("button\\settings button.png"));

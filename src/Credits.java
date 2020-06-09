@@ -10,8 +10,8 @@ public class Credits {
     int Xoffset, Yoffset;
     Credits() {
         try {
-            back = ImageIO.read(new File("res\\menu back.png"));
-            monitor = ImageIO.read(new File("res\\credit monitor.png"));
+            back = ImageIO.read(new File("res\\menu\\menu back.png"));
+            monitor = ImageIO.read(new File("res\\menu\\credit monitor.png"));
             backButton = ImageIO.read(new File("res\\button\\back button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");

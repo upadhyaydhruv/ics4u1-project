@@ -15,11 +15,11 @@ public class LevelSelect {
     boolean mousetoggle=false;
     LevelSelect() {
         try {
-            back = ImageIO.read(Menu.class.getResourceAsStream("menu back.png"));
-            green = ImageIO.read(Menu.class.getResourceAsStream("green shard.png"));
-            blue = ImageIO.read(Menu.class.getResourceAsStream("blue shard.png"));
-            orange = ImageIO.read(Menu.class.getResourceAsStream("orange shard.png"));
-            pink = ImageIO.read(Menu.class.getResourceAsStream("pink shard.png"));
+            back = ImageIO.read(Menu.class.getResourceAsStream("menu\\menu back.png"));
+            green = ImageIO.read(Menu.class.getResourceAsStream("menu\\green shard.png"));
+            blue = ImageIO.read(Menu.class.getResourceAsStream("menu\\blue shard.png"));
+            orange = ImageIO.read(Menu.class.getResourceAsStream("menu\\orange shard.png"));
+            pink = ImageIO.read(Menu.class.getResourceAsStream("menu\\pink shard.png"));
             backButton = ImageIO.read(Menu.class.getResourceAsStream("button\\back button.png"));
             testButton = ImageIO.read(Menu.class.getResourceAsStream("button\\test button.png"));
             L1Button = ImageIO.read(Menu.class.getResourceAsStream("button\\level 1 button.png"));
