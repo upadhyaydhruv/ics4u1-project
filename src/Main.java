@@ -25,7 +25,7 @@ import java.awt.image.BufferedImage;
 public class Main extends JPanel {
 
     private static String nextScreen = "";
-
+    add Package
     //this needs to be public so that everything can use it without re-directing it
     public static Mouse mouse=new Mouse();
     public static Screen currentScreen = new Screen("menu");
