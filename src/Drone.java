@@ -19,7 +19,8 @@ public class Drone extends Enemy{
             }
         }
 
-        public void paint(Graphics2D g2d) {
+        public void paint(Graphics2D g) {
+            g.drawImage(image, super.getxPos(), super.getyPos(), null);
         }
 
         public void move() {
