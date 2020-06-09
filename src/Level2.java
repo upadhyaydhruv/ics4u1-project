@@ -16,8 +16,8 @@ public class Level2 {
     Level2(){
         try {
 
-            water = ImageIO.read(new File("res\\storm water.png"));
-            plat = ImageIO.read(new File("res\\level 2 plat.png"));
+            water = ImageIO.read(new File("res\\background\\storm water.png"));
+            plat = ImageIO.read(new File("res\\background\\level 2 plat.png"));
             barrel = ImageIO.read(new File("res\\barrel.png"));
             radar = ImageIO.read(new File("res\\portable radar.png"));
         } catch (IOException e) {
