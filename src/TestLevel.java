@@ -32,7 +32,7 @@ public class TestLevel {
         } catch (IOException e) {
             System.out.println("image not found!");
         }
-        player = new Tiamat(100, 100);
+        player = new Tiamat(100, 100, sword);
         //testMissile = new Missile(150, 150);
         //test = new Machinegun(200, 200);
     }

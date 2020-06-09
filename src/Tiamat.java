@@ -11,25 +11,25 @@ public class Tiamat extends Player {
     private int bulletPosX;
     private int bulletPosY;
     private Missile shooter;
-    private boolean missileReleased = false;
-    private boolean isClicked = false;
+    private final boolean missileReleased = false;
+    private final boolean isClicked = false;
     private int ticker = 0;
 
     private double angle;
-    private AffineTransform transform = new AffineTransform();
     private final int anchorX=30;
     private final int anchorY=30;
     private boolean LMBPressed = true;
 
-    private ArrayList<Missile> missile = new ArrayList<>();
+    private final ArrayList<Missile> missile = new ArrayList<>();
 
-    public Tiamat(int x, int y){
+    public Tiamat(int x, int y, BufferedImage sword){
         super(x, y);
+        this.sword = sword;
         super.setXVel(1);
         super.setYVel(1);
         try{
             image = ImageIO.read(this.getClass().getResource("tiamat.png"));
-        } catch(IOException e){}
+        } catch(IOException ignored){}
     }
 
     public void shoot() {
@@ -63,7 +63,7 @@ public class Tiamat extends Player {
     }
 
     public void paint(Graphics2D g){
-        transform = new AffineTransform();
+        AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
         transform.translate(super.getxPos(),super.getyPos());
         g.drawImage(image, super.getxPos(), super.getyPos(), null);

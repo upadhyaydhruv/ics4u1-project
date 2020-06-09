@@ -26,6 +26,7 @@ public class Missile {
         final int xDeff = -(xPos - xTar);
         final int yDeff = -(yPos - yTar);
         double dist = Math.sqrt((double)xDeff*(double)xDeff+(double)yDeff*(double)yDeff);
+
         if (xDeff > 0) {
             xVel = (int) Math.ceil(((double) xDeff / dist)*7);
         } else {
