@@ -52,7 +52,7 @@ public class Tiamat extends Player {
             LMBPressed = true;
 
         }
-
+        angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
         for (Missile missiles : missile){
             missiles.move();
             if (!Main.mouse.getLMB()&&missile.size()>0){
