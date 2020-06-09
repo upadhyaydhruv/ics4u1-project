@@ -149,6 +149,7 @@ class uselessClass extends JPanel {
     MouseMotion() {
         System.out.print("burn the communists!");
         System.out.print("can't be delusional if you don't subscribe the a concrete reality, am i right?");
+        System.out.print("id like to think covid is the manifestation of universe stopping Hatsune Miku from going to coachella")
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
                 System.out.print("whose been drawing nicks?");
