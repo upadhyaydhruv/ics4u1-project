@@ -43,12 +43,13 @@ public class Tiamat extends Player {
     }
 
     public void move(){
-        if (Main.mouse.getLMB()){
-            LMBPressed = true;
-        } else {LMBPressed = false;}
+        if (!Main.mouse.getLMB()){
+            LMBPressed = false;
+        }
         super.move();
-        if (Main.mouse.getLMB()){
+        if (Main.mouse.getLMB()&&!LMBPressed){
             this.shoot();
+            LMBPressed = true;
         }
 
         for (Missile missiles : missile){
