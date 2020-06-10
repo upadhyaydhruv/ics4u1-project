@@ -4,6 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Tiamat extends Player {
     private BufferedImage image;
@@ -20,7 +21,7 @@ public class Tiamat extends Player {
     private final int anchorY=30;
     private boolean LMBPressed = true;
 
-    private final ArrayList<Missile> missile = new ArrayList<>();
+    private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
 
     public Tiamat(int x, int y){
         super(x, y);
@@ -43,14 +44,9 @@ public class Tiamat extends Player {
     }
 
     public void move(){
-        if (!Main.mouse.getLMB()){
-            LMBPressed = false;
-        }
         super.move();
-        if (Main.mouse.getLMB()&&!LMBPressed){
+        if (Main.mouse.getLMB()){
             this.shoot();
-            LMBPressed = true;
-
         }
         angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
         for (Missile missiles : missile){
