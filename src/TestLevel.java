@@ -54,7 +54,8 @@ public class TestLevel {
             nextScreen = "levelSelect";
         }
 
-        drone.move();
+        //bobby: the X and Y tell the drone where its target is
+        drone.move(player.getxPos(),player.getyPos());
 
         return nextScreen;
     }
