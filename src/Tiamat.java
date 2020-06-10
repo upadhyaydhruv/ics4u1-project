@@ -60,7 +60,7 @@ public class Tiamat extends Player {
             }
         }
 
-        angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
+
     }
 
     public void paint(Graphics2D g){
