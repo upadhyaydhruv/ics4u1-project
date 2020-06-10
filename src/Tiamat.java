@@ -67,7 +67,7 @@ public class Tiamat extends Player {
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
         transform.translate(super.getxPos(),super.getyPos());
-        g.drawImage(image, super.getxPos(), super.getyPos(), null);
+        g.drawImage(image,transform, null);
         for (Missile missiles : missile){
             missiles.paint(g);
         }
