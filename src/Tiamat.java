@@ -59,8 +59,6 @@ public class Tiamat extends Player {
                 missile.remove(missiles);
             }
         }
-
-
     }
 
     public void paint(Graphics2D g){

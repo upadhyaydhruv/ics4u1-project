@@ -14,6 +14,7 @@ public class TestLevel {
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
     private Tiamat player;
+    Drone drone =new Drone();
     //private Skuttler player;
     //Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
     //Machinegun test;
@@ -52,6 +53,9 @@ public class TestLevel {
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
         }
+
+        drone.move();
+
         return nextScreen;
     }
     public void paint(Graphics2D thisFrame) {
@@ -65,5 +69,8 @@ public class TestLevel {
         player.paint(thisFrame);
         //testMissile.paint(thisFrame);
         //bulldog.paint(thisFrame);
+
+        drone.paint(thisFrame);
+
     }
 }
