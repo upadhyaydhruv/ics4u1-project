@@ -5,11 +5,12 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Drone extends Enemy{
-    private int x, y, angle, currentShot;
+class Drone extends Enemy{
+    private int x, y, angle, currentShot=1,delayCount=1000000;
     private BufferedImage drone,shooter,shot;
     private final int anchorX=22, anchorY=10;
-    private final DroneShot[] droneShot = new DroneShot[20];
+    //DroneShot[] droneShot = new DroneShot[20];
+    DroneShot droneShot = new DroneShot();
 
     private int DIAMETER, width, height;
     private Rectangle rec;
@@ -34,57 +35,45 @@ public class Drone extends Enemy{
         y += super.getyVel();
 
 
-        //bobby sez: run this when you want the gun to shoot
-        //shoot();
-
-
         //bobby sez: this updates the gun :P
         angle= (int) (450-(Math.atan2(targetX-(super.getxPos()+anchorX+9), targetY-(super.getyPos()+anchorY+21))*180/Math.PI));
-        //for (int i = 0; i < droneShot.length-1; i++) {
+        delayCount++;
+        if(delayCount>10000){
+            droneShot.move();
+            delayCount=0;
+        }
+        //
+
+        //bobby sez: run this when you want the gun to shoot
+        shoot();
+        //
+
+
+        //for (int i = 1; i < droneShot.length-1; i++) {
         //    droneShot[i].move();
         //}
+
     }
     private void shoot(){
-        droneShot[currentShot].shoot(super.getxPos(),super.getyPos(),angle);
+        droneShot.shoot(super.getxPos(),super.getyPos(),angle);
         currentShot++;
-        if(currentShot>20) currentShot=0;
+        if(currentShot==20) currentShot=1;
     }
     public void paint(Graphics2D g) {
+        droneShot.paint(g, shot);
+
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX+9,super.getyPos()+anchorY+21);
         transform.translate(super.getxPos()+9,super.getyPos()+21);
         g.drawImage(shooter,transform, null);
         g.drawImage(drone, super.getxPos(), super.getyPos(), null);
-        //for (int i = 0; i < droneShot.length-1; i++) {
-        //    droneShot[i].paint(g, shot);
-        //}
+
+        /*
+        for (int i = 1; i < droneShot.length-1; i++) {
+            droneShot[i].paint(g, shot);
+        }
+        */
     }
+
 }
-class DroneShot{
-    private int x, y,angle=0;
-    private boolean state=false;
-    private final int anchorX =4;
-    private final int anchorY =4;
-    public void shoot(int x,int y,int angle){
-        if(!state){
-            state=true;
-            this.x=x;
-            this.y=y;
-            this.angle=angle;
-        }
-    }
-    public void move(){
-        if(state){
-            x += Math.cos(Math.toRadians(angle));
-            y += Math.sin(Math.toRadians(angle));
-        }
-    }
-    public void paint(Graphics2D thisFrame,BufferedImage shot){
-        if(state){
-            AffineTransform transform = new AffineTransform();
-            transform.rotate(Math.toRadians(angle),x+anchorX,y+anchorY);
-            transform.translate(x,y);
-            thisFrame.drawImage(shot,transform, null);
-        }
-    }
-}
+
