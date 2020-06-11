@@ -1,6 +1,5 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -8,7 +7,6 @@ import java.io.IOException;
 class Drone extends Enemy{
     private int x, y, angle, currentShot=1,delayCount=1000000000;
     private BufferedImage drone,shooter,shot;
-    private final int anchorX=22, anchorY=10;
     //DroneShot[] droneShot = new DroneShot[20];
     DroneShot droneShot = new DroneShot();
 
@@ -36,7 +34,7 @@ class Drone extends Enemy{
 
 
         //bobby sez: this updates the gun :P
-        angle= (int) (450-(Math.atan2(targetX-(super.getxPos()+anchorX+9), targetY-(super.getyPos()+anchorY+21))*180/Math.PI));
+        angle= (int) (450-(Math.atan2(targetX-(super.getxPos()+31), targetY-(super.getyPos()+31))*180/Math.PI));
         delayCount++;
         if(delayCount>100000){
             droneShot.move();
@@ -63,7 +61,7 @@ class Drone extends Enemy{
         droneShot.paint(g, shot);
 
         AffineTransform transform = new AffineTransform();
-        transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX+9,super.getyPos()+anchorY+21);
+        transform.rotate(Math.toRadians(angle),super.getxPos()+31,super.getyPos()+31);
         transform.translate(super.getxPos()+9,super.getyPos()+21);
         g.drawImage(shooter,transform, null);
         g.drawImage(drone, super.getxPos(), super.getyPos(), null);

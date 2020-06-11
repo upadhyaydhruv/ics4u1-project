@@ -6,7 +6,7 @@ class DroneShot {
     private int x = 0, y = 0;
     long angle = 0;
     private boolean state = false;
-    private final int anchorX = 4;
+    private final int anchorX = 24;
     private final int anchorY = 4;
 
     DroneShot() {
@@ -15,8 +15,8 @@ class DroneShot {
     public void shoot(int x, int y, int angle) {
         if (!state) {
             state = true;
-            this.x = x+22;
-            this.y = y+10;
+            this.x = x+7;
+            this.y = y+27;
             this.angle = angle;
         }
     }
