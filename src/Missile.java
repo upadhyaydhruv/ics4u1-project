@@ -57,6 +57,7 @@ public class Missile {
 
         if (ticker%1000000==0){
             damage++;
+            System.out.println(damage);
         }
     }
 

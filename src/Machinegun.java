@@ -22,6 +22,10 @@ public class Machinegun {
         this.yVel = (int)Math.ceil(Math.sin(Math.toRadians(angle))*5);
     }
 
+    public boolean hit(){
+        if ()
+    }
+
     public void move(){
         ticker++;
         if (ticker % 50000 == 0) {
