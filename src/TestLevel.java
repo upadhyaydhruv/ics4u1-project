@@ -14,8 +14,9 @@ public class TestLevel {
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
     private Tiamat player;
-    Drone drone =new Drone();
+    Drone drone =new Drone(400,400);
     ChaseRocket rocket =new ChaseRocket(600,300,90);
+    Bulldog bulldog = new Bulldog(100,100);
     //private Skuttler player;
     //Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
     //Machinegun test;
@@ -41,7 +42,8 @@ public class TestLevel {
     public void start() {
         nextScreen = "";
 
-        drone =new Drone();
+        drone =new Drone(400,400);
+        bulldog = new Bulldog(100,100);
         rocket =new ChaseRocket(600,300,90);
     }
     public String move() {
@@ -60,6 +62,7 @@ public class TestLevel {
         //bobby: the X and Y tell the drone where its target is
         drone.move(player.getxPos(),player.getyPos());
         rocket.move(player.getxPos(),player.getyPos());
+        bulldog.move();
 
 
 
@@ -79,5 +82,6 @@ public class TestLevel {
 
         drone.paint(thisFrame);
         rocket.paint(thisFrame);
+        bulldog.paint(thisFrame);
     }
 }

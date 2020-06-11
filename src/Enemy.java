@@ -1,13 +1,13 @@
 public class Enemy {
     private int health, xPos, yPos, xVel, yVel;
-    private Player p;
+    private Player player;
 
-    public Enemy(Player p){
+    public Enemy(Player player){
         this.xPos = xPos;
         this.yPos = yPos;
         this.xVel = 2;
         this.yVel = 2;
-        this.p = p;
+        this.player = player;
     }
 
     public Enemy(){

@@ -14,7 +14,11 @@ class Drone extends Enemy{
     private int DIAMETER = 63;
     private Rectangle rec;
 
-    public Drone() {
+    public Drone(int x, int y) {
+
+        super.setxPos(x);
+        super.setyPos(y);
+
         try{
             drone = ImageIO.read(this.getClass().getResource("drone\\drone.png"));
             shooter = ImageIO.read(this.getClass().getResource("drone\\drone shooter.png"));

@@ -13,9 +13,11 @@ public class Bulldog extends Enemy {
         int X,Y;
         public Bulldog(int x, int y){
 
+            super.setxPos(x);
+            super.setyPos(y);
 
             try{
-                image = ImageIO.read(this.getClass().getResource("bulldog ball.png"));
+                image = ImageIO.read(this.getClass().getResource("esper.png"));
                 // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
                 // resizedImage = (BufferedImage) image;
             } catch(IOException e){
@@ -23,16 +25,16 @@ public class Bulldog extends Enemy {
             }
         }
 
-        public void move(Player p) {
+        public void move(Player player) {
             frame++;
             if (frame == 1000000) {
                 frame = 0;
 
-                if (p.getxPos() - super.getxPos() > 0) {
+                if (player.getxPos() - super.getxPos() > 0) {
                     super.setxPos(super.getxPos() + super.getxVel());
                     this.X = super.getxPos();
 
-                } else if (p.getxPos() - super.getxPos() < 0) {
+                } else if (player.getxPos() - super.getxPos() < 0) {
                     super.setxPos(super.getxPos() - super.getxVel());
                     this.X = super.getxPos();
                 } else {
@@ -40,10 +42,10 @@ public class Bulldog extends Enemy {
                 //this.X = super.getxPos();
                 super.setxVel(super.getxVel());
 
-                if (p.getyPos() - super.getyPos() < 0) {
+                if (player.getyPos() - super.getyPos() < 0) {
                     super.setyPos(super.getyPos() - super.getyVel());
                     this.Y = super.getyPos();
-                } else if (p.getyPos() - super.getyPos() > 0) {
+                } else if (player.getyPos() - super.getyPos() > 0) {
                     super.setyPos(super.getyPos() + super.getyVel());
                     this.Y = super.getyPos();
                 } else {
