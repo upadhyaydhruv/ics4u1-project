@@ -18,7 +18,7 @@ public class ChaseRocket {
         }
     }
     void move(int targetX, int targetY){
-        int angle= (int) (450-(Math.atan2(targetX+(x+40), targetY+(y+24))*180/Math.PI));
+        int angle= (int) ((Math.atan2(targetX+(x+40), targetY+(y+24))*180/Math.PI));
 
 /*
         if (turnDelay==10000){

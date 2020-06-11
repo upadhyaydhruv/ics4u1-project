@@ -3,7 +3,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 class DroneShot {
-    private int x = 0, y = 0, angle = 0;
+    private int x = 0, y = 0;
+    long angle = 0;
     private boolean state = false;
     private final int anchorX = 4;
     private final int anchorY = 4;
@@ -14,8 +15,8 @@ class DroneShot {
     public void shoot(int x, int y, int angle) {
         if (!state) {
             state = true;
-            this.x = x;
-            this.y = y;
+            this.x = x+22;
+            this.y = y+10;
             this.angle = angle;
         }
     }
@@ -23,8 +24,10 @@ class DroneShot {
     public void move() {
         if (state) {
 
-            x += Math.cos(Math.toRadians(angle))*2;
-            y += Math.sin(Math.toRadians(angle))*2;
+            x += Math.cos(Math.toRadians(angle))*20;
+            y += Math.sin(Math.toRadians(angle))*20;
+
+            if(x<0||x>960||y<0||y>720) state=false;
 
             /*
             x += Math.cos(Math.toRadians(angle));
