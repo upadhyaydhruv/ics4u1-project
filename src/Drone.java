@@ -11,7 +11,7 @@ class Drone extends Enemy{
     //DroneShot[] droneShot = new DroneShot[20];
     DroneShot droneShot = new DroneShot();
 
-    private int DIAMETER, width, height;
+    private int DIAMETER = 63;
     private Rectangle rec;
 
     public Drone() {
@@ -27,16 +27,14 @@ class Drone extends Enemy{
     }
     public void move(int targetX,int targetY) {
 
-/*
-        if ((x + super.getxVel() < 0) || (x + super.getxVel() > 1020 - DIAMETER)) super.setxVel(super.getyVel()*-1);
-        if ((y + super.getyVel() < 0) || (y + super.getyVel() > 125)) super.setyVel(super.getyVel()*-1);
-        x += super.getxVel();
-        y += super.getyVel();
 
- */
+        if ((super.getxPos() + super.getxVel() < 0) || (super.getxPos() + super.getxVel() > 1020 - DIAMETER)) { super.setxVel(super.getyVel()*-1); }
+        if ((super.getyPos() + super.getyVel() < 0) || (super.getyPos() + super.getyVel() > 720 - DIAMETER)) { super.setyVel(super.getyVel()*-1); }
+        super.setxPos(super.getxPos() + super.getxVel());
+        super.setxPos(super.getxPos() + super.getxVel());
 
-        super.setxPos(super.getxPos()+super.getxVel());
-        super.setyPos(super.getyPos()+super.getyVel());
+
+
 
 
         //bobby sez: this updates the gun :P
@@ -78,6 +76,8 @@ class Drone extends Enemy{
         }
         */
     }
+
+
 
 }
 

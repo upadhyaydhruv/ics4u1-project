@@ -15,7 +15,7 @@ public class Bulldog extends Enemy {
 
 
             try{
-                image = ImageIO.read(this.getClass().getResource("skuttler.png"));
+                image = ImageIO.read(this.getClass().getResource("bulldog ball.png"));
                 // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
                 // resizedImage = (BufferedImage) image;
             } catch(IOException e){

@@ -5,8 +5,8 @@ public class Enemy {
     public Enemy(Player p){
         this.xPos = xPos;
         this.yPos = yPos;
-        this.xVel = 1;
-        this.yVel = 1;
+        this.xVel = 2;
+        this.yVel = 2;
         this.p = p;
     }
 
