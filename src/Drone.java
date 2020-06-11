@@ -36,7 +36,7 @@ class Drone extends Enemy{
         //bobby sez: this updates the gun :P
         angle= (int) (450-(Math.atan2(targetX-(super.getxPos()+31), targetY-(super.getyPos()+31))*180/Math.PI));
         delayCount++;
-        if(delayCount>100000){
+        if(delayCount>150000){
             droneShot.move();
             delayCount=0;
         }

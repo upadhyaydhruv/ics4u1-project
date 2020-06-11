@@ -24,8 +24,8 @@ class DroneShot {
     public void move() {
         if (state) {
 
-            x += Math.cos(Math.toRadians(angle))*20;
-            y += Math.sin(Math.toRadians(angle))*20;
+            x += Math.cos(Math.toRadians(angle))*25;
+            y += Math.sin(Math.toRadians(angle))*25;
 
             if(x<0||x>960||y<0||y>720) state=false;
 
