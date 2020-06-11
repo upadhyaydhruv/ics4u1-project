@@ -37,7 +37,7 @@ public class Tiamat extends Player {
         ticker++;
         if (ticker % 1000000 == 0) {
             if (missile.size()==0) {
-                missile.add(new Missile(super.getxPos(), super.getyPos()));
+                missile.add(new Missile(super.getxPos(), super.getyPos(), angle));
                 ticker = 0;
             }
         }

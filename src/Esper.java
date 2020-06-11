@@ -4,6 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Esper extends Player {
     private BufferedImage esper,bullet;
@@ -14,11 +15,11 @@ public class Esper extends Player {
 
     private double angle;
     private AffineTransform transform = new AffineTransform();
-    private final int anchorX=19;
-    private final int anchorY=15;
+    private final int anchorX=5;
+    private final int anchorY=5;
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)
-    private ArrayList<Machinegun> guns = new ArrayList<>();
+    private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
 
     public Esper(int x, int y){
         super(x, y);
@@ -33,7 +34,7 @@ public class Esper extends Player {
     public void shoot(){
         ticker++;
         if (ticker%1000000==0){
-            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet));
+            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
             ticker = 0;
         }
     }

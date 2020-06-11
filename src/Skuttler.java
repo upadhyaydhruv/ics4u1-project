@@ -4,6 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Skuttler extends Player {
     private BufferedImage image;
@@ -16,7 +17,7 @@ public class Skuttler extends Player {
     private final int anchorX=38;
     private final int anchorY=37;
     private AffineTransform transform = new AffineTransform();
-    private ArrayList<Machinegun> guns = new ArrayList<>();
+    private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
 
     public Skuttler(int x, int y){
         super(x, y);
@@ -31,7 +32,7 @@ public class Skuttler extends Player {
     public void shoot(){
         ticker++;
         if (ticker%1000000==0){
-            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet));
+            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
             ticker = 0;
         }
     }
