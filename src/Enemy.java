@@ -44,7 +44,7 @@ public class Enemy {
     public void setxPos(int xPos){
         this.xPos = xPos;
     }
-    public void setYPos(int yPos){
+    public void setyPos(int yPos){
         this.yPos = yPos;
     }
 

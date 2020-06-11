@@ -34,7 +34,7 @@ public class ChaseRocket {
         }
 
  */
-        if(moveDelay==10000) {
+        if(moveDelay==9000) {
             x += Math.cos(Math.toRadians(angle)) * 2;
             y += Math.sin(Math.toRadians(angle)) * 2;
             moveDelay=0;

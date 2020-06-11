@@ -12,7 +12,7 @@ class DroneShot {
     DroneShot() {
     }
 
-    public void shoot(int x, int y, int angle) {
+    public void shoot(int x, int y, long angle) {
         if (!state) {
             state = true;
             this.x = x+7;

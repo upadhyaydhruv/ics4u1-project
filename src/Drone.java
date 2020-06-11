@@ -5,7 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 class Drone extends Enemy{
-    private int x, y, angle, currentShot=1,delayCount=1000000000;
+    private int x, y,  currentShot=1,delayCount=1000000000;
+    private long angle;
     private BufferedImage drone,shooter,shot;
     //DroneShot[] droneShot = new DroneShot[20];
     DroneShot droneShot = new DroneShot();
@@ -26,15 +27,20 @@ class Drone extends Enemy{
     }
     public void move(int targetX,int targetY) {
 
-
+/*
         if ((x + super.getxVel() < 0) || (x + super.getxVel() > 1020 - DIAMETER)) super.setxVel(super.getyVel()*-1);
         if ((y + super.getyVel() < 0) || (y + super.getyVel() > 125)) super.setyVel(super.getyVel()*-1);
         x += super.getxVel();
         y += super.getyVel();
 
+ */
+
+        super.setxPos(super.getxPos()+super.getxVel());
+        super.setyPos(super.getyPos()+super.getyVel());
+
 
         //bobby sez: this updates the gun :P
-        angle= (int) (450-(Math.atan2(targetX-(super.getxPos()+31), targetY-(super.getyPos()+31))*180/Math.PI));
+        angle= (long) (450-(Math.atan2(targetX-(super.getxPos()+31), targetY-(super.getyPos()+31))*180/Math.PI));
         delayCount++;
         if(delayCount>150000){
             droneShot.move();
