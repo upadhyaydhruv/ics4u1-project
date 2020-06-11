@@ -14,7 +14,7 @@ public class TestLevel {
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
     private Tiamat player;
-    Drone drone =new Drone(400,400);
+    Drone drone =new Drone(400,400,1,1);
     ChaseRocket rocket =new ChaseRocket(600,300,90);
     Bulldog bulldog = new Bulldog(100,100);
     //private Skuttler player;
@@ -42,7 +42,7 @@ public class TestLevel {
     public void start() {
         nextScreen = "";
 
-        drone =new Drone(400,400);
+        drone =new Drone(400,400,1,1);
         bulldog = new Bulldog(100,100);
         rocket =new ChaseRocket(600,300,90);
     }
