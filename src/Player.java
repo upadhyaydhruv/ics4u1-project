@@ -78,6 +78,7 @@ public class Player {
     }
 
     public void move(){ //The delay (10000) prevents the spaceships from zipping through the arena too fast
+        /*
         if (Main.keyboard.getA()&&Main.keyboard.getW()){
 
             ticker++;
@@ -119,37 +120,22 @@ public class Player {
             }
         }
 
-        if (Main.keyboard.getA()){
-
-            ticker++;
-            if (ticker==10000) {
+        */
+        ticker++;
+        if (ticker==10000) {
+            if (Main.keyboard.getA()) {
                 xPos -= xVel;
-                ticker = 0;
             }
-        }
-        if (Main.keyboard.getD()){
-
-            ticker++;
-            if (ticker==10000){
-                xPos+=xVel;
-                ticker = 0;
+            if (Main.keyboard.getD()) {
+                xPos += xVel;
             }
-        }
-        if (Main.keyboard.getW()) {
-
-            ticker++;
-            if (ticker==10000){
-                yPos-=yVel;
-                ticker = 0;
+            if (Main.keyboard.getW()) {
+                yPos -= yVel;
             }
-        }
-        if (Main.keyboard.getS()){
-
-            ticker++;
-            if (ticker==10000){
-                yPos+=yVel;
-                ticker = 0;
+            if (Main.keyboard.getS()) {
+                yPos += yVel;
             }
+            ticker = 0;
         }
 
 
