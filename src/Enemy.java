@@ -56,6 +56,8 @@ public class Enemy {
         this.xVel = xVel;
     }
 
-    public void move(){
+    public void move() {
+        xPos += xVel;
+        yPos += yVel;
     }
 }
