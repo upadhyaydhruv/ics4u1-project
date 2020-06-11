@@ -20,7 +20,6 @@ public class TestLevel {
     //private Skuttler player;
     //Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
     //Machinegun test;
-    //Bulldog bulldog = new Bulldog(5,5);
 
     TestLevel(){
         try {
@@ -54,7 +53,6 @@ public class TestLevel {
         player.move();
         //testMissile.move();
         //test.move();
-        //bulldog.move(player);
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
         }
@@ -78,7 +76,6 @@ public class TestLevel {
         //test.paint(thisFrame);
         player.paint(thisFrame);
         //testMissile.paint(thisFrame);
-        //bulldog.paint(thisFrame);
 
         drone.paint(thisFrame);
         rocket.paint(thisFrame);
