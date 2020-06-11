@@ -28,10 +28,16 @@ class Drone extends Enemy{
     public void move(int targetX,int targetY) {
 
 
-        if ((super.getxPos() + super.getxVel() < 0) || (super.getxPos() + super.getxVel() > 1020 - DIAMETER)) { super.setxVel(super.getyVel()*-1); }
-        if ((super.getyPos() + super.getyVel() < 0) || (super.getyPos() + super.getyVel() > 720 - DIAMETER)) { super.setyVel(super.getyVel()*-1); }
+        if ((super.getxPos() + super.getxVel() < 0) || (super.getxPos() + super.getxVel() > 1020 - DIAMETER)) {
+            super.setxVel(super.getxVel()*-1);
+        }
+        if ((super.getyPos() + super.getyVel() < 0) || (super.getyPos() + super.getyVel() > 720 - DIAMETER)) {
+            super.setyVel(super.getyVel()*-1);
+        }
+
         super.setxPos(super.getxPos() + super.getxVel());
-        super.setxPos(super.getxPos() + super.getxVel());
+
+        super.setyPos(super.getyPos() + super.getyVel());
 
 
 
