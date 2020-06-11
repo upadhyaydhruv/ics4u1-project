@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-class Drone extends Enemy{
+class Drone {
     private int x, y, xVel, yVel, currentShot=1,delayCount=1000000000, delayCount1 = 12500;
     private long angle;
     private BufferedImage drone,shooter,shot;
@@ -31,6 +31,13 @@ class Drone extends Enemy{
             System.out.print("there");
         }
     }
+
+    private void shoot(){
+        droneShot.shoot(x,y,angle);
+        currentShot++;
+        if(currentShot==20) currentShot=1;
+    }
+
     public void move(int targetX,int targetY) {
 
         if (delayCount1 == 12500) {
@@ -71,11 +78,7 @@ class Drone extends Enemy{
         //}
 
     }
-    private void shoot(){
-        droneShot.shoot(x,y,angle);
-        currentShot++;
-        if(currentShot==20) currentShot=1;
-    }
+
     public void paint(Graphics2D g) {
         droneShot.paint(g, shot);
 

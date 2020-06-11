@@ -3,18 +3,21 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Bulldog extends Enemy {
+public class Bulldog {
 
         private BufferedImage image;
         //private BufferedImage resizedImage;
-
         int frame = 0;
 
-        int X,Y;
-        public Bulldog(int x, int y){
+        int x, y, xVel, yVel;
+        Player player;
+        public Bulldog(Player player, int x, int y, int xVel, int yVel){
 
-            super.setxPos(x);
-            super.setyPos(y);
+            this.x = x;
+            this.y = y;
+            this.xVel = xVel;
+            this.yVel = yVel;
+            this.player = player;
 
             try{
                 image = ImageIO.read(this.getClass().getResource("esper.png"));
@@ -26,38 +29,28 @@ public class Bulldog extends Enemy {
         }
 
         public void move(Player player) {
-            frame++;
-            if (frame == 1000000) {
+            if (frame == 25000) {
+                if (player.getyPos() - y > 0) {
+                    y += yVel;
+
+                } else if (player.getyPos() - y < 0) {
+                    y -= yVel;
+                } else {
+                }
+
+                if (player.getxPos() - x > 0) {
+                    x += xVel;
+
+                } else if (player.getxPos() - x < 0) {
+                    x -= xVel;
+                } else {
+                }
                 frame = 0;
-
-                if (player.getxPos() - super.getxPos() > 0) {
-                    super.setxPos(super.getxPos() + super.getxVel());
-                    this.X = super.getxPos();
-
-                } else if (player.getxPos() - super.getxPos() < 0) {
-                    super.setxPos(super.getxPos() - super.getxVel());
-                    this.X = super.getxPos();
-                } else {
-                }
-                //this.X = super.getxPos();
-                super.setxVel(super.getxVel());
-
-                if (player.getyPos() - super.getyPos() < 0) {
-                    super.setyPos(super.getyPos() - super.getyVel());
-                    this.Y = super.getyPos();
-                } else if (player.getyPos() - super.getyPos() > 0) {
-                    super.setyPos(super.getyPos() + super.getyVel());
-                    this.Y = super.getyPos();
-                } else {
-
-                }
-                //this.Y = super.getyPos();
-                super.setyVel(super.getyVel());
-                //System.out.println(super.getxPos()+","+super.getyPos());
             }
+            frame ++;
         }
 
-        public void paint(Graphics2D g){g.drawImage(image, super.getxPos(), super.getyPos(), null);
+        public void paint(Graphics2D g){g.drawImage(image, x, y, null);
         }
     }
 

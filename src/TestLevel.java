@@ -16,7 +16,7 @@ public class TestLevel {
     private Tiamat player;
     Drone drone =new Drone(400,400,1,1);
     ChaseRocket rocket =new ChaseRocket(600,300,90);
-    Bulldog bulldog = new Bulldog(100,100);
+    Bulldog bulldog = new Bulldog(player,0,0,1,1);
     //private Skuttler player;
     //Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
     //Machinegun test;
@@ -43,7 +43,7 @@ public class TestLevel {
         nextScreen = "";
 
         drone =new Drone(400,400,1,1);
-        bulldog = new Bulldog(100,100);
+        bulldog = new Bulldog(player,0,0,1,1);
         rocket =new ChaseRocket(600,300,90);
     }
     public String move() {
@@ -62,7 +62,7 @@ public class TestLevel {
         //bobby: the X and Y tell the drone where its target is
         drone.move(player.getxPos(),player.getyPos());
         rocket.move(player.getxPos(),player.getyPos());
-        bulldog.move();
+        bulldog.move(player);
 
 
 
