@@ -17,9 +17,8 @@ public class Tiamat extends Player {
     private int ticker = 0;
 
     private double angle;
-    private final int anchorX=30;
-    private final int anchorY=30;
-    private boolean LMBPressed = true;
+    private final int anchorX=15;
+    private final int anchorY=15;
 
     private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
 
