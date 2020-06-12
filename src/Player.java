@@ -49,7 +49,7 @@ public class Player {
     public void setXVel(int xVel){this.xVel = xVel;}
     public void setYVel(int yVel) {this.yVel = yVel;}
 
-    public void move(){ //The delay (10000) prevents the spaceships from zipping through the arena too fast
+    public void move(){
         ticker++;
         if (ticker==10000) {
             if (Main.keyboard.getA()) {

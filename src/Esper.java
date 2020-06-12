@@ -17,6 +17,7 @@ public class Esper extends Player {
     private AffineTransform transform = new AffineTransform();
     private final int anchorX=5;
     private final int anchorY=5;
+
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)
     private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();

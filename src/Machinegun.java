@@ -23,7 +23,7 @@ public class Machinegun {
     }
 
     public boolean hit(){
-        if ()
+        return true;
     }
 
     public void move(){
