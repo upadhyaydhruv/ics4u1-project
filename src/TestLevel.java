@@ -14,13 +14,12 @@ public class TestLevel {
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
     private Tiamat player;
-    Drone drone =new Drone(400,400);
+    Drone drone =new Drone(400,400,1,1);
     ChaseRocket rocket =new ChaseRocket(600,300,90);
-    Bulldog bulldog = new Bulldog(100,100);
+    Bulldog bulldog = new Bulldog(player,0,0,1,1);
     //private Skuttler player;
     //Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
     //Machinegun test;
-    //Bulldog bulldog = new Bulldog(5,5);
 
     TestLevel(){
         try {
@@ -42,8 +41,8 @@ public class TestLevel {
     public void start() {
         nextScreen = "";
 
-        drone =new Drone(400,400);
-        bulldog = new Bulldog(100,100);
+        drone =new Drone(400,400,1,1);
+        bulldog = new Bulldog(player,0,0,1,1);
         rocket =new ChaseRocket(600,300,90);
     }
     public String move() {
@@ -54,7 +53,6 @@ public class TestLevel {
         player.move();
         //testMissile.move();
         //test.move();
-        //bulldog.move(player);
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
         }
@@ -62,7 +60,7 @@ public class TestLevel {
         //bobby: the X and Y tell the drone where its target is
         drone.move(player.getxPos(),player.getyPos());
         rocket.move(player.getxPos(),player.getyPos());
-        bulldog.move();
+        bulldog.move(player);
 
 
 
@@ -78,7 +76,6 @@ public class TestLevel {
         //test.paint(thisFrame);
         player.paint(thisFrame);
         //testMissile.paint(thisFrame);
-        //bulldog.paint(thisFrame);
 
         drone.paint(thisFrame);
         rocket.paint(thisFrame);
