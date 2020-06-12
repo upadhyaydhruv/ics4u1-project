@@ -13,13 +13,11 @@ public class TestLevel {
 
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
-    private Tiamat player;
+    private Skuttler player = new Skuttler(400, 350);
     Drone drone =new Drone(400,400,1,1);
     ChaseRocket rocket =new ChaseRocket(600,300,90);
     Bulldog bulldog = new Bulldog(player,0,0,1,1);
-    //private Skuttler player;
-    //Missile testMissile; //Testing non-fully-functional missile for debugging - Dhruv
-    //Machinegun test;
+
 
     TestLevel(){
         try {
@@ -34,9 +32,6 @@ public class TestLevel {
         } catch (IOException e) {
             System.out.println("image not found!");
         }
-        player = new Tiamat(400, 350);
-        //testMissile = new Missile(150, 150);
-        //test = new Machinegun(200, 200);
     }
     public void start() {
         nextScreen = "";
@@ -51,8 +46,7 @@ public class TestLevel {
 
             }
         player.move();
-        //testMissile.move();
-        //test.move();
+
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
         }
@@ -73,9 +67,7 @@ public class TestLevel {
 
         thisFrame.drawImage(plat, platRec.x, platRec.y, platRec.width, platRec.height, null);
         thisFrame.drawImage(object, objectRec.x, objectRec.y, objectRec.width, objectRec.height, null);
-        //test.paint(thisFrame);
         player.paint(thisFrame);
-        //testMissile.paint(thisFrame);
 
         drone.paint(thisFrame);
         rocket.paint(thisFrame);
