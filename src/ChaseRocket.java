@@ -18,9 +18,9 @@ public class ChaseRocket {
         }
     }
     void move(int targetX, int targetY){
-        int angle= (int) ((Math.atan2(targetX+(x+40), targetY+(y+24))*180/Math.PI));
+        int targetAngle= (int) ((Math.atan2(targetX+(x+40), targetY+(y+24))*180/Math.PI));
 
-/*
+
         if (turnDelay==10000){
             if (targetAngle < angle) {
                 angle++;
@@ -33,7 +33,7 @@ public class ChaseRocket {
             turnDelay=0;
         }
 
- */
+
         if(moveDelay==9000) {
             x += Math.cos(Math.toRadians(angle)) * 2;
             y += Math.sin(Math.toRadians(angle)) * 2;
