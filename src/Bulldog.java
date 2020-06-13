@@ -35,22 +35,27 @@ public class Bulldog {
 
         public void move(Player player) {
             angle=450-(Math.atan2(player.getxPos()-(x+anchorX), player.getyPos()-(y+anchorY))*180/Math.PI);
-            this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)));
-            this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)));
+            // this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)));
+            // this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)));
 
             frame ++;
             if (frame == 25000) {
                 if (player.getxPos()<x){
                     x -= xVel;
                 }
-                if (player.getxPos()>x) {
+                else if (player.getxPos()>x) {
                     x += xVel;
                 }
+                else {
+                }
+
                 if (player.getyPos()<y){
                     y -= yVel;
                 }
-                if (player.getyPos()>y) {
+                else if (player.getyPos()>y) {
                     y += yVel;
+                }
+                else {
                 }
                 frame = 0;
             }
