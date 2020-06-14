@@ -46,7 +46,6 @@ public class Bomb {
 
         if (isPlaced) {
             g.drawImage(bomb, x, y, null);
-            System.out.println("Tick");
             if (isPlaced) {
                 ticktick++;
             }
@@ -54,7 +53,6 @@ public class Bomb {
 
         if (ticktick >= 200) {
             g.drawImage(explosion, x, y, null);
-            System.out.println("BOOM");
             frameDelay++;
             if (frameDelay == 50) {
                 isPlaced = false;
