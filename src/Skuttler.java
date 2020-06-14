@@ -23,6 +23,7 @@ public class Skuttler extends Player {
         super(x, y);
         super.setXVel(1);
         super.setYVel(1);
+        super.setHealth(5);
         try{
             image = ImageIO.read(this.getClass().getResource("skuttler.png"));
             bullet = ImageIO.read(this.getClass().getResource("skuttler shot C.png"));

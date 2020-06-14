@@ -17,6 +17,7 @@ public class Esper extends Player {
     private AffineTransform transform = new AffineTransform();
     private final int anchorX=5;
     private final int anchorY=5;
+    private Rectangle hitbox;
 
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)
@@ -26,10 +27,12 @@ public class Esper extends Player {
         super(x, y);
         super.setXVel(1);
         super.setYVel(1);
+        super.setHealth(3);
         try{
             esper = ImageIO.read(this.getClass().getResource("esper.png"));
             bullet = ImageIO.read(this.getClass().getResource("esper shot.png"));
         } catch(IOException e){}
+        hitbox = new Rectangle(esper.getHeight(), esper.getWidth(), x, y);
     }
 
     public void shoot(){
@@ -42,6 +45,8 @@ public class Esper extends Player {
 
     public void move(){
         super.move();
+        hitbox.x = this.getxPos();
+        hitbox.y = this.getyPos();
 
         if (Main.mouse.getLMB()){
             this.shoot();

@@ -27,6 +27,7 @@ public class Tiamat extends Player {
         //this.sword = sword;
         super.setXVel(1);
         super.setYVel(1);
+        super.setHealth(5);
         try{
             image = ImageIO.read(this.getClass().getResource("tiamat.png"));
         } catch(IOException ignored){}

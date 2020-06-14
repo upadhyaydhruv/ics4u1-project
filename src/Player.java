@@ -16,6 +16,10 @@ public class Player {
         //Default constructor required when coding subclass
     }
 
+    public void setHealth(int healthIn){
+        this.health = healthIn;
+    }
+
     public void increaseHealth(int differential){
         health+=differential;
     }
