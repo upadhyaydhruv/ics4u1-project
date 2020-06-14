@@ -34,6 +34,7 @@ public class ShipSelect {
         Xoffset = Main.mouse.getX() / 4;
         Yoffset = Main.mouse.getY() / 4;
         mousetoggle=false;
+        state = 0;
     }
     public String move() {
         if(Main.mouse.isMouseOn()){
