@@ -17,9 +17,8 @@ public class Tiamat extends Player {
     private int ticker = 0;
 
     private double angle;
-    private final int anchorX=30;
-    private final int anchorY=30;
-    private boolean LMBPressed = true;
+    private final int anchorX=15;
+    private final int anchorY=15;
 
     private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
 
@@ -37,7 +36,7 @@ public class Tiamat extends Player {
         ticker++;
         if (ticker % 1000000 == 0) {
             if (missile.size()==0) {
-                missile.add(new Missile(super.getxPos(), super.getyPos()));
+                missile.add(new Missile(super.getxPos(), super.getyPos(), angle));
                 ticker = 0;
             }
         }

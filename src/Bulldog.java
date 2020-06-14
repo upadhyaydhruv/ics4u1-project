@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -7,9 +8,13 @@ public class Bulldog {
 
         private BufferedImage image;
         //private BufferedImage resizedImage;
-        int frame = 0;
+        private int frame = 0;
+        private int x, y, xVel, yVel;
+        private final int anchorX=5;
+        private final int anchorY=5;
+        private double angle;
+        private AffineTransform transform;
 
-        int x, y, xVel, yVel;
         Player player;
         public Bulldog(Player player, int x, int y, int xVel, int yVel){
 
@@ -29,28 +34,38 @@ public class Bulldog {
         }
 
         public void move(Player player) {
-            if (frame == 25000) {
-                if (player.getyPos() - y > 0) {
-                    y += yVel;
+            angle=450-(Math.atan2(player.getxPos()-(x+anchorX), player.getyPos()-(y+anchorY))*180/Math.PI);
+            // this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)));
+            // this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)));
 
-                } else if (player.getyPos() - y < 0) {
-                    y -= yVel;
-                } else {
+            frame ++;
+            if (frame == 25000) {
+                if (player.getxPos()<x){
+                    x -= xVel;
+                }
+                else if (player.getxPos()>x) {
+                    x += xVel;
+                }
+                else {
                 }
 
-                if (player.getxPos() - x > 0) {
-                    x += xVel;
-
-                } else if (player.getxPos() - x < 0) {
-                    x -= xVel;
-                } else {
+                if (player.getyPos()<y){
+                    y -= yVel;
+                }
+                else if (player.getyPos()>y) {
+                    y += yVel;
+                }
+                else {
                 }
                 frame = 0;
             }
-            frame ++;
         }
 
-        public void paint(Graphics2D g){g.drawImage(image, x, y, null);
+        public void paint(Graphics2D g){
+            transform = new AffineTransform();
+            transform.rotate(Math.toRadians(angle),x+anchorX,y+anchorY);
+            transform.translate(x,y);
+            g.drawImage(image, transform, null);
         }
     }
 

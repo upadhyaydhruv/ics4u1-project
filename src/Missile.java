@@ -1,5 +1,6 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -10,36 +11,22 @@ public class Missile {
     private int damage = 0;
     private int xVel; //These are just placeholders for testing right now
     private int yVel;
+    private final int anchorX=30;
+    private final int anchorY=30;
     private int ticker = 0; //This is to slow done speed of moving graphics objects using modular arithmetic
     private boolean RMBToggle=false;
+    private double angle;
 
 
-    public Missile(int xOrig, int yOrig) {
+    public Missile(int xOrig, int yOrig, double angle) {
         try {
             image = ImageIO.read(this.getClass().getResource("tiamat rocket.png"));
         } catch(IOException e) {}
-
+        this.angle = angle;
+        this.xVel = (int)Math.ceil(Math.cos(Math.toRadians(angle))*5);
+        this.yVel = (int)Math.ceil(Math.sin(Math.toRadians(angle))*5);
         this.xPos = xOrig;
         this.yPos = yOrig;
-        int xTar = Main.mouse.getX();
-        int yTar = Main.mouse.getY();
-        final int xDeff = -(xPos - xTar);
-        final int yDeff = -(yPos - yTar);
-        double dist = Math.sqrt((double)xDeff*(double)xDeff+(double)yDeff*(double)yDeff);
-
-
-
-        if (xDeff > 0) {
-            xVel = (int) Math.ceil(((double) xDeff / dist)*7);
-        } else {
-            xVel = (int) Math.ceil(((double) xDeff / dist) * 7);
-        }
-
-        if (yDeff > 0) {
-            yVel = (int) Math.ceil(((double) yDeff / dist)*3);
-        } else {
-            yVel = (int) Math.ceil(((double) yDeff / dist)*3);
-        }
     }
 
     public void flipVel(){
@@ -63,17 +50,21 @@ public class Missile {
 
 
         ticker++;
-        if (ticker%50000==0) {
+        if (ticker%25000==0) {
             xPos += xVel;
             yPos += yVel;
         }
 
         if (ticker%1000000==0){
             damage++;
+            System.out.println(damage);
         }
     }
 
     public void paint(Graphics2D g){
-        g.drawImage(image, xPos, yPos, null);
+        AffineTransform transform = new AffineTransform();
+        transform.rotate(Math.toRadians(angle),xPos+anchorX,yPos+anchorY);
+        transform.translate(xPos,yPos);
+        g.drawImage(image, transform, null);
     }
 }

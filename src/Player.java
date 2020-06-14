@@ -3,9 +3,8 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Player {
-    private int health,xPos, yPos, xVel, yVel, mouseX, mouseY, ticker = 0;
-    //private double previousState = 0;
-    //private double currentState = Math.PI/2;
+    private int xPos, yPos, xVel, yVel, ticker = 0;
+    private int health = 5;
 
 
     public Player(int xOrig, int yOrig){
@@ -50,77 +49,7 @@ public class Player {
     public void setXVel(int xVel){this.xVel = xVel;}
     public void setYVel(int yVel) {this.yVel = yVel;}
 
-    /*
-    public double[] getStates() {
-        double[] arr = {previousState, currentState};
-        return arr;
-    }
-
-    public void setCurrentState(double state){
-        this.currentState = state;
-    }
-
-    public void setPreviousState(double state){
-        this.previousState = state;
-    }
-    */
-
-    public BufferedImage rotateImageByDegrees(BufferedImage img, double angle) {
-
-        double rads = Math.toRadians(angle);
-        double sin = Math.abs(Math.sin(rads)), cos = Math.abs(Math.cos(rads));
-        int w = img.getWidth();
-        int h = img.getHeight();
-        int newWidth = (int) Math.floor(w * cos + h * sin);
-        int newHeight = (int) Math.floor(h * cos + w * sin);
-
-        return new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
-    }
-
-    public void move(){ //The delay (10000) prevents the spaceships from zipping through the arena too fast
-        /*
-        if (Main.keyboard.getA()&&Main.keyboard.getW()){
-
-            ticker++;
-            if (ticker==10000){
-                xPos-=xVel/2;
-                yPos-=yVel/2;
-                ticker = 0;
-            }
-        }
-
-        if (Main.keyboard.getD()&&Main.keyboard.getW()){
-
-            ticker++;
-            if (ticker==10000){
-                xPos+=xVel/2;
-                yPos-=yVel/2;
-                ticker = 0;
-            }
-        }
-
-        if (Main.keyboard.getS()&&Main.keyboard.getD()){
-
-            ticker++;
-            if (ticker==10000){
-                xPos+=xVel/2;
-                yPos+=yVel/2;
-                ticker = 0;
-            }
-        }
-
-
-        if (Main.keyboard.getS()&&Main.keyboard.getA()){
-
-            ticker++;
-            if (ticker==10000){
-                xPos-=xVel/2;
-                yPos+=yVel/2;
-                ticker = 0;
-            }
-        }
-
-        */
+    public void move(){
         ticker++;
         if (ticker==10000) {
             if (Main.keyboard.getA()) {
@@ -137,8 +66,5 @@ public class Player {
             }
             ticker = 0;
         }
-
-
-
     }
 }
