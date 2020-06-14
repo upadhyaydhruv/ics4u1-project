@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Bulldog {
 
-        private BufferedImage image;
+        private BufferedImage bulldog, bulldogBall;
         //private BufferedImage resizedImage;
         private int frame = 0;
         private int x, y, xVel, yVel;
@@ -14,6 +14,8 @@ public class Bulldog {
         private final int anchorY=5;
         private double angle;
         private AffineTransform transform;
+        private int random;
+
 
         Player player;
         public Bulldog(Player player, int x, int y, int xVel, int yVel){
@@ -23,9 +25,13 @@ public class Bulldog {
             this.xVel = xVel;
             this.yVel = yVel;
             this.player = player;
+            this.random = (int)(Math.random()*8);
 
             try{
-                image = ImageIO.read(this.getClass().getResource("esper.png"));
+                //switch(random) {
+                ///    default:
+                        bulldog = ImageIO.read(this.getClass().getResource("res\\bulldog\\bulldog A.png"));
+                //}
                 // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
                 // resizedImage = (BufferedImage) image;
             } catch(IOException e){
@@ -65,7 +71,7 @@ public class Bulldog {
             transform = new AffineTransform();
             transform.rotate(Math.toRadians(angle),x+anchorX,y+anchorY);
             transform.translate(x,y);
-            g.drawImage(image, transform, null);
+            g.drawImage(bulldog, transform, null);
         }
     }
 
