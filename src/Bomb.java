@@ -20,8 +20,6 @@ public class Bomb {
         try{
             bomb = ImageIO.read(this.getClass().getResource("barrel.png"));
             explosion = ImageIO.read(this.getClass().getResource("box.png"));
-            // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-            // resizedImage = (BufferedImage) image;
         } catch(IOException e){
             System.out.print("there");
         }
