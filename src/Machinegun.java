@@ -28,7 +28,7 @@ public class Machinegun {
 
     public void move(){
         ticker++;
-        if (ticker % 50000 == 0) {
+        if (ticker % 10000 == 0) {
             xPos += xVel;
             yPos += yVel;
             ticker = 0;

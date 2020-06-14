@@ -9,7 +9,7 @@ class DroneShot {
     private final int anchorX = 24;
     private final int anchorY = 4;
 
-    DroneShot() {
+    public DroneShot() {
     }
 
     public void shoot(int x, int y, long angle) {
@@ -24,8 +24,8 @@ class DroneShot {
     public void move() {
         if (state) {
 
-            x += Math.cos(Math.toRadians(angle))*25;
-            y += Math.sin(Math.toRadians(angle))*25;
+            x += Math.cos(Math.toRadians(angle))*35;
+            y += Math.sin(Math.toRadians(angle))*35;
 
             if(x<0||x>960||y<0||y>720) state=false;
 
