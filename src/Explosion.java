@@ -2,11 +2,11 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class explosion {
+public class Explosion {
     BufferedImage pic;
     int[] x = new int[5];
     int[] y = new int[5];
-    explosion(){
+    Explosion(){
         try {
             pic = ImageIO.read(Menu.class.getResourceAsStream("menu\\menu back.png"));
     }catch (IOException e) {
