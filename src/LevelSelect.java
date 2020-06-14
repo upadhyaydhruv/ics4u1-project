@@ -52,7 +52,7 @@ public class LevelSelect {
         }
         if(!Main.mouse.getLMB()&&!mousetoggle) { mousetoggle=true;}
         if(Main.mouse.getLMB()&&mousetoggle) {
-            if (Main.mouse.intersects(backButtonRec)) nextScreen = "menu";
+            if (Main.mouse.intersects(backButtonRec)) nextScreen = "shipSelect";
             else if (Main.mouse.intersects(testButtonRec)) nextScreen = "testLevel";
             else if (Main.mouse.intersects(L1ButtonRec)) nextScreen = "L1";
             else if (Main.mouse.intersects(L2ButtonRec)) nextScreen = "L2";

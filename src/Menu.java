@@ -34,7 +34,7 @@ public class Menu {
         }
         if(Main.mouse.getLMB()) {
             if (Main.mouse.intersects(startButtonRec)) {
-                nextScreen = "levelSelect";
+                nextScreen = "shipSelect";
             }
             if (Main.mouse.intersects(creditsButtonRec)) {
                 nextScreen = "credits";

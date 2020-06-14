@@ -27,6 +27,8 @@ public class Main extends JPanel {
     //this needs to be public so that everything can use it without re-directing it
     public static Mouse mouse=new Mouse();
     public static Screen currentScreen = new Screen("menu");
+
+
     public static Keyboard keyboard=new Keyboard();
 
     public static void main(String[] args) throws InterruptedException {
@@ -149,6 +151,7 @@ class uselessClass extends JPanel {
         System.out.print("can't be delusional if you don't subscribe the a concrete reality, am i right?");
         System.out.print("id like to think covid is the manifestation of universe stopping Hatsune Miku from going to coachella");
         System.out.print("no one can stop me from listening to kill-me-baby while i code");
+fsdf
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
                 System.out.print("whose been drawing nicks?");
