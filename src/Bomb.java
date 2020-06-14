@@ -13,7 +13,7 @@ public class Bomb {
     private Boolean isPlaced = false;
     private Boolean onTimer = false;
     private int ticktick = 0;
-    private CopyOnWriteArrayList<Bomb> boomboom = new CopyOnWriteArrayList<>();
+    public int frameDelay = 0;
 
     public Bomb() {
 
@@ -25,6 +25,13 @@ public class Bomb {
         } catch(IOException e){
             System.out.print("there");
         }
+        x = (int)(Math.random()*960);
+        y = (int)(Math.random()*720);
+
+    }
+
+    public boolean getisPlaced() {
+        return isPlaced;
     }
 
     public void move() {
@@ -32,26 +39,28 @@ public class Bomb {
             x = (int)(Math.random()*960);
             y = (int)(Math.random()*720);
             isPlaced = true;
-            onTimer = true;
-        }
-        if (onTimer) {
-            ticktick ++;
         }
     }
 
-    public void paint(Graphics2D g){
+    public void paint(Graphics2D g) {
 
-        if (onTimer) {
+        if (isPlaced) {
             g.drawImage(bomb, x, y, null);
             System.out.println("Tick");
+            if (isPlaced) {
+                ticktick++;
             }
+        }
 
-        if (ticktick == 100000) {
+        if (ticktick >= 200) {
             g.drawImage(explosion, x, y, null);
-            ticktick = 0;
             System.out.println("BOOM");
-            isPlaced = false;
+            frameDelay++;
+            if (frameDelay == 50) {
+                isPlaced = false;
+                ticktick = 0;
+                frameDelay = 0;
+            }
         }
     }
-
 }
