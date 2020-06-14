@@ -50,19 +50,35 @@ public class Player {
     public void setYVel(int yVel) {this.yVel = yVel;}
 
     public void move(){
+
         ticker++;
         if (ticker==10000) {
             if (Main.keyboard.getA()) {
-                xPos -= xVel;
+                if (xPos-xVel<0){
+
+                }else {
+                    xPos -= xVel;
+                }
             }
             if (Main.keyboard.getD()) {
-                xPos += xVel;
+                if (xPos+xVel>870) {
+                } else {
+                    xPos += xVel;
+                }
             }
             if (Main.keyboard.getW()) {
-                yPos -= yVel;
+                if (yPos-yVel<0){
+
+                }else {
+                    yPos -= yVel;
+                }
             }
             if (Main.keyboard.getS()) {
-                yPos += yVel;
+                if (yPos+yVel>610){
+
+                } else {
+                    yPos += yVel;
+                }
             }
             ticker = 0;
         }

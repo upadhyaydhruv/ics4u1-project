@@ -2,14 +2,14 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-class DroneShot {
+class BulldogBall {
     private int x = 0, y = 0;
     long angle = 0;
     private boolean state = false;
     private final int anchorX = 24;
     private final int anchorY = 4;
 
-    public DroneShot() {
+    public BulldogBall() {
     }
 
     public void shoot(int x, int y, long angle) {
@@ -46,3 +46,4 @@ class DroneShot {
         }
     }
 }
+
