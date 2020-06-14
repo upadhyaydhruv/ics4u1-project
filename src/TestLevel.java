@@ -17,6 +17,7 @@ public class TestLevel {
     Drone drone =new Drone(400,400,1,1);
     ChaseRocket rocket =new ChaseRocket(600,300,90);
     Bulldog bulldog = new Bulldog(player,0,0,1,1);
+    Bomb boomboom = new Bomb();
 
 
     TestLevel(){
@@ -39,6 +40,7 @@ public class TestLevel {
         drone =new Drone(400,400,1,1);
         bulldog = new Bulldog(player,0,0,1,1);
         rocket =new ChaseRocket(600,300,90);
+        boomboom = new Bomb();
     }
     public String move() {
         if(Main.mouse.isMouseOn()){
@@ -55,6 +57,7 @@ public class TestLevel {
         drone.move(player.getxPos(),player.getyPos());
         rocket.move(player.getxPos(),player.getyPos());
         bulldog.move(player);
+        boomboom.move();
 
 
 
@@ -72,5 +75,6 @@ public class TestLevel {
         drone.paint(thisFrame);
         rocket.paint(thisFrame);
         bulldog.paint(thisFrame);
+        boomboom.paint(thisFrame);
     }
 }
