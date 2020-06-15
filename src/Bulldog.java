@@ -66,7 +66,7 @@ public class Bulldog {
         }
 
     private void shoot(){
-        BulldogBall.shoot(x,y,angle);
+        bigBall.shoot(x,y, (long)angle);
         currentShot++;
         if(currentShot==20) currentShot=1;
     }
@@ -97,16 +97,16 @@ public class Bulldog {
                 }
                 frame = 0;
             }
-            angle= (long) (450-(Math.atan2(targetX-(x+31), targetY-(y+31))*180/Math.PI));
+            angle= (long) (450-(Math.atan2(player.getxPos()-(x+31), player.getyPos()-(y+31))*180/Math.PI));
             delayCount++;
             if(delayCount>150000){
-                droneShot.move();
+                bigBall.move();
                 delayCount=0;
             }
         }
 
         public void paint(Graphics2D g){
-            BulldogBall.paint(g, shot);
+            bigBall.paint(g, bulldogBall);
 
             transform = new AffineTransform();
             transform.rotate(Math.toRadians(angle),x+anchorX,y+anchorY);
