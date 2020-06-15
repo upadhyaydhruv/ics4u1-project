@@ -28,11 +28,6 @@ class BulldogBall {
             y += Math.sin(Math.toRadians(angle))*35;
 
             if(x<0||x>960||y<0||y>720) state=false;
-
-            /*
-            x += Math.cos(Math.toRadians(angle));
-            y += Math.sin(Math.toRadians(angle));
-        */
         }
 
     }
