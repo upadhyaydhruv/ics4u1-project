@@ -62,19 +62,13 @@ public class ShipSelect {
             else state = 0;
 
             else if (Main.mouse.intersects(selectButtonRec)) if(state!=0){
-                switch (state){
-                    case 1: shipName = "esper"; break;
-                    case 2: shipName = "skuttler"; break;
-                    case 3: shipName = "tiamat"; break;
-                }
+                Main.player.setCurrentShip(shipName);
                 nextScreen = "levelSelect";
             }
         }
         return nextScreen;
     }
-    public String getShip(){
-        return shipName;
-    }
+
     public void paint(Graphics2D thisFrame) {
         thisFrame.drawImage(back, (Xoffset / 8) - 60, (Yoffset / 8) - 60, 1010, 1010, null);
 
@@ -89,12 +83,6 @@ public class ShipSelect {
             thisFrame.drawImage(shipSelectBack,0,300, null);
             Screen.paint(selectButtonRec,selectButton,thisFrame);
             thisFrame.drawImage(currentPlate,600,400,null);
-
-
         }
     }
-
-
-
-
 }

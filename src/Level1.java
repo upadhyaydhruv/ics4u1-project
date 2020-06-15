@@ -25,9 +25,13 @@ public class Level1 {
     }
     public void start() {
         nextScreen = "";
-
+        //this places the player in the level
+        Main.player.newPlayer(20,20);
     }
     public String move() {
+
+        //this updates the player
+        Main.player.move();
 
         Screen.waveMove(waveHold);
 
@@ -50,5 +54,9 @@ public class Level1 {
 
         tube.paint(thisFrame);
         //player.paint(thisFrame);
+
+        //this draws the player
+        Main.player.paint(thisFrame);
+
     }
 }

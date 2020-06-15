@@ -94,8 +94,8 @@ class CurrentPlayer {
     Tiamat tiamat = new Tiamat(0,0);
     int currentShip=0;
     int health=100;
-    void newCurrentPlayer(String shipName){
-        /*
+    void setCurrentShip(String shipName){
+
         switch (shipName){
             case "esper":
                 currentShip=1;
@@ -108,7 +108,20 @@ class CurrentPlayer {
 
         }
 
-         */
+
+    }
+    void newPlayer(int x, int y){
+        health=100;
+        switch (currentShip){
+            case 1:
+                esper = new Esper(x,y);
+                break;
+            case 2:
+                skuttler = new Skuttler(x,y);
+                break;
+            case 3:
+                tiamat = new Tiamat(x,y);
+        }
     }
     void move(){
         switch (currentShip){
@@ -125,6 +138,9 @@ class CurrentPlayer {
     void addHealth(int a){
         health+=a;
     }
+    void setHealth(){
+
+    }
     void paint(Graphics2D thisFrame){
         switch (currentShip){
             case 1:
@@ -136,6 +152,6 @@ class CurrentPlayer {
             case 3:
                 tiamat.paint(thisFrame);
         }
-        thisFrame.drawRect(400,400,health*10,40);
+        //thisFrame.drawRect(400,400,health*10,40);
     }
 }

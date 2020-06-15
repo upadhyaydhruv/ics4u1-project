@@ -27,7 +27,7 @@ public class Main extends JPanel {
     //this needs to be public so that everything can use it without re-directing it
     public static Mouse mouse=new Mouse();
     public static Screen currentScreen = new Screen("menu");
-
+    public static CurrentPlayer player = new CurrentPlayer();
 
     public static Keyboard keyboard=new Keyboard();
 

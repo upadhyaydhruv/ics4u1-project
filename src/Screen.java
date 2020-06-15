@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Screen {
     private String screenName;
-    private String shipName;
+
     private final Menu menu = new Menu();
     private final ShipSelect shipSelect = new ShipSelect();
     private final LevelSelect levelSelect = new LevelSelect();
@@ -19,17 +19,14 @@ public class Screen {
     private final Level6 L6 = new Level6();
     private final Level7 L7 = new Level7();
     private final Level8 L8 = new Level8();
-    private CurrentPlayer player = new CurrentPlayer();
+
 
     Screen(String screenName) {
         this.screenName = screenName;
     }
-    void changeShip(String shipName) {
-        this.shipName = shipName;
-    }
+
     void changeScreen(String screenName) {
         this.screenName = screenName;
-        player.newCurrentPlayer(shipName);
         switch (screenName) {
             case "menu":
                 menu.start();
@@ -75,12 +72,12 @@ public class Screen {
         }
     }
     public String move() throws InterruptedException {
-        player.move();
+
         switch (screenName) {
             case "menu":
                 return menu.move();
             case "shipSelect":
-                shipName=shipSelect.getShip();
+
                 return  shipSelect.move();
             case "levelSelect":
                 return levelSelect.move();
@@ -111,7 +108,7 @@ public class Screen {
         return "";
     }
     public void paint(Graphics2D thisFrame) throws InterruptedException{
-        player.paint(thisFrame);
+
         switch (screenName) {
             case "menu":
                 menu.paint(thisFrame);
