@@ -62,7 +62,18 @@ public class ShipSelect {
             else state = 0;
 
             else if (Main.mouse.intersects(selectButtonRec)) if(state!=0){
+                switch (state){
+                    case 1:
+                        Main.player.setCurrentShip("esper");
+                    break;
+                    case 2:
+                        Main.player.setCurrentShip("skuttler");
+                    break;
+                    case 3:
+                        Main.player.setCurrentShip("tiamat");
+                }
                 Main.player.setCurrentShip(shipName);
+                System.out.print(shipName);
                 nextScreen = "levelSelect";
             }
         }

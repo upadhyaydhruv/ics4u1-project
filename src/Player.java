@@ -93,7 +93,7 @@ class CurrentPlayer {
     Skuttler skuttler = new Skuttler(0,0);
     Tiamat tiamat = new Tiamat(0,0);
     int currentShip=0;
-    int health=100;
+    int health=5;
     void setCurrentShip(String shipName){
 
         switch (shipName){
@@ -111,7 +111,7 @@ class CurrentPlayer {
 
     }
     void newPlayer(int x, int y){
-        health=100;
+        health=5;
         switch (currentShip){
             case 1:
                 esper = new Esper(x,y);
