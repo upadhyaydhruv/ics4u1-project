@@ -15,6 +15,7 @@ public class Tiamat extends Player {
     private final boolean missileReleased = false;
     private final boolean isClicked = false;
     private int ticker = 0;
+    private boolean isAlive = true;
 
     private double angle;
     private final int anchorX=15;
@@ -44,7 +45,12 @@ public class Tiamat extends Player {
     }
 
     public void move(){
-        super.move();
+        if (super.getHealth()<=0){
+            isAlive = false;
+        }
+        if (isAlive) {
+            super.move();
+        }
         if (Main.mouse.getLMB()){
             this.shoot();
         }
@@ -61,7 +67,9 @@ public class Tiamat extends Player {
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
         transform.translate(super.getxPos(),super.getyPos());
-        g.drawImage(image,transform, null);
+        if (isAlive) {
+            g.drawImage(image, transform, null);
+        }
         for (Missile missiles : missile){
             missiles.paint(g);
         }
