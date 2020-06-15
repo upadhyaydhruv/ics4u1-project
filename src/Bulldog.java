@@ -103,6 +103,8 @@ public class Bulldog {
                 bigBall.move();
                 delayCount=0;
             }
+
+            shoot();
         }
 
         public void paint(Graphics2D g){

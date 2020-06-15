@@ -15,10 +15,10 @@ public class TestLevel {
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
     private Skuttler player = new Skuttler(400, 350);
-    Drone drone =new Drone(400,400,1,1);
-    ChaseRocket rocket =new ChaseRocket(600,300,90);
-    Bulldog bulldog = new Bulldog(player,0,0,1,1);
-    Bomb bomb = new Bomb();
+    private Drone drone =new Drone(400,400,1,1);
+    private ChaseRocket rocket =new ChaseRocket(600,300,90);
+    private Bulldog bulldog = new Bulldog(player,0,0,1,1);
+    private Bomb bomb = new Bomb();
 
 
     TestLevel(){
