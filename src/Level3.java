@@ -26,8 +26,10 @@ public class Level3 {
     }
     public void start() {
         nextScreen = "";
+        Main.player.newPlayer(100,200);
     }
     public String move() {
+        Main.player.move();
         Screen.waveMove(waveHold);
         if(Main.mouse.isMouseOn()){
 
@@ -45,7 +47,7 @@ public class Level3 {
         thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
         Screen.paint(platRec,plat,thisFrame);
         Screen.paint(stackRec,stack,thisFrame);
-
+        Main.player.paint(thisFrame);
         //player.paint(thisFrame);
 
         smoke1.paint(thisFrame);

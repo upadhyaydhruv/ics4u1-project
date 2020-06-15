@@ -26,10 +26,10 @@ public class Level7 {
     }
     public void start() {
         nextScreen = "";
-
+        Main.player.newPlayer(100,200);
     }
     public String move() {
-
+        Main.player.move();
         glow.move();
 
         if(Main.mouse.isMouseOn()){
@@ -47,7 +47,7 @@ public class Level7 {
         thisFrame.setColor(glow.get());
         thisFrame.fillRect(0,0,960, 720);
         Screen.paint(platRec,plat,thisFrame);
-
+        Main.player.paint(thisFrame);
         //Screen.paint(barrelsRec,barrels,thisFrame);
 
 

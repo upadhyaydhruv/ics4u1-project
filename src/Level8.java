@@ -25,10 +25,10 @@ public class Level8 {
     }
     public void start() {
         nextScreen = "";
-
+        Main.player.newPlayer(100,200);
     }
     public String move() {
-
+        Main.player.move();
         glow.move();Screen.waveMove(waveHold);
 
         if(Main.mouse.isMouseOn()){
@@ -48,7 +48,7 @@ public class Level8 {
         Screen.paint(platRec,plat,thisFrame);
         thisFrame.fillRect(stoneRec.x+65,stoneRec.y+50,45, 100);
         Screen.paint(stoneRec,stone,thisFrame);
-
+        Main.player.paint(thisFrame);
 
         //player.paint(thisFrame);
     }

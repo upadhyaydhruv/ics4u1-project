@@ -26,10 +26,11 @@ public class Level2 {
     }
     public void start() {
         nextScreen = "";
-
+        Main.player.newPlayer(100,200);
     }
     public String move() {
 
+        Main.player.move();
         Screen.waveMove(waveHold);
 
         if(Main.mouse.isMouseOn()){
@@ -46,6 +47,7 @@ public class Level2 {
         Screen.paint(platRec,plat,thisFrame);
         Screen.paint(barrelsRec,barrel,thisFrame);
         Screen.paint(radarRec,radar,thisFrame);
+        Main.player.paint(thisFrame);
         //player.paint(thisFrame);
     }
 }

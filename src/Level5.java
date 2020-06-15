@@ -25,10 +25,10 @@ public class Level5 {
     }
     public void start() {
         nextScreen = "";
-
+        Main.player.newPlayer(100,200);
     }
     public String move() {
-
+        Main.player.move();
         Screen.waveMove(waveHold);
 
         if(Main.mouse.isMouseOn()){
@@ -45,7 +45,7 @@ public class Level5 {
     public void paint(Graphics2D thisFrame) {
         thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
         Screen.paint(platRec,plat,thisFrame);
-
+        Main.player.paint(thisFrame);
         //Screen.paint(barrelsRec,barrels,thisFrame);
 
 

@@ -24,8 +24,9 @@ public class Level4 {
         }
     }
     public void start() {
+        Main.player.move();
         nextScreen = "";
-
+        Main.player.newPlayer(100,200);
     }
     public String move() {
 
@@ -46,7 +47,7 @@ public class Level4 {
     public void paint(Graphics2D thisFrame) {
         thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
         Screen.paint(platRec,plat,thisFrame);
-
+        Main.player.paint(thisFrame);
 
         tube.paint(thisFrame);
 
