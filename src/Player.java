@@ -95,7 +95,6 @@ class CurrentPlayer {
     int currentShip=0;
     int health=5;
     void setCurrentShip(String shipName){
-
         switch (shipName){
             case "esper":
                 currentShip=1;
@@ -105,10 +104,7 @@ class CurrentPlayer {
                 break;
             case "tiamat":
                 currentShip=3;
-
         }
-
-
     }
     void newPlayer(int x, int y){
         health=5;

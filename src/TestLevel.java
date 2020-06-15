@@ -20,6 +20,7 @@ public class TestLevel {
     private Bulldog bulldog = new Bulldog(player,0,0,1,1);
     private Bomb bomb = new Bomb();
 
+    private Explosion explosion = new Explosion();
 
     TestLevel(){
         try {
@@ -61,7 +62,7 @@ public class TestLevel {
         bulldog.move(player);
         bomb.move();
 
-
+        explosion.trigger(300,300);
 
 
         return nextScreen;
@@ -81,6 +82,7 @@ public class TestLevel {
         bomb.paint(thisFrame);
 
 
+        explosion.paint(thisFrame);
 
     }
 }
