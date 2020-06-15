@@ -26,7 +26,7 @@ public class Level1 {
     public void start() {
         nextScreen = "";
         //this places the player in the level
-        Main.player.newPlayer(100,200);
+        Main.player.newPlayer(435,170);
     }
     public String move() {
 

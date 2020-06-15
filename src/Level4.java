@@ -26,10 +26,10 @@ public class Level4 {
     public void start() {
         Main.player.move();
         nextScreen = "";
-        Main.player.newPlayer(100,200);
+        Main.player.newPlayer(440,300);
     }
     public String move() {
-
+        Main.player.move();
         Screen.waveMove(waveHold);
         tube.move();
 

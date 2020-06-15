@@ -26,7 +26,7 @@ public class Level2 {
     }
     public void start() {
         nextScreen = "";
-        Main.player.newPlayer(100,200);
+        Main.player.newPlayer(605,130);
     }
     public String move() {
 
