@@ -44,6 +44,10 @@ public class Esper extends Player {
         }
     }
 
+    public Rectangle getHitbox(){
+        return hitbox;
+    }
+
     public void move(){
         if (super.getHealth()==0){
             isAlive = false;

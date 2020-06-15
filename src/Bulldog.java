@@ -10,8 +10,8 @@ public class Bulldog {
         //private BufferedImage resizedImage;
         private int frame = 0;
         private int x, y, xVel, yVel,currentShot=1;
-        private final int anchorX=5;
-        private final int anchorY=5;
+        private final int anchorX=15;
+        private final int anchorY=15;
         private double angle;
         private AffineTransform transform;
         private int random;
@@ -84,8 +84,6 @@ public class Bulldog {
                 else if (player.getxPos()>x) {
                     x += xVel;
                 }
-                else {
-                }
 
                 if (player.getyPos()<y){
                     y -= yVel;
@@ -93,8 +91,7 @@ public class Bulldog {
                 else if (player.getyPos()>y) {
                     y += yVel;
                 }
-                else {
-                }
+
                 frame = 0;
             }
             angle= (long) (450-(Math.atan2(player.getxPos()-(x+31), player.getyPos()-(y+31))*180/Math.PI));
@@ -114,7 +111,6 @@ public class Bulldog {
             transform.rotate(Math.toRadians(angle),x+anchorX,y+anchorY);
             transform.translate(x,y);
             g.drawImage(pic, transform, null);
-            g.drawImage(bulldogBall, transform,null);
         }
     }
 
