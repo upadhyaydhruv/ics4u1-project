@@ -19,7 +19,7 @@ public class Explosion {
                 this.x[a]=(int) (Math.random()*50)+x;
                 this.y[a]=(int) (Math.random()*50)+y;
             }
-            delay=10;
+            delay=75;
         }
     }
     public void paint(Graphics2D thisFrame){

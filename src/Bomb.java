@@ -14,12 +14,12 @@ public class Bomb {
     private Boolean onTimer = false;
     private int ticktick = 0;
     public int frameDelay = 0;
+    Explosion e = new Explosion();
 
     public Bomb() {
 
         try{
             bomb = ImageIO.read(this.getClass().getResource("barrel.png"));
-            explosion = ImageIO.read(this.getClass().getResource("box.png"));
         } catch(IOException e){
             System.out.print("there");
         }
@@ -50,13 +50,10 @@ public class Bomb {
         }
 
         if (ticktick >= 200) {
-            g.drawImage(explosion, x, y, null);
-            frameDelay++;
-            if (frameDelay == 50) {
+            e.trigger(x,y);
                 isPlaced = false;
                 ticktick = 0;
-                frameDelay = 0;
             }
+        e.paint(g);
         }
-    }
 }
