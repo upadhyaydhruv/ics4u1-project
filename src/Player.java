@@ -135,8 +135,8 @@ class CurrentPlayer {
                 tiamat.move();
         }
     }
-    void addHealth(int a){
-        health+=a;
+    void removeHealth(int a){
+        health-=a;
     }
     void setHealth(){
 
