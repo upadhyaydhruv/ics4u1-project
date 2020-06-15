@@ -57,7 +57,7 @@ public class Bulldog {
                         pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog A.png"));
                         break;
                 }
-                     bulldogBall = ImageIO.read(this.getClass().getResource("bulldog\\bulldog ball"));
+                    bulldogBall = ImageIO.read(this.getClass().getResource("bulldog\\bulldog ball.png"));
                 // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
                 // resizedImage = (BufferedImage) image;
             } catch(IOException e){
