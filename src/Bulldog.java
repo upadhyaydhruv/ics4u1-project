@@ -10,8 +10,8 @@ public class Bulldog {
         //private BufferedImage resizedImage;
         private int frame = 0;
         private int x, y, xVel, yVel,currentShot=1;
-        private final int anchorX=5;
-        private final int anchorY=5;
+        private final int anchorX=15;
+        private final int anchorY=15;
         private double angle;
         private AffineTransform transform;
         private int random;
