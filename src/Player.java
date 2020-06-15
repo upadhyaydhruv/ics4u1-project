@@ -89,5 +89,34 @@ public class Player {
     }
 }
 class CurrentPlayer {
-
+    Esper esper = new Esper(0,0);
+    Skuttler skuttler = new Skuttler(0,0);
+    Tiamat tiamat = new Tiamat(0,0);
+    int currentShip=0;
+    void newCurrentPlayer(String shipName){
+    }
+    void move(){
+        switch (currentShip){
+            case 1:
+                esper.move();
+                break;
+            case 2:
+                skuttler.move();
+                break;
+            case 3:
+                tiamat.move();
+        }
+    }
+    void paint(Graphics2D thisFrame){
+        switch (currentShip){
+            case 1:
+                esper.paint(thisFrame);
+                break;
+            case 2:
+                skuttler.paint(thisFrame);
+                break;
+            case 3:
+                tiamat.paint(thisFrame);
+        }
+    }
 }
