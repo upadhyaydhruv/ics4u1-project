@@ -6,10 +6,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Esper extends Player {
+public class Esper extends Player implements Hittable {
     private BufferedImage esper,bullet;
     private int bulletPosX,bulletPosY,ticker = 0;
     private Machinegun shooter;
+    private Hittable.HitBox hb;
 
     //bobby's angle update3.
 
@@ -18,7 +19,6 @@ public class Esper extends Player {
     private final int anchorX=5;
     private final int anchorY=5;
     private boolean isAlive = false;
-    private Rectangle hitbox;
 
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)
@@ -33,7 +33,9 @@ public class Esper extends Player {
             esper = ImageIO.read(this.getClass().getResource("esper.png"));
             bullet = ImageIO.read(this.getClass().getResource("esper shot.png"));
         } catch(IOException e){}
-        hitbox = new Rectangle(esper.getHeight(), esper.getWidth(), x, y);
+
+        // thomas, you need to get rid of the space around the esper, then set round to true
+        hb = new Hittable.HitBox(false, esper.getHeight(), esper.getWidth(), x, y, 0);
     }
 
     public void shoot(){
@@ -44,8 +46,8 @@ public class Esper extends Player {
         }
     }
 
-    public Rectangle getHitbox(){
-        return hitbox;
+    public HitBox currentHitBox() {
+        return hb;
     }
 
     public void move(){
@@ -55,8 +57,8 @@ public class Esper extends Player {
         if (isAlive) {
             super.move();
         }
-        hitbox.x = this.getxPos();
-        hitbox.y = this.getyPos();
+
+        hb.update(this.getxPos(), this.getyPos());
 
         if (Main.mouse.getLMB()){
             this.shoot();
