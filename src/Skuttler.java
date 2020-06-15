@@ -16,6 +16,7 @@ public class Skuttler extends Player {
     private double angle;
     private final int anchorX=38;
     private final int anchorY=37;
+    private boolean isAlive = true;
     private AffineTransform transform = new AffineTransform();
     private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
 
@@ -39,7 +40,12 @@ public class Skuttler extends Player {
     }
 
     public void move(){
-        super.move();
+        if (super.getHealth()==0){
+            isAlive = false;
+        }
+        if (isAlive) {
+            super.move();
+        }
         if (Main.mouse.getLMB()){
             this.shoot();
         }
@@ -53,7 +59,9 @@ public class Skuttler extends Player {
         transform = new AffineTransform();
         transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
         transform.translate(super.getxPos(),super.getyPos());
-        g.drawImage(image, transform, null);
+        if (isAlive) {
+            g.drawImage(image, transform, null);
+        }
         for (Machinegun gun : guns){
             gun.paint(g);
         }

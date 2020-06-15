@@ -158,7 +158,6 @@ public class Screen {
         Thread.sleep(frameDelay);
     }
 
-    //bobby's secret code vault (i don't know where to put this so ima just leave it here for now)
     private int frameDelay = 10;
     public int getFrameDelay(){
         return frameDelay;

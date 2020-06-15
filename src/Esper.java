@@ -17,6 +17,7 @@ public class Esper extends Player {
     private AffineTransform transform = new AffineTransform();
     private final int anchorX=5;
     private final int anchorY=5;
+    private boolean isAlive = false;
     private Rectangle hitbox;
 
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
@@ -44,7 +45,12 @@ public class Esper extends Player {
     }
 
     public void move(){
-        super.move();
+        if (super.getHealth()==0){
+            isAlive = false;
+        }
+        if (isAlive) {
+            super.move();
+        }
         hitbox.x = this.getxPos();
         hitbox.y = this.getyPos();
 

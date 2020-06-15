@@ -2,25 +2,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+/*
+ Main.mouse.getX() gives you the x value
+ Main.mouse.getY() gives you the y value
+ LMB= left mouse button
+ SWB= scroll wheel button
+ RMB= right mouse button
+ use Main.mouse.getLMB()/Main.mouse.getSWB()/Main.mouse.getRMB() to test if a button is currently being pressed
+                  (they will return a Boolean value)
+ these methods can be run anywhere due to the mouse object being public and inside the Main class
 
-// bobby's notes
-// you guys can use commands to access the mouses current position and buttons
-// Main.mouse.getX() gives you the x value
-// Main.mouse.getY() gives you the y value
-// LMB= left mouse button
-// SWB= scroll wheel button
-// RMB= right mouse button
-// use Main.mouse.getLMB()/Main.mouse.getSWB()/Main.mouse.getRMB() to test if a button is currently being pressed
-//                  (they will return a Boolean value)
-// these methods can be run anywhere due to the mouse object being public and inside the Main class
-//
-//i put together a quick keyboard class in the same style
-//it only looks for the WASD and Esc keys right now
-// to test if a key is down use the Main.keyboard.getW()/Main.keyboard.getA()/Main.keyboard.getS()/Main.keyboard.getD()
-//                                                       (they will return a Boolean value)
-// this works anywhere just like the mouse class
-//
-// note that ive updated the levels so that you can use the escape key to backout to the level select screen
+i put together a quick keyboard class in the same style
+it only looks for the WASD and Esc keys right now
+ to test if a key is down use the Main.keyboard.getW()/Main.keyboard.getA()/Main.keyboard.getS()/Main.keyboard.getD()
+                                                       (they will return a Boolean value)
+ this works anywhere just like the mouse class
+
+ note that ive updated the levels so that you can use the escape key to backout to the level select screen
+
+*/
 
 public class Main extends JPanel {
 
@@ -151,7 +151,7 @@ class uselessClass extends JPanel {
         System.out.print("can't be delusional if you don't subscribe the a concrete reality, am i right?");
         System.out.print("id like to think covid is the manifestation of universe stopping Hatsune Miku from going to coachella");
         System.out.print("no one can stop me from listening to kill-me-baby while i code");
-fsdf
+
         addMouseMotionListener(new MouseMotionAdapter() {
             public void mouseMoved(MouseEvent event) {
                 System.out.print("whose been drawing nicks?");
