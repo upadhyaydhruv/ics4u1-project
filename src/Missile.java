@@ -38,6 +38,14 @@ public class Missile {
         return this.damage;
     }
 
+    public int getxPos(){
+        return this.xPos;
+    }
+
+    public int getyPos(){
+        return this.yPos;
+    }
+
 
     public void move(){
         if (Main.mouse.getRMB()&&RMBToggle){

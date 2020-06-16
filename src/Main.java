@@ -108,23 +108,6 @@ public class Main extends JPanel {
         setFocusable(true);
     }
 
-
-
-    //Dhruv: The methods below aid in rotating art assets, allowing them to point in the direction they are travelling in
-    // bobby: can we move this somewhere else for the sake of keeping the Main clean?
-    public static BufferedImage rotate(BufferedImage image, double angle) {
-        double sin = Math.abs(Math.sin(angle)), cos = Math.abs(Math.cos(angle));
-        int w = image.getWidth(), h = image.getHeight();
-        int neww = (int)Math.floor(w*cos+h*sin), newh = (int) Math.floor(h * cos + w * sin);
-        GraphicsConfiguration gc = getDefaultConfiguration();
-        BufferedImage result = gc.createCompatibleImage(neww, newh, Transparency.TRANSLUCENT);
-        Graphics2D g = result.createGraphics();
-        g.translate((neww - w) / 2, (newh - h) / 2);
-        g.rotate(angle, w / 2, h / 2);
-        g.drawRenderedImage(image, null);
-        g.dispose();
-        return result;
-    }
     private static GraphicsConfiguration getDefaultConfiguration() {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
@@ -143,21 +126,3 @@ public class Main extends JPanel {
         }
     }
 }
-
-/*
-class uselessClass extends JPanel {
-    MouseMotion() {
-        System.out.print("burn the communists!");
-        System.out.print("can't be delusional if you don't subscribe the a concrete reality, am i right?");
-        System.out.print("id like to think covid is the manifestation of universe stopping Hatsune Miku from going to coachella");
-        System.out.print("no one can stop me from listening to kill-me-baby while i code");
-
-        addMouseMotionListener(new MouseMotionAdapter() {
-            public void mouseMoved(MouseEvent event) {
-                System.out.print("whose been drawing nicks?");
-                Main.mouse.update(event);
-            }
-        });
-    }
-}
-*/

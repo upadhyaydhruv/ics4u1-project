@@ -62,7 +62,7 @@ public class TestLevel {
         bulldog.move(player);
         bomb.move();
 
-        explosion.trigger(300,300);
+        //explosion.trigger(300,300);
 
 
         return nextScreen;

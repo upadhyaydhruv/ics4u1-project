@@ -22,6 +22,7 @@ public class Tiamat extends Player {
     private final int anchorY=15;
 
     private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
+    private Explosion explosion = new Explosion();
 
     private Hittable.HitBox hb;
 
@@ -61,6 +62,7 @@ public class Tiamat extends Player {
             missiles.move();
             if (!Main.mouse.getLMB()&&missile.size()>0){
                 missile.remove(missiles);
+                explosion.trigger(missiles.getxPos(), missiles.getyPos());
             }
         }
     }
@@ -75,6 +77,7 @@ public class Tiamat extends Player {
         for (Missile missiles : missile){
             missiles.paint(g);
         }
+        explosion.paint(g);
     }
 
     public Hittable.HitBox currentHitBox() {
