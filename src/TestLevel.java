@@ -46,6 +46,7 @@ public class TestLevel {
         bomb = new Bomb();
 
         list.add(bulldog);
+        list.add(player);
 
     }
     public String move() {

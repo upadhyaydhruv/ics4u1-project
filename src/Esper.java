@@ -38,6 +38,14 @@ public class Esper extends Player implements Hittable {
         hb = new Hittable.HitBox(false, esper.getHeight(), esper.getWidth(), x, y, null);
     }
 
+    public void shoot(){
+        ticker++;
+        if (ticker%1000000==0){
+            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
+            ticker = 0;
+        }
+    }
+
     @Override
     public Hittable.HitBox currentHitBox() {
         return this.hb;
@@ -45,25 +53,15 @@ public class Esper extends Player implements Hittable {
 
     @Override
     public boolean hittableBy(Hittable hb) {
-        return (hb instanceof BulldogBall || hb instanceof Explosion || hb instanceof DroneShot);
+        return (hb instanceof Explosion || hb instanceof BulldogBall || hb instanceof DroneShot);
     }
 
     @Override
     public void handleHit(Hittable hb) {
-        if (hb instanceof BulldogBall) {
-            this.decreaseHealth(1);
-        } else if (hb instanceof Explosion) {
-            this.decreaseHealth(((Explosion) hb).getDamage());
-        } else if (hb instanceof DroneShot) {
-            this.decreaseHealth(1);
-        }
-    }
-
-    public void shoot(){
-        ticker++;
-        if (ticker%1000000==0){
-            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
-            ticker = 0;
+        if (hb instanceof Explosion) {
+            super.decreaseHealth(((Explosion) hb).getDamage());
+        } else if (hb instanceof BulldogBall || hb instanceof DroneShot) {
+            super.decreaseHealth(1);
         }
     }
 
@@ -89,6 +87,7 @@ public class Esper extends Player implements Hittable {
             super.setYPos(Main.mouse.getY()-5);
 
         }
+        hb.update(super.getxPos(), super.getyPos());
 
         //bobby's angle update
         angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
@@ -103,7 +102,7 @@ public class Esper extends Player implements Hittable {
         transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
         transform.translate(super.getxPos(),super.getyPos());
         g.drawImage(esper, transform, null);
-
+        hb.updateTransform(transform);
         for (Machinegun gun : guns){
             gun.paint(g);
         }
