@@ -29,25 +29,33 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
             this.y = y;
         }
 
+        public void updateTransform(AffineTransform transform){
+            this.transform = transform;
+        }
+
         public boolean isTouching(HitBox other) {
-            throw new RuntimeException("ahlie, dhruv, you messed up again (from John)");
+            return other.getShape().intersects(this.getShape().getBounds2D());
         }
 
         private Shape getShape(){
             if (this.round){
-                Ellipse2D shape = new Ellipse2D.Double(this.x, this.y, this.w, this.h);
-                transform.createTransformedShape(shape).getBounds2D();
+                Shape shape = new Ellipse2D.Double(this.x, this.y, this.w, this.h);
+                if (transform!=null) {
+                    shape = transform.createTransformedShape(shape);
+                }
                 return shape;
             }
             else{
-                Rectangle shape = new Rectangle(this.x, this.y, this.w, this.h);
-                transform.createTransformedShape(shape).getBounds2D();
+                Shape shape = new Rectangle(this.x, this.y, this.w, this.h);
+                if (transform!=null) {
+                    shape = transform.createTransformedShape(shape);
+                }
                 return shape;
             }
         }
 
         public boolean isWithin(HitBox other) {
-            throw new RuntimeException("hurry up");
+            return other.getShape().contains(this.getShape().getBounds2D());
         }
 
         // if needed, also store the velocity of an object and add an isPointingAt method

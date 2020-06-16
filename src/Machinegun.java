@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-public class Machinegun {
+public class Machinegun implements Hittable {
     private int xPos;
     private int yPos;
     private int xVel;
@@ -12,6 +12,7 @@ public class Machinegun {
     private double angle;
     private final int anchorX=0;
     private final int anchorY=0;
+    private Hittable.HitBox hb;
 
     public Machinegun(int xOrig, int yOrig, BufferedImage image, double angle){
         this.image = image;
@@ -20,6 +21,7 @@ public class Machinegun {
         this.angle = angle;
         this.xVel = (int)Math.ceil(Math.cos(Math.toRadians(angle))*5);
         this.yVel = (int)Math.ceil(Math.sin(Math.toRadians(angle))*5);
+        hb = new HitBox(false,image.getWidth(), image.getHeight(), xPos, yPos, null);
     }
 
     public boolean hit(){
@@ -33,6 +35,7 @@ public class Machinegun {
             yPos += yVel;
             ticker = 0;
         }
+        hb.update(xPos, yPos);
     }
 
     public void paint(Graphics2D g){
@@ -40,5 +43,6 @@ public class Machinegun {
         transform.rotate(Math.toRadians(angle),xPos+anchorX,yPos+anchorY);
         transform.translate(xPos,yPos);
         g.drawImage(image,transform,null);
+        hb.updateTransform(transform);
     }
 }
