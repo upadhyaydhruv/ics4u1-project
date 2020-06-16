@@ -21,7 +21,7 @@ public class Skuttler extends Player implements Hittable {
     private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
     private Hittable.HitBox hb;
 
-    private Hittable.HitBox hb;
+
 
     public Skuttler(int x, int y){
         super(x, y);

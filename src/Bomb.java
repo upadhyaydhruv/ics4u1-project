@@ -57,4 +57,8 @@ public class Bomb implements Hittable {
             }
         e.paint(g);
         }
-}
+
+    public Hittable.HitBox currentHitBox() {
+        return hb;
+    }
+    }

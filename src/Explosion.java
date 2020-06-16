@@ -31,4 +31,8 @@ public class Explosion implements Hittable  {
         delay--;
         }
     }
+
+    public Hittable.HitBox currentHitBox() {
+        return hb;
+    }
 }

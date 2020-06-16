@@ -24,7 +24,7 @@ public class Tiamat extends Player implements Hittable {
 
     private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
 
-    private Hittable.HitBox hb;
+
 
     public Tiamat(int x, int y){
         super(x, y);
