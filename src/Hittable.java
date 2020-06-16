@@ -1,6 +1,7 @@
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.util.List;
 
 public interface Hittable { // pass an ArrayList<Hittable> of the things relevant to each thing
     class HitBox {
@@ -67,6 +68,29 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
         }
 
         // if needed, also store the velocity of an object and add an isPointingAt method
+    }
+
+    static void handleHits(List<Hittable> things) {
+        // warning: the time this takes increases exponentially compared to the number of items, so try to limit the
+        // number of hittable things. if needed, this can be made more efficient in many ways.
+        boolean ab, ba;
+        HitBox ah, bh;
+        for (Hittable a : things) {
+            for (Hittable b : things) {
+                ab = a.hittableBy(b);
+                ba = b.hittableBy(a);
+                if (ab || ba) {
+                    if ((ah = a.currentHitBox()) != null && (bh = b.currentHitBox()) != null) {
+                        if (ah.isTouching(bh)) { // note: this is (should be) the same as bh.isTouching(ah)
+                            if (ab)
+                                a.handleHit(b);
+                            if (ba)
+                                b.handleHit(a);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     // this should return an existing HitBox in each class instead of creating a new one each time for performance reasons

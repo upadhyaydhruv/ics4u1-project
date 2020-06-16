@@ -49,18 +49,20 @@ public class TestLevel {
 
     }
     public String move() {
-        if(Main.mouse.isMouseOn()){
-            }
-        player.move();
+        if (Main.mouse.isMouseOn()) {
+        }
 
+        Hittable.handleHits(list);
+
+        player.move();
 
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
         }
 
         //bobby: the X and Y tell the drone where its target is
-        drone.move(player.getxPos(),player.getyPos());
-        rocket.move(player.getxPos(),player.getyPos());
+        drone.move(player.getxPos(), player.getyPos());
+        rocket.move(player.getxPos(), player.getyPos());
         bulldog.move(player);
         bomb.move();
 
