@@ -68,8 +68,6 @@ class BulldogBall implements Hittable {
         }
     }
 
-    public Hittable.HitBox currentHitBox() {
-        return hb;
-    }
+
 }
 
