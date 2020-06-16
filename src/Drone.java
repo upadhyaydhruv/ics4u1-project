@@ -11,6 +11,7 @@ class Drone implements Hittable {
     //DroneShot[] droneShot = new DroneShot[20];
     DroneShot droneShot = new DroneShot();
     private Hittable.HitBox hb;
+    private int health = 2;
 
     private int DIAMETER = 63;
     private Rectangle rec;
@@ -33,10 +34,34 @@ class Drone implements Hittable {
         }
     }
 
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
+    }
+
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return (hb instanceof Machinegun || hb instanceof Explosion);
+    }
+
+    @Override
+    public void handleHit(Hittable hb) {
+        if (hb instanceof Machinegun) {
+            this.decreaseHealth(1);
+        } else if (hb instanceof Explosion) {
+            this.decreaseHealth(((Explosion) hb).getDamage());
+        }
+    }
+
     private void shoot(){
         droneShot.shoot(x,y,angle);
         currentShot++;
         if(currentShot==20) currentShot=1;
+    }
+
+
+    public void decreaseHealth(int diff) {
+        this.health -= diff;
     }
 
     public void move(int targetX,int targetY) {
@@ -94,11 +119,6 @@ class Drone implements Hittable {
             droneShot[i].paint(g, shot);
         }
         */
-    }
-
-
-    public Hittable.HitBox currentHitBox() {
-        return hb;
     }
 }
 

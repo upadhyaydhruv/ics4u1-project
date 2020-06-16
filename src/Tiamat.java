@@ -48,6 +48,27 @@ public class Tiamat extends Player implements Hittable {
         }
     }
 
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
+    }
+
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return (hb instanceof BulldogBall || hb instanceof Explosion || hb instanceof DroneShot);
+    }
+
+    @Override
+    public void handleHit(Hittable hb) {
+        if (hb instanceof BulldogBall) {
+            this.decreaseHealth(1);
+        } else if (hb instanceof Explosion) {
+            this.decreaseHealth(((Explosion) hb).getDamage());
+        } else if (hb instanceof DroneShot) {
+            this.decreaseHealth(1);
+        }
+    }
+
     public void move(){
         if (super.getHealth()<=0){
             isAlive = false;
@@ -82,7 +103,4 @@ public class Tiamat extends Player implements Hittable {
         explosion.paint(g);
     }
 
-    public Hittable.HitBox currentHitBox() {
-        return hb;
-    }
 }

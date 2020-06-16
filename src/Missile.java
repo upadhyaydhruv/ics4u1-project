@@ -77,8 +77,19 @@ public class Missile implements Hittable {
         g.drawImage(image, transform, null);
     }
 
+    @Override
     public Hittable.HitBox currentHitBox() {
         return hb;
     }
+
+    @Override
+    public void handleHit(Hittable hb) {
+
     }
+
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return false;
+    }
+}
 

@@ -35,7 +35,28 @@ public class Esper extends Player implements Hittable {
         } catch(IOException e){}
 
         // thomas, you need to get rid of the space around the esper, then set round to true
-        hb = new Hittable.HitBox(false, esper.getHeight(), esper.getWidth(), x, y, 0);
+        hb = new Hittable.HitBox(false, esper.getHeight(), esper.getWidth(), x, y, null);
+    }
+
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
+    }
+
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return (hb instanceof BulldogBall || hb instanceof Explosion || hb instanceof DroneShot);
+    }
+
+    @Override
+    public void handleHit(Hittable hb) {
+        if (hb instanceof BulldogBall) {
+            this.decreaseHealth(1);
+        } else if (hb instanceof Explosion) {
+            this.decreaseHealth(((Explosion) hb).getDamage());
+        } else if (hb instanceof DroneShot) {
+            this.decreaseHealth(1);
+        }
     }
 
     public void shoot(){
@@ -44,10 +65,6 @@ public class Esper extends Player implements Hittable {
             guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
             ticker = 0;
         }
-    }
-
-    public HitBox currentHitBox() {
-        return hb;
     }
 
     public void move(){

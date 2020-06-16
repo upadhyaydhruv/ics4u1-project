@@ -13,6 +13,23 @@ class DroneShot implements Hittable {
     public DroneShot() {
     }
 
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
+    }
+
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return (hb instanceof Player);
+    }
+
+    @Override
+    public void handleHit(Hittable hb) {
+        if (hb instanceof Player) {
+            this.state = false;
+        }
+    }
+
     public void shoot(int x, int y, long angle) {
         if (!state) {
             state = true;
@@ -47,7 +64,4 @@ class DroneShot implements Hittable {
         }
     }
 
-    public Hittable.HitBox currentHitBox() {
-        return hb;
-    }
 }
