@@ -3,7 +3,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.*;
 public class Settings {
     String nextScreen = "";
     BufferedImage back,backButton,blue,green,orange,pink,frameDelay,upButton,downButton,numberPlate;
@@ -16,16 +15,16 @@ public class Settings {
     private boolean mouseToggle;
     Settings() {
         try {
-            back = ImageIO.read(new File("res\\menu\\menu back.png"));
-            backButton = ImageIO.read(new File("res\\button\\back button.png"));
-            blue = ImageIO.read(new File("res\\menu\\blue bubble.png"));
-            green = ImageIO.read(new File("res\\menu\\green bubble.png"));
-            orange = ImageIO.read(new File("res\\menu\\orange bubble.png"));
-            pink = ImageIO.read(new File("res\\menu\\pink bubble.png"));
-            frameDelay = ImageIO.read(new File("res\\menu\\frame delay.png"));
-            upButton = ImageIO.read(new File("res\\button\\up button.png"));
-            downButton = ImageIO.read(new File("res\\button\\down button.png"));
-            numberPlate = ImageIO.read(new File("res\\menu\\number plate.png"));
+            back = ImageIO.read(new File("res/menu/menu back.png"));
+            backButton = ImageIO.read(new File("res/button/back button.png"));
+            blue = ImageIO.read(new File("res/menu/blue bubble.png"));
+            green = ImageIO.read(new File("res/menu/green bubble.png"));
+            orange = ImageIO.read(new File("res/menu/orange bubble.png"));
+            pink = ImageIO.read(new File("res/menu/pink bubble.png"));
+            frameDelay = ImageIO.read(new File("res/menu/frame delay.png"));
+            upButton = ImageIO.read(new File("res/button/up button.png"));
+            downButton = ImageIO.read(new File("res/button/down button.png"));
+            numberPlate = ImageIO.read(new File("res/menu/number plate.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }

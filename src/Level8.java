@@ -17,8 +17,8 @@ public class Level8 {
     Level8(){
         try {
 
-            plat = ImageIO.read(new File("res\\background\\jungle2.png"));
-            stone = ImageIO.read(new File("res\\rune stone.png"));
+            plat = ImageIO.read(new File("res/background/jungle2.png"));
+            stone = ImageIO.read(new File("res/rune stone.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }

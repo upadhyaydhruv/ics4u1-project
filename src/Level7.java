@@ -18,7 +18,7 @@ public class Level7 {
     Level7(){
         try {
 
-            plat = ImageIO.read(new File("res\\background\\jungle1.png"));
+            plat = ImageIO.read(new File("res/background/jungle1.png"));
 
         } catch (IOException e) {
             System.out.println("image not found!");

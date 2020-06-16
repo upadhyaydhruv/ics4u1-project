@@ -35,28 +35,28 @@ public class Bulldog implements Hittable {
             try{
                 switch(random) {
                     case 2:
-                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog B.png"));
+                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog B.png"));
                         break;
                     case 3:
-                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog C.png"));
+                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog C.png"));
                         break;
                     case 4:
-                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog D.png"));
+                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog D.png"));
                         break;
                     case 5:
-                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog E.png"));
+                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog E.png"));
                         break;
                     case 6:
-                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog F.png"));
+                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog F.png"));
                         break;
                     case 7:
-                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog G.png"));
+                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog G.png"));
                         break;
                     case 8:
-                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog H.png"));
+                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog H.png"));
                         break;
                     default :
-                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog A.png"));
+                        pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog A.png"));
                         break;
                 }
             } catch(IOException e){

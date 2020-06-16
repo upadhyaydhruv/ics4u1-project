@@ -24,9 +24,9 @@ class Drone implements Hittable {
         this.yVel = yVel;
 
         try{
-            drone = ImageIO.read(this.getClass().getResource("drone\\drone.png"));
-            shooter = ImageIO.read(this.getClass().getResource("drone\\drone shooter.png"));
-            shot = ImageIO.read(this.getClass().getResource("drone\\drone shot.png"));
+            drone = ImageIO.read(this.getClass().getResource("drone/drone.png"));
+            shooter = ImageIO.read(this.getClass().getResource("drone/drone shooter.png"));
+            shot = ImageIO.read(this.getClass().getResource("drone/drone shot.png"));
             // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
             // resizedImage = (BufferedImage) image;
         } catch(IOException e){

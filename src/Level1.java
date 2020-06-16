@@ -17,9 +17,9 @@ public class Level1 {
 
     Level1(){
         try {
-            water = ImageIO.read(new File("res\\background\\storm water.png"));
-            plat = ImageIO.read(new File("res\\background\\level 1 plat.png"));
-            barrels = ImageIO.read(new File("res\\barrels.png"));
+            water = ImageIO.read(new File("res/background/storm water.png"));
+            plat = ImageIO.read(new File("res/background/level 1 plat.png"));
+            barrels = ImageIO.read(new File("res/barrels.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }

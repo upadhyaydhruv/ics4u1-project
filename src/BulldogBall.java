@@ -15,7 +15,7 @@ class BulldogBall implements Hittable {
 
     public BulldogBall() {
         try {
-            bulldogBall = ImageIO.read(this.getClass().getResource("bulldog\\bulldog ball.png"));
+            bulldogBall = ImageIO.read(this.getClass().getResource("bulldog/bulldog ball.png"));
         } catch (IOException e) {
         }
         hb = new Hittable.HitBox(true, bulldogBall.getHeight(), bulldogBall.getHeight(), this.x, this.y, null);

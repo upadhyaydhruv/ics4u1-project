@@ -14,23 +14,32 @@ public class BubbleTube {
             bubbleParts[a]= new BubblePart(x+50,y+165,(a*44)+16);
         }
         try {
-            bubbleTube = ImageIO.read(new File("res\\bubbles\\bubble tube.png"));
+            bubbleTube = ImageIO.read(new File("res/bubbles/bubble tube.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
     }
     static BufferedImage newBubble(){
         try {
-            switch ((int)(Math.random()*9)){
-                case 0: return ImageIO.read(new File("res\\bubbles\\bubbles1.png"));
-                case 1: return ImageIO.read(new File("res\\bubbles\\bubbles2.png"));
-                case 2: return ImageIO.read(new File("res\\bubbles\\bubbles3.png"));
-                case 3: return ImageIO.read(new File("res\\bubbles\\bubbles4.png"));
-                case 4: return ImageIO.read(new File("res\\bubbles\\bubbles5.png"));
-                case 5: return ImageIO.read(new File("res\\bubbles\\bubbles6.png"));
-                case 6: return ImageIO.read(new File("res\\bubbles\\bubbles7.png"));
-                case 7: return ImageIO.read(new File("res\\bubbles\\bubbles8.png"));
-                case 8: return ImageIO.read(new File("res\\bubbles\\bubbles9.png"));
+            switch ((int)(Math.random()*9)) {
+                case 0:
+                    return ImageIO.read(new File("res/bubbles/bubbles1.png"));
+                case 1:
+                    return ImageIO.read(new File("res/bubbles/bubbles2.png"));
+                case 2:
+                    return ImageIO.read(new File("res/bubbles/bubbles3.png"));
+                case 3:
+                    return ImageIO.read(new File("res/bubbles/bubbles4.png"));
+                case 4:
+                    return ImageIO.read(new File("res/bubbles/bubbles5.png"));
+                case 5:
+                    return ImageIO.read(new File("res/bubbles/bubbles6.png"));
+                case 6:
+                    return ImageIO.read(new File("res/bubbles/bubbles7.png"));
+                case 7:
+                    return ImageIO.read(new File("res/bubbles/bubbles8.png"));
+                case 8:
+                    return ImageIO.read(new File("res/bubbles/bubbles9.png"));
             }
         } catch (IOException e) {
             System.out.println("image not found!");

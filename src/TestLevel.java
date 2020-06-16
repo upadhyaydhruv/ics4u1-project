@@ -28,10 +28,10 @@ public class TestLevel {
             TimeUnit.SECONDS.sleep(1);
         } catch(InterruptedException e){}
         try {
-            water = ImageIO.read(new File("res\\background\\storm water.png"));
-            plat = ImageIO.read(new File("res\\background\\test plat.png"));
-            object = ImageIO.read(new File("res\\test object.png"));
-            bullet = ImageIO.read(new File("res\\skuttler shot C.png"));
+            water = ImageIO.read(new File("res/background/storm water.png"));
+            plat = ImageIO.read(new File("res/background/test plat.png"));
+            object = ImageIO.read(new File("res/test object.png"));
+            bullet = ImageIO.read(new File("res/skuttler shot C.png"));
 
         } catch (IOException e) {
             System.out.println("image not found!");
