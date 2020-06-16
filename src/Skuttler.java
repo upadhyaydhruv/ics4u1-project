@@ -21,6 +21,8 @@ public class Skuttler extends Player {
     private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
     private Rectangle hitbox;
 
+    private Hittable.HitBox hb;
+
     public Skuttler(int x, int y){
         super(x, y);
         super.setXVel(1);
@@ -73,5 +75,9 @@ public class Skuttler extends Player {
         for (Machinegun gun : guns){
             gun.paint(g);
         }
+    }
+
+    public Hittable.HitBox currentHitBox() {
+        return hb;
     }
 }

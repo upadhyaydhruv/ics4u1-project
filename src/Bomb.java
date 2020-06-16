@@ -19,7 +19,7 @@ public class Bomb {
     public Bomb() {
 
         try{
-            bomb = ImageIO.read(this.getClass().getResource("barrel.png"));
+            bomb = ImageIO.read(this.getClass().getResource("landmine.png"));
         } catch(IOException e){
             System.out.print("there");
         }

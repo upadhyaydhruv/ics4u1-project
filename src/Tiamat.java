@@ -23,6 +23,8 @@ public class Tiamat extends Player {
 
     private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
 
+    private Hittable.HitBox hb;
+
     public Tiamat(int x, int y){
         super(x, y);
         //this.sword = sword;
@@ -73,5 +75,9 @@ public class Tiamat extends Player {
         for (Missile missiles : missile){
             missiles.paint(g);
         }
+    }
+
+    public Hittable.HitBox currentHitBox() {
+        return hb;
     }
 }

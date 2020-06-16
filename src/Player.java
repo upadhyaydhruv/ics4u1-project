@@ -134,6 +134,18 @@ class CurrentPlayer {
     void removeHealth(int a){
         health-=a;
     }
+    Hittable.HitBox getHit(){
+        switch (currentShip){
+            case 1:
+                return esper.currentHitBox();
+            case 2:
+                return skuttler.currentHitBox();
+
+            case 3:
+                return tiamat.currentHitBox();
+        }
+        return null;
+    }
     void setHealth(){
 
     }

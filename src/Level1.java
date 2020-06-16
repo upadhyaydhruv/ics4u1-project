@@ -12,6 +12,7 @@ public class Level1 {
     BubbleTube tube = new BubbleTube(30, 100);
 
 
+
     int[] waveHold=new int[3];
 
     Level1(){
@@ -29,6 +30,8 @@ public class Level1 {
         Main.player.newPlayer(435,170);
     }
     public String move() {
+
+        Main.player.getHit();
 
         //this updates the player
         Main.player.move();
