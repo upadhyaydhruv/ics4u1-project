@@ -63,4 +63,8 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
 
     // this should return an existing HitBox in each class instead of creating a new one each time for performance reasons
     HitBox currentHitBox();
+
+    void handleHit(Object obj);
+
+    boolean hittableBy(Object obj);
 }
