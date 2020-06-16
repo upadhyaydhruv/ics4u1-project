@@ -46,4 +46,8 @@ class DroneShot implements Hittable {
             thisFrame.drawImage(shot, transform, null);
         }
     }
+
+    public Hittable.HitBox currentHitBox() {
+        return hb;
+    }
 }

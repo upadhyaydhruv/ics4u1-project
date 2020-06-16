@@ -15,8 +15,9 @@ public class Bomb implements Hittable {
     private int ticktick = 0;
     public int frameDelay = 0;
     Explosion e = new Explosion();
+    RedGlow glow = new RedGlow();
     private Hittable.HitBox hb;
-    private int height =
+    //private int height =
 
 
     public Bomb() {
@@ -40,12 +41,19 @@ public class Bomb implements Hittable {
             x = (int)(Math.random()*960);
             y = (int)(Math.random()*720);
             isPlaced = true;
+
+
+
         }
+//this advances the glow
+        glow.move();
     }
 
     public void paint(Graphics2D g) {
 
         if (isPlaced) {
+            g.setColor(glow.color);
+            g.fillRect(x+12,y+3,15,6);
             g.drawImage(bomb, x, y, null);
             if (isPlaced) {
                 ticktick++;

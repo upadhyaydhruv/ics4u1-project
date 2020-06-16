@@ -42,4 +42,8 @@ public class Machinegun implements Hittable {
         transform.translate(xPos,yPos);
         g.drawImage(image,transform,null);
     }
+
+    public Hittable.HitBox currentHitBox() {
+        return hb;
+    }
 }

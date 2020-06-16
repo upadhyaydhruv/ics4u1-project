@@ -97,6 +97,8 @@ class Drone implements Hittable {
     }
 
 
-
+    public Hittable.HitBox currentHitBox() {
+        return hb;
+    }
 }
 

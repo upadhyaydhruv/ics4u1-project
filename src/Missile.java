@@ -68,4 +68,9 @@ public class Missile implements Hittable {
         transform.translate(xPos,yPos);
         g.drawImage(image, transform, null);
     }
-}
+
+    public Hittable.HitBox currentHitBox() {
+        return hb;
+    }
+    }
+

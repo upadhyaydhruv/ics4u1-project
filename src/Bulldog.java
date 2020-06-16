@@ -123,5 +123,9 @@ public class Bulldog implements Hittable {
             transform.translate(x,y);
             g.drawImage(pic, transform, null);
         }
+
+    public Hittable.HitBox currentHitBox() {
+        return hb;
     }
+}
 
