@@ -84,7 +84,11 @@ public class Bulldog implements Hittable {
 
     @Override
     public void handleHit(Hittable hb) {
-        this.
+        if (hb instanceof Machinegun) {
+            this.decreaseHealth(1);
+        } else if (hb instanceof Explosion) {
+            this.decreaseHealth(((Explosion) hb).getDamage());
+        }
     }
 
     private void shoot() {

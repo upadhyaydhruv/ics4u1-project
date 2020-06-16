@@ -62,6 +62,7 @@ public class Tiamat extends Player {
             missiles.move();
             if (!Main.mouse.getLMB()&&missile.size()>0){
                 missile.remove(missiles);
+                explosion.setDamage(missiles.getDamage());
                 explosion.trigger(missiles.getxPos(), missiles.getyPos());
             }
         }

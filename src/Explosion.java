@@ -8,6 +8,7 @@ public class Explosion implements Hittable {
     private int[] x = new int[5], y = new int[5];
     private int delay = 0;
     private Hittable.HitBox hb;
+    private int damage = 2;
 
     Explosion(){
         try {
@@ -18,6 +19,15 @@ public class Explosion implements Hittable {
         hb = new Hittable.HitBox(true, 0, 0);
 
     }
+
+    public void setDamage(int in) {
+        this.damage = in;
+    }
+
+    public int getDamage() {
+        return this.damage;
+    }
+
     public void trigger(int x,int y){
         if(delay<1){
             for(int a=0; a<5; a++){
