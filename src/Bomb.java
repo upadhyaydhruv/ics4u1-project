@@ -29,25 +29,44 @@ public class Bomb implements Hittable {
         }
         x = (int)(Math.random()*960);
         y = (int)(Math.random()*720);
-        hb = new Hittable.HitBox(false, bomb.getHeight(), bomb.getWidth(), x, y, 0);
+        hb = new Hittable.HitBox(false, bomb.getHeight(), bomb.getWidth(), x, y, null);
     }
 
     public boolean getisPlaced() {
         return isPlaced;
     }
 
-    public void move() {
-        if (!isPlaced) {
-            x = (int)(Math.random()*960);
-            y = (int)(Math.random()*720);
-            isPlaced = true;
-
-
-
-        }
-//this advances the glow
-        glow.move();
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
     }
+
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return (hb instanceof Player);
+    }
+
+    @Override
+    public void handleHit(Hittable hb) {
+        if (hb instanceof Player) {
+            e.trigger(x,y);
+            isPlaced = false;
+            ticktick = 0;
+        }
+    }
+
+        public void move () {
+            if (!isPlaced) {
+                x = (int) (Math.random() * 960);
+                y = (int) (Math.random() * 720);
+                isPlaced = true;
+
+
+            }
+//this advances the glow
+            glow.move();
+        }
+
 
     public void paint(Graphics2D g) {
 
@@ -68,7 +87,4 @@ public class Bomb implements Hittable {
         e.paint(g);
         }
 
-    public Hittable.HitBox currentHitBox() {
-        return hb;
-    }
     }

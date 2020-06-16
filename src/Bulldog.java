@@ -136,8 +136,5 @@ public class Bulldog implements Hittable {
             hb.updateTransform(transform);
         }
 
-    public Hittable.HitBox currentHitBox() {
-        return hb;
-    }
 }
 
