@@ -1,6 +1,8 @@
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 class DroneShot implements Hittable {
     private int x = 0, y = 0;
@@ -9,8 +11,13 @@ class DroneShot implements Hittable {
     private final int anchorX = 24;
     private final int anchorY = 4;
     private Hittable.HitBox hb;
+    private BufferedImage shot;
 
     public DroneShot() {
+        try {
+            shot = ImageIO.read(this.getClass().getResource("drone/drone shooter.png"));
+        } catch (IOException e) {
+        }
     }
 
     @Override
@@ -46,11 +53,6 @@ class DroneShot implements Hittable {
             y += Math.sin(Math.toRadians(angle))*35;
 
             if(x<0||x>960||y<0||y>720) state=false;
-
-            /*
-            x += Math.cos(Math.toRadians(angle));
-            y += Math.sin(Math.toRadians(angle));
-        */
         }
 
     }
@@ -63,5 +65,4 @@ class DroneShot implements Hittable {
             thisFrame.drawImage(shot, transform, null);
         }
     }
-
 }
