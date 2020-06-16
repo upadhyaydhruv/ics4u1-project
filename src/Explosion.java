@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import static jdk.nashorn.internal.objects.NativeMath.max;
+import static jdk.nashorn.internal.objects.NativeMath.min;
 
 public class Explosion implements Hittable {
     private BufferedImage pic;
@@ -28,7 +29,7 @@ public class Explosion implements Hittable {
             }
             delay=75;
         }
-        hb.update((int) max(x), (int) max(y));
+        hb.update((int) min(x), (int) min(y), (int) (max(x) - min(x)), (int) (max(y) - min(y)));
     }
 
     @Override

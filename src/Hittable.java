@@ -29,6 +29,13 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
             this.y = y;
         }
 
+        public void update(int x, int y, int width, int height) {
+            this.x = x;
+            this.y = y;
+            this.w = width;
+            this.h = height;
+        }
+
         public void updateTransform(AffineTransform transform){
             this.transform = transform;
         }
