@@ -16,6 +16,8 @@ public class Bulldog implements Hittable {
         private AffineTransform transform;
         private int random;
         private int delayCount = 0;
+        private int width = 388;
+        private int height = 288;
     private Hittable.HitBox hb;
 
         BulldogBall bigBall = new BulldogBall();
@@ -23,7 +25,7 @@ public class Bulldog implements Hittable {
 
         //Player player;
         Bulldog(Player player, int x, int y, int xVel, int yVel){
-            hb = new Hittable.HitBox(false, bulldog.getHeight(), bulldog.getWidth(), x, y, 0);
+            hb = new Hittable.HitBox(false, getHeight(), getWidth(), x, y, 0);
             this.x = x;
             this.y = y;
             this.xVel = xVel;
@@ -65,6 +67,14 @@ public class Bulldog implements Hittable {
                 System.out.print("there");
             }
         }
+
+    private int getHeight() {
+            return this.height;
+    }
+
+    private int getWidth() {
+            return this.width;
+    }
 
     private void shoot(){
         bigBall.shoot(x,y, (long)angle);

@@ -16,6 +16,8 @@ public class Bomb implements Hittable {
     public int frameDelay = 0;
     Explosion e = new Explosion();
     private Hittable.HitBox hb;
+    private int height =
+
 
     public Bomb() {
 
