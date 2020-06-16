@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Tiamat extends Player {
+public class Tiamat extends Player implements Hittable {
     private BufferedImage image;
     private BufferedImage sword;
     private int bulletPosX;
@@ -16,6 +16,7 @@ public class Tiamat extends Player {
     private final boolean isClicked = false;
     private int ticker = 0;
     private boolean isAlive = true;
+    private Hittable.HitBox hb;
 
     private double angle;
     private final int anchorX=15;
@@ -24,7 +25,7 @@ public class Tiamat extends Player {
     private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
     private Explosion explosion = new Explosion();
 
-    private Hittable.HitBox hb;
+
 
     public Tiamat(int x, int y){
         super(x, y);

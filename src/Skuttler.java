@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Skuttler extends Player {
+public class Skuttler extends Player implements Hittable {
     private BufferedImage image;
     private BufferedImage bullet;
     private BufferedImage sword;
@@ -19,9 +19,9 @@ public class Skuttler extends Player {
     private boolean isAlive = true;
     private AffineTransform transform = new AffineTransform();
     private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
-    private Rectangle hitbox;
-
     private Hittable.HitBox hb;
+
+
 
     public Skuttler(int x, int y){
         super(x, y);
@@ -32,7 +32,7 @@ public class Skuttler extends Player {
             image = ImageIO.read(this.getClass().getResource("skuttler.png"));
             bullet = ImageIO.read(this.getClass().getResource("skuttler shot C.png"));
         } catch(IOException e){}
-        hitbox = new Rectangle(image.getHeight(), image.getWidth(), x, y);
+
     }
 
     public void shoot(){
@@ -43,9 +43,6 @@ public class Skuttler extends Player {
         }
     }
 
-    public Rectangle getHitbox(){
-        return hitbox;
-    }
 
     public void move(){
         if (super.getHealth()==0){
@@ -60,8 +57,7 @@ public class Skuttler extends Player {
         for (Machinegun gun : guns){
             gun.move();
         }
-        hitbox.x = this.getxPos();
-        hitbox.y = this.getyPos();
+
         angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
     }
 

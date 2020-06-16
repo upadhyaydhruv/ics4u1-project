@@ -4,12 +4,13 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-class Drone {
+class Drone implements Hittable {
     private int x, y, xVel, yVel, currentShot=1,delayCount=1000000000, delayCount1 = 12500;
     private long angle;
     private BufferedImage drone,shooter,shot;
     //DroneShot[] droneShot = new DroneShot[20];
     DroneShot droneShot = new DroneShot();
+    private Hittable.HitBox hb;
 
     private int DIAMETER = 63;
     private Rectangle rec;
