@@ -35,12 +35,12 @@ public class Machinegun implements Hittable {
     }
 
     @Override
-    public boolean hittableBy(Object obj) {
+    public boolean hittableBy(Hittable hb) {
         return false;
     }
 
     @Override
-    public void handleHit(Object obj) {
+    public void handleHit(Hittable hb) {
 
     }
 

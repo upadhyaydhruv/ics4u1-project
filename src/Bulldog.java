@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Bulldog {
+public class Bulldog implements Hittable {
 
         BufferedImage pic, bulldogBall;
         //private BufferedImage resizedImage;
@@ -16,6 +16,8 @@ public class Bulldog {
         private AffineTransform transform;
         private int random;
         private int delayCount = 0;
+    private int health = 3; //Can be changed if needed
+    private Hittable.HitBox hb;
 
         BulldogBall bigBall = new BulldogBall();
 
@@ -63,12 +65,32 @@ public class Bulldog {
             } catch(IOException e){
                 System.out.print("there");
             }
+            hb = new Hittable.HitBox(false, pic.getWidth(), pic.getHeight(), this.x, this.y, null);
         }
 
-    private void shoot(){
-        bigBall.shoot(x,y, (long)angle);
+    public void decreaseHealth(int diff) {
+        this.health -= diff;
+    }
+
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
+    }
+
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return (hb instanceof Machinegun || hb instanceof Explosion);
+    }
+
+    @Override
+    public void handleHit(Hittable hb) {
+        this.
+    }
+
+    private void shoot() {
+        bigBall.shoot(x, y, (long) angle);
         currentShot++;
-        if(currentShot==20) currentShot=1;
+        if (currentShot == 20) currentShot = 1;
     }
 
         public void move(Player player) {
@@ -91,7 +113,6 @@ public class Bulldog {
                 else if (player.getyPos()>y) {
                     y += yVel;
                 }
-
                 frame = 0;
             }
             angle= (long) (450-(Math.atan2(player.getxPos()-(x+31), player.getyPos()-(y+31))*180/Math.PI));
@@ -100,7 +121,7 @@ public class Bulldog {
                 bigBall.move();
                 delayCount=0;
             }
-
+            hb.update(this.x, this.y);
             shoot();
         }
 
@@ -111,6 +132,7 @@ public class Bulldog {
             transform.rotate(Math.toRadians(angle),x+anchorX,y+anchorY);
             transform.translate(x,y);
             g.drawImage(pic, transform, null);
+            hb.updateTransform(transform);
         }
     }
 

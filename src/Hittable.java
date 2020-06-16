@@ -1,7 +1,6 @@
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
-import java.awt.geom.PathIterator;
 
 public interface Hittable { // pass an ArrayList<Hittable> of the things relevant to each thing
     class HitBox {
@@ -73,7 +72,7 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
     // this should return an existing HitBox in each class instead of creating a new one each time for performance reasons
     HitBox currentHitBox();
 
-    void handleHit(Object obj);
+    void handleHit(Hittable hb);
 
-    boolean hittableBy(Object obj);
+    boolean hittableBy(Hittable hb);
 }
