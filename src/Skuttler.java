@@ -32,7 +32,7 @@ public class Skuttler extends Player implements Hittable {
             image = ImageIO.read(this.getClass().getResource("skuttler.png"));
             bullet = ImageIO.read(this.getClass().getResource("skuttler shot C.png"));
         } catch(IOException e){}
-
+        hb = new Hittable.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
     }
 
     @Override
@@ -42,17 +42,15 @@ public class Skuttler extends Player implements Hittable {
 
     @Override
     public boolean hittableBy(Hittable hb) {
-        return (hb instanceof BulldogBall || hb instanceof Explosion || hb instanceof DroneShot);
+        return (hb instanceof Machinegun || hb instanceof Explosion);
     }
 
     @Override
     public void handleHit(Hittable hb) {
-        if (hb instanceof BulldogBall) {
+        if (hb instanceof Machinegun) {
             this.decreaseHealth(1);
         } else if (hb instanceof Explosion) {
             this.decreaseHealth(((Explosion) hb).getDamage());
-        } else if (hb instanceof DroneShot) {
-            this.decreaseHealth(1);
         }
     }
 
@@ -93,5 +91,4 @@ public class Skuttler extends Player implements Hittable {
             gun.paint(g);
         }
     }
-
 }

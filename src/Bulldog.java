@@ -76,15 +76,17 @@ public class Bulldog implements Hittable {
 
     @Override
     public boolean hittableBy(Hittable hb) {
-        return (hb instanceof Machinegun || hb instanceof Explosion);
+        return (hb instanceof BulldogBall || hb instanceof Explosion || hb instanceof DroneShot);
     }
 
     @Override
     public void handleHit(Hittable hb) {
-        if (hb instanceof Machinegun) {
+        if (hb instanceof BulldogBall) {
             this.decreaseHealth(1);
         } else if (hb instanceof Explosion) {
             this.decreaseHealth(((Explosion) hb).getDamage());
+        } else if (hb instanceof DroneShot) {
+            this.decreaseHealth(1);
         }
     }
 
