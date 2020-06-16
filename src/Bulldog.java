@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Bulldog {
+public class Bulldog implements Hittable {
 
         BufferedImage pic, bulldogBall;
         //private BufferedImage resizedImage;
@@ -16,13 +16,14 @@ public class Bulldog {
         private AffineTransform transform;
         private int random;
         private int delayCount = 0;
+    private Hittable.HitBox hb;
 
         BulldogBall bigBall = new BulldogBall();
 
 
         //Player player;
         Bulldog(Player player, int x, int y, int xVel, int yVel){
-
+            hb = new Hittable.HitBox(false, bulldog.getHeight(), bulldog.getWidth(), x, y, 0);
             this.x = x;
             this.y = y;
             this.xVel = xVel;

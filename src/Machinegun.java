@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-public class Machinegun {
+public class Machinegun implements Hittable {
     private int xPos;
     private int yPos;
     private int xVel;
@@ -12,6 +12,7 @@ public class Machinegun {
     private double angle;
     private final int anchorX=0;
     private final int anchorY=0;
+    private Hittable.HitBox hb;
 
     public Machinegun(int xOrig, int yOrig, BufferedImage image, double angle){
         this.image = image;

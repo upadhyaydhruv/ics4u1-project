@@ -2,10 +2,11 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-public class Explosion {
+public class Explosion implements Hittable  {
     BufferedImage pic;
     int[] x = new int[5], y = new int[5];
     int delay=0;
+    private Hittable.HitBox hb;
     Explosion(){
         try {
             pic = ImageIO.read(Menu.class.getResourceAsStream("explosion.png"));

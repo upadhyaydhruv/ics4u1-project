@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Missile {
+public class Missile implements Hittable {
     private BufferedImage image;
     private int xPos;
     private int yPos;
@@ -16,6 +16,7 @@ public class Missile {
     private int ticker = 0; //This is to slow done speed of moving graphics objects using modular arithmetic
     private boolean RMBToggle=false;
     private double angle;
+    private Hittable.HitBox hb;
 
 
     public Missile(int xOrig, int yOrig, double angle) {

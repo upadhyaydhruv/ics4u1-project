@@ -2,12 +2,13 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-class BulldogBall {
+class BulldogBall implements Hittable  {
     private int x = 0, y = 0;
     long angle = 0;
     private boolean state = false;
     private final int anchorX = 24;
     private final int anchorY = 4;
+    private Hittable.HitBox hb;
 
     public BulldogBall() {
     }

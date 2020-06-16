@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Bomb {
+public class Bomb implements Hittable {
     private BufferedImage bomb, explosion;
     //private BufferedImage resizedImage;
     private int frame = 0;
@@ -15,6 +15,7 @@ public class Bomb {
     private int ticktick = 0;
     public int frameDelay = 0;
     Explosion e = new Explosion();
+    private Hittable.HitBox hb;
 
     public Bomb() {
 
@@ -25,7 +26,7 @@ public class Bomb {
         }
         x = (int)(Math.random()*960);
         y = (int)(Math.random()*720);
-
+        hb = new Hittable.HitBox(false, bomb.getHeight(), bomb.getWidth(), x, y, 0);
     }
 
     public boolean getisPlaced() {
