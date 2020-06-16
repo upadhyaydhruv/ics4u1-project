@@ -19,6 +19,7 @@ public class TestLevel {
     private ChaseRocket rocket =new ChaseRocket(600,300,90);
     private Bulldog bulldog = new Bulldog(player,0,0,1,1);
     private Bomb bomb = new Bomb();
+    private CopyOnWriteArrayList<Hittable> list = new CopyOnWriteArrayList<>();
 
     private Explosion explosion = new Explosion();
 
@@ -44,13 +45,14 @@ public class TestLevel {
         rocket =new ChaseRocket(600,300,90);
         bomb = new Bomb();
 
+        list.add(bulldog);
+
     }
     public String move() {
         if(Main.mouse.isMouseOn()){
-
-
             }
         player.move();
+
 
         if (Main.keyboard.getEsc()) {
             nextScreen = "levelSelect";
@@ -61,8 +63,6 @@ public class TestLevel {
         rocket.move(player.getxPos(),player.getyPos());
         bulldog.move(player);
         bomb.move();
-
-        explosion.trigger(300,300);
 
 
         return nextScreen;

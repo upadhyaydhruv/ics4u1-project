@@ -21,10 +21,27 @@ public class Machinegun implements Hittable {
         this.angle = angle;
         this.xVel = (int)Math.ceil(Math.cos(Math.toRadians(angle))*5);
         this.yVel = (int)Math.ceil(Math.sin(Math.toRadians(angle))*5);
+        hb = new HitBox(false,image.getWidth(), image.getHeight(), xPos, yPos, null);
     }
 
     public boolean hit(){
         return true;
+    }
+
+
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
+    }
+
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return false;
+    }
+
+    @Override
+    public void handleHit(Hittable hb) {
+
     }
 
     public void move(){
@@ -34,6 +51,7 @@ public class Machinegun implements Hittable {
             yPos += yVel;
             ticker = 0;
         }
+        hb.update(xPos, yPos);
     }
 
     public void paint(Graphics2D g){
@@ -41,6 +59,7 @@ public class Machinegun implements Hittable {
         transform.rotate(Math.toRadians(angle),xPos+anchorX,yPos+anchorY);
         transform.translate(xPos,yPos);
         g.drawImage(image,transform,null);
+        hb.updateTransform(transform);
     }
 
     public Hittable.HitBox currentHitBox() {

@@ -16,8 +16,7 @@ public class Bulldog implements Hittable {
         private AffineTransform transform;
         private int random;
         private int delayCount = 0;
-        private int width = 388;
-        private int height = 288;
+    private int health = 3; //Can be changed if needed
     private Hittable.HitBox hb;
 
         BulldogBall bigBall = new BulldogBall();
@@ -25,7 +24,7 @@ public class Bulldog implements Hittable {
 
         //Player player;
         Bulldog(Player player, int x, int y, int xVel, int yVel){
-            hb = new Hittable.HitBox(false, getHeight(), getWidth(), x, y, 0);
+
             this.x = x;
             this.y = y;
             this.xVel = xVel;
@@ -60,26 +59,39 @@ public class Bulldog implements Hittable {
                         pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog A.png"));
                         break;
                 }
-                    bulldogBall = ImageIO.read(this.getClass().getResource("bulldog\\bulldog ball.png"));
-                // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-                // resizedImage = (BufferedImage) image;
             } catch(IOException e){
                 System.out.print("there");
             }
+            hb = new Hittable.HitBox(false, pic.getWidth(), pic.getHeight(), this.x, this.y, null);
         }
 
-    private int getHeight() {
-            return this.height;
+    public void decreaseHealth(int diff) {
+        this.health -= diff;
     }
 
-    private int getWidth() {
-            return this.width;
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
     }
 
-    private void shoot(){
-        bigBall.shoot(x,y, (long)angle);
+    @Override
+    public boolean hittableBy(Hittable hb) {
+        return (hb instanceof Machinegun || hb instanceof Explosion);
+    }
+
+    @Override
+    public void handleHit(Hittable hb) {
+        if (hb instanceof Machinegun) {
+            this.decreaseHealth(1);
+        } else if (hb instanceof Explosion) {
+            this.decreaseHealth(((Explosion) hb).getDamage());
+        }
+    }
+
+    private void shoot() {
+        bigBall.shoot(x, y, (long) angle);
         currentShot++;
-        if(currentShot==20) currentShot=1;
+        if (currentShot == 20) currentShot = 1;
     }
 
         public void move(Player player) {
@@ -102,7 +114,6 @@ public class Bulldog implements Hittable {
                 else if (player.getyPos()>y) {
                     y += yVel;
                 }
-
                 frame = 0;
             }
             angle= (long) (450-(Math.atan2(player.getxPos()-(x+31), player.getyPos()-(y+31))*180/Math.PI));
@@ -111,17 +122,18 @@ public class Bulldog implements Hittable {
                 bigBall.move();
                 delayCount=0;
             }
-
+            hb.update(this.x, this.y);
             shoot();
         }
 
         public void paint(Graphics2D g){
-            bigBall.paint(g, bulldogBall);
+            bigBall.paint(g);
 
             transform = new AffineTransform();
             transform.rotate(Math.toRadians(angle),x+anchorX,y+anchorY);
             transform.translate(x,y);
             g.drawImage(pic, transform, null);
+            hb.updateTransform(transform);
         }
 
     public Hittable.HitBox currentHitBox() {
