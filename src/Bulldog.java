@@ -59,9 +59,6 @@ public class Bulldog implements Hittable {
                         pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog\\bulldog A.png"));
                         break;
                 }
-                    bulldogBall = ImageIO.read(this.getClass().getResource("bulldog\\bulldog ball.png"));
-                // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-                // resizedImage = (BufferedImage) image;
             } catch(IOException e){
                 System.out.print("there");
             }
@@ -130,7 +127,7 @@ public class Bulldog implements Hittable {
         }
 
         public void paint(Graphics2D g){
-            bigBall.paint(g, bulldogBall);
+            bigBall.paint(g);
 
             transform = new AffineTransform();
             transform.rotate(Math.toRadians(angle),x+anchorX,y+anchorY);
