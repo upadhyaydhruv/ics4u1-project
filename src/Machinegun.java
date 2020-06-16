@@ -34,6 +34,16 @@ public class Machinegun implements Hittable {
         return this.hb;
     }
 
+    @Override
+    public boolean hittableBy(Object obj) {
+        return false;
+    }
+
+    @Override
+    public void handleHit(Object obj) {
+
+    }
+
     public void move(){
         ticker++;
         if (ticker % 10000 == 0) {
@@ -43,7 +53,6 @@ public class Machinegun implements Hittable {
         }
         hb.update(xPos, yPos);
     }
-
 
     public void paint(Graphics2D g){
         AffineTransform transform = new AffineTransform();
