@@ -1,7 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.image.BufferedImage;
 /*
  Main.mouse.getX() gives you the x value
  Main.mouse.getY() gives you the y value
@@ -27,7 +26,7 @@ public class Main extends JPanel {
     //this needs to be public so that everything can use it without re-directing it
     public static Mouse mouse=new Mouse();
     public static Screen currentScreen = new Screen("menu");
-    public static CurrentPlayer player = new CurrentPlayer();
+    public static Player player;
 
     public static Keyboard keyboard=new Keyboard();
 

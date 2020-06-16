@@ -3,8 +3,8 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 public class ShipSelect {
-    String nextScreen ="", shipName = "";
-    int state=0, Xoffset, Yoffset;
+    String nextScreen = "";
+    int state = 0, Xoffset, Yoffset;
     BufferedImage back,backButton, shipSelectBack, choseShip, esperPlate, skuttlerPlate, tiamatPlate,currentPlate, selectButton, esperButton, skuttlerButton, tiamatButton;
     Rectangle backButtonRec = new Rectangle(60, 60, 80, 80);
     Rectangle selectButtonRec = new Rectangle(600, 500, 160, 80);
@@ -23,7 +23,8 @@ public class ShipSelect {
             tiamatPlate = ImageIO.read(Menu.class.getResourceAsStream("menu/tiamat nameplate.png"));
             selectButton = ImageIO.read(Menu.class.getResourceAsStream("button/select button.png"));
             esperButton = ImageIO.read(Menu.class.getResourceAsStream("button/esper button.png"));
-            skuttlerButton = ImageIO.read(Menu.class.getResourceAsStream("button/skuttler button.png"));
+            System.out.println("FIX THIS IMAGE!!!");
+            skuttlerButton = ImageIO.read(Menu.class.getResourceAsStream("button/esper button.png")); // TODO: fix this
             tiamatButton = ImageIO.read(Menu.class.getResourceAsStream("button/tiamat button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
@@ -64,16 +65,15 @@ public class ShipSelect {
             else if (Main.mouse.intersects(selectButtonRec)) if(state!=0){
                 switch (state){
                     case 1:
-                        Main.player.setCurrentShip("esper");
+                        Main.player = new Esper(0, 0);
                     break;
                     case 2:
-                        Main.player.setCurrentShip("skuttler");
+                        Main.player = new Skuttler(0, 0);
                     break;
                     case 3:
-                        Main.player.setCurrentShip("tiamat");
+                        Main.player = new Tiamat(0, 0);
                 }
-                Main.player.setCurrentShip(shipName);
-                System.out.print(shipName);
+                System.out.println(Main.player.getClass().getName());
                 nextScreen = "levelSelect";
             }
         }

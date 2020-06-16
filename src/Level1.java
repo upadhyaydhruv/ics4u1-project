@@ -30,9 +30,6 @@ public class Level1 {
         Main.player.newPlayer(435,170);
     }
     public String move() {
-
-        Main.player.getHit();
-
         //this updates the player
         Main.player.move();
 
