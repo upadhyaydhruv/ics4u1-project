@@ -44,9 +44,7 @@ public class TestLevel {
         bulldog = new Bulldog(player,0,0,1,1);
         rocket =new ChaseRocket(600,300,90);
         bomb = new Bomb();
-        list.add(drone);
-        list.add(bomb);
-        list.add(rocket);
+
         list.add(bulldog);
 
     }
