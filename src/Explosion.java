@@ -2,16 +2,23 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-public class Explosion {
-    BufferedImage pic;
-    int[] x = new int[5], y = new int[5];
-    int delay=0;
+
+import static jdk.nashorn.internal.objects.NativeMath.max;
+
+public class Explosion implements Hittable {
+    private BufferedImage pic;
+    private int[] x = new int[5], y = new int[5];
+    private int delay = 0;
+    private Hittable.HitBox hb;
+
     Explosion(){
         try {
             pic = ImageIO.read(Menu.class.getResourceAsStream("explosion.png"));
-    }catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("image not found!");
         }
+        hb = new Hittable.HitBox(true, 0, 0);
+
     }
     public void trigger(int x,int y){
         if(delay<1){
@@ -21,7 +28,24 @@ public class Explosion {
             }
             delay=75;
         }
+        hb.update((int) max(x), (int) max(y));
     }
+
+    @Override
+    public Hittable.HitBox currentHitBox() {
+        return this.hb;
+    }
+
+    @Override
+    public boolean hittableBy(Object obj) {
+        return false;
+    }
+
+    @Override
+    public void handleHit(Object obj) {
+
+    }
+
     public void paint(Graphics2D thisFrame){
         if(delay>0){
             for(int a=0; a<5; a++){

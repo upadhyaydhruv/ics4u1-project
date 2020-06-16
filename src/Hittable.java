@@ -34,6 +34,7 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
         }
 
         public boolean isTouching(HitBox other) {
+            if (other == null) return false;
             return other.getShape().intersects(this.getShape().getBounds2D());
         }
 
@@ -55,6 +56,7 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
         }
 
         public boolean isWithin(HitBox other) {
+            if (other == null) return false;
             return other.getShape().contains(this.getShape().getBounds2D());
         }
 
