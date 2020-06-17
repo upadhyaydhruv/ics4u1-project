@@ -86,6 +86,7 @@ public class Tiamat extends Player implements Hittable {
                 explosion.trigger(missiles.getxPos(), missiles.getyPos());
             }
         }
+        hb.update(super.getxPos(), super.getyPos());
     }
 
     public void paint(Graphics2D g){
@@ -99,6 +100,7 @@ public class Tiamat extends Player implements Hittable {
             missiles.paint(g);
         }
         explosion.paint(g);
+        hb.updateTransform(transform);
     }
 
 }
