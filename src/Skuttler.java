@@ -4,7 +4,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.List;
 
 public class Skuttler extends Player implements Hittable {
     private BufferedImage image;
@@ -20,10 +19,9 @@ public class Skuttler extends Player implements Hittable {
     private AffineTransform transform = new AffineTransform();
     private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
     private Hittable.HitBox hb;
-    private List<Hittable> hitList;
 
 
-    public Skuttler(int x, int y, List<Hittable> h) {
+    public Skuttler(int x, int y) {
         super(x, y);
         super.setXVel(1);
         super.setYVel(1);
@@ -34,8 +32,6 @@ public class Skuttler extends Player implements Hittable {
         } catch (IOException e) {
         }
         hb = new Hittable.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
-        h.add(this);
-        this.hitList = h;
     }
 
     @Override

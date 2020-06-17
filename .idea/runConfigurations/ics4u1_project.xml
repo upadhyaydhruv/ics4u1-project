@@ -1,7 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="ics4u1-project" type="Application" factoryName="Application">
-    <option name="ALTERNATIVE_JRE_PATH" value="C:/Program Files/Amazon Corretto/jdk11.0.7_10" />
-    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <option name="ALTERNATIVE_JRE_PATH" value="13" />
     <option name="MAIN_CLASS_NAME" value="Main" />
     <module name="ics4u1-project" />
     <method v="2">

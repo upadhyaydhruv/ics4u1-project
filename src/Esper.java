@@ -4,7 +4,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Esper extends Player implements Hittable {
@@ -12,18 +11,20 @@ public class Esper extends Player implements Hittable {
     private int bulletPosX,bulletPosY,ticker = 0;
     private Machinegun shooter;
     private Hittable.HitBox hb;
+
+    //bobby's angle update3.
+
     private double angle;
     private AffineTransform transform = new AffineTransform();
     private final int anchorX=5;
     private final int anchorY=5;
     private boolean isAlive = false;
-    private List<Hittable> hitList;
 
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)
     private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
 
-    public Esper(int x, int y, List<Hittable> h) {
+    public Esper(int x, int y){
         super(x, y);
         super.setXVel(1);
         super.setYVel(1);
@@ -33,9 +34,8 @@ public class Esper extends Player implements Hittable {
             bullet = ImageIO.read(this.getClass().getResource("esper shot.png"));
         } catch(IOException e){}
 
+        // thomas, you need to get rid of the space around the esper, then set round to true
         hb = new Hittable.HitBox(false, esper.getHeight(), esper.getWidth(), x, y, null);
-
-        h.add(this);
     }
 
     public void shoot(){

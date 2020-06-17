@@ -4,8 +4,6 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.List;
-
 
 public class Tiamat extends Player implements Hittable {
     private BufferedImage image;
@@ -26,11 +24,10 @@ public class Tiamat extends Player implements Hittable {
     private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
     private Explosion explosion = new Explosion();
 
-    private AffineTransform transform = new AffineTransform();
-    private List<Hittable> hitList;
+    AffineTransform transform = new AffineTransform();
 
 
-    public Tiamat(int x, int y, List<Hittable> h) {
+    public Tiamat(int x, int y) {
         super(x, y);
         //this.sword = sword;
         super.setXVel(1);
@@ -40,8 +37,6 @@ public class Tiamat extends Player implements Hittable {
             image = ImageIO.read(this.getClass().getResource("tiamat.png"));
         } catch (IOException ignored) {
         }
-        this.hitList = h;
-        h.add(this);
     }
 
     public void shoot() {

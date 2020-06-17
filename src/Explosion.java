@@ -9,7 +9,6 @@ public class Explosion implements Hittable {
     private int delay = 0;
     private Hittable.HitBox hb;
     private int damage = 2;
-    private boolean canHurt = false;
 
     Explosion() {
         try {
@@ -30,7 +29,6 @@ public class Explosion implements Hittable {
     }
 
     public void trigger(int x, int y) {
-
         if (delay < 1) {
             for (int a = 0; a < 5; a++) {
                 this.x[a] = (int) (Math.random() * 50) + x;
@@ -39,14 +37,6 @@ public class Explosion implements Hittable {
             delay = 75;
         }
         hb.update(min(this.x), min(this.y), (max(this.x) - min(this.x)), (max(this.y) - min(this.y)));
-    }
-
-    public void setCanHurt(boolean in) {
-        this.canHurt = in;
-    }
-
-    public boolean getCanHurt() {
-        return this.canHurt;
     }
 
     @Override

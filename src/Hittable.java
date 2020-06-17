@@ -94,8 +94,8 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
         public String toString() {
             String b = "";
             if (this.transform != null) {
-                //Rectangle2D d = this.getShape().getBounds2D();
-                //b = String.format("[transformed=(%d,%d)+(%d,%d)]", (int) d.getX(), (int) d.getY(), (int) d.getWidth(), (int) d.getHeight());
+                Rectangle2D d = this.getShape().getBounds2D();
+                b = String.format("[transformed=(%d,%d)+(%d,%d)]", (int) d.getX(), (int) d.getY(), (int) d.getWidth(), (int) d.getHeight());
             }
             return String.format("%s%s@(%d,%d)+(%d,%d)", this.round ? "Ellipse" : "Rectangle", b, this.x, this.y, this.w, this.h);
         }
