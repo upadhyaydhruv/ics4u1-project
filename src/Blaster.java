@@ -3,15 +3,15 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Blaster implements HittableThing {
-    private int x = 0, y = 0;
-    long angle = 0;
+    private int x, y;
+    long angle;
     private final int anchorX = 24;
     private final int anchorY = 4;
     private HittableThing.HitBox hb = new HittableThing.HitBox(false, 0, 0);
     private BufferedImage shot;
     AffineTransform transform = new AffineTransform();
 
-    private int speed = 35;
+    private int speed;
 
     public Blaster(BufferedImage shot, int x, int y, long angle, int speed) {
         if (Main.ENABLE_DEBUG_FEATURES)
