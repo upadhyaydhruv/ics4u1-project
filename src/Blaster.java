@@ -38,7 +38,8 @@ public class Blaster implements HittableThing {
     @Override
     public void handleHit(HittableThing hb) {
         if (hb instanceof Player) {
-            System.out.println("removing blaster");
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println("removing blaster");
             this.currentLevel.removeThing(this);
         }
     }
@@ -48,14 +49,15 @@ public class Blaster implements HittableThing {
         x += Math.cos(Math.toRadians(angle)) * speed;
         y += Math.sin(Math.toRadians(angle)) * speed;
 
-        if (x < 0 || x > 960 || y < 0 || y > 720) {
-            System.out.println("removing blaster");
-            this.currentLevel.removeThing(this);
-        }
-
         this.transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);
         this.transform.translate(x, y);
         this.hb.update(0, 0, transform); // zero since the transform already includes the damn rotation
+
+        if (this.hb.outOfBounds()) {
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println("removing blaster because out of bounds");
+            this.currentLevel.removeThing(this);
+        }
     }
 
     @Override

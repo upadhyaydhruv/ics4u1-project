@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 public class Screen {
@@ -157,5 +158,13 @@ public class Screen {
             wave[0]++;
         } else wave[0] = 0;
         return wave;
+    }
+
+    public static boolean outOfBounds(int x, int y) {
+        return Screen.outOfBounds(x, y, 0, 0);
+    }
+
+    public static boolean outOfBounds(int x, int y, int w, int h) {
+        return (x+w < 0 || x > 960 || y+h < 0 || y > 720);
     }
 }

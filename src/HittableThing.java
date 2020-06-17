@@ -109,6 +109,11 @@ public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of
             g.setPaint(op);
         }
 
+        public boolean outOfBounds() {
+            Rectangle2D d = this.getShape().getBounds2D();
+            return Screen.outOfBounds((int) d.getX(), (int) d.getY(), (int) d.getWidth(), (int) d.getHeight());
+        }
+
         // if needed, also store the velocity of an object and add an isPointingAt method
     }
 
