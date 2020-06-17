@@ -18,14 +18,13 @@ public class Tiamat extends Player implements HittableThing {
 
     public Tiamat(int x, int y) {
         super(x, y);
+
+        image = Thing.loadImage("tiamat.png");
+
         //this.sword = sword;
         super.setXVel(1);
         super.setYVel(1);
         super.setHealth(5);
-        try {
-            image = ImageIO.read(this.getClass().getResource("tiamat.png"));
-        } catch (IOException ignored) {
-        }
         this.setShootRate(1000);
     }
 

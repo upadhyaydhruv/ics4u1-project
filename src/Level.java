@@ -83,11 +83,6 @@ public abstract class Level {
     public abstract void reset(); // override this for custom stuff
 
     public final BufferedImage loadImage(String name) {
-        try {
-            return ImageIO.read(new File(name));
-        } catch (Exception ex) {
-            System.out.println("error loading " + name);
-            throw new RuntimeException(ex);
-        }
+        return Thing.loadImage(name);
     }
 }

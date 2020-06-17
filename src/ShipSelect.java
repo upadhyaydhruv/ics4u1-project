@@ -15,21 +15,17 @@ public class ShipSelect {
     boolean mousetoggle = false;
 
     ShipSelect() {
-        try {
-            back = ImageIO.read(Menu.class.getResourceAsStream("menu/menu back.png"));
-            backButton = ImageIO.read(Menu.class.getResourceAsStream("button/back button.png"));
-            shipSelectBack = ImageIO.read(Menu.class.getResourceAsStream("menu/ship select back.png"));
-            choseShip = ImageIO.read(Menu.class.getResourceAsStream("menu/chose a ship.png"));
-            esperPlate = ImageIO.read(Menu.class.getResourceAsStream("menu/esper nameplate.png"));
-            skuttlerPlate = ImageIO.read(Menu.class.getResourceAsStream("menu/skuttler nameplate.png"));
-            tiamatPlate = ImageIO.read(Menu.class.getResourceAsStream("menu/tiamat nameplate.png"));
-            selectButton = ImageIO.read(Menu.class.getResourceAsStream("button/select button.png"));
-            esperButton = ImageIO.read(Menu.class.getResourceAsStream("button/esper button.png"));
-            skuttlerButton = ImageIO.read(Menu.class.getResourceAsStream("button/skuttler button.png"));
-            tiamatButton = ImageIO.read(Menu.class.getResourceAsStream("button/tiamat button.png"));
-        } catch (IOException e) {
-            System.out.println("image not found!");
-        }
+        back = Thing.loadImage("menu/menu back.png");
+        backButton = Thing.loadImage("button/back button.png");
+        shipSelectBack = Thing.loadImage("menu/ship select back.png");
+        choseShip = Thing.loadImage("menu/chose a ship.png");
+        esperPlate = Thing.loadImage("menu/esper nameplate.png");
+        skuttlerPlate = Thing.loadImage("menu/skuttler nameplate.png");
+        tiamatPlate = Thing.loadImage("menu/tiamat nameplate.png");
+        selectButton = Thing.loadImage("button/select button.png");
+        esperButton = Thing.loadImage("button/esper button.png");
+        skuttlerButton = Thing.loadImage("button/skuttler button.png");
+        tiamatButton = Thing.loadImage("button/tiamat button.png");
     }
 
     public void start() {

@@ -20,10 +20,8 @@ public class Missile implements Thing {
 
 
     public Missile(int xOrig, int yOrig, double angle) {
-        try {
-            image = ImageIO.read(this.getClass().getResource("tiamat rocket.png"));
-        } catch (IOException e) {
-        }
+        image = Thing.loadImage("tiamat rocket.png");
+
         this.angle = angle;
         this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)) * 5);
         this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)) * 5);

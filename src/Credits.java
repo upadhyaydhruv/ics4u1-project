@@ -11,13 +11,9 @@ public class Credits {
     int Xoffset, Yoffset;
 
     Credits() {
-        try {
-            back = ImageIO.read(new File("res/menu/menu back.png"));
-            monitor = ImageIO.read(new File("res/menu/credit monitor.png"));
-            backButton = ImageIO.read(new File("res/button/back button.png"));
-        } catch (IOException e) {
-            System.out.println("image not found!");
-        }
+        back = Thing.loadImage("res/menu/menu back.png");
+        monitor = Thing.loadImage("res/menu/credit monitor.png");
+        backButton = Thing.loadImage("res/button/back button.png");
     }
 
     public void start() {

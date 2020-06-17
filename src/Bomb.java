@@ -14,11 +14,8 @@ public class Bomb implements HittableThing {
         if (Main.ENABLE_DEBUG_FEATURES)
             System.out.println(LocalDateTime.now().toString() + " bomb created");
 
-        try {
-            bomb = ImageIO.read(this.getClass().getResource("landmine.png"));
-        } catch (IOException e) {
-            System.out.print("there");
-        }
+        bomb = Thing.loadImage("landmine.png");
+
         hb = new HittableThing.HitBox(false, bomb.getHeight(), bomb.getWidth(), x, y, null);
         this.x = x;
         this.y = y;

@@ -18,20 +18,14 @@ class Drone implements HittableThing {
     private int DIAMETER = 63;
 
     public Drone(int x, int y, int xVel, int yVel) {
+        drone = Thing.loadImage("drone/drone.png");
+        shooter = Thing.loadImage("drone/drone shooter.png");
+        shot = Thing.loadImage("drone/drone shot.png");
 
         this.x = x;
         this.y = y;
         this.xVel = xVel;
         this.yVel = yVel;
-
-        try {
-            drone = ImageIO.read(this.getClass().getResource("drone/drone.png"));
-            shooter = ImageIO.read(this.getClass().getResource("drone/drone shooter.png"));
-            shot = ImageIO.read(this.getClass().getResource("drone/drone shot.png"));
-        } catch (IOException e) {
-            System.out.print("there");
-        }
-
     }
 
     @Override

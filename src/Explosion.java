@@ -11,13 +11,8 @@ public class Explosion implements HittableThing {
     private int damage = 2;
 
     Explosion(int x, int y) {
-        try {
-            pic = ImageIO.read(Menu.class.getResourceAsStream("explosion.png"));
-        } catch (IOException e) {
-            System.out.println("image not found!");
-        }
+        pic = Thing.loadImage("explosion.png");
         hb = new HittableThing.HitBox(true, 0, 0);
-
         this.trigger(x, y);
     }
 

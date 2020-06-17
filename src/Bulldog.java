@@ -28,37 +28,34 @@ public class Bulldog implements HittableThing {
         //this.player = player;
         this.random = (int) (Math.random() * 8) + 1;
 
-        try {
-            switch (random) {
-                case 2:
-                    pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog B.png"));
-                    break;
-                case 3:
-                    pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog C.png"));
-                    break;
-                case 4:
-                    pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog D.png"));
-                    break;
-                case 5:
-                    pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog E.png"));
-                    break;
-                case 6:
-                    pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog F.png"));
-                    break;
-                case 7:
-                    pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog G.png"));
-                    break;
-                case 8:
-                    pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog H.png"));
-                    break;
-                default:
-                    pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog A.png"));
-                    break;
-            }
-            bulldogBall = ImageIO.read(this.getClass().getResource("bulldog/bulldog ball.png"));
-        } catch (IOException e) {
-            System.out.print("there");
+        switch (random) {
+            case 2:
+                pic = Thing.loadImage("bulldog/bulldog B.png");
+                break;
+            case 3:
+                pic = Thing.loadImage("bulldog/bulldog C.png");
+                break;
+            case 4:
+                pic = Thing.loadImage("bulldog/bulldog D.png");
+                break;
+            case 5:
+                pic = Thing.loadImage("bulldog/bulldog E.png");
+                break;
+            case 6:
+                pic = Thing.loadImage("bulldog/bulldog F.png");
+                break;
+            case 7:
+                pic = Thing.loadImage("bulldog/bulldog G.png");
+                break;
+            case 8:
+                pic = Thing.loadImage("bulldog/bulldog H.png");
+                break;
+            default:
+                pic = Thing.loadImage("bulldog/bulldog A.png");
+                break;
         }
+        bulldogBall = Thing.loadImage("bulldog/bulldog ball.png");
+
         hb = new HittableThing.HitBox(false, pic.getWidth(), pic.getHeight(), this.x, this.y, null);
     }
 

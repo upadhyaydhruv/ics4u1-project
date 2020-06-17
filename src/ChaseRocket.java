@@ -13,14 +13,11 @@ public class ChaseRocket implements Thing {
     private int targetY;
 
     ChaseRocket(int x, int y, int angle) {
+        rocket = Thing.loadImage("chase rocket.png");
+
         this.x = x;
         this.y = y;
         this.angle = angle;
-        try {
-            rocket = ImageIO.read(this.getClass().getResource("chase rocket.png"));
-        } catch (IOException e) {
-            System.out.print("image not found!");
-        }
     }
 
     void updateTarget(int x, int y) {

@@ -16,20 +16,16 @@ public class Settings {
     private boolean mouseToggle;
 
     Settings() {
-        try {
-            back = ImageIO.read(new File("res/menu/menu back.png"));
-            backButton = ImageIO.read(new File("res/button/back button.png"));
-            blue = ImageIO.read(new File("res/menu/blue bubble.png"));
-            green = ImageIO.read(new File("res/menu/green bubble.png"));
-            orange = ImageIO.read(new File("res/menu/orange bubble.png"));
-            pink = ImageIO.read(new File("res/menu/pink bubble.png"));
-            frameDelay = ImageIO.read(new File("res/menu/frame delay.png"));
-            upButton = ImageIO.read(new File("res/button/up button.png"));
-            downButton = ImageIO.read(new File("res/button/down button.png"));
-            numberPlate = ImageIO.read(new File("res/menu/number plate.png"));
-        } catch (IOException e) {
-            System.out.println("image not found!");
-        }
+        back = Thing.loadImage("res/menu/menu back.png");
+        backButton = Thing.loadImage("res/button/back button.png");
+        blue = Thing.loadImage("res/menu/blue bubble.png");
+        green = Thing.loadImage("res/menu/green bubble.png");
+        orange = Thing.loadImage("res/menu/orange bubble.png");
+        pink = Thing.loadImage("res/menu/pink bubble.png");
+        frameDelay = Thing.loadImage("res/menu/frame delay.png");
+        upButton = Thing.loadImage("res/button/up button.png");
+        downButton = Thing.loadImage("res/button/down button.png");
+        numberPlate = Thing.loadImage("res/menu/number plate.png");
     }
 
     public void start() {

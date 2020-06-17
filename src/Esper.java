@@ -21,14 +21,12 @@ public class Esper extends Player implements HittableThing {
 
     public Esper(int x, int y) {
         super(x, y);
+        esper = Thing.loadImage("esper.png");
+        bullet = Thing.loadImage("esper shot.png");
+
         super.setXVel(1);
         super.setYVel(1);
         super.setHealth(3);
-        try {
-            esper = ImageIO.read(this.getClass().getResource("esper.png"));
-            bullet = ImageIO.read(this.getClass().getResource("esper shot.png"));
-        } catch (IOException e) {
-        }
 
         // thomas, you need to get rid of the space around the esper, then set round to true
         hb = new HittableThing.HitBox(false, esper.getHeight(), esper.getWidth(), x, y, null);
