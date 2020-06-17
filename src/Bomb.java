@@ -30,12 +30,12 @@ public class Bomb implements HittableThing {
 
     @Override
     public boolean hittableBy(HittableThing hb) {
-        return (hb instanceof Player);
+        return (hb instanceof Player || hb instanceof Machinegun || hb instanceof Missile);
     }
 
     @Override
     public void handleHit(HittableThing hb) {
-        if (hb instanceof Player) {
+        if (hb instanceof Player || hb instanceof Machinegun || hb instanceof Missile) {
             this.explode();
         }
     }
