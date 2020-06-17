@@ -51,13 +51,8 @@ public class Skuttler extends Player implements HittableThing {
         this.currentLevel.addThing(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
     }
 
-    private long time;
-
     @Override
     public void move() {
-        long lastTime = time;
-        long newTime = this.currentLevel.getCurrentMilliseconds();
-
         if (super.getHealth() == 0) {
             isAlive = false;
         }
