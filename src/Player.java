@@ -13,16 +13,8 @@ public abstract class Player implements Hittable {
         //Default constructor required when coding subclass
     }
 
-    public void increaseHealth(int differential) {
-        health += differential;
-    }
-
     public void decreaseHealth(int differential) {
         health -= differential;
-    }
-
-    public void hit(int x, int y) {
-        //TODO
     }
 
     public int getHealth() {

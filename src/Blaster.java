@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-class DroneShot implements Hittable {
+public class Blaster implements Hittable {
     private int x = 0, y = 0;
     long angle = 0;
     private boolean state = false;
@@ -13,11 +13,8 @@ class DroneShot implements Hittable {
     private Hittable.HitBox hb;
     private BufferedImage shot;
 
-    public DroneShot() {
-        try {
-            shot = ImageIO.read(this.getClass().getResource("drone/drone shooter.png"));
-        } catch (IOException e) {
-        }
+    public Blaster(BufferedImage shot) {
+        this.shot = shot;
     }
 
     @Override
@@ -40,8 +37,8 @@ class DroneShot implements Hittable {
     public void shoot(int x, int y, long angle) {
         if (!state) {
             state = true;
-            this.x = x+7;
-            this.y = y+27;
+            this.x = x + 7;
+            this.y = y + 27;
             this.angle = angle;
         }
     }
@@ -49,15 +46,15 @@ class DroneShot implements Hittable {
     public void move() {
         if (state) {
 
-            x += Math.cos(Math.toRadians(angle))*35;
-            y += Math.sin(Math.toRadians(angle))*35;
+            x += Math.cos(Math.toRadians(angle)) * 35;
+            y += Math.sin(Math.toRadians(angle)) * 35;
 
-            if(x<0||x>960||y<0||y>720) state=false;
+            if (x < 0 || x > 960 || y < 0 || y > 720) state = false;
         }
 
     }
 
-    public void paint(Graphics2D thisFrame, BufferedImage shot) {
+    public void paint(Graphics2D thisFrame) {
         if (state) {
             AffineTransform transform = new AffineTransform();
             transform.rotate(Math.toRadians(angle), x + anchorX, y + anchorY);

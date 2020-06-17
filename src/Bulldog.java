@@ -19,7 +19,7 @@ public class Bulldog implements Hittable {
     private int health = 3; //Can be changed if needed
     private Hittable.HitBox hb;
 
-        BulldogBall bigBall = new BulldogBall();
+    private Blaster bigBall;
 
 
         //Player player;
@@ -59,10 +59,12 @@ public class Bulldog implements Hittable {
                         pic = ImageIO.read(Menu.class.getResourceAsStream("bulldog/bulldog A.png"));
                         break;
                 }
+                bulldogBall = ImageIO.read(this.getClass().getResource("bulldog/bulldog ball.png"));
             } catch(IOException e){
                 System.out.print("there");
             }
             hb = new Hittable.HitBox(false, pic.getWidth(), pic.getHeight(), this.x, this.y, null);
+            bigBall = new Blaster(bulldogBall);
         }
 
     public void decreaseHealth(int diff) {
@@ -76,16 +78,14 @@ public class Bulldog implements Hittable {
 
     @Override
     public boolean hittableBy(Hittable hb) {
-        return (hb instanceof BulldogBall || hb instanceof Explosion || hb instanceof DroneShot);
+        return (hb instanceof Explosion || hb instanceof Machinegun);
     }
 
     @Override
     public void handleHit(Hittable hb) {
-        if (hb instanceof BulldogBall) {
-            this.decreaseHealth(1);
-        } else if (hb instanceof Explosion) {
+        if (hb instanceof Explosion) {
             this.decreaseHealth(((Explosion) hb).getDamage());
-        } else if (hb instanceof DroneShot) {
+        } else if (hb instanceof Machinegun) {
             this.decreaseHealth(1);
         }
     }

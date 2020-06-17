@@ -10,7 +10,6 @@ public class TestLevel {
     String nextScreen = "";
     int Xoffset,Yoffset;
     BufferedImage water,plat,object, bullet;
-    private boolean isClicked = false;
 
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
@@ -47,6 +46,7 @@ public class TestLevel {
 
         list.add(bulldog);
         list.add(player);
+        list.add(bomb);
 
     }
     public String move() {

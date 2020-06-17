@@ -53,14 +53,14 @@ public class Esper extends Player implements Hittable {
 
     @Override
     public boolean hittableBy(Hittable hb) {
-        return (hb instanceof Explosion || hb instanceof BulldogBall || hb instanceof DroneShot);
+        return (hb instanceof Explosion || hb instanceof Blaster);
     }
 
     @Override
     public void handleHit(Hittable hb) {
         if (hb instanceof Explosion) {
             super.decreaseHealth(((Explosion) hb).getDamage());
-        } else if (hb instanceof BulldogBall || hb instanceof DroneShot) {
+        } else if (hb instanceof Blaster) {
             super.decreaseHealth(1);
         }
     }

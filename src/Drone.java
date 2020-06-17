@@ -8,8 +8,7 @@ class Drone implements Hittable {
     private int x, y, xVel, yVel, currentShot=1,delayCount=1000000000, delayCount1 = 12500;
     private long angle;
     private BufferedImage drone,shooter,shot;
-    //DroneShot[] droneShot = new DroneShot[20];
-    DroneShot droneShot = new DroneShot();
+    private Blaster droneShot;
     private Hittable.HitBox hb;
     private int health = 2;
 
@@ -27,11 +26,10 @@ class Drone implements Hittable {
             drone = ImageIO.read(this.getClass().getResource("drone/drone.png"));
             shooter = ImageIO.read(this.getClass().getResource("drone/drone shooter.png"));
             shot = ImageIO.read(this.getClass().getResource("drone/drone shot.png"));
-            // image = image.getScaledInstance(50, 50, Image.SCALE_DEFAULT);
-            // resizedImage = (BufferedImage) image;
         } catch(IOException e){
             System.out.print("there");
         }
+        droneShot = new Blaster(shot);
     }
 
     @Override
@@ -92,33 +90,19 @@ class Drone implements Hittable {
             droneShot.move();
             delayCount=0;
         }
-        //
 
-        //bobby sez: run this when you want the gun to shoot
         shoot();
-        //
-
-
-        //for (int i = 1; i < droneShot.length-1; i++) {
-        //    droneShot[i].move();
-        //}
 
     }
 
     public void paint(Graphics2D g) {
-        droneShot.paint(g, shot);
+        droneShot.paint(g);
 
         AffineTransform transform = new AffineTransform();
         transform.rotate(Math.toRadians(angle),x+31,y+31);
         transform.translate(x+9,y+21);
         g.drawImage(shooter,transform, null);
         g.drawImage(drone, x, y, null);
-
-        /*
-        for (int i = 1; i < droneShot.length-1; i++) {
-            droneShot[i].paint(g, shot);
-        }
-        */
     }
 }
 

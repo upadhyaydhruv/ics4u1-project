@@ -55,17 +55,17 @@ public class Bomb implements Hittable {
         }
     }
 
-        public void move () {
-            if (!isPlaced) {
-                x = (int) (Math.random() * 960);
-                y = (int) (Math.random() * 720);
-                isPlaced = true;
+    public void move() {
+        if (!isPlaced) {
+            x = (int) (Math.random() * 960);
+            y = (int) (Math.random() * 720);
+            isPlaced = true;
 
 
-            }
-//this advances the glow
-            glow.move();
         }
+        //this advances the glow
+        glow.move();
+    }
 
 
     public void paint(Graphics2D g) {

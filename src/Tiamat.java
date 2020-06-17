@@ -55,16 +55,14 @@ public class Tiamat extends Player implements Hittable {
 
     @Override
     public boolean hittableBy(Hittable hb) {
-        return (hb instanceof BulldogBall || hb instanceof Explosion || hb instanceof DroneShot);
+        return (hb instanceof Explosion || hb instanceof Blaster);
     }
 
     @Override
     public void handleHit(Hittable hb) {
-        if (hb instanceof BulldogBall) {
-            this.decreaseHealth(1);
-        } else if (hb instanceof Explosion) {
+        if (hb instanceof Explosion) {
             this.decreaseHealth(((Explosion) hb).getDamage());
-        } else if (hb instanceof DroneShot) {
+        } else if (hb instanceof Blaster) {
             this.decreaseHealth(1);
         }
     }

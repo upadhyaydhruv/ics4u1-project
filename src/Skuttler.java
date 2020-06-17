@@ -42,12 +42,12 @@ public class Skuttler extends Player implements Hittable {
 
     @Override
     public boolean hittableBy(Hittable hb) {
-        return (hb instanceof Machinegun || hb instanceof Explosion);
+        return (hb instanceof Blaster || hb instanceof Explosion);
     }
 
     @Override
     public void handleHit(Hittable hb) {
-        if (hb instanceof Machinegun) {
+        if (hb instanceof Blaster) {
             this.decreaseHealth(1);
         } else if (hb instanceof Explosion) {
             this.decreaseHealth(((Explosion) hb).getDamage());
