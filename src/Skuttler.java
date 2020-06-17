@@ -78,6 +78,7 @@ public class Skuttler extends Player implements Hittable {
         }
 
         angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
+        hb.update(super.getxPos(), super.getyPos());
     }
 
     public void paint(Graphics2D g){
@@ -90,5 +91,6 @@ public class Skuttler extends Player implements Hittable {
         for (Machinegun gun : guns){
             gun.paint(g);
         }
+        hb.updateTransform(transform);
     }
 }

@@ -51,7 +51,7 @@ public abstract class Player implements Hittable {
 
     public void move() {
         ticker++;
-        if (ticker == 10000) {
+        if (ticker == 1000) {
             if (Main.keyboard.getA()) {
                 if (xPos - xVel < 0) {
 
