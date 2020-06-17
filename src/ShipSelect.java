@@ -62,17 +62,7 @@ public class ShipSelect {
             else state = 0;
 
             else if (Main.mouse.intersects(selectButtonRec)) if(state!=0){
-                switch (state){
-                    case 1:
-                        Main.player = new Esper(0, 0);
-                    break;
-                    case 2:
-                        Main.player = new Skuttler(0, 0);
-                    break;
-                    case 3:
-                        Main.player = new Tiamat(0, 0);
-                }
-                System.out.println(Main.player.getClass().getName());
+                Main.playerType = state;
                 nextScreen = "levelSelect";
             }
         }

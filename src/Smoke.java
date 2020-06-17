@@ -71,7 +71,7 @@ class SmokePart {
     }
     void move(){
         frame++;
-        if(frame==1000000) {
+        if(frame==100000) {
             frame=0;
             height++;
             if (height > 150) reset();

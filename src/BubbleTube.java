@@ -3,11 +3,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-public class BubbleTube implements Thing {
+public class BubbleTube implements HittableThing {
     Rectangle bubbleTubeRec;
     BufferedImage bubbleTube;
     BubblePart[] bubbleParts= new BubblePart[4];
     Rainbow color = new Rainbow();
+    HitBox hb;
     BubbleTube(int x,int y){
         bubbleTubeRec = new Rectangle(x, y, 108, 220);
         for (int a=0; a<bubbleParts.length; a++){
@@ -18,7 +19,32 @@ public class BubbleTube implements Thing {
         } catch (IOException e) {
             System.out.println("image not found!");
         }
+        hb = new HittableThing.HitBox(false, 108, 220, x, y, null);
     }
+
+    @Override
+    public HitBox currentHitBox() {
+        return hb;
+    }
+
+    private boolean hit;
+
+    @Override
+    public void handleHit(HittableThing hb) {
+        if (hb instanceof Player) {
+            this.hit = true;
+        }
+    }
+
+    public boolean wasHit() {
+        return this.hit;
+    }
+
+    @Override
+    public boolean hittableBy(HittableThing hb) {
+        return (hb instanceof Player);
+    }
+
     static BufferedImage newBubble(){
         try {
             switch ((int)(Math.random()*9)) {
@@ -81,7 +107,7 @@ class BubblePart {
     }
     void move(){
         frame++;
-        if(frame==1000000) {
+        if(frame==10000) {
             frame=0;
             height++;
             if (height == 170) reset();

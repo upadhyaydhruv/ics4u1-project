@@ -28,7 +28,19 @@ public class Main extends JPanel {
     //this needs to be public so that everything can use it without re-directing it
     public static Mouse mouse=new Mouse();
     public static Screen currentScreen = new Screen("menu");
-    public static Player player;
+    public static int playerType;
+
+    public static Player newPlayer(int x, int y) {
+        switch (playerType){
+            case 1:
+                return new Esper(x, y);
+            case 2:
+                return new Skuttler(x, y);
+            case 3:
+                return new Tiamat(x, y);
+        }
+        throw new RuntimeException("no such player type");
+    }
 
     public static Keyboard keyboard=new Keyboard();
 
@@ -114,7 +126,6 @@ public class Main extends JPanel {
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         return gd.getDefaultConfiguration();
     }
-
 
     //bobby: that try and catch is used to allow the screen class to stop and start the move class (its a long story)
     public void paint (Graphics lastFrame) {

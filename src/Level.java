@@ -18,7 +18,7 @@ public abstract class Level {
     private Date start = new Date();
     private long currentMilliseconds;
 
-    public long getCurrentMilliseconds() {
+    public final long getCurrentMilliseconds() {
         return currentMilliseconds;
     }
 
@@ -39,8 +39,8 @@ public abstract class Level {
         return n == null ? "" : n;
     }
 
-    public void paintLevelBack(Graphics2D g) {}; // override this for painting the level background
-    public void paintLevelFront(Graphics2D g) {}; // override this for painting the level background
+    public abstract void paintLevelBack(Graphics2D g); // override this for painting the level background
+    public abstract void paintLevelFront(Graphics2D g); // override this for painting the level background
 
     public final void paint(Graphics2D g) {
         this.paintLevelBack(g);
@@ -80,9 +80,9 @@ public abstract class Level {
         this.createThings();
     }
 
-    public void reset() {}; // override this for custom stuff
+    public abstract void reset(); // override this for custom stuff
 
-    public BufferedImage loadImage(String name) {
+    public final BufferedImage loadImage(String name) {
         try {
             return ImageIO.read(new File(name));
         } catch (Exception ex) {
@@ -90,5 +90,4 @@ public abstract class Level {
             throw new RuntimeException(ex);
         }
     }
-
 }

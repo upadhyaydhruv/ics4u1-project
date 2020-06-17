@@ -1,62 +1,55 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-public class Level1 {
-    String nextScreen = "";
 
-    private BufferedImage water,plat, barrels;
-    Rectangle platRec = new Rectangle(150, 15, 650, 650);
-    Rectangle barrelsRec = new Rectangle(253, 460, 100, 140);
-    BubbleTube tube = new BubbleTube(30, 100);
+public class Level1 extends Level {
+    private BufferedImage water, plat, barrels;
 
+    Player player;
+    Rectangle platRec;
+    Rectangle barrelsRec;
+    BubbleTube levelTrigger;
 
+    int[] waveHold = new int[3];
 
-    int[] waveHold=new int[3];
-
-    Level1(){
-        try {
-            water = ImageIO.read(new File("res/background/storm water.png"));
-            plat = ImageIO.read(new File("res/background/level 1 plat.png"));
-            barrels = ImageIO.read(new File("res/barrels.png"));
-        } catch (IOException e) {
-            System.out.println("image not found!");
-        }
+    public Level1() {
+        water = this.loadImage("res/background/storm water.png");
+        plat = this.loadImage("res/background/level 1 plat.png");
+        barrels = this.loadImage("res/barrels.png");
     }
-    public void start() {
-        nextScreen = "";
-        //this places the player in the level
-        Main.player.newPlayer(435,170);
-    }
-    public String move() {
-        //this updates the player
-        Main.player.move();
 
+    @Override
+    public void createThings() {
+        player = Main.newPlayer(435, 170);
+        levelTrigger = new BubbleTube(30, 100);
+        barrelsRec = new Rectangle(253, 460, 100, 140);
+        platRec = new Rectangle(150, 15, 650, 650);
+
+        this.addThing(player);
+        this.addThing(levelTrigger);
+    }
+
+    @Override
+    public String moveLevel() {
         Screen.waveMove(waveHold);
-
-        if(Main.mouse.isMouseOn()){
-
-        }
-        tube.move();
-        //player.move();
-
-        if (Main.keyboard.getEsc()) {
-            nextScreen = "levelSelect";
-        }
-        return nextScreen;
+        if (levelTrigger.wasHit())
+            return "L2";
+        if (player.getHealth() == 0)
+            System.out.println("player died");
+        return null;
     }
-    public void paint(Graphics2D thisFrame) {
-        thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
-        Screen.paint(platRec,plat,thisFrame);
 
-        Screen.paint(barrelsRec,barrels,thisFrame);
+    @Override
+    public void paintLevelBack(Graphics2D g) {
+        g.drawImage(water, -60 + waveHold[1], -60 + waveHold[2], 1010, 1010, null);
+        Screen.paint(platRec, plat, g);
+        Screen.paint(barrelsRec, barrels, g);
+    }
 
-        tube.paint(thisFrame);
-        //player.paint(thisFrame);
+    @Override
+    public void paintLevelFront(Graphics2D g) {
+    }
 
-        //this draws the player
-        Main.player.paint(thisFrame);
-
+    @Override
+    public void reset() {
     }
 }

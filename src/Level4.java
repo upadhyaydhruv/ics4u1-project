@@ -1,57 +1,51 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-public class Level4 {
-    String nextScreen = "";
 
-    private BufferedImage water,plat;
-    Rectangle platRec = new Rectangle(150, 15, 650, 650);
-    BubbleTube tube = new BubbleTube(670, 50);
+public class Level4 extends Level {
+    private BufferedImage water, plat;
 
-    //Skuttler player= new Skuttler(Main.keyboard,10,10);
+    Player player;
+    Rectangle platRec;
+    BubbleTube tube;
 
-    int[] waveHold=new int[3];
+    int[] waveHold = new int[3];
 
-    Level4(){
-        try {
-            water = ImageIO.read(new File("res/background/storm water.png"));
-            plat = ImageIO.read(new File("res/background/level 4 plat.png"));
-
-        } catch (IOException e) {
-            System.out.println("image not found!");
-        }
+    public Level4() {
+        water = this.loadImage("res/background/storm water.png");
+        plat = this.loadImage("res/background/level 4 plat.png");
     }
-    public void start() {
-        Main.player.move();
-        nextScreen = "";
-        Main.player.newPlayer(440,300);
+
+    @Override
+    public void createThings() {
+        player = Main.newPlayer(555, 500);
+        platRec = new Rectangle(150, 15, 650, 650);
+        tube = new BubbleTube(670, 50);
+
+        this.addThing(player);
+        this.addThing(tube);
     }
-    public String move() {
-        Main.player.move();
+
+    @Override
+    public String moveLevel() {
         Screen.waveMove(waveHold);
-        tube.move();
-
-        if(Main.mouse.isMouseOn()){
-
-        }
-
-        //player.move();
-
-        if (Main.keyboard.getEsc()) {
-            nextScreen = "levelSelect";
-        }
-        return nextScreen;
+        if (player.getHealth() == 0)
+            System.out.println("player died");
+        return null;
     }
-    public void paint(Graphics2D thisFrame) {
-        thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
-        Screen.paint(platRec,plat,thisFrame);
-        Main.player.paint(thisFrame);
 
-        tube.paint(thisFrame);
+    @Override
+    public void paintLevelBack(Graphics2D g) {
+        g.drawImage(water, -60 + waveHold[1], -60 + waveHold[2], 1010, 1010, null);
+        Screen.paint(platRec, plat, g);
+    }
 
+    @Override
+    public void paintLevelFront(Graphics2D g) {
 
-        //player.paint(thisFrame);
+    }
+
+    @Override
+    public void reset() {
+
     }
 }

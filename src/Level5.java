@@ -3,52 +3,54 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-public class Level5 {
-    String nextScreen = "";
 
-    private BufferedImage water,plat, barrels;
-    Rectangle platRec = new Rectangle(0, 0, 960, 720);
-    Rectangle barrelsRec = new Rectangle(253, 460, 100, 140);
+public class Level5 extends Level {
+    private BufferedImage water, plat, barrels;
 
+    Rectangle platRec;
+    Rectangle barrelsRec;
 
+    int[] waveHold = new int[3];
 
-    int[] waveHold=new int[3];
+    Player player;
 
-    Level5(){
-        try {
-            water = ImageIO.read(new File("res/background/beach water.png"));
-            plat = ImageIO.read(new File("res/background/beach1.png"));
-            barrels = ImageIO.read(new File("res/barrels.png"));
-        } catch (IOException e) {
-            System.out.println("image not found!");
-        }
+    public Level5() {
+        water = this.loadImage("res/background/beach water.png");
+        plat = this.loadImage("res/background/beach1.png");
+        barrels = this.loadImage("res/barrels.png");
     }
-    public void start() {
-        nextScreen = "";
-        Main.player.newPlayer(500,460);
+
+    @Override
+    public void createThings() {
+        player = Main.newPlayer(555, 500);
+        platRec = new Rectangle(0, 0, 960, 720);
+        barrelsRec = new Rectangle(253, 460, 100, 140);
+
+        this.addThing(player);
     }
-    public String move() {
-        Main.player.move();
+
+    @Override
+    public String moveLevel() {
+        if (player.getHealth() == 0)
+            System.out.println("player died");
         Screen.waveMove(waveHold);
-
-        if(Main.mouse.isMouseOn()){
-
-        }
-
-        //player.move();
-
-        if (Main.keyboard.getEsc()) {
-            nextScreen = "levelSelect";
-        }
-        return nextScreen;
+        return null;
     }
-    public void paint(Graphics2D thisFrame) {
-        thisFrame.drawImage(water, -60+waveHold[1], -60+waveHold[2], 1010, 1010, null);
-        Screen.paint(platRec,plat,thisFrame);
-        Main.player.paint(thisFrame);
-        //Screen.paint(barrelsRec,barrels,thisFrame);
 
+    @Override
+    public void paintLevelBack(Graphics2D g) {
+        g.drawImage(water, -60 + waveHold[1], -60 + waveHold[2], 1010, 1010, null);
+        Screen.paint(platRec, plat, g);
+        Screen.paint(barrelsRec, barrels, g);
+    }
 
-        //player.paint(thisFrame);
+    @Override
+    public void paintLevelFront(Graphics2D g) {
+
+    }
+
+    @Override
+    public void reset() {
+
     }
 }
