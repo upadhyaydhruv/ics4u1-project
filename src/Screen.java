@@ -95,9 +95,9 @@ public class Screen {
             case "L6":
             case "L7":
             case "L8":
-                return currentLevel.move();
+                if (currentLevel != null)
+                    return currentLevel.move();
         }
-        Thread.sleep(frameDelay);
         return "";
     }
 
@@ -127,7 +127,8 @@ public class Screen {
             case "L6":
             case "L7":
             case "L8":
-                currentLevel.paint(thisFrame);
+                if (currentLevel != null)
+                    currentLevel.paint(thisFrame);
                 break;
         }
         Thread.sleep(frameDelay);
