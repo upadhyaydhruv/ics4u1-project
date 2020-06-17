@@ -6,90 +6,57 @@ import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class TestLevel {
-    String nextScreen = "";
-    int Xoffset, Yoffset;
+public class TestLevel extends Level {
     BufferedImage water, plat, object, bullet;
 
-    Rectangle platRec = new Rectangle(150, 15, 650, 650);
-    Rectangle objectRec = new Rectangle(600, 50, 100, 120);
+    public TestLevel() {
+        water = this.loadImage("res/background/storm water.png");
+        plat = this.loadImage("res/background/test plat.png");
+        object = this.loadImage("res/test object.png");
+        bullet = this.loadImage("res/skuttler shot C.png");
+    }
+
     private Skuttler player;
     private Drone drone;
-    private ChaseRocket rocket;
     private Bulldog bulldog;
+    private ChaseRocket rocket;
 
-    private CopyOnWriteArrayList<Hittable> list;
-    private Bomb bomb;
+    @Override
+    public void createThings() {
+        this.player = new Skuttler(500, 50);
+        this.drone = new Drone(400, 400, 1, 1);
+        this.bulldog = new Bulldog(0, 0);
+        this.rocket = new ChaseRocket(600, 300, 90);
 
-    TestLevel() {
-        try {
-            TimeUnit.SECONDS.sleep(1);
-        } catch (InterruptedException e) {
-        }
-        try {
-            water = ImageIO.read(new File("res/background/storm water.png"));
-            plat = ImageIO.read(new File("res/background/test plat.png"));
-            object = ImageIO.read(new File("res/test object.png"));
-            bullet = ImageIO.read(new File("res/skuttler shot C.png"));
-
-        } catch (IOException e) {
-            System.out.println("image not found!");
-        }
+        this.addThing(player);
+        this.addThing(drone);
+        this.addThing(bulldog);
+        this.addThing(rocket);
     }
 
-    public void start() {
-        System.out.println("start testLevel");
-        nextScreen = "";
+    private long lastBombTime;
 
-        player = new Skuttler(400, 350);
-        list = new CopyOnWriteArrayList<>();
-        drone = new Drone(400, 400, 1, 1, list);
-        bulldog = new Bulldog(player, 0, 0, 1, 1, list);
-        rocket = new ChaseRocket(600, 300, 90);
-        bomb = new Bomb(list);
+    @Override
+    public String moveLevel() {
+        drone.updateTarget(player.getxPos(), player.getyPos());
+        rocket.updateTarget(player.getxPos(), player.getyPos());
+        bulldog.updateTarget(player);
 
-        list.add(bulldog);
-        list.add(player);
-        list.add(bomb);
-
-    }
-
-    public String move() {
-        if (Main.mouse.isMouseOn()) {
+        long currentTime = this.getCurrentMilliseconds();
+        if (currentTime - lastBombTime > 5000) {
+            lastBombTime = currentTime;
+            this.addThing(new Bomb());
         }
 
-        player.move();
-
-        if (Main.keyboard.getEsc()) {
-            nextScreen = "levelSelect";
-        }
-
-        //bobby: the X and Y tell the drone where its target is
-        drone.move(player.getxPos(), player.getyPos());
-        rocket.move(player.getxPos(), player.getyPos());
-        bulldog.move(player);
-        bomb.move();
-
-        Hittable.handleHits(list); // must be last since most of the things set the transformation in the move function
-
-        return nextScreen;
+        return null;
     }
 
-    public void paint(Graphics2D thisFrame) {
-        thisFrame.drawImage(water, (Xoffset / 8) - 60, (Yoffset / 8) - 60, 1010, 1010, null);
+    @Override
+    public void paintLevelBack(Graphics2D g) {
+        g.drawImage(water, (1 / 8) - 60, (1 / 8) - 60, 1010, 1010, null);
+    }
 
-        Screen.paint(platRec, plat, thisFrame);
-
-        thisFrame.drawImage(plat, platRec.x, platRec.y, platRec.width, platRec.height, null);
-        thisFrame.drawImage(object, objectRec.x, objectRec.y, objectRec.width, objectRec.height, null);
-        player.paint(thisFrame);
-
-        drone.paint(thisFrame);
-        rocket.paint(thisFrame);
-        bulldog.paint(thisFrame);
-        bomb.paint(thisFrame);
-
-        if (Main.ENABLE_DEBUG_FEATURES)
-            Hittable.paintDebugHits(thisFrame, list);
+    @Override
+    public void paintLevelFront(Graphics2D g) {
     }
 }

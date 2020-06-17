@@ -1,8 +1,10 @@
 import java.awt.*;
 
-public abstract class Player implements Hittable {
-    private int xPos, yPos, xVel, yVel, ticker = 0;
-    private int health = 5;
+public abstract class Player implements HittableThing {
+    private int xPos, yPos, xVel, yVel, ticker = 0, shootTicker = 0;
+    private int health;
+    private int shootRate = 1000;
+    boolean oldLMB;
 
     public Player(int xOrig, int yOrig) {
         this.xPos = xOrig;
@@ -49,6 +51,11 @@ public abstract class Player implements Hittable {
         this.yVel = yVel;
     }
 
+    public void setShootRate(int rate) {
+        this.shootRate = rate;
+    }
+
+    @Override
     public void move() {
         ticker++;
         if (ticker == 1000) {
@@ -81,13 +88,28 @@ public abstract class Player implements Hittable {
             }
             ticker = 0;
         }
+
+        boolean curLMB = Main.mouse.getLMB();
+
+        shootTicker++;
+        if ((oldLMB != curLMB && curLMB) || shootTicker >= shootRate*100) {
+            shootTicker = 0;
+            if (Main.mouse.getLMB()) {
+                System.out.println("test");
+                this.shoot();
+            }
+        }
+
+        if (oldLMB != curLMB) {
+            oldLMB = curLMB;
+        }
     }
 
     public void newPlayer(int x, int y) {
         this.setxPos(x);
         this.setYPos(y);
-        this.health = 5;
+        this.health = 50;
     }
 
-    abstract void paint(Graphics2D frame);
+    public abstract void shoot();
 }

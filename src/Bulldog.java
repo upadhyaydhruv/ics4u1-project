@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.List;
 
-public class Bulldog implements Hittable {
+public class Bulldog implements HittableThing {
 
     BufferedImage pic, bulldogBall;
     //private BufferedImage resizedImage;
@@ -16,20 +16,16 @@ public class Bulldog implements Hittable {
     private double angle;
     private AffineTransform transform = new AffineTransform();
     private int random;
-    private int delayCount = 0;
     private int health = 3; //Can be changed if needed
-    private Hittable.HitBox hb;
+    private HittableThing.HitBox hb;
 
-    private Blaster bigBall;
+    Player player;
 
 
-    //Player player;
-    Bulldog(Player player, int x, int y, int xVel, int yVel, List<Hittable> h) {
+    Bulldog(int x, int y) {
 
         this.x = x;
         this.y = y;
-        this.xVel = xVel;
-        this.yVel = yVel;
         //this.player = player;
         this.random = (int) (Math.random() * 8) + 1;
 
@@ -64,9 +60,11 @@ public class Bulldog implements Hittable {
         } catch (IOException e) {
             System.out.print("there");
         }
-        hb = new Hittable.HitBox(false, pic.getWidth(), pic.getHeight(), this.x, this.y, null);
-        bigBall = new Blaster(bulldogBall);
-        h.add(bigBall);
+        hb = new HittableThing.HitBox(false, pic.getWidth(), pic.getHeight(), this.x, this.y, null);
+    }
+
+    public void updateTarget(Player p) {
+        this.player = p;
     }
 
     public void decreaseHealth(int diff) {
@@ -74,17 +72,17 @@ public class Bulldog implements Hittable {
     }
 
     @Override
-    public Hittable.HitBox currentHitBox() {
+    public HittableThing.HitBox currentHitBox() {
         return this.hb;
     }
 
     @Override
-    public boolean hittableBy(Hittable hb) {
+    public boolean hittableBy(HittableThing hb) {
         return (hb instanceof Explosion || hb instanceof Machinegun);
     }
 
     @Override
-    public void handleHit(Hittable hb) {
+    public void handleHit(HittableThing hb) {
         if (hb instanceof Explosion) {
             this.decreaseHealth(((Explosion) hb).getDamage());
         } else if (hb instanceof Machinegun) {
@@ -92,50 +90,61 @@ public class Bulldog implements Hittable {
         }
     }
 
-    private void shoot() {
-        bigBall.shoot(x, y, (long) angle);
-        currentShot++;
-        if (currentShot == 20) currentShot = 1;
-    }
+    private long time;
 
-    public void move(Player player) {
+    @Override
+    public void move() {
+        long lastTime = time;
+        long newTime = this.currentLevel.getCurrentMilliseconds();
+
+        if (player == null) {
+            throw new RuntimeException("please call updateTarget before move");
+        }
+
         angle = 450 - (Math.atan2(player.getxPos() - (x + anchorX), player.getyPos() - (y + anchorY)) * 180 / Math.PI);
-        // this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)));
-        // this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)));
+        this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle))) * 5;
+        this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle))) * 5;
 
-        frame++;
-        if (frame == 25000) {
-            if (player.getxPos() < x) {
-                x -= xVel;
-            } else if (player.getxPos() > x) {
-                x += xVel;
-            }
+        // THIS ANGLE IS VERY BROKEN
 
-            if (player.getyPos() < y) {
-                y -= yVel;
-            } else if (player.getyPos() > y) {
-                y += yVel;
-            }
-            frame = 0;
-        }
-        angle = (long) (450 - (Math.atan2(player.getxPos() - (x + 31), player.getyPos() - (y + 31)) * 180 / Math.PI));
-        delayCount++;
-        if (delayCount > 150000) {
-            bigBall.move();
-            delayCount = 0;
+        if (player.getxPos() < x) {
+            x -= xVel;
+        } else if (player.getxPos() > x) {
+            x += xVel;
         }
 
-        shoot();
+        if (player.getyPos() < y) {
+            y -= yVel;
+        } else if (player.getyPos() > y) {
+            y += yVel;
+        }
+
+        // TODO: stop from going off screen
+
+        if (newTime - lastTime > 2000) {
+            time = newTime;
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println("bulldog shot");
+            angle = (long) (450 - (Math.atan2(player.getxPos() - (x + 31), player.getyPos() - (y + 31)) * 180 / Math.PI));
+            this.currentLevel.addThing(new Blaster(bulldogBall, x, y, (long)angle, 20));
+        }
 
         transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);
         transform.translate(x, y);
         hb.update(0, 0, transform);
     }
 
+    @Override
     public void paint(Graphics2D g) {
-        bigBall.paint(g);
         g.drawImage(pic, transform, null);
     }
 
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 }
 

@@ -5,10 +5,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Skuttler extends Player implements Hittable {
+public class Skuttler extends Player implements HittableThing {
     private BufferedImage image;
     private BufferedImage bullet;
-    private BufferedImage sword;
     private int bulletPosX;
     private int bulletPosY;
     private int ticker = 0;
@@ -17,8 +16,7 @@ public class Skuttler extends Player implements Hittable {
     private final int anchorY = 37;
     private boolean isAlive = true;
     private AffineTransform transform = new AffineTransform();
-    private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
-    private Hittable.HitBox hb;
+    private HittableThing.HitBox hb;
 
 
     public Skuttler(int x, int y) {
@@ -31,21 +29,23 @@ public class Skuttler extends Player implements Hittable {
             bullet = ImageIO.read(this.getClass().getResource("skuttler shot C.png"));
         } catch (IOException e) {
         }
-        hb = new Hittable.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
+        hb = new HittableThing.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
+
+        this.setShootRate(1000);
     }
 
     @Override
-    public Hittable.HitBox currentHitBox() {
+    public HittableThing.HitBox currentHitBox() {
         return this.hb;
     }
 
     @Override
-    public boolean hittableBy(Hittable hb) {
+    public boolean hittableBy(HittableThing hb) {
         return (hb instanceof Blaster || hb instanceof Explosion);
     }
 
     @Override
-    public void handleHit(Hittable hb) {
+    public void handleHit(HittableThing hb) {
         if (hb instanceof Blaster) {
             this.decreaseHealth(1);
         } else if (hb instanceof Explosion) {
@@ -53,27 +53,25 @@ public class Skuttler extends Player implements Hittable {
         }
     }
 
+    @Override
     public void shoot() {
-        ticker++;
-        if (ticker % 1000000 == 0) {
-            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
-            ticker = 0;
-        }
+        this.currentLevel.addThing(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
     }
 
+    private long time;
 
+    @Override
     public void move() {
+        long lastTime = time;
+        long newTime = this.currentLevel.getCurrentMilliseconds();
+
         if (super.getHealth() == 0) {
             isAlive = false;
         }
         if (isAlive) {
             super.move();
-        }
-        if (Main.mouse.getLMB()) {
-            this.shoot();
-        }
-        for (Machinegun gun : guns) {
-            gun.move();
+        } else {
+            return;
         }
 
         angle = 450 - (Math.atan2(Main.mouse.getX() - (super.getxPos() + anchorX), Main.mouse.getY() - (super.getyPos() + anchorY)) * 180 / Math.PI);
@@ -87,8 +85,12 @@ public class Skuttler extends Player implements Hittable {
         if (isAlive) {
             g.drawImage(image, transform, null);
         }
-        for (Machinegun gun : guns) {
-            gun.paint(g);
-        }
+    }
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }

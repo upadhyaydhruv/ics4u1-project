@@ -5,7 +5,7 @@ import java.awt.geom.Rectangle2D;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public interface Hittable { // pass an ArrayList<Hittable> of the things relevant to each thing
+public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of the things relevant to each thing
     class HitBox {
         private boolean round;
         private int x, y, w, h;
@@ -113,18 +113,18 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
         // if needed, also store the velocity of an object and add an isPointingAt method
     }
 
-    static void paintDebugHits(Graphics2D g, List<Hittable> things) {
-        for (Hittable thing: things) {
+    static void paintDebugHits(Graphics2D g, List<HittableThing> things) {
+        for (HittableThing thing: things) {
             HitBox b = thing.currentHitBox();
             if (b != null)
                 b.paintDebug(g);
         }
     }
 
-    static void handleHits(List<Hittable> things) {
+    static void handleHits(List<HittableThing> things) {
         // warning: the time this takes increases exponentially compared to the number of items, so try to limit the
         // number of hittable things. if needed, this can be made more efficient in many ways.
-        Hittable a, b;
+        HittableThing a, b;
         boolean ab, ba;
         HitBox ah, bh;
         for (int ai = 0; ai < things.size(); ai++) {
@@ -137,8 +137,9 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
                     if (ab || ba) {
                         if ((ah = a.currentHitBox()) != null && (bh = b.currentHitBox()) != null) {
                             if (ah.isTouching(bh)) { // note: this is (should be) the same as bh.isTouching(ah)
-                                if (Main.ENABLE_DEBUG_FEATURES)
-                                    System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
+                                if (Main.ENABLE_DEBUG_FEATURES) {
+                                    //it lags: System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
+                                }
                                 if (ab)
                                     a.handleHit(b);
                                 if (ba)
@@ -156,7 +157,7 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
     // this should return an existing HitBox in each class instead of creating a new one each time for performance reasons
     HitBox currentHitBox();
 
-    void handleHit(Hittable hb);
+    void handleHit(HittableThing hb);
 
-    boolean hittableBy(Hittable hb);
+    boolean hittableBy(HittableThing hb);
 }

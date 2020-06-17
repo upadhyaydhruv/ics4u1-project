@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Missile {
+public class Missile implements Thing {
     private BufferedImage image;
     private int xPos;
     private int yPos;
@@ -47,7 +47,7 @@ public class Missile {
         return this.yPos;
     }
 
-
+    @Override
     public void move(){
         if (Main.mouse.getRMB()&&RMBToggle){
             this.flipVel();
@@ -73,8 +73,16 @@ public class Missile {
         transform.translate(xPos,yPos);
     }
 
+    @Override
     public void paint(Graphics2D g){
         g.drawImage(image, transform, null);
+    }
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }
 

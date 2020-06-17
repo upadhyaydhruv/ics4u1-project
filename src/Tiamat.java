@@ -5,9 +5,8 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Tiamat extends Player implements Hittable {
+public class Tiamat extends Player implements HittableThing {
     private BufferedImage image;
-    private BufferedImage sword;
     private int bulletPosX;
     private int bulletPosY;
     private Missile shooter;
@@ -15,14 +14,11 @@ public class Tiamat extends Player implements Hittable {
     private final boolean isClicked = false;
     private int ticker = 0;
     private boolean isAlive = true;
-    private Hittable.HitBox hb;
+    private HittableThing.HitBox hb;
 
     private double angle;
     private final int anchorX = 15;
     private final int anchorY = 15;
-
-    private final CopyOnWriteArrayList<Missile> missile = new CopyOnWriteArrayList<>();
-    private Explosion explosion = new Explosion();
 
     AffineTransform transform = new AffineTransform();
 
@@ -37,30 +33,25 @@ public class Tiamat extends Player implements Hittable {
             image = ImageIO.read(this.getClass().getResource("tiamat.png"));
         } catch (IOException ignored) {
         }
+        this.setShootRate(1000);
     }
 
     public void shoot() {
-        ticker++;
-        if (ticker % 1000000 == 0) {
-            if (missile.size() == 0) {
-                missile.add(new Missile(super.getxPos(), super.getyPos(), angle));
-                ticker = 0;
-            }
-        }
+        throw new RuntimeException("shooting a missile not implemented for tiamat");
     }
 
     @Override
-    public Hittable.HitBox currentHitBox() {
+    public HittableThing.HitBox currentHitBox() {
         return this.hb;
     }
 
     @Override
-    public boolean hittableBy(Hittable hb) {
+    public boolean hittableBy(HittableThing hb) {
         return (hb instanceof Explosion || hb instanceof Blaster);
     }
 
     @Override
-    public void handleHit(Hittable hb) {
+    public void handleHit(HittableThing hb) {
         if (hb instanceof Explosion) {
             this.decreaseHealth(((Explosion) hb).getDamage());
         } else if (hb instanceof Blaster) {
@@ -68,25 +59,21 @@ public class Tiamat extends Player implements Hittable {
         }
     }
 
+    private long time;
+
+    @Override
     public void move() {
+        long lastTime = time;
+        long newTime = this.currentLevel.getCurrentMilliseconds();
+
         if (super.getHealth() <= 0) {
             isAlive = false;
         }
         if (isAlive) {
             super.move();
         }
-        if (Main.mouse.getLMB()) {
-            this.shoot();
-        }
+
         angle = 450 - (Math.atan2(Main.mouse.getX() - (super.getxPos() + anchorX), Main.mouse.getY() - (super.getyPos() + anchorY)) * 180 / Math.PI);
-        for (Missile missiles : missile) {
-            missiles.move();
-            if (!Main.mouse.getLMB() && missile.size() > 0) {
-                missile.remove(missiles);
-                explosion.setDamage(missiles.getDamage());
-                explosion.trigger(missiles.getxPos(), missiles.getyPos());
-            }
-        }
 
         transform.setToRotation(Math.toRadians(angle), super.getxPos() + anchorX, super.getyPos() + anchorY);
         transform.translate(super.getxPos(), super.getyPos());
@@ -97,10 +84,14 @@ public class Tiamat extends Player implements Hittable {
         if (isAlive) {
             g.drawImage(image, transform, null);
         }
-        for (Missile missiles : missile) {
-            missiles.paint(g);
-        }
-        explosion.paint(g);
     }
 
+
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 }

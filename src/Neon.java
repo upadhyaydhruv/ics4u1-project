@@ -54,7 +54,7 @@ class RedGlow {
     Color color = new Color(0,0,0);
     int frameSkip=0,state=0;
     void move() {
-        if (frameSkip == 10000) {
+        if (frameSkip == 1000) {
             frameSkip=0;
             if (state < 255) {
                 color = new Color(color.getRed()+1, 0, 0);

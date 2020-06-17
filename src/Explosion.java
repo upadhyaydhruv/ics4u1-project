@@ -3,32 +3,29 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Explosion implements Hittable {
+public class Explosion implements HittableThing {
     private BufferedImage pic;
     private int[] x = new int[5], y = new int[5];
     private int delay = 0;
-    private Hittable.HitBox hb;
+    private HittableThing.HitBox hb;
     private int damage = 2;
 
-    Explosion() {
+    Explosion(int x, int y) {
         try {
             pic = ImageIO.read(Menu.class.getResourceAsStream("explosion.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
         }
-        hb = new Hittable.HitBox(true, 0, 0);
+        hb = new HittableThing.HitBox(true, 0, 0);
 
-    }
-
-    public void setDamage(int in) {
-        this.damage = in;
+        this.trigger(x, y);
     }
 
     public int getDamage() {
         return this.damage;
     }
 
-    public void trigger(int x, int y) {
+    private void trigger(int x, int y) {
         if (delay < 1) {
             for (int a = 0; a < 5; a++) {
                 this.x[a] = (int) (Math.random() * 50) + x;
@@ -40,17 +37,17 @@ public class Explosion implements Hittable {
     }
 
     @Override
-    public Hittable.HitBox currentHitBox() {
-        return delay >= 0 ? this.hb : null; // no hitbox if it isn't exploding
+    public HittableThing.HitBox currentHitBox() {
+        return this.hb; // no hitbox if it isn't exploding
     }
 
     @Override
-    public boolean hittableBy(Hittable hb) {
+    public boolean hittableBy(HittableThing hb) {
         return false;
     }
 
     @Override
-    public void handleHit(Hittable hb) {
+    public void handleHit(HittableThing hb) {
 
     }
 
@@ -74,6 +71,7 @@ public class Explosion implements Hittable {
         return toReturn;
     }
 
+    @Override
     public void paint(Graphics2D thisFrame) {
         if (delay > 0) {
             for (int a = 0; a < 5; a++) {
@@ -81,5 +79,21 @@ public class Explosion implements Hittable {
             }
             delay--;
         }
+    }
+
+    @Override
+    public void move() {
+        if (delay <= 0) {
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println("missile delay is 0, so it's exploded, removing from level");
+            this.currentLevel.removeThing(this);
+        }
+    }
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }

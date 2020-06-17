@@ -2,88 +2,86 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.List;
 
-public class Bomb implements Hittable {
-    public int frameDelay = 0;
-    Explosion e = new Explosion();
+public class Bomb implements HittableThing {
     RedGlow glow = new RedGlow();
-    private BufferedImage bomb, explosion;
-    //private BufferedImage resizedImage;
-    private final int frame = 0;
+    private BufferedImage bomb;
     private int x, y;
-    private Boolean isPlaced = false;
-    private final Boolean onTimer = false;
     private int ticktick = 0;
-    private final Hittable.HitBox hb;
-    //private int height =
+    private final HittableThing.HitBox hb;
 
-
-    public Bomb(List<Hittable> h) {
+    public Bomb(int x, int y) {
+        if (Main.ENABLE_DEBUG_FEATURES)
+            System.out.println(LocalDateTime.now().toString() + " bomb created");
 
         try {
             bomb = ImageIO.read(this.getClass().getResource("landmine.png"));
         } catch (IOException e) {
             System.out.print("there");
         }
-        x = (int) (Math.random() * 960);
-        y = (int) (Math.random() * 720);
-        hb = new Hittable.HitBox(false, bomb.getHeight(), bomb.getWidth(), x, y, null);
-        h.add(e);
+        hb = new HittableThing.HitBox(false, bomb.getHeight(), bomb.getWidth(), x, y, null);
+        this.x = x;
+        this.y = y;
     }
 
-    public boolean getisPlaced() {
-        return isPlaced;
+    public Bomb() {
+        this((int) (Math.random() * 960), (int) (Math.random() * 720));
     }
 
     @Override
-    public Hittable.HitBox currentHitBox() {
+    public HittableThing.HitBox currentHitBox() {
         return this.hb;
     }
 
     @Override
-    public boolean hittableBy(Hittable hb) {
+    public boolean hittableBy(HittableThing hb) {
         return (hb instanceof Player);
     }
 
     @Override
-    public void handleHit(Hittable hb) {
+    public void handleHit(HittableThing hb) {
         if (hb instanceof Player) {
-            e.trigger(x, y);
-            isPlaced = false;
-            ticktick = 0;
+            this.explode();
         }
     }
 
+    private void explode() {
+        this.currentLevel.addThing(new Explosion(x, y));
+        this.currentLevel.removeThing(this);
+        if (Main.ENABLE_DEBUG_FEATURES)
+            System.out.println("bomb exploded, removed from level (don't use it anymore)");
+    }
+
+    private long explodeAt;
+
+    @Override
     public void move() {
-        if (!isPlaced) {
-            x = (int) (Math.random() * 960);
-            y = (int) (Math.random() * 720);
-            isPlaced = true;
+        long currentTime = this.currentLevel.getCurrentMilliseconds();
+        if (explodeAt == 0) {
+            explodeAt = currentTime + 2000;
         }
-        hb.update(x, y);
+
         //this advances the glow
         glow.move();
+
+        if (currentTime >= explodeAt) {
+            this.explode();
+        }
     }
 
-
+    @Override
     public void paint(Graphics2D g) {
-
-        if (isPlaced) {
-            g.setColor(glow.color);
-            g.fillRect(x + 12, y + 3, 15, 6);
-            g.drawImage(bomb, x, y, null);
-            if (isPlaced) {
-                ticktick++;
-            }
-        }
-
-        if (ticktick >= 200) {
-            e.trigger(x, y);
-            isPlaced = false;
-            ticktick = 0;
-        }
-        e.paint(g);
+        g.setColor(glow.color);
+        g.fillRect(x + 12, y + 3, 15, 6);
+        g.drawImage(bomb, x, y, null);
     }
 
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 }

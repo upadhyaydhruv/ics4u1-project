@@ -2,52 +2,55 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-public class Blaster implements Hittable {
+public class Blaster implements HittableThing {
     private int x = 0, y = 0;
     long angle = 0;
-    private boolean state = false;
     private final int anchorX = 24;
     private final int anchorY = 4;
-    private Hittable.HitBox hb = new Hittable.HitBox(false, 0, 0);
+    private HittableThing.HitBox hb = new HittableThing.HitBox(false, 0, 0);
     private BufferedImage shot;
     AffineTransform transform = new AffineTransform();
 
-    public Blaster(BufferedImage shot) {
+    private int speed = 35;
+
+    public Blaster(BufferedImage shot, int x, int y, long angle, int speed) {
+        if (Main.ENABLE_DEBUG_FEATURES)
+            System.out.println("new blaster was shot");
+
         this.shot = shot;
+
+        this.x = x + 7;
+        this.y = y + 27;
+        this.angle = angle;
+        this.speed = speed;
     }
 
     @Override
-    public Hittable.HitBox currentHitBox() {
-        return state ? this.hb : null;
+    public HittableThing.HitBox currentHitBox() {
+        return this.hb;
     }
 
     @Override
-    public boolean hittableBy(Hittable hb) {
+    public boolean hittableBy(HittableThing hb) {
         return (hb instanceof Player);
     }
 
     @Override
-    public void handleHit(Hittable hb) {
+    public void handleHit(HittableThing hb) {
         if (hb instanceof Player) {
-            this.state = false;
+            System.out.println("removing blaster");
+            this.currentLevel.removeThing(this);
         }
     }
 
-    public void shoot(int x, int y, long angle) {
-        if (!state) {
-            state = true;
-            this.x = x + 7;
-            this.y = y + 27;
-            this.angle = angle;
-        }
-    }
-
+    @Override
     public void move() {
-        if (state) {
-            x += Math.cos(Math.toRadians(angle)) * 35;
-            y += Math.sin(Math.toRadians(angle)) * 35;
+        x += Math.cos(Math.toRadians(angle)) * speed;
+        y += Math.sin(Math.toRadians(angle)) * speed;
 
-            if (x < 0 || x > 960 || y < 0 || y > 720) state = false;
+        if (x < 0 || x > 960 || y < 0 || y > 720) {
+            System.out.println("removing blaster");
+            this.currentLevel.removeThing(this);
         }
 
         this.transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);
@@ -55,9 +58,15 @@ public class Blaster implements Hittable {
         this.hb.update(0, 0, transform); // zero since the transform already includes the damn rotation
     }
 
+    @Override
     public void paint(Graphics2D thisFrame) {
-        if (state) {
-            thisFrame.drawImage(shot, this.transform, null);
-        }
+        thisFrame.drawImage(shot, this.transform, null);
+    }
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }

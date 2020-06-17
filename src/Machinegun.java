@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
-public class Machinegun implements Hittable {
+public class Machinegun implements HittableThing {
     private int xPos;
     private int yPos;
     private int xVel;
@@ -12,7 +12,7 @@ public class Machinegun implements Hittable {
     private double angle;
     private final int anchorX = 0;
     private final int anchorY = 0;
-    private Hittable.HitBox hb;
+    private HittableThing.HitBox hb;
     AffineTransform transform = new AffineTransform();
 
     public Machinegun(int xOrig, int yOrig, BufferedImage image, double angle) {
@@ -25,33 +25,33 @@ public class Machinegun implements Hittable {
         hb = new HitBox(false, image.getWidth(), image.getHeight(), xPos, yPos, null);
     }
 
-    public boolean hit() {
-        return true;
-    }
-
-
     @Override
-    public Hittable.HitBox currentHitBox() {
+    public HittableThing.HitBox currentHitBox() {
         return this.hb;
     }
 
     @Override
-    public boolean hittableBy(Hittable hb) {
+    public boolean hittableBy(HittableThing hb) {
         return false;
     }
 
     @Override
-    public void handleHit(Hittable hb) {
+    public void handleHit(HittableThing hb) {
 
     }
 
+    private long time;
+
+    @Override
     public void move() {
-        ticker++;
-        if (ticker % 10000 == 0) {
-            xPos += xVel;
-            yPos += yVel;
-            ticker = 0;
+        long lastTime = time;
+        time = this.currentLevel.getCurrentMilliseconds();
+        if (time - lastTime < 1) {
+            return;
         }
+
+        xPos += xVel;
+        yPos += yVel;
 
         transform.setToRotation(Math.toRadians(angle), xPos + anchorX, yPos + anchorY);
         transform.translate(xPos, yPos);
@@ -63,4 +63,10 @@ public class Machinegun implements Hittable {
     }
 
 
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
+    }
 }

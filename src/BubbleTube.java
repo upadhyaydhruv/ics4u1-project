@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-public class BubbleTube {
+public class BubbleTube implements Thing {
     Rectangle bubbleTubeRec;
     BufferedImage bubbleTube;
     BubblePart[] bubbleParts= new BubblePart[4];
@@ -46,19 +46,28 @@ public class BubbleTube {
         }
         return null;
     }
-    void move() {
+    @Override
+    public void move() {
         color.move();
         for (BubblePart bubblePart : bubbleParts) {
             bubblePart.move();
         }
     }
-    void paint(Graphics2D thisFrame) {
+    @Override
+    public void paint(Graphics2D thisFrame) {
         thisFrame.setColor(color.get());
         thisFrame.fillRect(bubbleTubeRec.x+48,bubbleTubeRec.y+60,44,98);
         for (BubblePart bubblePart : bubbleParts){
             bubblePart.paint(thisFrame);
         }
         Screen.paint(bubbleTubeRec,bubbleTube,thisFrame);
+    }
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }
 class BubblePart {

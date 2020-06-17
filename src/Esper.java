@@ -3,14 +3,13 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Esper extends Player implements Hittable {
+public class Esper extends Player implements HittableThing {
     private BufferedImage esper,bullet;
     private int bulletPosX,bulletPosY,ticker = 0;
     private Machinegun shooter;
-    private Hittable.HitBox hb;
+    private HittableThing.HitBox hb;
 
     //bobby's angle update3.
 
@@ -22,7 +21,6 @@ public class Esper extends Player implements Hittable {
 
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)
-    private CopyOnWriteArrayList<Machinegun> guns = new CopyOnWriteArrayList<>();
 
     public Esper(int x, int y){
         super(x, y);
@@ -35,29 +33,32 @@ public class Esper extends Player implements Hittable {
         } catch(IOException e){}
 
         // thomas, you need to get rid of the space around the esper, then set round to true
-        hb = new Hittable.HitBox(false, esper.getHeight(), esper.getWidth(), x, y, null);
-    }
+        hb = new HittableThing.HitBox(false, esper.getHeight(), esper.getWidth(), x, y, null);
 
-    public void shoot(){
-        ticker++;
-        if (ticker%1000000==0){
-            guns.add(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
-            ticker = 0;
-        }
+        this.setShootRate(1000);
     }
 
     @Override
-    public Hittable.HitBox currentHitBox() {
+    public void shoot() {
+        if (this.currentLevel == null) {
+            System.out.println("currentlevel null");
+            return;
+        }
+        this.currentLevel.addThing(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
+    }
+
+    @Override
+    public HittableThing.HitBox currentHitBox() {
         return this.hb;
     }
 
     @Override
-    public boolean hittableBy(Hittable hb) {
+    public boolean hittableBy(HittableThing hb) {
         return (hb instanceof Explosion || hb instanceof Blaster);
     }
 
     @Override
-    public void handleHit(Hittable hb) {
+    public void handleHit(HittableThing hb) {
         if (hb instanceof Explosion) {
             super.decreaseHealth(((Explosion) hb).getDamage());
         } else if (hb instanceof Blaster) {
@@ -65,7 +66,13 @@ public class Esper extends Player implements Hittable {
         }
     }
 
-    public void move(){
+    private long time;
+
+    @Override
+    public void move() {
+        long lastTime = time;
+        long newTime = this.currentLevel.getCurrentMilliseconds();
+
         if (super.getHealth()==0){
             isAlive = false;
         }
@@ -74,13 +81,6 @@ public class Esper extends Player implements Hittable {
         }
 
         hb.update(this.getxPos(), this.getyPos());
-
-        if (Main.mouse.getLMB()){
-            this.shoot();
-        }
-        for (Machinegun gun : guns){
-            gun.move();
-        }
 
         if (Main.mouse.getRMB()){ //Adds teleporting functionality with left-click
             super.setxPos(Main.mouse.getX()-15);
@@ -99,10 +99,13 @@ public class Esper extends Player implements Hittable {
     }
 
     public void paint(Graphics2D g){
-
         g.drawImage(esper, transform, null);
-        for (Machinegun gun : guns){
-            gun.paint(g);
-        }
+    }
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }

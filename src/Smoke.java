@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-public class Smoke {
+public class Smoke implements Thing {
     int x,y;
     SmokePart[] smokeParts= new SmokePart[10];
     Smoke(int x,int y){
@@ -40,15 +40,24 @@ public class Smoke {
         }
             return null;
     }
-        void move() {
+    @Override
+    public void move() {
         for (SmokePart smokePart : smokeParts) {
             smokePart.move();
         }
     }
-    void paint(Graphics2D thisFrame) {
+    @Override
+    public void paint(Graphics2D thisFrame) {
         for (SmokePart smokePart : smokeParts){
             smokePart.paint(thisFrame);
         }
+    }
+
+    Level currentLevel;
+
+    @Override
+    public void setCurrentLevel(Level currentLevel) {
+        this.currentLevel = currentLevel;
     }
 }
 class SmokePart {
