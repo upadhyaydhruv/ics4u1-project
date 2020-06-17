@@ -55,6 +55,12 @@ public class Machinegun implements HittableThing {
         transform.setToRotation(Math.toRadians(angle), xPos + anchorX, yPos + anchorY);
         transform.translate(xPos, yPos);
         hb.update(0, 0, transform);
+
+        if (hb.outOfBounds()) {
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println("removing machinegun (bullet) because out of bounds");
+            this.currentLevel.removeThing(this);
+        }
     }
 
     public void paint(Graphics2D g) {
