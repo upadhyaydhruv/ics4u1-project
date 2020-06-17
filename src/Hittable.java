@@ -120,6 +120,7 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
                         if ((ah = a.currentHitBox()) != null && (bh = b.currentHitBox()) != null) {
                             if (ah.isTouching(bh)) { // note: this is (should be) the same as bh.isTouching(ah)
                                 System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
+                                System.out.println("DELETE THESE TWO PRINT STATEMENTS IN HITTABLE.JAVA BEFORE HANDING IN TO PREVENT UNNECESSARY LAG.");
                                 if (ab)
                                     a.handleHit(b);
                                 if (ba)
