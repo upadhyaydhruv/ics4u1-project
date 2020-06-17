@@ -19,7 +19,7 @@ public class Bulldog implements Hittable {
     private int delayCount = 0;
     private int health = 3; //Can be changed if needed
     private Hittable.HitBox hb;
-
+    private List<Hittable> hitList;
     private Blaster bigBall;
 
 
@@ -32,6 +32,7 @@ public class Bulldog implements Hittable {
         this.yVel = yVel;
         //this.player = player;
         this.random = (int) (Math.random() * 8) + 1;
+        this.hitList = h;
 
         try {
             switch (random) {
@@ -67,6 +68,7 @@ public class Bulldog implements Hittable {
         hb = new Hittable.HitBox(false, pic.getWidth(), pic.getHeight(), this.x, this.y, null);
         bigBall = new Blaster(bulldogBall);
         h.add(bigBall);
+        h.add(this);
     }
 
     public void decreaseHealth(int diff) {

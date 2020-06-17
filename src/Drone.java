@@ -14,6 +14,7 @@ class Drone implements Hittable {
     private Hittable.HitBox hb = new Hittable.HitBox(false, 0, 0);
     private int health = 2;
     AffineTransform transform = new AffineTransform();
+    private List<Hittable> hitList;
 
     private int DIAMETER = 63;
     private Rectangle rec;
@@ -32,8 +33,9 @@ class Drone implements Hittable {
         } catch (IOException e) {
             System.out.print("there");
         }
-
+        this.hitList = h;
         droneShot = new Blaster(shot);
+        h.add(this);
         h.add(droneShot);
     }
 

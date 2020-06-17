@@ -35,11 +35,6 @@ public class TestLevel {
         } catch (IOException e) {
             System.out.println("image not found!");
         }
-    }
-
-    public void start() {
-        System.out.println("start testLevel");
-        nextScreen = "";
 
         player = new Skuttler(400, 350);
         list = new CopyOnWriteArrayList<>();
@@ -47,11 +42,15 @@ public class TestLevel {
         bulldog = new Bulldog(player, 0, 0, 1, 1, list);
         rocket = new ChaseRocket(600, 300, 90);
         bomb = new Bomb(list);
-
         list.add(bulldog);
         list.add(player);
         list.add(bomb);
+        list.add(drone);
+    }
 
+    public void start() {
+        System.out.println("start testLevel");
+        nextScreen = "";
     }
 
     public String move() {
