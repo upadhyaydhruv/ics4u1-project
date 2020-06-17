@@ -56,7 +56,7 @@ public abstract class Player implements HittableThing {
     @Override
     public void move() {
         ticker++;
-        if (ticker == 1000) {
+        if (ticker == 5000) {
             if (Main.keyboard.getA()) {
                 if (xPos - xVel < 0) {
 
