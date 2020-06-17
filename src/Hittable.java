@@ -73,10 +73,13 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
     static void handleHits(List<Hittable> things) {
         // warning: the time this takes increases exponentially compared to the number of items, so try to limit the
         // number of hittable things. if needed, this can be made more efficient in many ways.
+        Hittable a, b;
         boolean ab, ba;
         HitBox ah, bh;
-        for (Hittable a : things) {
-            for (Hittable b : things) {
+        for (int ai = 0; ai < things.size(); ai++) {
+            a = things.get(ai);
+            for (int bi = ai + 1; bi < things.size(); bi++) {
+                b = things.get(bi);
                 ab = a.hittableBy(b);
                 ba = b.hittableBy(a);
                 if (ab || ba) {

@@ -23,8 +23,7 @@ public class ShipSelect {
             tiamatPlate = ImageIO.read(Menu.class.getResourceAsStream("menu/tiamat nameplate.png"));
             selectButton = ImageIO.read(Menu.class.getResourceAsStream("button/select button.png"));
             esperButton = ImageIO.read(Menu.class.getResourceAsStream("button/esper button.png"));
-            System.out.println("FIX THIS IMAGE!!!");
-            skuttlerButton = ImageIO.read(Menu.class.getResourceAsStream("button/skuttler button.png")); // TODO: fix this
+            skuttlerButton = ImageIO.read(Menu.class.getResourceAsStream("button/skuttler button.png"));
             tiamatButton = ImageIO.read(Menu.class.getResourceAsStream("button/tiamat button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
