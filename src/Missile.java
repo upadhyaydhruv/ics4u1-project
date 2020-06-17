@@ -4,7 +4,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Missile implements Hittable {
+public class Missile {
     private BufferedImage image;
     private int xPos;
     private int yPos;
@@ -16,7 +16,7 @@ public class Missile implements Hittable {
     private int ticker = 0; //This is to slow done speed of moving graphics objects using modular arithmetic
     private boolean RMBToggle=false;
     private double angle;
-    private Hittable.HitBox hb;
+    AffineTransform transform = new AffineTransform();
 
 
     public Missile(int xOrig, int yOrig, double angle) {
@@ -68,28 +68,13 @@ public class Missile implements Hittable {
             damage++;
             System.out.println(damage);
         }
+
+        transform.setToRotation(Math.toRadians(angle),xPos+anchorX,yPos+anchorY);
+        transform.translate(xPos,yPos);
     }
 
     public void paint(Graphics2D g){
-        AffineTransform transform = new AffineTransform();
-        transform.rotate(Math.toRadians(angle),xPos+anchorX,yPos+anchorY);
-        transform.translate(xPos,yPos);
         g.drawImage(image, transform, null);
-    }
-
-    @Override
-    public Hittable.HitBox currentHitBox() {
-        return hb;
-    }
-
-    @Override
-    public void handleHit(Hittable hb) {
-
-    }
-
-    @Override
-    public boolean hittableBy(Hittable hb) {
-        return false;
     }
 }
 

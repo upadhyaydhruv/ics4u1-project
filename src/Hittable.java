@@ -11,6 +11,10 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
         private int x, y, w, h;
         private AffineTransform transform; // this assumes rotation about the x-y corner
 
+        // because people forget simple things and there isn't time to reorganize stuff
+        private boolean everChecked;
+        private boolean everUpdated;
+
         public HitBox(boolean round, int w, int h) {
             this.round = round;
             this.w = w;
@@ -26,23 +30,46 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
             this.transform = transform;
         }
 
+        public void update(AffineTransform transform) {
+            this.everUpdated = true;
+            this.transform = transform;
+        }
+
         public void update(int x, int y) {
+            this.everUpdated = true;
             this.x = x;
             this.y = y;
         }
 
+        public void update(int x, int y, AffineTransform transform) {
+            this.everUpdated = true;
+            this.x = x;
+            this.y = y;
+            this.transform = transform;
+        }
+
         public void update(int x, int y, int width, int height) {
+            this.everUpdated = true;
             this.x = x;
             this.y = y;
             this.w = width;
             this.h = height;
         }
 
-        public void updateTransform(AffineTransform transform){
+        public void update(int x, int y, int width, int height, AffineTransform transform) {
+            this.everUpdated = true;
+            this.x = x;
+            this.y = y;
+            this.w = width;
+            this.h = height;
             this.transform = transform;
         }
 
         public boolean isTouching(HitBox other) {
+            if (this.everChecked && !this.everUpdated)
+            {}//throw new RuntimeException("did you forget to actually update the hitbox?!?");
+            this.everChecked = true;
+
             if (other == null) return false;
             return other.getShape().intersects(this.getShape().getBounds2D());
         }
@@ -62,11 +89,6 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
                 }
                 return shape;
             }
-        }
-
-        public boolean isWithin(HitBox other) {
-            if (other == null) return false;
-            return other.getShape().contains(this.getShape().getBounds2D());
         }
 
         public String toString() {
@@ -93,16 +115,20 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
                 b = things.get(bi);
                 ab = a.hittableBy(b);
                 ba = b.hittableBy(a);
-                if (ab || ba) {
-                    if ((ah = a.currentHitBox()) != null && (bh = b.currentHitBox()) != null) {
-                        if (ah.isTouching(bh)) { // note: this is (should be) the same as bh.isTouching(ah)
-                            System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
-                            if (ab)
-                                a.handleHit(b);
-                            if (ba)
-                                b.handleHit(a);
+                try {
+                    if (ab || ba) {
+                        if ((ah = a.currentHitBox()) != null && (bh = b.currentHitBox()) != null) {
+                            if (ah.isTouching(bh)) { // note: this is (should be) the same as bh.isTouching(ah)
+                                System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
+                                if (ab)
+                                    a.handleHit(b);
+                                if (ba)
+                                    b.handleHit(a);
+                            }
                         }
                     }
+                } catch (RuntimeException ex) {
+                    System.out.printf("check hit for %s and %s: %s\n", a.getClass().getName(), b.getClass().getName(), ex.toString());
                 }
             }
         }

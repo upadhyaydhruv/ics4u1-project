@@ -10,21 +10,22 @@ public class Machinegun implements Hittable {
     private BufferedImage image;
     private int ticker = 0;
     private double angle;
-    private final int anchorX=0;
-    private final int anchorY=0;
+    private final int anchorX = 0;
+    private final int anchorY = 0;
     private Hittable.HitBox hb;
+    AffineTransform transform = new AffineTransform();
 
-    public Machinegun(int xOrig, int yOrig, BufferedImage image, double angle){
+    public Machinegun(int xOrig, int yOrig, BufferedImage image, double angle) {
         this.image = image;
         this.xPos = xOrig;
         this.yPos = yOrig;
         this.angle = angle;
-        this.xVel = (int)Math.ceil(Math.cos(Math.toRadians(angle))*5);
-        this.yVel = (int)Math.ceil(Math.sin(Math.toRadians(angle))*5);
-        hb = new HitBox(false,image.getWidth(), image.getHeight(), xPos, yPos, null);
+        this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)) * 5);
+        this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)) * 5);
+        hb = new HitBox(false, image.getWidth(), image.getHeight(), xPos, yPos, null);
     }
 
-    public boolean hit(){
+    public boolean hit() {
         return true;
     }
 
@@ -44,22 +45,21 @@ public class Machinegun implements Hittable {
 
     }
 
-    public void move(){
+    public void move() {
         ticker++;
         if (ticker % 10000 == 0) {
             xPos += xVel;
             yPos += yVel;
             ticker = 0;
         }
-        hb.update(xPos, yPos);
+
+        transform.setToRotation(Math.toRadians(angle), xPos + anchorX, yPos + anchorY);
+        transform.translate(xPos, yPos);
+        hb.update(0, 0, transform);
     }
 
-    public void paint(Graphics2D g){
-        AffineTransform transform = new AffineTransform();
-        transform.rotate(Math.toRadians(angle),xPos+anchorX,yPos+anchorY);
-        transform.translate(xPos,yPos);
-        g.drawImage(image,transform,null);
-        hb.updateTransform(transform);
+    public void paint(Graphics2D g) {
+        g.drawImage(image, transform, null);
     }
 
 

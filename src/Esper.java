@@ -93,16 +93,14 @@ public class Esper extends Player implements Hittable {
         angle=450-(Math.atan2(Main.mouse.getX()-(super.getxPos()+anchorX), Main.mouse.getY()-(super.getyPos()+anchorY))*180/Math.PI);
         //(this part finds the angle between the player and the mouse)
 
+        transform.setToRotation(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
+        transform.translate(super.getxPos(),super.getyPos());
+        hb.update(0, 0, transform);
     }
 
     public void paint(Graphics2D g){
 
-        //bobby's angle update(these must be in this order)
-        transform = new AffineTransform();
-        transform.rotate(Math.toRadians(angle),super.getxPos()+anchorX,super.getyPos()+anchorY);
-        transform.translate(super.getxPos(),super.getyPos());
         g.drawImage(esper, transform, null);
-        hb.updateTransform(transform);
         for (Machinegun gun : guns){
             gun.paint(g);
         }

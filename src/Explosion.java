@@ -10,7 +10,7 @@ public class Explosion implements Hittable {
     private Hittable.HitBox hb;
     private int damage = 2;
 
-    Explosion(){
+    Explosion() {
         try {
             pic = ImageIO.read(Menu.class.getResourceAsStream("explosion.png"));
         } catch (IOException e) {
@@ -28,20 +28,20 @@ public class Explosion implements Hittable {
         return this.damage;
     }
 
-    public void trigger(int x,int y){
-        if(delay<1){
-            for(int a=0; a<5; a++){
-                this.x[a]=(int) (Math.random()*50)+x;
-                this.y[a]=(int) (Math.random()*50)+y;
+    public void trigger(int x, int y) {
+        if (delay < 1) {
+            for (int a = 0; a < 5; a++) {
+                this.x[a] = (int) (Math.random() * 50) + x;
+                this.y[a] = (int) (Math.random() * 50) + y;
             }
-            delay=75;
+            delay = 75;
         }
         hb.update(min(this.x), min(this.y), (max(this.x) - min(this.x)), (max(this.y) - min(this.y)));
     }
 
     @Override
     public Hittable.HitBox currentHitBox() {
-        return this.hb;
+        return delay >= 0 ? this.hb : null; // no hitbox if it isn't exploding
     }
 
     @Override
@@ -74,12 +74,12 @@ public class Explosion implements Hittable {
         return toReturn;
     }
 
-    public void paint(Graphics2D thisFrame){
-        if(delay>0){
-            for(int a=0; a<5; a++){
-                thisFrame.drawImage(pic, x[a],y[a],null);
+    public void paint(Graphics2D thisFrame) {
+        if (delay > 0) {
+            for (int a = 0; a < 5; a++) {
+                thisFrame.drawImage(pic, x[a], y[a], null);
             }
-        delay--;
+            delay--;
         }
     }
 }

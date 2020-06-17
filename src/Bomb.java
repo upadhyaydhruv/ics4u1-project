@@ -1,35 +1,35 @@
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.List;
 
 public class Bomb implements Hittable {
-    private BufferedImage bomb, explosion;
-    //private BufferedImage resizedImage;
-    private int frame = 0;
-    private int x, y;
-    private Boolean isPlaced = false;
-    private Boolean onTimer = false;
-    private int ticktick = 0;
     public int frameDelay = 0;
     Explosion e = new Explosion();
     RedGlow glow = new RedGlow();
-    private Hittable.HitBox hb;
+    private BufferedImage bomb, explosion;
+    //private BufferedImage resizedImage;
+    private final int frame = 0;
+    private int x, y;
+    private Boolean isPlaced = false;
+    private final Boolean onTimer = false;
+    private int ticktick = 0;
+    private final Hittable.HitBox hb;
     //private int height =
 
 
-    public Bomb() {
+    public Bomb(List<Hittable> h) {
 
-        try{
+        try {
             bomb = ImageIO.read(this.getClass().getResource("landmine.png"));
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.print("there");
         }
-        x = (int)(Math.random()*960);
-        y = (int)(Math.random()*720);
+        x = (int) (Math.random() * 960);
+        y = (int) (Math.random() * 720);
         hb = new Hittable.HitBox(false, bomb.getHeight(), bomb.getWidth(), x, y, null);
+        h.add(e);
     }
 
     public boolean getisPlaced() {
@@ -49,7 +49,7 @@ public class Bomb implements Hittable {
     @Override
     public void handleHit(Hittable hb) {
         if (hb instanceof Player) {
-            e.trigger(x,y);
+            e.trigger(x, y);
             isPlaced = false;
             ticktick = 0;
         }
@@ -60,9 +60,8 @@ public class Bomb implements Hittable {
             x = (int) (Math.random() * 960);
             y = (int) (Math.random() * 720);
             isPlaced = true;
-
-
         }
+        hb.update(x, y);
         //this advances the glow
         glow.move();
     }
@@ -72,7 +71,7 @@ public class Bomb implements Hittable {
 
         if (isPlaced) {
             g.setColor(glow.color);
-            g.fillRect(x+12,y+3,15,6);
+            g.fillRect(x + 12, y + 3, 15, 6);
             g.drawImage(bomb, x, y, null);
             if (isPlaced) {
                 ticktick++;
@@ -80,11 +79,11 @@ public class Bomb implements Hittable {
         }
 
         if (ticktick >= 200) {
-            e.trigger(x,y);
-                isPlaced = false;
-                ticktick = 0;
-            }
-        e.paint(g);
+            e.trigger(x, y);
+            isPlaced = false;
+            ticktick = 0;
         }
-
+        e.paint(g);
     }
+
+}

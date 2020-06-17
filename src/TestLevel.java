@@ -8,24 +8,24 @@ import java.util.concurrent.TimeUnit;
 
 public class TestLevel {
     String nextScreen = "";
-    int Xoffset,Yoffset;
-    BufferedImage water,plat,object, bullet;
+    int Xoffset, Yoffset;
+    BufferedImage water, plat, object, bullet;
 
     Rectangle platRec = new Rectangle(150, 15, 650, 650);
     Rectangle objectRec = new Rectangle(600, 50, 100, 120);
-    private Skuttler player = new Skuttler(400, 350);
-    private Drone drone =new Drone(400,400,1,1);
-    private ChaseRocket rocket =new ChaseRocket(600,300,90);
-    private Bulldog bulldog = new Bulldog(player,0,0,1,1);
-    private Bomb bomb = new Bomb();
-    private CopyOnWriteArrayList<Hittable> list = new CopyOnWriteArrayList<>();
+    private Skuttler player;
+    private Drone drone;
+    private ChaseRocket rocket;
+    private Bulldog bulldog;
 
-    private Explosion explosion = new Explosion();
+    private CopyOnWriteArrayList<Hittable> list;
+    private Bomb bomb;
 
-    TestLevel(){
+    TestLevel() {
         try {
             TimeUnit.SECONDS.sleep(1);
-        } catch(InterruptedException e){}
+        } catch (InterruptedException e) {
+        }
         try {
             water = ImageIO.read(new File("res/background/storm water.png"));
             plat = ImageIO.read(new File("res/background/test plat.png"));
@@ -36,24 +36,27 @@ public class TestLevel {
             System.out.println("image not found!");
         }
     }
+
     public void start() {
+        System.out.println("start testLevel");
         nextScreen = "";
 
-        drone =new Drone(400,400,1,1);
-        bulldog = new Bulldog(player,0,0,1,1);
-        rocket =new ChaseRocket(600,300,90);
-        bomb = new Bomb();
+        player = new Skuttler(400, 350);
+        list = new CopyOnWriteArrayList<>();
+        drone = new Drone(400, 400, 1, 1, list);
+        bulldog = new Bulldog(player, 0, 0, 1, 1, list);
+        rocket = new ChaseRocket(600, 300, 90);
+        bomb = new Bomb(list);
 
         list.add(bulldog);
         list.add(player);
         list.add(bomb);
 
     }
+
     public String move() {
         if (Main.mouse.isMouseOn()) {
         }
-
-        Hittable.handleHits(list);
 
         player.move();
 
@@ -67,13 +70,15 @@ public class TestLevel {
         bulldog.move(player);
         bomb.move();
 
+        Hittable.handleHits(list); // must be last since most of the things set the transformation in the move function
 
         return nextScreen;
     }
+
     public void paint(Graphics2D thisFrame) {
         thisFrame.drawImage(water, (Xoffset / 8) - 60, (Yoffset / 8) - 60, 1010, 1010, null);
 
-        Screen.paint(platRec,plat,thisFrame);
+        Screen.paint(platRec, plat, thisFrame);
 
         thisFrame.drawImage(plat, platRec.x, platRec.y, platRec.width, platRec.height, null);
         thisFrame.drawImage(object, objectRec.x, objectRec.y, objectRec.width, objectRec.height, null);
@@ -84,8 +89,6 @@ public class TestLevel {
         bulldog.paint(thisFrame);
         bomb.paint(thisFrame);
 
-
-        explosion.paint(thisFrame);
 
     }
 }
