@@ -8,7 +8,6 @@ class Drone implements HittableThing {
     private int x, y, xVel, yVel, currentShot = 1, delayCount1 = 12500;
     private long angle;
     private BufferedImage drone, shooter, shot;
-    private Blaster droneShot;
     private HittableThing.HitBox hb = new HittableThing.HitBox(false, 0, 0);
     private int health = 2;
     AffineTransform transform = new AffineTransform();
@@ -17,7 +16,6 @@ class Drone implements HittableThing {
     private int targetY;
 
     private int DIAMETER = 63;
-    private Rectangle rec;
 
     public Drone(int x, int y, int xVel, int yVel) {
 
@@ -70,6 +68,12 @@ class Drone implements HittableThing {
     @Override
     public void move() {
         long currentTime = this.currentLevel.getCurrentMilliseconds();
+
+        if (this.health <= 0) {
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println("drone died");
+            this.currentLevel.removeThing(this);
+        }
 
         if (currentTime - moveTime > 5) {
             moveTime = currentTime;
