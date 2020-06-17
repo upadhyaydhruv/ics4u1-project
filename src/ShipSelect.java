@@ -8,9 +8,9 @@ public class ShipSelect {
     BufferedImage back,backButton, shipSelectBack, choseShip, esperPlate, skuttlerPlate, tiamatPlate,currentPlate, selectButton, esperButton, skuttlerButton, tiamatButton;
     Rectangle backButtonRec = new Rectangle(60, 60, 80, 80);
     Rectangle selectButtonRec = new Rectangle(600, 500, 160, 80);
-    Rectangle esperButtonRec = new Rectangle(100, 200, 160, 80);
-    Rectangle skuttlerButtonRec = new Rectangle(300, 200, 160, 80);
-    Rectangle tiamatButtonRec = new Rectangle(500, 200, 160, 80);
+    Rectangle esperButtonRec = new Rectangle(100, 200, 104, 88);
+    Rectangle skuttlerButtonRec = new Rectangle(300, 180, 120, 116);
+    Rectangle tiamatButtonRec = new Rectangle(500, 200, 92, 84);
     boolean mousetoggle=false;
     ShipSelect() {
         try {
@@ -24,7 +24,7 @@ public class ShipSelect {
             selectButton = ImageIO.read(Menu.class.getResourceAsStream("button/select button.png"));
             esperButton = ImageIO.read(Menu.class.getResourceAsStream("button/esper button.png"));
             System.out.println("FIX THIS IMAGE!!!");
-            skuttlerButton = ImageIO.read(Menu.class.getResourceAsStream("button/esper button.png")); // TODO: fix this
+            skuttlerButton = ImageIO.read(Menu.class.getResourceAsStream("button/skuttler button.png")); // TODO: fix this
             tiamatButton = ImageIO.read(Menu.class.getResourceAsStream("button/tiamat button.png"));
         } catch (IOException e) {
             System.out.println("image not found!");
