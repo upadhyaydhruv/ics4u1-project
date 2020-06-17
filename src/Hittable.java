@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface Hittable { // pass an ArrayList<Hittable> of the things relevant to each thing
@@ -67,6 +69,15 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
             return other.getShape().contains(this.getShape().getBounds2D());
         }
 
+        public String toString() {
+            String b = "";
+            if (this.transform != null) {
+                Rectangle2D d = this.getShape().getBounds2D();
+                b = String.format("[transformed=(%d,%d)+(%d,%d)]", (int) d.getX(), (int) d.getY(), (int) d.getWidth(), (int) d.getHeight());
+            }
+            return String.format("%s%s@(%d,%d)+(%d,%d)", this.round ? "Ellipse" : "Rectangle", b, this.x, this.y, this.w, this.h);
+        }
+
         // if needed, also store the velocity of an object and add an isPointingAt method
     }
 
@@ -85,6 +96,7 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
                 if (ab || ba) {
                     if ((ah = a.currentHitBox()) != null && (bh = b.currentHitBox()) != null) {
                         if (ah.isTouching(bh)) { // note: this is (should be) the same as bh.isTouching(ah)
+                            System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
                             if (ab)
                                 a.handleHit(b);
                             if (ba)
