@@ -1,8 +1,6 @@
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 
 class Drone implements HittableThing {
     private int x, y, xVel, yVel, currentShot = 1, delayCount1 = 12500;

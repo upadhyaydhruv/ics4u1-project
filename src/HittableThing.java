@@ -2,7 +2,6 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of the things relevant to each thing
