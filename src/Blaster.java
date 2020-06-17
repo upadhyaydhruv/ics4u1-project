@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class Blaster implements Hittable {
     private int x = 0, y = 0;
@@ -12,9 +13,11 @@ public class Blaster implements Hittable {
     private final int anchorY = 4;
     private Hittable.HitBox hb;
     private BufferedImage shot;
+    private ArrayList<Hittable> list;
 
-    public Blaster(BufferedImage shot) {
+    public Blaster(BufferedImage shot, ArrayList<Hittable> list) {
         this.shot = shot;
+        this.list = list;
     }
 
     @Override
@@ -40,6 +43,7 @@ public class Blaster implements Hittable {
             this.x = x + 7;
             this.y = y + 27;
             this.angle = angle;
+            list.add(this);
         }
     }
 
