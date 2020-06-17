@@ -2,6 +2,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
+import java.util.Date;
 import java.util.List;
 
 public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of the things relevant to each thing
@@ -141,9 +142,8 @@ public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of
                     if (ab || ba) {
                         if ((ah = a.currentHitBox()) != null && (bh = b.currentHitBox()) != null) {
                             if (ah.isTouching(bh)) { // note: this is (should be) the same as bh.isTouching(ah)
-                                if (Main.ENABLE_DEBUG_FEATURES) {
-                                    //it lags: System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
-                                }
+                                if (Main.ENABLE_DEBUG_FEATURES)
+                                    System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", new Date(), a.getClass().getName(), ah, b.getClass().getName(), bh);
                                 if (ab)
                                     a.handleHit(b);
                                 if (ba)
