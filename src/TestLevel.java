@@ -89,6 +89,7 @@ public class TestLevel {
         bulldog.paint(thisFrame);
         bomb.paint(thisFrame);
 
-
+        if (Main.ENABLE_DEBUG_FEATURES)
+            Hittable.paintDebugHits(thisFrame, list);
     }
 }

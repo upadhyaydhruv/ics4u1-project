@@ -23,6 +23,8 @@ it only looks for the WASD and Esc keys right now
 
 public class Main extends JPanel {
 
+    public static final boolean ENABLE_DEBUG_FEATURES = true; // DISABLE THIS BEFORE HANDING IN OR IF THERE IS TOO MUCH LAG
+
     //this needs to be public so that everything can use it without re-directing it
     public static Mouse mouse=new Mouse();
     public static Screen currentScreen = new Screen("menu");

@@ -66,25 +66,24 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
         }
 
         public boolean isTouching(HitBox other) {
-            if (this.everChecked && !this.everUpdated)
-            {}//throw new RuntimeException("did you forget to actually update the hitbox?!?");
+            if (this.everChecked && !this.everUpdated) {
+            }//throw new RuntimeException("did you forget to actually update the hitbox?!?");
             this.everChecked = true;
 
             if (other == null) return false;
             return other.getShape().intersects(this.getShape().getBounds2D());
         }
 
-        private Shape getShape(){
-            if (this.round){
+        private Shape getShape() {
+            if (this.round) {
                 Shape shape = new Ellipse2D.Double(this.x, this.y, this.w, this.h);
-                if (transform!=null) {
+                if (transform != null) {
                     shape = transform.createTransformedShape(shape);
                 }
                 return shape;
-            }
-            else{
+            } else {
                 Shape shape = new Rectangle(this.x, this.y, this.w, this.h);
-                if (transform!=null) {
+                if (transform != null) {
                     shape = transform.createTransformedShape(shape);
                 }
                 return shape;
@@ -100,7 +99,26 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
             return String.format("%s%s@(%d,%d)+(%d,%d)", this.round ? "Ellipse" : "Rectangle", b, this.x, this.y, this.w, this.h);
         }
 
+        public void paintDebug(Graphics2D g) {
+            Shape s = this.getShape();
+            Stroke os = g.getStroke();
+            Paint op = g.getPaint();
+            g.setPaint(Color.RED);
+            g.setStroke(new BasicStroke(4));
+            g.draw(s);
+            g.setStroke(os);
+            g.setPaint(op);
+        }
+
         // if needed, also store the velocity of an object and add an isPointingAt method
+    }
+
+    static void paintDebugHits(Graphics2D g, List<Hittable> things) {
+        for (Hittable thing: things) {
+            HitBox b = thing.currentHitBox();
+            if (b != null)
+                b.paintDebug(g);
+        }
     }
 
     static void handleHits(List<Hittable> things) {
@@ -119,8 +137,8 @@ public interface Hittable { // pass an ArrayList<Hittable> of the things relevan
                     if (ab || ba) {
                         if ((ah = a.currentHitBox()) != null && (bh = b.currentHitBox()) != null) {
                             if (ah.isTouching(bh)) { // note: this is (should be) the same as bh.isTouching(ah)
-                                System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
-                                System.out.println("DELETE THESE TWO PRINT STATEMENTS IN HITTABLE.JAVA BEFORE HANDING IN TO PREVENT UNNECESSARY LAG.");
+                                if (Main.ENABLE_DEBUG_FEATURES)
+                                    System.out.printf("at %s, %s @ (%s) hit %s @ (%s)\n", LocalDateTime.now(), a.getClass().getName(), ah, b.getClass().getName(), bh);
                                 if (ab)
                                     a.handleHit(b);
                                 if (ba)
