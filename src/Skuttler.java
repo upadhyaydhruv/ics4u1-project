@@ -3,14 +3,10 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Skuttler extends Player implements HittableThing {
     private BufferedImage image;
     private BufferedImage bullet;
-    private int bulletPosX;
-    private int bulletPosY;
-    private int ticker = 0;
     private double angle;
     private final int anchorX = 38;
     private final int anchorY = 37;
@@ -27,8 +23,7 @@ public class Skuttler extends Player implements HittableThing {
         try {
             image = ImageIO.read(this.getClass().getResource("skuttler.png"));
             bullet = ImageIO.read(this.getClass().getResource("skuttler shot C.png"));
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
         hb = new HittableThing.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
 
         this.setShootRate(1000);

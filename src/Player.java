@@ -1,5 +1,3 @@
-import java.awt.*;
-
 public abstract class Player implements HittableThing {
     private int xPos, yPos, xVel, yVel, ticker = 0, shootTicker = 0;
     private int health;
@@ -92,7 +90,7 @@ public abstract class Player implements HittableThing {
         boolean curLMB = Main.mouse.getLMB();
 
         shootTicker++;
-        if ((oldLMB != curLMB && curLMB) || shootTicker >= shootRate*100) {
+        if ((oldLMB != curLMB && curLMB) || shootTicker >= shootRate * 100) {
             shootTicker = 0;
             if (Main.mouse.getLMB()) {
                 System.out.println("test");

@@ -11,10 +11,10 @@ public class Missile implements Thing {
     private int damage = 0;
     private int xVel; //These are just placeholders for testing right now
     private int yVel;
-    private final int anchorX=30;
-    private final int anchorY=30;
+    private final int anchorX = 30;
+    private final int anchorY = 30;
     private int ticker = 0; //This is to slow done speed of moving graphics objects using modular arithmetic
-    private boolean RMBToggle=false;
+    private boolean RMBToggle = false;
     private double angle;
     AffineTransform transform = new AffineTransform();
 
@@ -22,59 +22,60 @@ public class Missile implements Thing {
     public Missile(int xOrig, int yOrig, double angle) {
         try {
             image = ImageIO.read(this.getClass().getResource("tiamat rocket.png"));
-        } catch(IOException e) {}
+        } catch (IOException e) {
+        }
         this.angle = angle;
-        this.xVel = (int)Math.ceil(Math.cos(Math.toRadians(angle))*5);
-        this.yVel = (int)Math.ceil(Math.sin(Math.toRadians(angle))*5);
+        this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)) * 5);
+        this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)) * 5);
         this.xPos = xOrig;
         this.yPos = yOrig;
     }
 
-    public void flipVel(){
+    public void flipVel() {
         xVel = -xVel;
         yVel = -yVel;
     }
 
-    public int getDamage(){
+    public int getDamage() {
         return this.damage;
     }
 
-    public int getxPos(){
+    public int getxPos() {
         return this.xPos;
     }
 
-    public int getyPos(){
+    public int getyPos() {
         return this.yPos;
     }
 
     @Override
-    public void move(){
-        if (Main.mouse.getRMB()&&RMBToggle){
+    public void move() {
+        if (Main.mouse.getRMB() && RMBToggle) {
             this.flipVel();
-            RMBToggle=false;
+            RMBToggle = false;
         }
-        if (!Main.mouse.getRMB()){
-            RMBToggle=true;
+        if (!Main.mouse.getRMB()) {
+            RMBToggle = true;
         }
 
 
         ticker++;
-        if (ticker%25000==0) {
+        if (ticker % 25000 == 0) {
             xPos += xVel;
             yPos += yVel;
         }
 
-        if (ticker%1000000==0){
+        if (ticker % 1000000 == 0) {
             damage++;
             System.out.println(damage);
         }
 
-        transform.setToRotation(Math.toRadians(angle),xPos+anchorX,yPos+anchorY);
-        transform.translate(xPos,yPos);
+        transform.setToRotation(Math.toRadians(angle), xPos + anchorX, yPos + anchorY);
+        transform.translate(xPos, yPos);
     }
 
     @Override
-    public void paint(Graphics2D g){
+    public void paint(Graphics2D g) {
         g.drawImage(image, transform, null);
     }
 

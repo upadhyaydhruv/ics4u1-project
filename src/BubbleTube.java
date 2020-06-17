@@ -3,16 +3,18 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 public class BubbleTube implements HittableThing {
     Rectangle bubbleTubeRec;
     BufferedImage bubbleTube;
-    BubblePart[] bubbleParts= new BubblePart[4];
+    BubblePart[] bubbleParts = new BubblePart[4];
     Rainbow color = new Rainbow();
     HitBox hb;
-    BubbleTube(int x,int y){
+
+    BubbleTube(int x, int y) {
         bubbleTubeRec = new Rectangle(x, y, 108, 220);
-        for (int a=0; a<bubbleParts.length; a++){
-            bubbleParts[a]= new BubblePart(x+50,y+165,(a*44)+16);
+        for (int a = 0; a < bubbleParts.length; a++) {
+            bubbleParts[a] = new BubblePart(x + 50, y + 165, (a * 44) + 16);
         }
         try {
             bubbleTube = ImageIO.read(new File("res/bubbles/bubble tube.png"));
@@ -45,9 +47,9 @@ public class BubbleTube implements HittableThing {
         return (hb instanceof Player);
     }
 
-    static BufferedImage newBubble(){
+    static BufferedImage newBubble() {
         try {
-            switch ((int)(Math.random()*9)) {
+            switch ((int) (Math.random() * 9)) {
                 case 0:
                     return ImageIO.read(new File("res/bubbles/bubbles1.png"));
                 case 1:
@@ -72,6 +74,7 @@ public class BubbleTube implements HittableThing {
         }
         return null;
     }
+
     @Override
     public void move() {
         color.move();
@@ -79,14 +82,15 @@ public class BubbleTube implements HittableThing {
             bubblePart.move();
         }
     }
+
     @Override
     public void paint(Graphics2D thisFrame) {
         thisFrame.setColor(color.get());
-        thisFrame.fillRect(bubbleTubeRec.x+48,bubbleTubeRec.y+60,44,98);
-        for (BubblePart bubblePart : bubbleParts){
+        thisFrame.fillRect(bubbleTubeRec.x + 48, bubbleTubeRec.y + 60, 44, 98);
+        for (BubblePart bubblePart : bubbleParts) {
             bubblePart.paint(thisFrame);
         }
-        Screen.paint(bubbleTubeRec,bubbleTube,thisFrame);
+        Screen.paint(bubbleTubeRec, bubbleTube, thisFrame);
     }
 
     Level currentLevel;
@@ -96,28 +100,33 @@ public class BubbleTube implements HittableThing {
         this.currentLevel = currentLevel;
     }
 }
+
 class BubblePart {
-    int x,y,height,frame;
+    int x, y, height, frame;
     BufferedImage currentBubble;
-    BubblePart(int x, int y,int startHeight) {
-        this.x=x;
-        this.y=y;
-        height=startHeight;
-        currentBubble=BubbleTube.newBubble();
+
+    BubblePart(int x, int y, int startHeight) {
+        this.x = x;
+        this.y = y;
+        height = startHeight;
+        currentBubble = BubbleTube.newBubble();
     }
-    void move(){
+
+    void move() {
         frame++;
-        if(frame==10000) {
-            frame=0;
+        if (frame == 10000) {
+            frame = 0;
             height++;
             if (height == 170) reset();
         }
     }
-    void paint(Graphics2D thisFrame){
-        thisFrame.drawImage(currentBubble, x, y-height,44,44, null);
+
+    void paint(Graphics2D thisFrame) {
+        thisFrame.drawImage(currentBubble, x, y - height, 44, 44, null);
     }
-    void reset(){
-        height=0;
-        currentBubble=BubbleTube.newBubble();
+
+    void reset() {
+        height = 0;
+        currentBubble = BubbleTube.newBubble();
     }
 }

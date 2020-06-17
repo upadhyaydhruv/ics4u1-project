@@ -3,13 +3,11 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class Bomb implements HittableThing {
     RedGlow glow = new RedGlow();
     private BufferedImage bomb;
     private int x, y;
-    private int ticktick = 0;
     private final HittableThing.HitBox hb;
 
     public Bomb(int x, int y) {

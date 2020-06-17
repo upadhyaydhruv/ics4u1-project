@@ -3,19 +3,22 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 public class Smoke implements Thing {
-    int x,y;
-    SmokePart[] smokeParts= new SmokePart[10];
-    Smoke(int x,int y){
-        this.x=x;
-        this.y=y;
-        for (int a=0; a<smokeParts.length; a++){
-            smokeParts[a]= new SmokePart(x,y,a*15);
+    int x, y;
+    SmokePart[] smokeParts = new SmokePart[10];
+
+    Smoke(int x, int y) {
+        this.x = x;
+        this.y = y;
+        for (int a = 0; a < smokeParts.length; a++) {
+            smokeParts[a] = new SmokePart(x, y, a * 15);
         }
     }
-    static BufferedImage newSmoke(){
+
+    static BufferedImage newSmoke() {
         try {
-            switch ((int)(Math.random()*9)){
+            switch ((int) (Math.random() * 9)) {
                 case 0:
                     return ImageIO.read(new File("res/smoke/smoke1.png"));
                 case 1:
@@ -38,17 +41,19 @@ public class Smoke implements Thing {
         } catch (IOException e) {
             System.out.println("image not found!");
         }
-            return null;
+        return null;
     }
+
     @Override
     public void move() {
         for (SmokePart smokePart : smokeParts) {
             smokePart.move();
         }
     }
+
     @Override
     public void paint(Graphics2D thisFrame) {
-        for (SmokePart smokePart : smokeParts){
+        for (SmokePart smokePart : smokeParts) {
             smokePart.paint(thisFrame);
         }
     }
@@ -60,28 +65,33 @@ public class Smoke implements Thing {
         this.currentLevel = currentLevel;
     }
 }
+
 class SmokePart {
-    int x,y,height,frame;
+    int x, y, height, frame;
     BufferedImage currentSmoke;
-    SmokePart(int x, int y,int startHeight) {
-        this.x=x;
-        this.y=y;
-        height=startHeight;
-        currentSmoke=Smoke.newSmoke();
+
+    SmokePart(int x, int y, int startHeight) {
+        this.x = x;
+        this.y = y;
+        height = startHeight;
+        currentSmoke = Smoke.newSmoke();
     }
-    void move(){
+
+    void move() {
         frame++;
-        if(frame==100000) {
-            frame=0;
+        if (frame == 100000) {
+            frame = 0;
             height++;
             if (height > 150) reset();
         }
     }
-    void paint(Graphics2D thisFrame){
-        thisFrame.drawImage(currentSmoke, x, y-height,80,80, null);
+
+    void paint(Graphics2D thisFrame) {
+        thisFrame.drawImage(currentSmoke, x, y - height, 80, 80, null);
     }
-    void reset(){
-        height=0;
-        currentSmoke=Smoke.newSmoke();
+
+    void reset() {
+        height = 0;
+        currentSmoke = Smoke.newSmoke();
     }
 }

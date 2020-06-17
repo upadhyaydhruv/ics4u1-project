@@ -8,7 +8,6 @@ public class Bulldog implements HittableThing {
 
     BufferedImage pic, bulldogBall;
     //private BufferedImage resizedImage;
-    private int frame = 0;
     private int x, y, xVel = 1, yVel = 1, currentShot = 1;
     private final int anchorX = 15;
     private final int anchorY = 15;

@@ -26,12 +26,12 @@ public class Main extends JPanel {
     public static final boolean ENABLE_DEBUG_FEATURES = true; // DISABLE THIS BEFORE HANDING IN OR IF THERE IS TOO MUCH LAG
 
     //this needs to be public so that everything can use it without re-directing it
-    public static Mouse mouse=new Mouse();
+    public static Mouse mouse = new Mouse();
     public static Screen currentScreen = new Screen("menu");
     public static int playerType;
 
     public static Player newPlayer(int x, int y) {
-        switch (playerType){
+        switch (playerType) {
             case 1:
                 return new Esper(x, y);
             case 2:
@@ -42,7 +42,7 @@ public class Main extends JPanel {
         throw new RuntimeException("no such player type");
     }
 
-    public static Keyboard keyboard=new Keyboard();
+    public static Keyboard keyboard = new Keyboard();
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -114,7 +114,8 @@ public class Main extends JPanel {
             public void mouseMoved(MouseEvent event) {
                 mouse.update(event);
             }
-            public void mouseDragged(MouseEvent event){
+
+            public void mouseDragged(MouseEvent event) {
                 mouse.update(event);
             }
         });
@@ -128,7 +129,7 @@ public class Main extends JPanel {
     }
 
     //bobby: that try and catch is used to allow the screen class to stop and start the move class (its a long story)
-    public void paint (Graphics lastFrame) {
+    public void paint(Graphics lastFrame) {
         super.paint(lastFrame);
         Graphics2D thisFrame = (Graphics2D) lastFrame;
         try {

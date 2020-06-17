@@ -8,7 +8,6 @@ public class Machinegun implements HittableThing {
     private int xVel;
     private int yVel;
     private BufferedImage image;
-    private int ticker = 0;
     private double angle;
     private final int anchorX = 0;
     private final int anchorY = 0;
@@ -61,7 +60,6 @@ public class Machinegun implements HittableThing {
     public void paint(Graphics2D g) {
         g.drawImage(image, transform, null);
     }
-
 
     Level currentLevel;
 

@@ -3,16 +3,9 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Tiamat extends Player implements HittableThing {
     private BufferedImage image;
-    private int bulletPosX;
-    private int bulletPosY;
-    private Missile shooter;
-    private final boolean missileReleased = false;
-    private final boolean isClicked = false;
-    private int ticker = 0;
     private boolean isAlive = true;
     private HittableThing.HitBox hb;
 
@@ -59,13 +52,8 @@ public class Tiamat extends Player implements HittableThing {
         }
     }
 
-    private long time;
-
     @Override
     public void move() {
-        long lastTime = time;
-        long newTime = this.currentLevel.getCurrentMilliseconds();
-
         if (super.getHealth() <= 0) {
             isAlive = false;
         }
@@ -85,8 +73,6 @@ public class Tiamat extends Player implements HittableThing {
             g.drawImage(image, transform, null);
         }
     }
-
-
 
     Level currentLevel;
 
