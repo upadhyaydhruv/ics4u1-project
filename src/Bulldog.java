@@ -10,10 +10,11 @@ public class Bulldog implements HittableThing {
     BufferedImage pic, bulldogBall;
     //private BufferedImage resizedImage;
     private int frame = 0;
-    private int x, y, xVel, yVel, currentShot = 1;
+    private int x, y, xVel = 1, yVel = 1, currentShot = 1;
     private final int anchorX = 15;
     private final int anchorY = 15;
     private double angle;
+    private int ticker = 0;
     private AffineTransform transform = new AffineTransform();
     private int random;
     private int health = 3; //Can be changed if needed
@@ -94,45 +95,46 @@ public class Bulldog implements HittableThing {
 
     @Override
     public void move() {
-        long lastTime = time;
-        long newTime = this.currentLevel.getCurrentMilliseconds();
+            long lastTime = time;
+            long newTime = this.currentLevel.getCurrentMilliseconds();
 
-        if (player == null) {
-            throw new RuntimeException("please call updateTarget before move");
+            if (player == null) {
+                throw new RuntimeException("please call updateTarget before move");
+            }
+
+            angle = 450 - (Math.atan2(player.getxPos() - (x + anchorX), player.getyPos() - (y + anchorY)) * 180 / Math.PI);
+
+            // THIS ANGLE IS VERY BROKEN
+            if (ticker == 10000) {
+                if (player.getxPos() < x) {
+                    x -= xVel;
+                } else if (player.getxPos() > x) {
+                    x += xVel;
+                }
+
+                if (player.getyPos() < y) {
+                    y -= yVel;
+                } else if (player.getyPos() > y) {
+                    y += yVel;
+                }
+                ticker = 0;
+            } else {
+                ticker ++;
+            }
+            // TODO: stop from going off screen
+
+            if (newTime - lastTime > 2000) {
+                time = newTime;
+                if (Main.ENABLE_DEBUG_FEATURES)
+                    System.out.println("bulldog shot");
+                angle = (long) (450 - (Math.atan2(player.getxPos() - (x + 31), player.getyPos() - (y + 31)) * 180 / Math.PI));
+                this.currentLevel.addThing(new Blaster(bulldogBall, x, y, (long) angle, 20));
+            }
+
+            transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);
+            transform.translate(x, y);
+            hb.update(0, 0, transform);
         }
-
-        angle = 450 - (Math.atan2(player.getxPos() - (x + anchorX), player.getyPos() - (y + anchorY)) * 180 / Math.PI);
-        this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle))) * 5;
-        this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle))) * 5;
-
-        // THIS ANGLE IS VERY BROKEN
-
-        if (player.getxPos() < x) {
-            x -= xVel;
-        } else if (player.getxPos() > x) {
-            x += xVel;
-        }
-
-        if (player.getyPos() < y) {
-            y -= yVel;
-        } else if (player.getyPos() > y) {
-            y += yVel;
-        }
-
-        // TODO: stop from going off screen
-
-        if (newTime - lastTime > 2000) {
-            time = newTime;
-            if (Main.ENABLE_DEBUG_FEATURES)
-                System.out.println("bulldog shot");
-            angle = (long) (450 - (Math.atan2(player.getxPos() - (x + 31), player.getyPos() - (y + 31)) * 180 / Math.PI));
-            this.currentLevel.addThing(new Blaster(bulldogBall, x, y, (long)angle, 20));
-        }
-
-        transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);
-        transform.translate(x, y);
-        hb.update(0, 0, transform);
-    }
 
     @Override
     public void paint(Graphics2D g) {
