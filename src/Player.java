@@ -93,7 +93,7 @@ public abstract class Player implements HittableThing {
         if ((oldLMB != curLMB && curLMB) || shootTicker >= shootRate * 100) {
             shootTicker = 0;
             if (Main.mouse.getLMB()) {
-                System.out.println("test");
+                //System.out.println("test");
                 this.shoot();
             }
         }

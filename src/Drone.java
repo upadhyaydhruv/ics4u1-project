@@ -24,6 +24,7 @@ class Drone implements HittableThing {
         this.y = y;
         this.xVel = xVel;
         this.yVel = yVel;
+        hb = new HittableThing.HitBox(false, drone.getWidth(), drone.getHeight(), this.x, this.y, null);
     }
 
     @Override
@@ -92,7 +93,7 @@ class Drone implements HittableThing {
 
         this.transform.setToRotation(Math.toRadians(angle), x + 31, y + 31);
         this.transform.translate(x + 9, y + 21);
-        hb.update(0, 0, transform);
+        hb.update(this.x, this.y);
     }
 
     public void paint(Graphics2D g) {
