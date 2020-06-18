@@ -31,11 +31,18 @@ public class Level1 extends Level {
 
         this.addThing(player);
         this.addThing(levelTrigger);
-        this.addThing(new Bulldog(0,0));
-        this.addThing(new Bulldog(0,360));
-        this.addThing(new Bulldog(0,360));
+        this.addBulldog(0,720);
+        this.addBulldog(0,360);
+        this.addBulldog(0,360);
     }
 
+    private void addBulldog(int x, int y) {
+        Bulldog b = new Bulldog(x,y);
+        b.updateTarget(player);
+        this.addThing(b);
+    }
+
+     
     @Override
     public String moveLevel() {
         ticker ++;
@@ -49,9 +56,9 @@ public class Level1 extends Level {
             if (this.countThing(Bulldog.class, Drone.class) == 0) {
                 wave ++;
                 if (wave == 1) {
-                    this.addThing(new Bulldog(480,700));
-                    this.addThing(new Bulldog(0,360));
-                    this.addThing(new Bulldog(940,360));
+                    this.addBulldog(480,700);
+                    this.addBulldog(0,360);
+                    this.addBulldog(940,360);
                 }
                 else if (wave == 2) {
 

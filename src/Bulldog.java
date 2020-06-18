@@ -147,4 +147,3 @@ public class Bulldog implements HittableThing {
         this.currentLevel = currentLevel;
     }
 }
-
