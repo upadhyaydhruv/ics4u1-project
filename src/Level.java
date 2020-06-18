@@ -66,6 +66,25 @@ public abstract class Level {
         t.setCurrentLevel(null);
     }
 
+    // NOTE(Patrick): use like ... .countThing(Bulldog.class) or countThing(Bulldog.class, Bomb.class)
+    @SafeVarargs // all Class instances have isInstance (i.e. Class<>[] is safe)
+    public final int countThing(Class<? extends Thing> ...tts) {
+        int count = 0;
+        for (Thing t: things)
+            for (Class<? extends Thing> tt: tts)
+                if (tt.isInstance(t))
+                    count++;
+        return count;
+    }
+    @SafeVarargs
+    public final boolean hasThing(Class<? extends Thing> ...tts) {
+        for (Thing t: things)
+            for (Class<? extends Thing> tt: tts)
+                if (tt.isInstance(t))
+                    return true;
+        return false;
+    }
+
     public final void start() {
         this.resetBase();
         this.reset();
