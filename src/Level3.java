@@ -9,6 +9,7 @@ public class Level3 extends Level {
     Rectangle stackRec;
     Smoke smoke1;
     Smoke smoke2;
+    boolean levelComplete;
 
     int[] waveHold = new int[3];
 

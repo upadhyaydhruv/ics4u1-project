@@ -7,6 +7,7 @@ public class Level4 extends Level {
     Player player;
     Rectangle platRec;
     BubbleTube tube;
+    boolean levelComplete;
 
     int[] waveHold = new int[3];
 

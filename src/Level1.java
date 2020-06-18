@@ -10,6 +10,7 @@ public class Level1 extends Level {
     BubbleTube levelTrigger;
 
     int[] waveHold = new int[3];
+    boolean levelComplete;
 
     public Level1() {
         water = this.loadImage("res/background/storm water.png");
@@ -49,6 +50,7 @@ public class Level1 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
+
         healthBar.paint(g);
     }
 

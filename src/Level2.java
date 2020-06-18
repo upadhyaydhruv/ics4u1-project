@@ -8,6 +8,7 @@ public class Level2 extends Level {
     Rectangle platRec;
     Rectangle barrelsRec;
     Rectangle radarRec;
+    boolean levelComplete;
 
     int[] waveHold = new int[3];
 
