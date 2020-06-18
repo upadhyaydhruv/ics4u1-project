@@ -35,7 +35,7 @@ public class Level1 extends Level {
         Screen.waveMove(waveHold);
         if (levelTrigger.wasHit())
             return "L2";
-        if (player.getHealth() == 0)
+        if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
         return null;
     }
