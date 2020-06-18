@@ -31,15 +31,21 @@ public class Level1 extends Level {
 
         this.addThing(player);
         this.addThing(levelTrigger);
-        this.addBulldog(0,720);
+        this.addBulldog(480,700);
         this.addBulldog(0,360);
-        this.addBulldog(0,360);
+        this.addBulldog(940,360);
     }
 
     private void addBulldog(int x, int y) {
         Bulldog b = new Bulldog(x,y);
         b.setTarget(player);
         this.addThing(b);
+    }
+
+    private void addDrone(int x, int y) {
+        Drone d = new Drone(x,y,1,1);
+        d.setTarget(player);
+        this.addThing(d);
     }
 
      
@@ -52,16 +58,27 @@ public class Level1 extends Level {
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
 
-        if (ticker == 500) {
+        if (ticker == 500 && wave != -1) {
             if (this.countThing(Bulldog.class, Drone.class) == 0) {
                 wave ++;
+                if (Main.ENABLE_DEBUG_FEATURES)
+                    System.out.printf("New Wave %d\n", wave);
                 if (wave == 1) {
-                    this.addBulldog(480,700);
-                    this.addBulldog(0,360);
-                    this.addBulldog(940,360);
+                    this.addDrone(0,0);
+                    this.addDrone(0,500);
+                    this.addDrone(700,0);
+                    this.addDrone(700,500);
                 }
                 else if (wave == 2) {
-
+                    this.addDrone(480,0);
+                    this.addDrone(480,500);
+                    this.addBulldog(0,0);
+                    this.addBulldog(0,700);
+                    this.addBulldog(940,0);
+                    this.addBulldog(940,700);
+                }
+                else {
+                    wave = -1;
                 }
             }
             ticker = 0;
