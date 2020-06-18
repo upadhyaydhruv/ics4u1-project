@@ -12,6 +12,7 @@ public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of
         // this assumes rotation about the x-y corner
         private boolean hasTransform;
         private final AffineTransform transform = new AffineTransform();
+        Color dbgColor = Color.getHSBColor((float) Math.random(), 1, 1);
 
         public HitBox(boolean round, int w, int h) {
             update(round, w, h);
@@ -85,14 +86,23 @@ public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of
         }
 
         public void paintDebug(Graphics2D g) {
-            Shape s = this.getShape();
             Stroke os = g.getStroke();
             Paint op = g.getPaint();
-            g.setPaint(Color.RED);
+            Color oc = g.getColor();
+
+            Shape s = this.getShape();
+            g.setPaint(dbgColor);
             g.setStroke(new BasicStroke(4));
             g.draw(s);
-            g.setStroke(os);
+
+            Rectangle2D r = s.getBounds2D();
+            g.setColor(dbgColor);
+            g.setStroke(new BasicStroke(1));
+            g.drawRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight());
+
+            g.setColor(oc);
             g.setPaint(op);
+            g.setStroke(os);
         }
 
         public boolean outOfBounds() {
