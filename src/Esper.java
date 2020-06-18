@@ -12,18 +12,19 @@ public class Esper extends Player implements HittableThing {
     private AffineTransform transform = new AffineTransform();
     private final int anchorX = 5;
     private final int anchorY = 5;
-    private boolean isAlive = false;
+    private boolean isAlive = true;
 
     //anchor X and Y tell the program which pixel on esper.png it should rotate around
     // (this should be changed to fit different pictures in the future)
 
     public Esper(int x, int y) {
         super(x, y);
+
         esper = Thing.loadImage("esper.png");
         bullet = Thing.loadImage("esper shot.png");
 
-        super.setXVel(1);
-        super.setYVel(1);
+        super.setXVel(2);
+        super.setYVel(2);
         super.setHealth(3);
 
         // thomas, you need to get rid of the space around the esper, then set round to true
@@ -67,6 +68,8 @@ public class Esper extends Player implements HittableThing {
         }
         if (isAlive) {
             super.move();
+        } else {
+            return;
         }
 
         hb.update(this.getxPos(), this.getyPos());
@@ -84,7 +87,7 @@ public class Esper extends Player implements HittableThing {
 
         transform.setToRotation(Math.toRadians(angle), super.getxPos() + anchorX, super.getyPos() + anchorY);
         transform.translate(super.getxPos(), super.getyPos());
-        hb.update(0, 0, transform);
+        hb.update(super.getxPos(), super.getyPos(), transform);
     }
 
     public void paint(Graphics2D g) {

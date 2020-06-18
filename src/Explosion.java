@@ -26,7 +26,7 @@ public class Explosion implements HittableThing {
             }
             delay = 75;
         }
-        hb.update(min(this.x), min(this.y), (max(this.x) - min(this.x)), (max(this.y) - min(this.y)));
+        hb.update(min(this.x), min(this.y), (max(this.x) - min(this.x)) + pic.getWidth(), (max(this.y) - min(this.y) + pic.getHeight()));
     }
 
     @Override

@@ -19,8 +19,8 @@ public class Skuttler extends Player implements HittableThing {
         image = Thing.loadImage("skuttler.png");
         bullet = Thing.loadImage("skuttler shot C.png");
 
-        super.setXVel(1);
-        super.setYVel(1);
+        super.setXVel(2);
+        super.setYVel(2);
         super.setHealth(5);
         hb = new HittableThing.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
 
