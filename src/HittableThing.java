@@ -9,90 +9,75 @@ public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of
     class HitBox {
         private boolean round;
         private int x, y, w, h;
-        private AffineTransform transform; // this assumes rotation about the x-y corner
-
-        // because people forget simple things and there isn't time to reorganize stuff
-        private boolean everChecked;
-        private boolean everUpdated;
+        // this assumes rotation about the x-y corner
+        private boolean hasTransform;
+        private final AffineTransform transform = new AffineTransform();
 
         public HitBox(boolean round, int w, int h) {
-            this.round = round;
-            this.w = w;
-            this.h = h;
+            update(round, w, h);
         }
 
         public HitBox(boolean round, int w, int h, int x, int y, AffineTransform transform) {
-            this.round = round;
-            this.w = w;
-            this.h = h;
-            this.x = x;
-            this.y = y;
-            this.transform = transform;
+            update(round, w, h);
+            update(x, y, transform);
         }
 
         public void update(AffineTransform transform) {
-            this.everUpdated = true;
-            this.transform = transform;
+            // NOTE(Patrick): we need to copy it because repainting is done async, which means we might catch a hitbox
+            // while it the reference to the transform is being update by remove. but, instead of allocating a new one
+            // by clone()ing it each time (which will be slow due to Java's memory allocator and cause lag due to the
+            // GC), we update a private one.
+            this.hasTransform = transform != null;
+            if (this.hasTransform)
+                this.transform.setTransform(transform);
+            else
+                this.transform.setTransform(1, 0, 0, 1, 0, 0); // neutral transformation matrix
         }
 
         public void update(int x, int y) {
-            this.everUpdated = true;
             this.x = x;
             this.y = y;
         }
 
-        public void update(int x, int y, AffineTransform transform) {
-            this.everUpdated = true;
-            this.x = x;
-            this.y = y;
-            this.transform = transform;
+        public void update(boolean round, int w, int h) {
+            this.round = round;
+            this.w = w;
+            this.h = h;
         }
 
         public void update(int x, int y, int width, int height) {
-            this.everUpdated = true;
-            this.x = x;
-            this.y = y;
+            update(x, y);
             this.w = width;
             this.h = height;
         }
 
-        public void update(int x, int y, int width, int height, AffineTransform transform) {
-            this.everUpdated = true;
-            this.x = x;
-            this.y = y;
-            this.w = width;
-            this.h = height;
-            this.transform = transform;
+        public void update(int x, int y, AffineTransform transform) {
+            update(x, y);
+            update(transform);
+        }
+
+        public void update(int x, int y, int w, int h, AffineTransform transform) {
+            update(x, y, w, h);
+            update(transform);
         }
 
         public boolean isTouching(HitBox other) {
-            if (this.everChecked && !this.everUpdated) {
-            }//throw new RuntimeException("did you forget to actually update the hitbox?!?");
-            this.everChecked = true;
-
             if (other == null) return false;
             return other.getShape().intersects(this.getShape().getBounds2D());
         }
 
         private Shape getShape() {
-            if (this.round) {
-                Shape shape = new Ellipse2D.Double(this.x, this.y, this.w, this.h);
-                if (transform != null) {
-                    shape = transform.createTransformedShape(shape);
-                }
-                return shape;
-            } else {
-                Shape shape = new Rectangle(this.x, this.y, this.w, this.h);
-                if (transform != null) {
-                    shape = transform.createTransformedShape(shape);
-                }
-                return shape;
-            }
+            Shape shape = this.round
+                    ? new Ellipse2D.Double(this.x, this.y, this.w, this.h)
+                    : new Rectangle(this.x, this.y, this.w, this.h);
+            if (this.hasTransform)
+                shape = transform.createTransformedShape(shape);
+            return shape;
         }
 
         public String toString() {
             String b = "";
-            if (this.transform != null) {
+            if (this.hasTransform) {
                 Rectangle2D d = this.getShape().getBounds2D();
                 b = String.format("[transformed=(%d,%d)+(%d,%d)]", (int) d.getX(), (int) d.getY(), (int) d.getWidth(), (int) d.getHeight());
             }
