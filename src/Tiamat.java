@@ -15,14 +15,13 @@ public class Tiamat extends Player implements HittableThing {
 
 
     public Tiamat(int x, int y) {
-        super(x, y);
+        super(x, y,5);
 
         image = Thing.loadImage("tiamat.png");
 
         //this.sword = sword;
         super.setXVel(1);
         super.setYVel(1);
-        super.setHealth(5);
         this.setShootRate(1000);
         hb = new HittableThing.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
     }

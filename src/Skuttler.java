@@ -14,14 +14,13 @@ public class Skuttler extends Player implements HittableThing {
 
 
     public Skuttler(int x, int y) {
-        super(x, y);
+        super(x, y, 5);
 
         image = Thing.loadImage("skuttler.png");
         bullet = Thing.loadImage("skuttler shot C.png");
 
         super.setXVel(2);
         super.setYVel(2);
-        super.setHealth(5);
         hb = new HittableThing.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
 
         this.setShootRate(1000);
