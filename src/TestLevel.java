@@ -14,6 +14,7 @@ public class TestLevel extends Level {
     private Player player;
     private Drone drone;
     private Bulldog bulldog;
+    private HealthBar healthBar;
 
     @Override
     public void createThings() {
@@ -52,6 +53,7 @@ public class TestLevel extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
+        healthBar.paint(g);
     }
 
     @Override
