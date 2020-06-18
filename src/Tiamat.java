@@ -26,7 +26,9 @@ public class Tiamat extends Player implements HittableThing {
     }
 
     public void shoot() {
-        this.currentLevel.addThing(new Missile(super.getxPos(), super.getyPos(), this.angle));
+        if (!this.currentLevel.hasThing(Missile.class)) {
+            this.currentLevel.addThing(new Missile(super.getxPos(), super.getyPos(), this.angle));
+        }
     }
 
     @Override
@@ -62,8 +64,7 @@ public class Tiamat extends Player implements HittableThing {
         transform.setToRotation(Math.toRadians(angle), super.getxPos() + anchorX, super.getyPos() + anchorY);
         transform.translate(super.getxPos(), super.getyPos());
 
-        if (Main.mouse.getLMB() && this.currentLevel.countThing(Missile.class) == 0) {
-            System.out.println(this.currentLevel.countThing(Missile.class));
+        if (Main.mouse.getLMB()) {
             this.shoot();
         }
         hb.update(0, 0, transform);
