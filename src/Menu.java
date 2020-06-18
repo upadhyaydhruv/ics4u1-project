@@ -34,10 +34,10 @@ public class Menu {
             Xoffset = Main.mouse.getX() / 24;
             Yoffset = Main.mouse.getY() / 24;
         }
-        if(mouseToggle){
-            mouseToggle=false;
-            if (Main.mouse.getLMB()&&mouseToggle) {
+        if(!mouseToggle&&!Main.mouse.getLMB())mouseToggle=true;
 
+            if (Main.mouse.getLMB()&&mouseToggle) {
+                mouseToggle=false;
                 if (Main.mouse.intersects(startButtonRec)) {
                     nextScreen = "shipSelect";
                 }
@@ -51,10 +51,7 @@ public class Menu {
                     nextScreen = "howToPlay";
                 }
             }
-        }
-        else{
-            mouseToggle=true;
-        }
+
         return nextScreen;
     }
 
