@@ -53,7 +53,7 @@ public class Blaster implements HittableThing {
         this.transform.translate(x, y);
         this.hb.update(0, 0, transform); // zero since the transform already includes the damn rotation
 
-        if (this.hb.outOfBounds()) {
+        if (hb.outOfBounds()) {
             if (Main.ENABLE_DEBUG_FEATURES)
                 System.out.println("removing blaster because out of bounds");
             this.currentLevel.removeThing(this);
