@@ -16,11 +16,14 @@ public class HealthBar {
         double percent = ((double)player.getHealth() / (double)player.getMaxHealth());
         hue = (float)percent * (100.0f / 255.0f);
         Color myRGBColor = Color.getHSBColor(hue, saturation, brightness);
-        System.out.println(percent);
         g.setColor(Color.black);
             g.fillRect(5, 5, 200, 20);
         g.setColor(myRGBColor);
             g.fillRect(5,5,(int)(percent * 200),20);
+            if (player.getHealth() <= 0) {
+                g.setFont(new Font(null, Font.BOLD, 20));
+                g.drawString("DEAD", 75,22);
+            }
 
     }
 }
