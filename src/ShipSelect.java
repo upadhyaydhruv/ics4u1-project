@@ -64,7 +64,7 @@ public class ShipSelect {
                 nextScreen = "levelSelect";
             }
         }
-        if(count==100){
+        if(count==20000){
             count=0;
             if (state != 0) {
                 if(height!=0)
