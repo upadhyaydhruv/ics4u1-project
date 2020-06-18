@@ -8,6 +8,8 @@ public class Level1 extends Level {
     Rectangle platRec;
     Rectangle barrelsRec;
     BubbleTube levelTrigger;
+    int wave = 1;
+    int ticker = 0;
 
     int[] waveHold = new int[3];
     boolean levelComplete;
