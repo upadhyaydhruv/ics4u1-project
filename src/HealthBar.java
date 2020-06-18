@@ -1,6 +1,4 @@
 import java.awt.*;
-import java.awt.geom.AffineTransform;
-import java.awt.image.BufferedImage;
 public class HealthBar {
     Player player;
     float hue = 1.0f; //hue
