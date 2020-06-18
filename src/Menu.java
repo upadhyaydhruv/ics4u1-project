@@ -34,19 +34,22 @@ public class Menu {
             Xoffset = Main.mouse.getX() / 24;
             Yoffset = Main.mouse.getY() / 24;
         }
-        if (Main.mouse.getLMB()&&mouseToggle) {
+        if(mouseToggle){
             mouseToggle=false;
-            if (Main.mouse.intersects(startButtonRec)) {
-                nextScreen = "shipSelect";
-            }
-            else if (Main.mouse.intersects(creditsButtonRec)) {
-                nextScreen = "credits";
-            }
-            else if (Main.mouse.intersects(settingsButtonRec)) {
-                nextScreen = "settings";
-            }
-            else if (Main.mouse.intersects(howToButtonRec)) {
-                nextScreen = "howToPlay";
+            if (Main.mouse.getLMB()&&mouseToggle) {
+
+                if (Main.mouse.intersects(startButtonRec)) {
+                    nextScreen = "shipSelect";
+                }
+                else if (Main.mouse.intersects(creditsButtonRec)) {
+                    nextScreen = "credits";
+                }
+                else if (Main.mouse.intersects(settingsButtonRec)) {
+                    nextScreen = "settings";
+                }
+                else if (Main.mouse.intersects(howToButtonRec)) {
+                    nextScreen = "howToPlay";
+                }
             }
         }
         else{
