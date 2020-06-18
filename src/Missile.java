@@ -61,10 +61,15 @@ public class Missile implements Thing {
                 yPos += yVel;
             }
 
-            if (ticker % 10000000 == 0) {
+            if (ticker % 1000000 == 0) {
                 damage++;
                 System.out.println(damage);
             }
+        } else {
+            this.currentLevel.addThing(new Explosion(this.xPos, this.yPos));
+            this.currentLevel.removeThing(this);
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println("bomb exploded, removed from level (don't use it anymore)");
         }
 
         transform.setToRotation(Math.toRadians(angle), xPos + anchorX, yPos + anchorY);

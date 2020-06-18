@@ -119,7 +119,6 @@ public class Bulldog implements HittableThing {
         } else {
             ticker++;
         }
-        // TODO: stop from going off screen
 
         if (newTime - lastTime > 2000) {
             time = newTime;
