@@ -62,6 +62,7 @@ public class Level2 extends Level {
                 wave++;
                 if (Main.ENABLE_DEBUG_FEATURES)
                     System.out.printf("New Wave %d\n", wave);
+
                 if (wave == 1) {
                     player.decreaseHealth(-1);
                     this.addBulldog(700, 0);
@@ -70,16 +71,20 @@ public class Level2 extends Level {
                     Bomb bomb2 = new Bomb(100, 100);
                     this.addThing(bomb1);
                     this.addThing(bomb2);
+
                 } else if (wave == 2) {
                     player.decreaseHealth(-1);
                     this.addDrone(480, 0);
                     this.addDrone(480, 500);
                     this.addDrone(0, 0);
                     this.addDrone(0, 700);
+
                 } else {
                     wave = -1;
+                    this.levelComplete = true;
                 }
             }
+
             ticker = 0;
         }
         return null;
