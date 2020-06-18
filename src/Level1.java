@@ -38,9 +38,9 @@ public class Level1 extends Level {
 
         this.addThing(player);
         this.addThing(levelTrigger);
-        this.addBulldog(480,700);
-        this.addBulldog(0,360);
-        this.addBulldog(940,360);
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
     }
 
     private void addBulldog(int x, int y) {
@@ -77,18 +77,18 @@ public class Level1 extends Level {
                     System.out.printf("New Wave %d\n", wave);
                 if (wave == 1) {
                     this.player.setHealth(player.getHealth() + 1);
-                    this.addDrone(0,0);
-                    this.addDrone(0,500);
-                    this.addDrone(700,0);
-                    this.addDrone(700,500);
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                 }
                 else if (wave == 2) {
                     this.addBomb();
                     this.player.setHealth(player.getHealth() + 1);
-                    this.addDrone(480,0);
-                    this.addBulldog(0,0);
-                    this.addBulldog(940,700);
-                    this.addBulldog(0,700);
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                 }
                 else {
                     wave = -1;
