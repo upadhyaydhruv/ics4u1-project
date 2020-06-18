@@ -34,7 +34,7 @@ class Glow {
     int frameSkip = 0, state = 0;
 
     void move() {
-        if (frameSkip == 300000) {
+        if (frameSkip == 10000) {
             frameSkip = 0;
             if (state < 255) {
                 color = new Color(0, color.getGreen() - 1, color.getBlue() + 1);
