@@ -1,28 +1,35 @@
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Level1 extends Level {
-    private BufferedImage water, plat, barrels;
+    private BufferedImage water, plat, barrels, arrow;
 
-    private Player player;
-    private Rectangle platRec;
-    private Rectangle barrelsRec;
-    private BubbleTube levelTrigger;
-    private int wave = 0;
-    private int ticker = 0;
+    Player player;
+    Rectangle platRec;
+    Rectangle barrelsRec;
+    BubbleTube levelTrigger;
+    int wave;
+    int ticker;
+    private AffineTransform arrowTransform;
 
     int[] waveHold = new int[3];
-    boolean levelComplete;
 
     public Level1() {
+        arrowTransform = new AffineTransform();
+        arrowTransform.rotate(2.36);
+        arrowTransform.translate(25,350);
         water = this.loadImage("res/background/storm water.png");
         plat = this.loadImage("res/background/level 1 plat.png");
         barrels = this.loadImage("res/barrels.png");
+        arrow = this.loadImage("next arrow.png");
     }
     private HealthBar healthBar;
 
     @Override
     public void createThings() {
+        this.wave = 0;
+        this.ticker = 0;
         player = Main.newPlayer(435, 170);
         levelTrigger = new BubbleTube(30, 100);
         barrelsRec = new Rectangle(253, 460, 100, 140);
@@ -48,12 +55,17 @@ public class Level1 extends Level {
         this.addThing(d);
     }
 
+    private void addBomb() {
+        Bomb bo = new Bomb();
+        this.addThing(bo);
+    }
+
      
     @Override
     public String moveLevel() {
         ticker ++;
         Screen.waveMove(waveHold);
-        if (levelTrigger.wasHit())
+        if (levelTrigger.wasHit() && wave == -1)
             return "L2";
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
@@ -64,18 +76,19 @@ public class Level1 extends Level {
                 if (Main.ENABLE_DEBUG_FEATURES)
                     System.out.printf("New Wave %d\n", wave);
                 if (wave == 1) {
+                    this.player.setHealth(player.getHealth() + 1);
                     this.addDrone(0,0);
                     this.addDrone(0,500);
                     this.addDrone(700,0);
                     this.addDrone(700,500);
                 }
                 else if (wave == 2) {
+                    this.addBomb();
+                    this.player.setHealth(player.getHealth() + 1);
                     this.addDrone(480,0);
-                    this.addDrone(480,500);
                     this.addBulldog(0,0);
-                    this.addBulldog(0,700);
-                    this.addBulldog(940,0);
                     this.addBulldog(940,700);
+                    this.addBulldog(0,700);
                 }
                 else {
                     wave = -1;
@@ -95,7 +108,9 @@ public class Level1 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
-
+        if (wave == -1) {
+            g.drawImage(arrow, arrowTransform,null);
+        }
         healthBar.paint(g);
     }
 
