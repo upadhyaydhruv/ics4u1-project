@@ -21,6 +21,7 @@ public class TestLevel extends Level {
         this.player = Main.newPlayer(200, 200);
         this.drone = new Drone(400, 400, 1, 1);
         this.bulldog = new Bulldog(100, 100);
+        this.healthBar = new HealthBar(player);
 
         this.addThing(player);
         this.addThing(drone);

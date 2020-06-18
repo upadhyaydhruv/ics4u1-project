@@ -3,10 +3,13 @@ public abstract class Player implements HittableThing {
     private int health;
     private int shootRate = 1000;
     boolean oldLMB;
+    int maxHealth;
 
-    public Player(int xOrig, int yOrig) {
+    public Player(int xOrig, int yOrig, int maxHealth) {
         this.xPos = xOrig;
         this.yPos = yOrig;
+        this.maxHealth = maxHealth;
+        this.health = maxHealth;
     }
 
     public Player() {
@@ -20,9 +23,13 @@ public abstract class Player implements HittableThing {
     public int getHealth() {
         return this.health;
     }
+    public int getMaxHealth() {return this.maxHealth;}
 
     public void setHealth(int healthIn) {
-        this.health = healthIn;
+        if (healthIn > maxHealth) {
+            this.health = maxHealth;
+        }
+        else { this.health = healthIn; }
     }
 
     public int getxPos() {
