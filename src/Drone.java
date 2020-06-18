@@ -3,17 +3,16 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 class Drone implements HittableThing {
-    private int x, y, xVel, yVel, currentShot = 1, delayCount1 = 12500;
+    private int x, y, xVel, yVel;
     private long angle;
     private BufferedImage drone, shooter, shot;
     private HittableThing.HitBox hb = new HittableThing.HitBox(false, 0, 0);
     private int health = 2;
     AffineTransform transform = new AffineTransform();
 
-    private int targetX;
-    private int targetY;
-
     private int DIAMETER = 63;
+
+    Player target;
 
     public Drone(int x, int y, int xVel, int yVel) {
         drone = Thing.loadImage("drone/drone.png");
@@ -50,9 +49,8 @@ class Drone implements HittableThing {
         this.health -= diff;
     }
 
-    public void updateTarget(int x, int y) {
-        this.targetX = x;
-        this.targetY = y;
+    public void setTarget(Player target) {
+        this.target = target;
     }
 
     private long shootTime;
@@ -84,7 +82,7 @@ class Drone implements HittableThing {
         }
 
         //bobby sez: this updates the gun :P
-        angle = (long) (450 - (Math.atan2(targetX - (x + 31), targetY - (y + 31)) * 180 / Math.PI));
+        angle = (long) (450 - (Math.atan2(this.target.getxPos() - (x + 31), this.target.getyPos() - (y + 31)) * 180 / Math.PI));
 
         if (currentTime - shootTime > 3000) {
             shootTime = currentTime;

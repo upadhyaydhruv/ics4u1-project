@@ -38,7 +38,7 @@ public class Level1 extends Level {
 
     private void addBulldog(int x, int y) {
         Bulldog b = new Bulldog(x,y);
-        b.updateTarget(player);
+        b.setTarget(player);
         this.addThing(b);
     }
 

@@ -57,7 +57,7 @@ public class Bulldog implements HittableThing {
         hb = new HittableThing.HitBox(false, pic.getWidth(), pic.getHeight(), this.x, this.y, null);
     }
 
-    public void updateTarget(Player p) {
+    public void setTarget(Player p) {
         this.player = p;
     }
 
