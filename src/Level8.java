@@ -27,7 +27,7 @@ public class Level8 extends Level {
 
     @Override
     public String moveLevel() {
-        if (player.getHealth() == 0)
+        if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
         return null;
     }

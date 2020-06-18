@@ -37,7 +37,7 @@ public class Level3 extends Level {
     @Override
     public String moveLevel() {
         Screen.waveMove(waveHold);
-        if (player.getHealth() == 0)
+        if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
         return null;
     }

@@ -63,7 +63,8 @@ public class Missile implements Thing {
 
         if (ticker % 1000000 == 0) {
             damage++;
-            System.out.println(damage);
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println(damage);
         }
 
         transform.setToRotation(Math.toRadians(angle), xPos + anchorX, yPos + anchorY);

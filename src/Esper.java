@@ -34,10 +34,6 @@ public class Esper extends Player implements HittableThing {
 
     @Override
     public void shoot() {
-        if (this.currentLevel == null) {
-            System.out.println("currentlevel null");
-            return;
-        }
         this.currentLevel.addThing(new Machinegun(super.getxPos(), super.getyPos(), bullet, angle));
     }
 

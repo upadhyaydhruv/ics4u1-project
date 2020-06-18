@@ -32,7 +32,7 @@ public class TestLevel extends Level {
 
     @Override
     public String moveLevel() {
-        if (player.getHealth() == 0)
+        if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
 
         drone.updateTarget(this.player.getxPos(), this.player.getyPos());

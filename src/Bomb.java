@@ -20,7 +20,7 @@ public class Bomb implements HittableThing {
     }
 
     public Bomb() {
-        this((int) (Math.random() * 960), (int) (Math.random() * 720));
+        this((int) (Math.random() * 950), (int) (Math.random() * 700));
     }
 
     @Override
