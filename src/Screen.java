@@ -166,6 +166,6 @@ public class Screen {
     }
 
     public static boolean outOfBounds(int x, int y, int w, int h) {
-        return (x+w < 0 || x > 960 || y+h < 0 || y > 720);
+        return (x+w <= 0 || x >= 960 || y+h <= 0 || y >= 720);
     }
 }

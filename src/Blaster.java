@@ -14,8 +14,10 @@ public class Blaster implements HittableThing {
     private int speed;
 
     public Blaster(BufferedImage shot, int x, int y, long angle, int speed) {
-        if (Main.ENABLE_DEBUG_FEATURES)
-            System.out.println("new blaster was shot");
+        if (Main.ENABLE_DEBUG_FEATURES) {
+            StackTraceElement[] st = Thread.currentThread().getStackTrace();
+            System.out.printf("new blaster was shot by %s\n", st[2].getClassName());
+        }
 
         this.shot = shot;
 
@@ -46,6 +48,9 @@ public class Blaster implements HittableThing {
 
     @Override
     public void move() {
+        if (Main.ENABLE_DEBUG_FEATURES && speed == 0)
+            throw new RuntimeException("WHY IS THE BLASTER NOT MOVING!?!");
+
         x += Math.cos(Math.toRadians(angle)) * speed;
         y += Math.sin(Math.toRadians(angle)) * speed;
 
