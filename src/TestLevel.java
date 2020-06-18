@@ -23,6 +23,9 @@ public class TestLevel extends Level {
         this.bulldog = new Bulldog(100, 100);
         this.healthBar = new HealthBar(player);
 
+        this.drone.setTarget(this.player);
+        this.bulldog.setTarget(this.player);
+
         this.addThing(player);
         this.addThing(drone);
         this.addThing(bulldog);
@@ -34,9 +37,6 @@ public class TestLevel extends Level {
     public String moveLevel() {
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
-
-        drone.updateTarget(this.player.getxPos(), this.player.getyPos());
-        bulldog.updateTarget(this.player);
 
         long currentTime = this.getCurrentMilliseconds();
         if (currentTime - lastBombTime > 5000) {

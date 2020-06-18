@@ -1,5 +1,6 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -64,6 +65,10 @@ public abstract class Level {
         if (t instanceof HittableThing)
             this.hittableThings.remove((HittableThing)t);
         t.setCurrentLevel(null);
+    }
+
+    public final List<Thing> getAllThings() { // do not change
+        return Collections.unmodifiableList(this.things);
     }
 
     // NOTE(Patrick): use like ... .countThing(Bulldog.class) or countThing(Bulldog.class, Bomb.class)

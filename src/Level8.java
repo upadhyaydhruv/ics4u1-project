@@ -6,6 +6,7 @@ public class Level8 extends Level {
 
     Rectangle platRec;
     Rectangle stoneRec;
+    boolean levelComplete;
 
     Player player;
 

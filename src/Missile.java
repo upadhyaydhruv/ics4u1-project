@@ -11,7 +11,7 @@ public class Missile implements Thing {
     private int yVel;
     private final int anchorX = 30;
     private final int anchorY = 30;
-    private int ticker = 0; //This is to slow done speed of moving graphics objects using modular arithmetic
+    private int ticker = 0; //This is to slow down speed of moving graphics objects using modular arithmetic
     private boolean RMBToggle = false;
     private double angle;
     AffineTransform transform = new AffineTransform();
@@ -21,8 +21,8 @@ public class Missile implements Thing {
         image = Thing.loadImage("tiamat rocket.png");
 
         this.angle = angle;
-        this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)) * 5);
-        this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)) * 5);
+        this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)) * 8);
+        this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)) * 8);
         this.xPos = xOrig;
         this.yPos = yOrig;
     }
@@ -54,17 +54,22 @@ public class Missile implements Thing {
             RMBToggle = true;
         }
 
+        if (Main.mouse.getLMB()) {
+            ticker++;
+            if (ticker % 3750 == 0) {
+                xPos += xVel;
+                yPos += yVel;
+            }
 
-        ticker++;
-        if (ticker % 25000 == 0) {
-            xPos += xVel;
-            yPos += yVel;
-        }
-
-        if (ticker % 1000000 == 0) {
-            damage++;
-            if (Main.ENABLE_DEBUG_FEATURES)
+            if (ticker % 1000000 == 0) {
+                damage++;
                 System.out.println(damage);
+            }
+        } else {
+            this.currentLevel.addThing(new Explosion(this.xPos, this.yPos));
+            this.currentLevel.removeThing(this);
+            if (Main.ENABLE_DEBUG_FEATURES)
+                System.out.println("bomb exploded, removed from level (don't use it anymore)");
         }
 
         transform.setToRotation(Math.toRadians(angle), xPos + anchorX, yPos + anchorY);

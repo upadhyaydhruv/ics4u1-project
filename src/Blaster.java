@@ -66,7 +66,7 @@ public class Blaster implements HittableThing {
         this.transform.translate(x, y);
 
         AffineTransform fake = (AffineTransform) this.transform.clone();
-        fake.scale(1.7, 1.7); // cheat with slight inaccuracies with the movement angle (because x,y are ints) by increasing the hitbox size
+        fake.scale(1.8, 1.8);
         this.hb.update(0, 0, fake);
 
         if (hb.outOfBounds()) {

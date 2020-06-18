@@ -19,7 +19,6 @@ public class Tiamat extends Player implements HittableThing {
 
         image = Thing.loadImage("tiamat.png");
 
-        //this.sword = sword;
         super.setXVel(1);
         super.setYVel(1);
         this.setShootRate(1000);
@@ -27,7 +26,9 @@ public class Tiamat extends Player implements HittableThing {
     }
 
     public void shoot() {
-        throw new RuntimeException("shooting a missile not implemented for tiamat");
+        if (!this.currentLevel.hasThing(Missile.class)) {
+            this.currentLevel.addThing(new Missile(super.getxPos(), super.getyPos(), this.angle));
+        }
     }
 
     @Override
@@ -62,6 +63,10 @@ public class Tiamat extends Player implements HittableThing {
 
         transform.setToRotation(Math.toRadians(angle), super.getxPos() + anchorX, super.getyPos() + anchorY);
         transform.translate(super.getxPos(), super.getyPos());
+
+        if (Main.mouse.getLMB() && this.isAlive) {
+            this.shoot();
+        }
         hb.update(0, 0, transform);
     }
 

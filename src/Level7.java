@@ -6,7 +6,7 @@ public class Level7 extends Level {
 
     Rectangle platRec;
     Rectangle barrelsRec;
-
+    boolean levelComplete;
     int[] waveHold = new int[3];
 
     Player player;

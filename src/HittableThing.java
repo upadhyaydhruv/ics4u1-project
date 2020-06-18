@@ -7,11 +7,17 @@ import java.util.List;
 
 public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of the things relevant to each thing
     class HitBox {
-        private boolean round;
         private int x, y, w, h;
+
         // this assumes rotation about the x-y corner
         private boolean hasTransform;
         private final AffineTransform transform = new AffineTransform();
+        Color dbgColor = Color.getHSBColor((float) Math.random(), 1, 1);
+
+        // NOTE(Patrick): pre-allocating the shapes improves performance
+        private boolean round;
+        private Rectangle2D rect = new Rectangle2D.Double();
+        private Ellipse2D ellp = new Ellipse2D.Double();
 
         public HitBox(boolean round, int w, int h) {
             update(round, w, h);
@@ -37,18 +43,21 @@ public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of
         public void update(int x, int y) {
             this.x = x;
             this.y = y;
+            rect.setRect(x, y, this.w, this.h);
+            ellp.setFrame(x, y, this.w, this.h);
         }
 
         public void update(boolean round, int w, int h) {
             this.round = round;
             this.w = w;
             this.h = h;
+            rect.setRect(this.x, this.y, w, h);
+            ellp.setFrame(this.x, this.y, w, h);
         }
 
-        public void update(int x, int y, int width, int height) {
+        public void update(int x, int y, int w, int h) {
             update(x, y);
-            this.w = width;
-            this.h = height;
+            update(this.round, w, h);
         }
 
         public void update(int x, int y, AffineTransform transform) {
@@ -67,9 +76,7 @@ public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of
         }
 
         private Shape getShape() {
-            Shape shape = this.round
-                    ? new Ellipse2D.Double(this.x, this.y, this.w, this.h)
-                    : new Rectangle(this.x, this.y, this.w, this.h);
+            Shape shape = this.round ? ellp : rect;
             if (this.hasTransform)
                 shape = transform.createTransformedShape(shape);
             return shape;
@@ -85,14 +92,23 @@ public interface HittableThing extends Thing { // pass an ArrayList<Hittable> of
         }
 
         public void paintDebug(Graphics2D g) {
-            Shape s = this.getShape();
             Stroke os = g.getStroke();
             Paint op = g.getPaint();
-            g.setPaint(Color.RED);
+            Color oc = g.getColor();
+
+            Shape s = this.getShape();
+            g.setPaint(dbgColor);
             g.setStroke(new BasicStroke(4));
             g.draw(s);
-            g.setStroke(os);
+
+            Rectangle2D r = s.getBounds2D();
+            g.setColor(dbgColor);
+            g.setStroke(new BasicStroke(1));
+            g.drawRect((int)r.getX(), (int)r.getY(), (int)r.getWidth(), (int)r.getHeight());
+
+            g.setColor(oc);
             g.setPaint(op);
+            g.setStroke(os);
         }
 
         public boolean outOfBounds() {

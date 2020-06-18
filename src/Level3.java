@@ -4,11 +4,14 @@ import java.awt.image.BufferedImage;
 public class Level3 extends Level {
     private BufferedImage water, plat, stack;
 
-    Player player;
-    Rectangle platRec;
-    Rectangle stackRec;
-    Smoke smoke1;
-    Smoke smoke2;
+    private Player player;
+    private Rectangle platRec;
+    private Rectangle stackRec;
+    private Smoke smoke1;
+    private Smoke smoke2;
+    boolean levelComplete;
+    private int ticker = 0;
+    private int wave = 0;
 
     int[] waveHold = new int[3];
 
@@ -30,8 +33,25 @@ public class Level3 extends Level {
         this.healthBar = new HealthBar(player);
 
         this.addThing(player);
+        this.addDrone(400, 200);
+        this.addDrone(100, 360);
+        this.addBulldog(300, 360);
+        this.addBulldog(220, 300);
+
         this.addThing(smoke1);
         this.addThing(smoke2);
+    }
+
+    private void addBulldog(int x, int y) {
+        Bulldog b = new Bulldog(x, y);
+        b.setTarget(player);
+        this.addThing(b);
+    }
+
+    private void addDrone(int x, int y) {
+        Drone d = new Drone(x, y, 1, 1);
+        d.setTarget(player);
+        this.addThing(d);
     }
 
     @Override
@@ -39,6 +59,48 @@ public class Level3 extends Level {
         Screen.waveMove(waveHold);
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
+
+        if (ticker == 500 && wave != -1) {
+            if (this.countThing(Bulldog.class, Drone.class) == 0) {
+                wave++;
+                if (Main.ENABLE_DEBUG_FEATURES)
+                    System.out.printf("New Wave %d\n", wave);
+
+                if (wave == 1) {
+                    player.decreaseHealth(-1);
+                    this.addBulldog(700, 0);
+                    this.addBulldog(700, 500);
+                    Bomb bomb1 = new Bomb(300, 300);
+                    Bomb bomb2 = new Bomb(100, 100);
+                    Bomb bomb3 = new Bomb(200, 200);
+                    this.addThing(bomb1);
+                    this.addThing(bomb2);
+                    this.addThing(bomb3);
+
+                } else if (wave == 2) {
+                    player.decreaseHealth(-1);
+                    this.addDrone(200, 250);
+                    this.addDrone(150, 300);
+                    this.addDrone(300, 400);
+                    this.addDrone(250, 350);
+
+                } else if (wave == 3) {
+                    player.decreaseHealth(-1);
+                    Bomb bomb4 = new Bomb(150, 150);
+                    this.addThing(bomb4);
+                    this.addBulldog(200, 140);
+                    this.addDrone(230, 400);
+                    this.addDrone(350, 300);
+                    this.addBulldog(450, 300);
+                    this.addDrone(14, 16);
+
+                } else {
+                    wave = -1;
+                    this.levelComplete = true;
+                }
+            }
+            ticker = 0;
+        }
         return null;
     }
 
