@@ -103,7 +103,6 @@ public class Bulldog implements HittableThing {
 
         angle = 450 - (Math.atan2(player.getxPos() - (x + anchorX), player.getyPos() - (y + anchorY)) * 180 / Math.PI);
 
-        // THIS ANGLE IS VERY BROKEN
         if (ticker == 10000) {
             if (player.getxPos() < x) {
                 x -= xVel;
@@ -127,7 +126,7 @@ public class Bulldog implements HittableThing {
             if (Main.ENABLE_DEBUG_FEATURES)
                 System.out.println("bulldog shot");
             angle = (long) (450 - (Math.atan2(player.getxPos() - (x + 31), player.getyPos() - (y + 31)) * 180 / Math.PI));
-            this.currentLevel.addThing(new Blaster(bulldogBall, x, y, (long) angle, 3));
+            this.currentLevel.addThing(new Blaster(bulldogBall, x, y, (long) angle, 1));
         }
 
         transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);

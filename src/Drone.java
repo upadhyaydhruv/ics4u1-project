@@ -86,7 +86,7 @@ class Drone implements HittableThing {
         //bobby sez: this updates the gun :P
         angle = (long) (450 - (Math.atan2(targetX - (x + 31), targetY - (y + 31)) * 180 / Math.PI));
 
-        if (currentTime - shootTime > 4000) {
+        if (currentTime - shootTime > 3000) {
             shootTime = currentTime;
             this.currentLevel.addThing(new Blaster(shot, x, y, angle, 4));
         }
