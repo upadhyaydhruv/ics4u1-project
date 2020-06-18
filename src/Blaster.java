@@ -51,7 +51,7 @@ public class Blaster implements HittableThing {
     @Override
     public void move() {
         long currentTime = this.currentLevel.getCurrentMilliseconds();
-        if (currentTime - moveTime < 1) {
+        if (currentTime - moveTime < 2) {
             return;
         }
         moveTime = currentTime;
@@ -64,7 +64,10 @@ public class Blaster implements HittableThing {
 
         this.transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);
         this.transform.translate(x, y);
-        this.hb.update(0, 0, transform); // zero since the transform already includes the damn rotation
+
+        AffineTransform fake = (AffineTransform) this.transform.clone();
+        fake.scale(1.7, 1.7); // cheat with slight inaccuracies with the movement angle (because x,y are ints) by increasing the hitbox size
+        this.hb.update(0, 0, fake);
 
         if (hb.outOfBounds()) {
             if (Main.ENABLE_DEBUG_FEATURES)
