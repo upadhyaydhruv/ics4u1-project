@@ -5,20 +5,20 @@ import java.awt.image.BufferedImage;
 public class Level1 extends Level {
     private BufferedImage water, plat, barrels, arrow;
 
-    Player player;
-    Rectangle platRec;
-    Rectangle barrelsRec;
-    BubbleTube levelTrigger;
-    int wave;
-    int ticker;
-    private AffineTransform arrowTransform;
+    private Player player;
+    private Rectangle platRec;
+    private Rectangle barrelsRec;
+    private BubbleTube levelTrigger;
+    private int wave;
+    private int ticker;
+    private final AffineTransform arrowTransform;
 
     int[] waveHold = new int[3];
 
     public Level1() {
         arrowTransform = new AffineTransform();
-        arrowTransform.rotate(2.36);
-        arrowTransform.translate(25,350);
+        arrowTransform.translate(100,350);
+        arrowTransform.rotate(Math.toRadians(270), 0, 0);
         water = this.loadImage("res/background/storm water.png");
         plat = this.loadImage("res/background/level 1 plat.png");
         barrels = this.loadImage("res/barrels.png");
