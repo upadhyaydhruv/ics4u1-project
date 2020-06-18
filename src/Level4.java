@@ -15,11 +15,14 @@ public class Level4 extends Level {
         plat = this.loadImage("res/background/level 4 plat.png");
     }
 
+    private HealthBar healthBar;
+
     @Override
     public void createThings() {
         player = Main.newPlayer(555, 500);
         platRec = new Rectangle(150, 15, 650, 650);
         tube = new BubbleTube(670, 50);
+        this.healthBar = new HealthBar(player);
 
         this.addThing(player);
         this.addThing(tube);
@@ -41,7 +44,7 @@ public class Level4 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
-
+        healthBar.paint(g);
     }
 
     @Override

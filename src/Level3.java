@@ -18,6 +18,8 @@ public class Level3 extends Level {
         stack = this.loadImage("res/smoke stack.png");
     }
 
+    private HealthBar healthBar;
+
     @Override
     public void createThings() {
         player = Main.newPlayer(555, 500);
@@ -25,6 +27,7 @@ public class Level3 extends Level {
         stackRec = new Rectangle(150, 285, 100, 240);
         smoke1 = new Smoke(120, 320);
         smoke2 = new Smoke(200, 320);
+        this.healthBar = new HealthBar(player);
 
         this.addThing(player);
         this.addThing(smoke1);
@@ -48,7 +51,7 @@ public class Level3 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
-
+        healthBar.paint(g);
     }
 
     @Override

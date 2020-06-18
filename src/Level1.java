@@ -16,6 +16,7 @@ public class Level1 extends Level {
         plat = this.loadImage("res/background/level 1 plat.png");
         barrels = this.loadImage("res/barrels.png");
     }
+    private HealthBar healthBar;
 
     @Override
     public void createThings() {
@@ -23,6 +24,7 @@ public class Level1 extends Level {
         levelTrigger = new BubbleTube(30, 100);
         barrelsRec = new Rectangle(253, 460, 100, 140);
         platRec = new Rectangle(150, 15, 650, 650);
+        this.healthBar = new HealthBar(player);
 
         this.addThing(player);
         this.addThing(levelTrigger);
@@ -47,6 +49,7 @@ public class Level1 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
+        healthBar.paint(g);
     }
 
     @Override

@@ -1,7 +1,7 @@
 import java.awt.*;
+
 public class HealthBar {
     Player player;
-    float hue = 1.0f; //hue
     float saturation = 0.99f; //saturation
     float brightness = 0.99f; //brightness
 
@@ -11,17 +11,17 @@ public class HealthBar {
     }
 
     public void paint(Graphics2D g) {
-        double percent = ((double)player.getHealth() / (double)player.getMaxHealth());
-        hue = (float)percent * (100.0f / 255.0f);
+        double percent = ((double) player.getHealth() / (double) player.getMaxHealth());
+        float hue = (float) percent * (100.0f / 255.0f);
         Color myRGBColor = Color.getHSBColor(hue, saturation, brightness);
         g.setColor(Color.black);
-            g.fillRect(5, 5, 200, 20);
+        g.fillRect(5, 5, 200, 20);
         g.setColor(myRGBColor);
-            g.fillRect(5,5,(int)(percent * 200),20);
-            if (player.getHealth() <= 0) {
-                g.setFont(new Font(null, Font.BOLD, 20));
-                g.drawString("DEAD", 75,22);
-            }
+        g.fillRect(5, 5, (int) (percent * 200), 20);
+        if (player.getHealth() <= 0) {
+            g.setFont(new Font(null, Font.BOLD, 20));
+            g.drawString("DEAD", 75, 22);
+        }
 
     }
 }

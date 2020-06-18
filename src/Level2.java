@@ -18,12 +18,15 @@ public class Level2 extends Level {
         radar = this.loadImage("res/portable radar.png");
     }
 
+    private HealthBar healthBar;
+
     @Override
     public void createThings() {
         player = Main.newPlayer(435, 170);
         platRec = new Rectangle(150, 15, 650, 650);
         barrelsRec = new Rectangle(430, 280, 40, 60);
         radarRec = new Rectangle(550, 15, 170, 130);
+        this.healthBar = new HealthBar(player);
 
         this.addThing(player);
     }
@@ -46,7 +49,7 @@ public class Level2 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
-
+        healthBar.paint(g);
     }
 
     @Override
