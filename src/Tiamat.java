@@ -64,7 +64,7 @@ public class Tiamat extends Player implements HittableThing {
         transform.setToRotation(Math.toRadians(angle), super.getxPos() + anchorX, super.getyPos() + anchorY);
         transform.translate(super.getxPos(), super.getyPos());
 
-        if (Main.mouse.getLMB()) {
+        if (Main.mouse.getLMB() && this.isAlive) {
             this.shoot();
         }
         hb.update(0, 0, transform);

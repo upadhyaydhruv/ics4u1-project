@@ -21,8 +21,8 @@ public class Missile implements Thing {
         image = Thing.loadImage("tiamat rocket.png");
 
         this.angle = angle;
-        this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)) * 10);
-        this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)) * 10);
+        this.xVel = (int) Math.ceil(Math.cos(Math.toRadians(angle)) * 8);
+        this.yVel = (int) Math.ceil(Math.sin(Math.toRadians(angle)) * 8);
         this.xPos = xOrig;
         this.yPos = yOrig;
     }

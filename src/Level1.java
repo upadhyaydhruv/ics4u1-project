@@ -4,12 +4,12 @@ import java.awt.image.BufferedImage;
 public class Level1 extends Level {
     private BufferedImage water, plat, barrels;
 
-    Player player;
-    Rectangle platRec;
-    Rectangle barrelsRec;
-    BubbleTube levelTrigger;
-    int wave = 0;
-    int ticker = 0;
+    private Player player;
+    private Rectangle platRec;
+    private Rectangle barrelsRec;
+    private BubbleTube levelTrigger;
+    private int wave = 0;
+    private int ticker = 0;
 
     int[] waveHold = new int[3];
     boolean levelComplete;
