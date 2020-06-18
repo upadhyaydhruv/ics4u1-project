@@ -11,6 +11,7 @@ public class ShipSelect {
     Rectangle skuttlerButtonRec = new Rectangle(300, 180, 120, 116);
     Rectangle tiamatButtonRec = new Rectangle(500, 200, 92, 84);
     boolean mousetoggle = false;
+    int height, count=0;
 
     ShipSelect() {
         back = Thing.loadImage("menu/menu back.png");
@@ -32,6 +33,7 @@ public class ShipSelect {
         Yoffset = Main.mouse.getY() / 4;
         mousetoggle = false;
         state = 0;
+        height = 300;
     }
 
     public String move() {
@@ -57,29 +59,35 @@ public class ShipSelect {
                 state = 3;
                 currentPlate = tiamatPlate;
             } else state = 0;
-
             else if (Main.mouse.intersects(selectButtonRec)) if (state != 0) {
                 Main.playerType = state;
                 nextScreen = "levelSelect";
             }
         }
+        if(count==100){
+            count=0;
+            if (state != 0) {
+                if(height!=0)
+                    height--;
+            }
+            else {
+                if(height!=300)
+                    height++;
+            }
+        }
+        count++;
         return nextScreen;
     }
 
     public void paint(Graphics2D thisFrame) {
         thisFrame.drawImage(back, (Xoffset / 8) - 60, (Yoffset / 8) - 60, 1010, 1010, null);
-
         thisFrame.drawImage(choseShip, 300, 80, null);
-
         Screen.paint(backButtonRec, backButton, thisFrame);
         Screen.paint(esperButtonRec, esperButton, thisFrame);
         Screen.paint(skuttlerButtonRec, skuttlerButton, thisFrame);
         Screen.paint(tiamatButtonRec, tiamatButton, thisFrame);
-
-        if (state != 0) {
-            thisFrame.drawImage(shipSelectBack, 0, 300, null);
-            Screen.paint(selectButtonRec, selectButton, thisFrame);
-            thisFrame.drawImage(currentPlate, 600, 400, null);
-        }
+        thisFrame.drawImage(shipSelectBack, 0, 300+height, null);
+        thisFrame.drawImage(selectButton,600, 500+height, 160, 80,null);
+        thisFrame.drawImage(currentPlate, 600, 400+height, null);
     }
 }
