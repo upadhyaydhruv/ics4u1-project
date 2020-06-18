@@ -46,7 +46,7 @@ public class Level2 extends Level {
         this.addThing(player);
         this.addDrone(400, 500);
         this.addDrone(100, 360);
-        this.addDrone(940, 360);
+        this.addDrone(850, 360);
         this.addDrone(220, 300);
     }
 
