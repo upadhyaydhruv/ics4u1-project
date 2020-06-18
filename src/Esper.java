@@ -63,7 +63,7 @@ public class Esper extends Player implements HittableThing {
 
     @Override
     public void move() {
-        if (super.getHealth() == 0) {
+        if (super.getHealth() <= 0) {
             isAlive = false;
         }
         if (isAlive) {
