@@ -14,19 +14,16 @@ public class TestLevel extends Level {
     private Player player;
     private Drone drone;
     private Bulldog bulldog;
-    private ChaseRocket rocket;
 
     @Override
     public void createThings() {
-        this.player = Main.newPlayer(0, 0);
+        this.player = Main.newPlayer(200, 200);
         this.drone = new Drone(400, 400, 1, 1);
-        this.bulldog = new Bulldog(0, 0);
-        this.rocket = new ChaseRocket(600, 300, 90);
+        this.bulldog = new Bulldog(100, 100);
 
         this.addThing(player);
         this.addThing(drone);
         this.addThing(bulldog);
-        this.addThing(rocket);
     }
 
     private long lastBombTime;
@@ -37,7 +34,6 @@ public class TestLevel extends Level {
             System.out.println("player died");
 
         drone.updateTarget(this.player.getxPos(), this.player.getyPos());
-        rocket.updateTarget(this.player.getxPos(), this.player.getyPos());
         bulldog.updateTarget(this.player);
 
         long currentTime = this.getCurrentMilliseconds();
