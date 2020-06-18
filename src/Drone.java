@@ -88,7 +88,7 @@ class Drone implements HittableThing {
 
         if (currentTime - shootTime > 4000) {
             shootTime = currentTime;
-            this.currentLevel.addThing(new Blaster(shot, x, y, angle, 2));
+            this.currentLevel.addThing(new Blaster(shot, x, y, angle, 1));
         }
 
         this.transform.setToRotation(Math.toRadians(angle), x + 31, y + 31);
