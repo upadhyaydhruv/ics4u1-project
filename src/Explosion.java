@@ -7,6 +7,7 @@ public class Explosion implements HittableThing {
     private int delay = 0;
     private HittableThing.HitBox hb;
     private int damage = 2;
+    private boolean hasHit = false;
 
     Explosion(int x, int y) {
         pic = Thing.loadImage("explosion.png");
@@ -29,23 +30,23 @@ public class Explosion implements HittableThing {
         hb.update(min(this.x), min(this.y), (max(this.x) - min(this.x)) + pic.getWidth(), (max(this.y) - min(this.y) + pic.getHeight()));
     }
 
-    private boolean hasHit;
-
     @Override
     public HittableThing.HitBox currentHitBox() {
+
         if (hasHit)
-            return null; // no hitbox if it has already hit something (so there isn't stacking dmg)
+            return null; // no hitbox if it isn't exploding
         return this.hb;
     }
 
     @Override
     public boolean hittableBy(HittableThing hb) {
-        return (hb instanceof Player || hb instanceof Drone || hb instanceof Bulldog);
+        return hb instanceof Drone || hb instanceof Bulldog || hb instanceof Player;
     }
 
     @Override
     public void handleHit(HittableThing hb) {
-        hasHit = true; // note that this will only apply after it has checked the others (i.e. it can still hit multiple enemies at once)
+        hasHit = true;
+
     }
 
     private int max(int[] a) {
