@@ -15,6 +15,7 @@ public abstract class Level {
     private Date start = new Date();
     private long currentMilliseconds;
 
+
     public final long getCurrentMilliseconds() {
         return currentMilliseconds;
     }
