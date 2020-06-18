@@ -87,7 +87,7 @@ public class Esper extends Player implements HittableThing {
 
         transform.setToRotation(Math.toRadians(angle), super.getxPos() + anchorX, super.getyPos() + anchorY);
         transform.translate(super.getxPos(), super.getyPos());
-        hb.update(super.getxPos(), super.getyPos(), transform);
+        hb.update(0, 0, transform);
     }
 
     public void paint(Graphics2D g) {
