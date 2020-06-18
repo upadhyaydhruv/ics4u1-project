@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 public class Screen {
     private String screenName;
 
+    private final StartScreen start = new StartScreen();
     private final Menu menu = new Menu();
     private final ShipSelect shipSelect = new ShipSelect();
     private final LevelSelect levelSelect = new LevelSelect();
@@ -21,6 +22,9 @@ public class Screen {
     void changeScreen(String screenName) {
         this.screenName = screenName;
         switch (screenName) {
+            case "start":
+                start.start();
+                break;
             case "menu":
                 menu.start();
                 break;
@@ -80,6 +84,8 @@ public class Screen {
 
     public String move() throws InterruptedException {
         switch (screenName) {
+            case "start":
+                return start.move();
             case "menu":
                 return menu.move();
             case "shipSelect":
@@ -109,6 +115,9 @@ public class Screen {
 
     public void paint(Graphics2D thisFrame) throws InterruptedException {
         switch (screenName) {
+            case "start":
+                start.paint(thisFrame);
+                break;
             case "menu":
                 menu.paint(thisFrame);
                 break;

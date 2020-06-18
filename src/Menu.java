@@ -9,6 +9,7 @@ public class Menu {
     Rectangle creditsButtonRec = new Rectangle(325, 520, 300, 80);
     Rectangle howToButtonRec = new Rectangle(325, 320, 300, 80);
     int Xoffset, Yoffset;
+    Boolean mouseToggle=false;
 
     Menu() {
         bullets = Thing.loadImage("menu/bullets.png");
@@ -23,6 +24,7 @@ public class Menu {
 
     public void start() {
         nextScreen = "";
+        Boolean mouseToggle=false;
         Xoffset = Main.mouse.getX() / 24;
         Yoffset = Main.mouse.getY() / 24;
     }
@@ -32,7 +34,8 @@ public class Menu {
             Xoffset = Main.mouse.getX() / 24;
             Yoffset = Main.mouse.getY() / 24;
         }
-        if (Main.mouse.getLMB()) {
+        if (Main.mouse.getLMB()&&mouseToggle) {
+            mouseToggle=false;
             if (Main.mouse.intersects(startButtonRec)) {
                 nextScreen = "shipSelect";
             }
@@ -45,6 +48,9 @@ public class Menu {
             else if (Main.mouse.intersects(howToButtonRec)) {
                 nextScreen = "howToPlay";
             }
+        }
+        else{
+            mouseToggle=true;
         }
         return nextScreen;
     }

@@ -27,7 +27,7 @@ public class Main extends JPanel {
 
     //this needs to be public so that everything can use it without re-directing it
     public static Mouse mouse = new Mouse();
-    public static Screen currentScreen = new Screen("menu");
+    public static Screen currentScreen = new Screen("start");
     public static int playerType;
 
     public static Player newPlayer(int x, int y) {
@@ -46,7 +46,7 @@ public class Main extends JPanel {
 
     public static void main(String[] args) throws InterruptedException {
 
-        JFrame frame = new JFrame("Game");
+        JFrame frame = new JFrame("Super Drive");
         frame.add(new Main());
         frame.setSize(960, 720);
         //720p 4:3 or standard HD (you guys should change this now if you don't like it)
