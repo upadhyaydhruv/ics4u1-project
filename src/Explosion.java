@@ -40,7 +40,7 @@ public class Explosion implements HittableThing {
 
     @Override
     public boolean hittableBy(HittableThing hb) {
-        return (hb instanceof Player || hb instanceof Blaster || hb instanceof Drone || hb instanceof Bulldog);
+        return (hb instanceof Player || hb instanceof Drone || hb instanceof Bulldog);
     }
 
     @Override
