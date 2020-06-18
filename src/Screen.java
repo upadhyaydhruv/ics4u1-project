@@ -10,6 +10,7 @@ public class Screen {
     private final LevelSelect levelSelect = new LevelSelect();
     private final Credits credits = new Credits();
     private final Settings settings = new Settings();
+    private final HowToPlay howToPlay = new HowToPlay();
 
     private Level currentLevel;
 
@@ -32,12 +33,15 @@ public class Screen {
             case "credits":
                 credits.start();
                 break;
-            case "testLevel":
-                currentLevel = new TestLevel();
-                currentLevel.start();
-                break;
             case "settings":
                 settings.start();
+                break;
+            case "howToPlay":
+                howToPlay.start();
+                break;
+                case "testLevel":
+                currentLevel = new TestLevel();
+                currentLevel.start();
                 break;
             case "L1":
                 currentLevel = new Level1();
@@ -86,6 +90,8 @@ public class Screen {
                 return credits.move();
             case "settings":
                 return settings.move();
+            case "howToPlay":
+                return howToPlay.move();
             case "testLevel":
             case "L1":
             case "L2":
@@ -117,6 +123,9 @@ public class Screen {
                 break;
             case "settings":
                 settings.paint(thisFrame);
+                break;
+            case "howToPlay":
+                howToPlay.paint(thisFrame);
                 break;
             case "testLevel":
             case "L1":

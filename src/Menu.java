@@ -3,10 +3,11 @@ import java.awt.image.BufferedImage;
 
 public class Menu {
     String nextScreen = "";
-    BufferedImage bullets, slice, back, splat, startButton, creditsButton, settingsButton;
+    BufferedImage bullets, slice, back, splat, startButton, creditsButton, settingsButton,howToButton;
     Rectangle startButtonRec = new Rectangle(375, 220, 200, 80);
     Rectangle settingsButtonRec = new Rectangle(275, 420, 400, 80);
     Rectangle creditsButtonRec = new Rectangle(325, 520, 300, 80);
+    Rectangle howToButtonRec = new Rectangle(325, 320, 300, 80);
     int Xoffset, Yoffset;
 
     Menu() {
@@ -17,6 +18,7 @@ public class Menu {
         startButton = Thing.loadImage("button/start button.png");
         creditsButton = Thing.loadImage("button/credits button.png");
         settingsButton = Thing.loadImage("button/settings button.png");
+        howToButton= Thing.loadImage("button/how to play button.png");
     }
 
     public void start() {
@@ -34,11 +36,14 @@ public class Menu {
             if (Main.mouse.intersects(startButtonRec)) {
                 nextScreen = "shipSelect";
             }
-            if (Main.mouse.intersects(creditsButtonRec)) {
+            else if (Main.mouse.intersects(creditsButtonRec)) {
                 nextScreen = "credits";
             }
-            if (Main.mouse.intersects(settingsButtonRec)) {
+            else if (Main.mouse.intersects(settingsButtonRec)) {
                 nextScreen = "settings";
+            }
+            else if (Main.mouse.intersects(howToButtonRec)) {
+                nextScreen = "howToPlay";
             }
         }
         return nextScreen;
@@ -52,5 +57,6 @@ public class Menu {
         Screen.paint(startButtonRec, startButton, thisFrame);
         Screen.paint(creditsButtonRec, creditsButton, thisFrame);
         Screen.paint(settingsButtonRec, settingsButton, thisFrame);
+        Screen.paint(howToButtonRec, howToButton, thisFrame);
     }
 }

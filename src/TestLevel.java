@@ -49,7 +49,7 @@ public class TestLevel extends Level {
 
     @Override
     public void paintLevelBack(Graphics2D g) {
-        g.drawImage(water, (1 / 8) - 60, (1 / 8) - 60, 1010, 1010, null);
+        g.drawImage(water, -60, -60, 1010, 1010, null);
     }
 
     @Override
