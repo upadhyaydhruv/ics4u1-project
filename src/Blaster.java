@@ -14,13 +14,15 @@ public class Blaster implements HittableThing {
     private int speed;
 
     public Blaster(BufferedImage shot, int x, int y, long angle, int speed) {
-        if (Main.ENABLE_DEBUG_FEATURES)
-            System.out.println("new blaster was shot");
+        if (Main.ENABLE_DEBUG_FEATURES) {
+            StackTraceElement[] st = Thread.currentThread().getStackTrace();
+            System.out.printf("new blaster was shot by %s\n", st[2].getClassName());
+        }
 
         this.shot = shot;
 
-        this.x = x + 7;
-        this.y = y + 27;
+        this.x = x + (shot.getWidth() / 2);
+        this.y = y + (shot.getHeight() / 2);
         this.angle = angle;
         this.speed = speed;
     }
@@ -44,16 +46,30 @@ public class Blaster implements HittableThing {
         }
     }
 
+    long moveTime;
+
     @Override
     public void move() {
-        x += Math.cos(Math.toRadians(angle)) * speed;
-        y += Math.sin(Math.toRadians(angle)) * speed;
+        long currentTime = this.currentLevel.getCurrentMilliseconds();
+        if (currentTime - moveTime < 2) {
+            return;
+        }
+        moveTime = currentTime;
+
+        double dx = Math.cos(Math.toRadians(angle)) * (double) speed;
+        double dy = Math.sin(Math.toRadians(angle)) * (double) speed;
+
+        x += dx >= 0 ? Math.ceil(dx) : Math.floor(dx);
+        y += dy >= 0 ? Math.ceil(dy) : Math.floor(dy);
 
         this.transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);
         this.transform.translate(x, y);
-        this.hb.update(0, 0, transform); // zero since the transform already includes the damn rotation
 
-        if (this.hb.outOfBounds()) {
+        AffineTransform fake = (AffineTransform) this.transform.clone();
+        fake.scale(1.7, 1.7); // cheat with slight inaccuracies with the movement angle (because x,y are ints) by increasing the hitbox size
+        this.hb.update(0, 0, fake);
+
+        if (hb.outOfBounds()) {
             if (Main.ENABLE_DEBUG_FEATURES)
                 System.out.println("removing blaster because out of bounds");
             this.currentLevel.removeThing(this);

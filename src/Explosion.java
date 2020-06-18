@@ -7,6 +7,7 @@ public class Explosion implements HittableThing {
     private int delay = 0;
     private HittableThing.HitBox hb;
     private int damage = 2;
+    private boolean hasHit = false;
 
     Explosion(int x, int y) {
         pic = Thing.loadImage("explosion.png");
@@ -31,16 +32,20 @@ public class Explosion implements HittableThing {
 
     @Override
     public HittableThing.HitBox currentHitBox() {
-        return this.hb; // no hitbox if it isn't exploding
+
+        if (hasHit)
+            return null; // no hitbox if it isn't exploding
+        return this.hb;
     }
 
     @Override
     public boolean hittableBy(HittableThing hb) {
-        return false;
+        return hb instanceof Drone || hb instanceof Bulldog || hb instanceof Player;
     }
 
     @Override
     public void handleHit(HittableThing hb) {
+        hasHit = true;
 
     }
 
