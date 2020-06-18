@@ -17,7 +17,7 @@ public class Level1 extends Level {
 
     public Level1() {
         arrowTransform = new AffineTransform();
-        arrowTransform.translate(100,350);
+        arrowTransform.translate(50,400);
         arrowTransform.rotate(Math.toRadians(270), 0, 0);
         water = this.loadImage("res/background/storm water.png");
         plat = this.loadImage("res/background/level 1 plat.png");

@@ -34,6 +34,11 @@ public class Level2 extends Level {
         this.addThing(d);
     }
 
+    private void addBomb() {
+        Bomb bo = new Bomb();
+        this.addThing(bo);
+    }
+
     @Override
     public void createThings() {
         player = Main.newPlayer(435, 170);
@@ -46,8 +51,9 @@ public class Level2 extends Level {
         this.addThing(player);
         this.addDrone(400, 500);
         this.addDrone(100, 360);
-        this.addDrone(850, 360);
-        this.addDrone(220, 300);
+        this.addBulldog(700, 0);
+        this.addBulldog(700, 500);
+        this.addBomb();
     }
 
     @Override
@@ -64,21 +70,24 @@ public class Level2 extends Level {
                     System.out.printf("New Wave %d\n", wave);
 
                 if (wave == 1) {
-                    player.decreaseHealth(-1);
-                    this.addBulldog(700, 0);
-                    this.addBulldog(700, 500);
-                    Bomb bomb1 = new Bomb(300, 300);
-                    Bomb bomb2 = new Bomb(100, 100);
-                    this.addThing(bomb1);
-                    this.addThing(bomb2);
+                    this.player.setHealth(player.getHealth() + 1);
+                    this.addDrone(400, 500);
+                    this.addDrone(100, 360);
+                    this.addBulldog(0, 0);
+                    this.addBulldog(0, 500);
+                    this.addBulldog(0, 400);
+                    this.addBomb();
+                    this.addBomb();
 
                 } else if (wave == 2) {
-                    player.decreaseHealth(-1);
+                    this.player.setHealth(player.getHealth() + 1);
+                    this.addDrone(400, 500);
+                    this.addDrone(100, 360);
                     this.addDrone(480, 0);
-                    this.addDrone(480, 500);
-                    this.addDrone(0, 0);
-                    this.addDrone(0, 700);
-
+                    this.addBulldog(0, 0);
+                    this.addBulldog(0, 500);
+                    this.addBomb();
+                    this.addBomb();
                 } else {
                     wave = -1;
                     this.levelComplete = true;

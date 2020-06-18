@@ -19,8 +19,8 @@ public class HealthBar {
         g.setColor(myRGBColor);
         g.fillRect(5, 5, (int) (percent * 300), 40);
         if (player.getHealth() <= 0) {
-            g.setFont(new Font(null, Font.BOLD, 30));
-            g.drawString("DEAD", 118, 35);
+            g.setFont(new Font(null, Font.BOLD, 16));
+            g.drawString("DEAD (Press Esc to replay level)", 27, 30);
         }
 
     }
