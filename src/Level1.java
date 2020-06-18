@@ -8,7 +8,7 @@ public class Level1 extends Level {
     Rectangle platRec;
     Rectangle barrelsRec;
     BubbleTube levelTrigger;
-    int wave = 1;
+    int wave = 0;
     int ticker = 0;
 
     int[] waveHold = new int[3];
@@ -31,15 +31,34 @@ public class Level1 extends Level {
 
         this.addThing(player);
         this.addThing(levelTrigger);
+        this.addThing(new Bulldog(0,0));
+        this.addThing(new Bulldog(0,360));
+        this.addThing(new Bulldog(0,360));
     }
 
     @Override
     public String moveLevel() {
+        ticker ++;
         Screen.waveMove(waveHold);
         if (levelTrigger.wasHit())
             return "L2";
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
+
+        if (ticker == 500) {
+            if (this.countThing(Bulldog.class, Drone.class) == 0) {
+                wave ++;
+                if (wave == 1) {
+                    this.addThing(new Bulldog(480,700));
+                    this.addThing(new Bulldog(0,360));
+                    this.addThing(new Bulldog(940,360));
+                }
+                else if (wave == 2) {
+
+                }
+            }
+            ticker = 0;
+        }
         return null;
     }
 
