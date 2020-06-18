@@ -21,8 +21,8 @@ public class Blaster implements HittableThing {
 
         this.shot = shot;
 
-        this.x = x + 7;
-        this.y = y + 27;
+        this.x = x + (shot.getWidth() / 2);
+        this.y = y + (shot.getHeight() / 2);
         this.angle = angle;
         this.speed = speed;
     }
@@ -46,13 +46,21 @@ public class Blaster implements HittableThing {
         }
     }
 
+    long moveTime;
+
     @Override
     public void move() {
-        if (Main.ENABLE_DEBUG_FEATURES && speed == 0)
-            throw new RuntimeException("WHY IS THE BLASTER NOT MOVING!?!");
+        long currentTime = this.currentLevel.getCurrentMilliseconds();
+        if (currentTime - moveTime < 1) {
+            return;
+        }
+        moveTime = currentTime;
 
-        x += Math.cos(Math.toRadians(angle)) * speed;
-        y += Math.sin(Math.toRadians(angle)) * speed;
+        double dx = Math.cos(Math.toRadians(angle)) * (double) speed;
+        double dy = Math.sin(Math.toRadians(angle)) * (double) speed;
+
+        x += dx >= 0 ? Math.ceil(dx) : Math.floor(dx);
+        y += dy >= 0 ? Math.ceil(dy) : Math.floor(dy);
 
         this.transform.setToRotation(Math.toRadians(angle), x + anchorX, y + anchorY);
         this.transform.translate(x, y);
