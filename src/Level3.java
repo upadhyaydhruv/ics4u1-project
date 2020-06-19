@@ -36,7 +36,7 @@ public class Level3 extends Level {
         this.addDrone(400, 200);
         this.addDrone(100, 360);
         this.addBulldog(300, 360);
-        this.addBulldog(220, 300);
+        this.addBomb();
 
         this.addThing(smoke1);
         this.addThing(smoke2);
@@ -54,8 +54,14 @@ public class Level3 extends Level {
         this.addThing(d);
     }
 
+    private void addBomb() {
+        Bomb bo = new Bomb();
+        this.addThing(bo);
+    }
+
     @Override
     public String moveLevel() {
+        ticker++;
         Screen.waveMove(waveHold);
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
