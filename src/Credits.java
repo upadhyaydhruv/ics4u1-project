@@ -7,7 +7,7 @@ public class Credits {
     Rectangle backButtonRec = new Rectangle(60, 60, 80, 80);
     int Xoffset, Yoffset;
 
-    // Patrick also helped with a few things:
+    // Patrick also helped with a few things (during the last week, not before):
     // - Fixing a few hard-to-find bugs:
     //   - Null pointer exceptions due to race conditions (repaint is async, so it may execute at the same time as a move function).
     //   - List modification errors due to race conditions (same reason as above, solved by using a CopyOnWriteArrayList instead of an ArrayList).
@@ -16,8 +16,10 @@ public class Credits {
     //   - Fixed slow-moving objects at an angle getting stuck due to the trig functions being rounded down as an int (annoying Java stuff).
     //   - Intermittent image loading issues for some people (fixed by using resources rather than raw File IO).
     //   - Compilation issues due to mismatched Java versions between group members and due to build *.class files being committed to the Git repository.
+    //   - Performance issues due to memory allocations and garbage collector delays from creating new objects directly inside the move and paint functions (i.e. loading images, creating new transforms, creating class instances).
     // - Adding some debugging code (added code to draw the hitboxes, showed how to print the function which called another one, helped give ideas for where to add print statements).
-    // - Improving the class layout to allow for dynamically adding/removing enemies/players (because before, instead of using a list, there were a bunch of static public variables for each item, not leaving room for adding/removing them, and breaking encapsulation) and detecting hits (but I didn't change any behaviour or fix any problems while doing this, only restructured things and removed duplicated code):
+    // - Improving the class layout to allow for dynamically adding/removing enemies/players (because before, instead of using a list, there were a bunch of static public variables for each item, not leaving room for adding/removing them, and breaking encapsulation) and detecting hits
+    //   - Note: I didn't change any behaviour or fix any problems while doing this; I only restructured things and removed duplicated code
     //   - Idea for Hittable and HittableThing class (John and Dhruv did the implementation after I gave the idea for the structure and methods).
     //   - Gave a starting point for an abstract Level class (which uses a bit of reflection to make things easier to handle) (I gave the list of methods and variables, assisted with implementation, but didn't touch the actual levels at all).
     //   - Removed a few unnecessary classes (i.e. a CurrentPlayer class whose only purpose was to have 1 variable for each type of character) (only what was made irrelevant by the abstract Player class and the Thing interface).
