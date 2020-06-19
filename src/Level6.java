@@ -31,7 +31,7 @@ public class Level6 extends Level {
         this.point = 0;
         player = Main.newPlayer(555, 500);
         platRec = new Rectangle(0, 0, 960, 720);
-        barrelsRec = new Rectangle(253, 460, 100, 140);
+        barrelsRec = new Rectangle(353, 460, 100, 140);
         this.healthBar = new HealthBar(player);
 
         this.addThing(player);
