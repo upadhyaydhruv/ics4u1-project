@@ -14,7 +14,7 @@ public class Skuttler extends Player implements HittableThing {
 
 
     public Skuttler(int x, int y) {
-        super(x, y, 6);
+        super(x, y, 7);
 
         image = Thing.loadImage("skuttler.png");
         bullet = Thing.loadImage("skuttler shot C.png");

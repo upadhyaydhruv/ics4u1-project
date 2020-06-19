@@ -18,7 +18,7 @@ public class Esper extends Player implements HittableThing {
     // (this should be changed to fit different pictures in the future)
 
     public Esper(int x, int y) {
-        super(x, y,3);
+        super(x, y,5);
 
         esper = Thing.loadImage("esper.png");
         bullet = Thing.loadImage("esper shot.png");
