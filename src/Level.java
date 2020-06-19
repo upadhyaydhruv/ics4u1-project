@@ -63,8 +63,13 @@ public abstract class Level {
             System.out.printf("Removed %s (%s)\n", t.getClass().getName(), t);
         this.things.remove(t);
         if (t instanceof HittableThing)
-            this.hittableThings.remove((HittableThing)t);
-        t.setCurrentLevel(null);
+            this.hittableThings.remove(t);
+
+        // NOTE(Patrick):
+        // This is technically the correct thing to do, but it increases the chance of having null pointer exceptions on
+        // badly designed Things. And, not having it won't currently cause issues since most Things only use the current
+        // level for removing itself from it or for checking for other Things, not for modifying it directly.
+        // t.setCurrentLevel(null);
     }
 
     public final List<Thing> getAllThings() { // do not change

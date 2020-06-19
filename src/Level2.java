@@ -48,7 +48,6 @@ public class Level2 extends Level {
         this.healthBar = new HealthBar(player);
         this.addThing(player);
 
-        this.addThing(player);
         this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
         this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
         this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
