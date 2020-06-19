@@ -6,8 +6,6 @@ public class Level7 extends Level {
     private BufferedImage back, arrow;
 
     private Player player;
-    private Rectangle platRec;
-    private Rectangle barrelsRec;
     private BubbleTube levelTrigger;
     private int wave;
     private int ticker;
@@ -32,8 +30,6 @@ public class Level7 extends Level {
         this.ticker = 0;
         player = Main.newPlayer(435, 170);
         levelTrigger = new BubbleTube(330, 100);
-        barrelsRec = new Rectangle(253, 460, 100, 140);
-        platRec = new Rectangle(150, 15, 650, 650);
         this.healthBar = new HealthBar(player);
 
         this.addThing(player);
