@@ -66,7 +66,7 @@ public class Level8 extends Level {
         ticker ++;
         glow.move();
         if (levelTrigger.wasHit() && wave == -1)
-            return "L8";
+            return "levelSelect";
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
 
