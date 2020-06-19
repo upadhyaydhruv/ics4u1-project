@@ -52,9 +52,9 @@ public class HowToPlay {
         thisFrame.drawImage(toMove,400,200,144,28,null);
 
         thisFrame.drawImage(use,200,400,64,28,null);
-        thisFrame.drawImage(leftClick,280,400,64,28,null);
-        thisFrame.drawImage(and,385,400,92,68,null);
-        thisFrame.drawImage(rightClick,400,400,144,28,null);
-        thisFrame.drawImage(toAttack,500,400,144,28,null);
+        thisFrame.drawImage(leftClick,280,370,68,100,null);
+        thisFrame.drawImage(and,380,400,64,28,null);
+        thisFrame.drawImage(rightClick,470,370,68,100,null);
+        thisFrame.drawImage(toAttack,570,400,184,28,null);
     }
 }

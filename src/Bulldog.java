@@ -104,6 +104,7 @@ public class Bulldog implements HittableThing {
             if (Main.ENABLE_DEBUG_FEATURES)
                 System.out.println("bulldog died");
             this.currentLevel.removeThing(this);
+            return;
         }
 
         angle = 450 - (Math.atan2(player.getxPos() - (x + anchorX), player.getyPos() - (y + anchorY)) * 180 / Math.PI);

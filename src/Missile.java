@@ -70,6 +70,7 @@ public class Missile implements Thing {
             this.currentLevel.removeThing(this);
             if (Main.ENABLE_DEBUG_FEATURES)
                 System.out.println("bomb exploded, removed from level (don't use it anymore)");
+            return;
         }
 
         transform.setToRotation(Math.toRadians(angle), xPos + anchorX, yPos + anchorY);
