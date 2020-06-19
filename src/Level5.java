@@ -113,7 +113,7 @@ public class Level5 extends Level {
     @Override
     public void paintLevelFront(Graphics2D g) {
         if (wave == -1) {
-            g.drawImage(win, 300,300,null);
+            g.drawImage(win, 300,200,null);
         }
         healthBar.paint(g);
     }

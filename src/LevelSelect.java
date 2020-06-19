@@ -52,7 +52,7 @@ public class LevelSelect {
         }
         if (Main.mouse.getLMB() && mousetoggle) {
             if (Main.mouse.intersects(backButtonRec)) nextScreen = "shipSelect";
-            else if (Main.mouse.intersects(testButtonRec)) nextScreen = "testLevel";
+            else if (Main.mouse.intersects(testButtonRec) && (Main.ENABLE_DEBUG_FEATURES)) nextScreen = "testLevel";
             else if (Main.mouse.intersects(L1ButtonRec)) nextScreen = "L1";
             else if (Main.mouse.intersects(L2ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L1"))) nextScreen = "L2";
             else if (Main.mouse.intersects(L3ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L2"))) nextScreen = "L3";
@@ -72,7 +72,9 @@ public class LevelSelect {
         thisFrame.drawImage(orange, 525 - (Xoffset / 2), 50 + (Yoffset / 2), 100, 500, null);
         thisFrame.drawImage(pink, 750 - (Xoffset), 50 + (Yoffset), 100, 500, null);
         Screen.paint(backButtonRec, backButton, thisFrame);
-        Screen.paint(testButtonRec, testButton, thisFrame);
+        if (Main.ENABLE_DEBUG_FEATURES) {
+            Screen.paint(testButtonRec, testButton, thisFrame);
+        }
         Screen.paint(L1ButtonRec, L1Button, thisFrame);
         Screen.paint(L2ButtonRec, L2Button, thisFrame);
         Screen.paint(L3ButtonRec, L3Button, thisFrame);
@@ -106,6 +108,12 @@ public class LevelSelect {
             thisFrame.fill(L8ButtonRec);
         }
         thisFrame.setPaint(old);
+        if (Main.clearedLevels.size() == 8) {
+            thisFrame.setColor(Color.YELLOW);
+        }
+        else {thisFrame.setColor(Color.WHITE);}
+        thisFrame.setFont(new Font(null, Font.BOLD, 40));
+        thisFrame.drawString(String.format("%d/%d",Main.clearedLevels.size(),Main.totalLevels), 850, 50);
     }
 
 }

@@ -114,7 +114,7 @@ public class Level7 extends Level {
             g.drawImage(arrow, arrowTransform,null);
         }
         if (wave == -1) {
-            g.drawImage(win, 300,300,null);
+            g.drawImage(win, 300,200,null);
         }
         healthBar.paint(g);
     }
