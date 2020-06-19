@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Level3 extends Level {
-    private BufferedImage water, plat, stack, win;
+    private BufferedImage water, plat, stack, win, death;
 
     private Player player;
     private Rectangle platRec;
@@ -20,6 +20,7 @@ public class Level3 extends Level {
         plat = this.loadImage("res/background/level 3 plat.png");
         stack = this.loadImage("res/smoke stack.png");
         win = this.loadImage("you win.png");
+        death = this.loadImage("you die.png");
     }
 
     private HealthBar healthBar;
@@ -118,8 +119,12 @@ public class Level3 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
+
+        if (player.getHealth() <= 0) {
+            g.drawImage(death, 300, 200, null);
+        }
         if (wave == -1) {
-            g.drawImage(win, 300,300,null);
+            g.drawImage(win, 300,200,null);
         }
         healthBar.paint(g);
     }

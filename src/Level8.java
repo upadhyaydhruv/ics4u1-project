@@ -3,7 +3,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 public class Level8 extends Level {
-    private BufferedImage back, arrow,stone, win;
+    private BufferedImage back, arrow, stone, win, death;
     private Player player;
     private BubbleTube levelTrigger;
     private int wave;
@@ -19,6 +19,7 @@ public class Level8 extends Level {
         arrow = this.loadImage("next arrow.png");
         stone = this.loadImage("rune stone.png");
         win = this.loadImage("you win.png");
+        death = this.loadImage("you die.png");
     }
     private HealthBar healthBar;
 
@@ -107,11 +108,14 @@ public class Level8 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
+        if (player.getHealth() <= 0) {
+            g.drawImage(death, 300, 200, null);
+        }
         if (wave == -1) {
             g.drawImage(arrow, arrowTransform,null);
         }
         if (wave == -1) {
-            g.drawImage(win, 300,300,null);
+            g.drawImage(win, 300,200,null);
         }
         healthBar.paint(g);
     }

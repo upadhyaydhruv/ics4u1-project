@@ -32,6 +32,7 @@ public class Main extends JPanel {
     public static Screen currentScreen = new Screen("start");
     public static int playerType;
     public static HashSet<String> clearedLevels = new HashSet<>();
+    public static final int totalLevels = 8;
 
     public static Player newPlayer(int x, int y) {
         switch (playerType) {
