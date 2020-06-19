@@ -17,7 +17,7 @@ public class Level6 extends Level {
     public Level6() {
         water = this.loadImage("res/background/beach water.png");
         plat = this.loadImage("res/background/beach2.png");
-        barrels = this.loadImage("res/barrels.png");
+        barrels = this.loadImage("res/boxes.png");
         win = this.loadImage("you win.png");
     }
 
