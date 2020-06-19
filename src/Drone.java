@@ -88,6 +88,7 @@ class Drone implements HittableThing {
             if (Main.ENABLE_DEBUG_FEATURES)
                 System.out.println("drone died");
             this.currentLevel.removeThing(this);
+            return;
         }
 
         if (currentTime - moveTime > 5) {
