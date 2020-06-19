@@ -89,14 +89,6 @@ public class Level6 extends Level {
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     }
-                else if (wave == 3) {
-                    point ++;
-                    this.player.setHealth(player.getHealth() + 10);
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                }
                 else {
                     wave = -1;
                 }

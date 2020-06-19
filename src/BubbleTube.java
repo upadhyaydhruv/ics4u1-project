@@ -51,7 +51,7 @@ public class BubbleTube implements HittableThing {
             case 3:
                 return Thing.loadImage("res/bubbles/bubbles4.png");
             case 4:
-                return Thing.loadImage("res/bubbles/bubbles5.png");
+                return Thing.loadImage("res/bubbles/bubbles4.png");
             case 5:
                 return Thing.loadImage("res/bubbles/bubbles6.png");
             case 6:
