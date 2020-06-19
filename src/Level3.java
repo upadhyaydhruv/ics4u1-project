@@ -2,7 +2,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Level3 extends Level {
-    private BufferedImage water, plat, stack;
+    private BufferedImage water, plat, stack, win;
 
     private Player player;
     private Rectangle platRec;
@@ -19,6 +19,7 @@ public class Level3 extends Level {
         water = this.loadImage("res/background/storm water.png");
         plat = this.loadImage("res/background/level 3 plat.png");
         stack = this.loadImage("res/smoke stack.png");
+        win = this.loadImage("you win.png");
     }
 
     private HealthBar healthBar;
@@ -75,31 +76,28 @@ public class Level3 extends Level {
 
                 if (wave == 1) {
                     this.player.setHealth(player.getHealth() + 1);
-                    this.addBulldog(700, 0);
-                    this.addBulldog(700, 500);
-                    Bomb bomb1 = new Bomb(300, 300);
-                    Bomb bomb2 = new Bomb(100, 100);
-                    Bomb bomb3 = new Bomb(200, 200);
-                    this.addThing(bomb1);
-                    this.addThing(bomb2);
-                    this.addThing(bomb3);
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBomb();
+                    this.addBomb();
+                    this.addBomb();
+
 
                 } else if (wave == 2) {
                     this.player.setHealth(player.getHealth() + 1);
-                    this.addDrone(200, 250);
-                    this.addDrone(150, 300);
-                    this.addDrone(300, 400);
-                    this.addDrone(250, 350);
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
 
                 } else if (wave == 3) {
                     this.player.setHealth(player.getHealth() + 1);
-                    Bomb bomb4 = new Bomb(150, 150);
-                    this.addThing(bomb4);
-                    this.addBulldog(200, 140);
-                    this.addDrone(230, 400);
-                    this.addDrone(350, 300);
-                    this.addBulldog(450, 300);
-                    this.addDrone(14, 16);
+                    this.addBomb();
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
 
                 } else {
                     wave = -1;
@@ -120,6 +118,9 @@ public class Level3 extends Level {
 
     @Override
     public void paintLevelFront(Graphics2D g) {
+        if (wave == -1) {
+            g.drawImage(win, 300,300,null);
+        }
         healthBar.paint(g);
     }
 
