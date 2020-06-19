@@ -38,8 +38,6 @@ public class Level4 extends Level {
         this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
         this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
         this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
 
 
     }
@@ -78,9 +76,6 @@ public class Level4 extends Level {
                     this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
 
                 }
                 else if (wave == 2) {
@@ -88,10 +83,7 @@ public class Level4 extends Level {
                     this.player.setHealth(player.getHealth() + 1);
                     this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
                     this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                 }

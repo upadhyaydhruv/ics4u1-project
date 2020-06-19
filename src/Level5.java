@@ -38,7 +38,6 @@ public class Level5 extends Level {
         this.addBomb();
         this.addDrone((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
         this.addDrone((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
-        this.addDrone((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
         this.addBulldog((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
         this.addBulldog((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
 
@@ -71,8 +70,6 @@ public class Level5 extends Level {
                     this.player.setHealth(player.getHealth() + 1);
                     this.addBulldog((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
                     this.addBulldog((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
-                    this.addBulldog((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
-                    this.addDrone((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
                     this.addDrone((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
                     this.addDrone((int) ((Math.random() * 875) + 1), (int) ((Math.random() * 500) + 1));
                     this.addBomb();
