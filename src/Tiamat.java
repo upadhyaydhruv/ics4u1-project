@@ -19,8 +19,8 @@ public class Tiamat extends Player implements HittableThing {
 
         image = Thing.loadImage("tiamat.png");
 
-        super.setXVel(4);
-        super.setYVel(4);
+        super.setXVel(5);
+        super.setYVel(5);
         this.setShootRate(1000);
         hb = new HittableThing.HitBox(false, image.getWidth(), image.getHeight(), super.getxPos(), super.getyPos(), null);
     }
