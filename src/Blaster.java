@@ -73,6 +73,7 @@ public class Blaster implements HittableThing {
             if (Main.ENABLE_DEBUG_FEATURES)
                 System.out.println("removing blaster because out of bounds");
             this.currentLevel.removeThing(this);
+            return;
         }
     }
 
