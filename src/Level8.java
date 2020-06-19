@@ -6,8 +6,6 @@ public class Level8 extends Level {
     private BufferedImage back, arrow;
 
     private Player player;
-    private Rectangle platRec;
-    private Rectangle barrelsRec;
     private BubbleTube levelTrigger;
     private int wave;
     private int ticker;
@@ -32,8 +30,6 @@ public class Level8 extends Level {
         this.ticker = 0;
         player = Main.newPlayer(435, 170);
         levelTrigger = new BubbleTube(330, 100);
-        barrelsRec = new Rectangle(253, 460, 100, 140);
-        platRec = new Rectangle(150, 15, 650, 650);
         this.healthBar = new HealthBar(player);
 
         this.addThing(player);
@@ -81,9 +77,6 @@ public class Level8 extends Level {
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                 }
                 else if (wave == 2) {
                     this.addBomb();
@@ -93,7 +86,6 @@ public class Level8 extends Level {
                     this.addBomb();
                     this.addBomb();
                     this.player.setHealth(player.getHealth() + 1);
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
@@ -112,6 +104,7 @@ public class Level8 extends Level {
         g.setColor(glow.color);
         g.fillRect(0,0,960,720);
         g.drawImage(back,0, 0, 960, 720, null);
+
         // Screen.paint(platRec, plat, g);
         //Screen.paint(barrelsRec, barrels, g);
     }
