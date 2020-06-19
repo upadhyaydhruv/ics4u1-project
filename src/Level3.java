@@ -73,7 +73,7 @@ public class Level3 extends Level {
                     System.out.printf("New Wave %d\n", wave);
 
                 if (wave == 1) {
-                    player.decreaseHealth(-1);
+                    this.player.setHealth(player.getHealth() + 1);
                     this.addBulldog(700, 0);
                     this.addBulldog(700, 500);
                     Bomb bomb1 = new Bomb(300, 300);
@@ -84,14 +84,14 @@ public class Level3 extends Level {
                     this.addThing(bomb3);
 
                 } else if (wave == 2) {
-                    player.decreaseHealth(-1);
+                    this.player.setHealth(player.getHealth() + 1);
                     this.addDrone(200, 250);
                     this.addDrone(150, 300);
                     this.addDrone(300, 400);
                     this.addDrone(250, 350);
 
                 } else if (wave == 3) {
-                    player.decreaseHealth(-1);
+                    this.player.setHealth(player.getHealth() + 1);
                     Bomb bomb4 = new Bomb(150, 150);
                     this.addThing(bomb4);
                     this.addBulldog(200, 140);
