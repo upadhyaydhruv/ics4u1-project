@@ -8,6 +8,7 @@ class Drone implements HittableThing {
     private BufferedImage drone, shooter, shot;
     private HittableThing.HitBox hb = new HittableThing.HitBox(false, 0, 0);
     private int health = 2;
+    private int delay = 3000;
     AffineTransform transform = new AffineTransform();
 
     private int DIAMETER = 63;
@@ -43,6 +44,29 @@ class Drone implements HittableThing {
         } else if (hb instanceof Explosion) {
             this.decreaseHealth(((Explosion) hb).getDamage());
         }
+    }
+    public void setXVel(int xVel) {
+        this.xVel = xVel;
+    }
+
+    public void setYVel(int yVel) {
+        this.yVel = yVel;
+    }
+
+    public int getXVel() {
+        return this.xVel;
+    }
+
+    public int getYVel() {
+        return this.yVel;
+    }
+
+    public int getDelay() {
+        return this.delay;
+    }
+
+    public void setDelay(int delay) {
+        this.delay = delay;
     }
 
     public void decreaseHealth(int diff) {
@@ -84,7 +108,7 @@ class Drone implements HittableThing {
         //bobby sez: this updates the gun :P
         angle = (long) (450 - (Math.atan2(this.target.getxPos() - (x + 31), this.target.getyPos() - (y + 31)) * 180 / Math.PI));
 
-        if (currentTime - shootTime > 3000) {
+        if (currentTime - shootTime > delay) {
             shootTime = currentTime;
             this.currentLevel.addThing(new Blaster(shot, x, y, angle, 4));
         }
