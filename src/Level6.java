@@ -40,8 +40,6 @@ public class Level6 extends Level {
         this.addBomb();
         this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
         this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-        this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-        this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
     }
 
     private void addBulldog(int x, int y) {
@@ -82,12 +80,10 @@ public class Level6 extends Level {
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                 }
                 else if (wave == 2) {
                     point ++;
                     this.player.setHealth(player.getHealth() + 1);
-                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
