@@ -86,7 +86,8 @@ public class Esper extends Player implements HittableThing {
     }
 
     public void paint(Graphics2D g) {
-        g.drawImage(esper, transform, null);
+        if (isAlive)
+            g.drawImage(esper, transform, null);
     }
 
     Level currentLevel;
