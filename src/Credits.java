@@ -16,6 +16,7 @@ public class Credits {
     //   - Fixed slow-moving objects at an angle getting stuck due to the trig functions being rounded down as an int (annoying Java stuff).
     //   - Intermittent image loading issues for some people (fixed by using resources rather than raw File IO).
     //   - Compilation issues due to mismatched Java versions between group members and due to build *.class files being committed to the Git repository.
+    //   - Performance issues due to memory allocations and garbage collector delays from creating new objects directly inside the move and paint functions (i.e. loading images, creating new transforms, creating class instances).
     // - Adding some debugging code (added code to draw the hitboxes, showed how to print the function which called another one, helped give ideas for where to add print statements).
     // - Improving the class layout to allow for dynamically adding/removing enemies/players (because before, instead of using a list, there were a bunch of static public variables for each item, not leaving room for adding/removing them, and breaking encapsulation) and detecting hits
     //   - Note: I didn't change any behaviour or fix any problems while doing this; I only restructured things and removed duplicated code
