@@ -2,10 +2,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class Level5 extends Level {
-    private BufferedImage water, plat, barrels, win, death;
+    private BufferedImage water, plat, win, death;
 
     private Rectangle platRec;
-    private Rectangle barrelsRec;
     private boolean levelComplete;
     private int wave = 0;
     private int ticker = 0;
