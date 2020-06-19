@@ -63,6 +63,7 @@ public class Level3 extends Level {
     public String moveLevel() {
         ticker++;
         Screen.waveMove(waveHold);
+        if (wave == -1) Main.clearedLevels.add("L3");
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
 

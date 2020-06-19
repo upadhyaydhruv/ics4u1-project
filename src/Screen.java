@@ -108,9 +108,6 @@ public class Screen {
             case "L7":
             case "L8":
                 if (currentLevel != null) {
-                    if (currentLevel.isCleared()) {
-                        Main.clearedLevels.add(screenName);
-                    }
                         return currentLevel.move();
                     }
 

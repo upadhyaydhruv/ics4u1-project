@@ -61,6 +61,7 @@ public class Level7 extends Level {
     public String moveLevel() {
         ticker ++;
         glow.move();
+        if (wave == -1) Main.clearedLevels.add("L7");
         if (levelTrigger.wasHit() && wave == -1)
             return "L8";
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)

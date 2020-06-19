@@ -65,8 +65,10 @@ public class Level1 extends Level {
     public String moveLevel() {
         ticker ++;
         Screen.waveMove(waveHold);
-        if (levelTrigger.wasHit() && wave == -1)
+        if (wave == -1) Main.clearedLevels.add("L1");
+        if (levelTrigger.wasHit() && wave == -1) {
             return "L2";
+        }
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
 

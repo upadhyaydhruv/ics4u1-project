@@ -111,14 +111,4 @@ public abstract class Level {
     public final BufferedImage loadImage(String name) {
         return Thing.loadImage(name);
     }
-
-    private boolean cleared;
-
-    public final boolean isCleared() {
-        return cleared;
-    }
-
-    public final void setCleared(boolean cleared) {
-        this.cleared = cleared;
-    }
 }

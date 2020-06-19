@@ -56,7 +56,6 @@ public class Main extends JPanel {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
-        clearedLevels.add("L1");
 
         while (true) {
 
