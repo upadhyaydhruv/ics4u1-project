@@ -7,7 +7,8 @@ public class Level4 extends Level {
     Player player;
     Rectangle platRec;
     BubbleTube tube;
-    boolean levelComplete;
+    private int wave;
+    private int ticker;
 
     int[] waveHold = new int[3];
 
@@ -20,6 +21,8 @@ public class Level4 extends Level {
 
     @Override
     public void createThings() {
+        this.wave = 0;
+        this.ticker = 0;
         player = Main.newPlayer(555, 500);
         platRec = new Rectangle(150, 15, 650, 650);
         tube = new BubbleTube(670, 50);
@@ -27,13 +30,74 @@ public class Level4 extends Level {
 
         this.addThing(player);
         this.addThing(tube);
+        this.addBomb();
+        this.addBomb();
+        this.addBomb();
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+
+
+    }
+
+    private void addBulldog(int x, int y) {
+        Bulldog b = new Bulldog(x,y);
+        b.setTarget(player);
+        this.addThing(b);
+    }
+
+    private void addDrone(int x, int y) {
+        Drone d = new Drone(x,y,1,1);
+        d.setTarget(player);
+        this.addThing(d);
+    }
+
+    private void addBomb() {
+        Bomb bo = new Bomb();
+        this.addThing(bo);
     }
 
     @Override
     public String moveLevel() {
+        ticker ++;
         Screen.waveMove(waveHold);
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
+        if (ticker == 500 && wave != -1) {
+            if (this.countThing(Bulldog.class, Drone.class) == 0) {
+                wave ++;
+                if (Main.ENABLE_DEBUG_FEATURES)
+                    System.out.printf("New Wave %d\n", wave);
+                if (wave == 1) {
+                    this.player.setHealth(player.getHealth() + 1);
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+
+                }
+                else if (wave == 2) {
+                    this.addBomb();
+                    this.player.setHealth(player.getHealth() + 1);
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                }
+                else {
+                    wave = -1;
+                }
+            }
+            ticker = 0;
+        }
         return null;
     }
 

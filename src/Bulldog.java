@@ -15,6 +15,7 @@ public class Bulldog implements HittableThing {
     private int random;
     private int health = 6; //Can be changed if needed
     private HittableThing.HitBox hb;
+    private boolean level6 = false;
 
     Player player;
 
@@ -61,6 +62,10 @@ public class Bulldog implements HittableThing {
         this.player = p;
     }
 
+    public void setLevel6(boolean level6) {
+        this.level6 = level6;
+    }
+
     public void decreaseHealth(int diff) {
         this.health -= diff;
     }
@@ -104,18 +109,18 @@ public class Bulldog implements HittableThing {
         angle = 450 - (Math.atan2(player.getxPos() - (x + anchorX), player.getyPos() - (y + anchorY)) * 180 / Math.PI);
 
         if (ticker == 10000) {
-            if (player.getxPos() < x) {
-                x -= xVel;
-            } else if (player.getxPos() > x) {
-                x += xVel;
-            }
+                if (player.getxPos() < x) {
+                    x -= xVel;
+                } else if (player.getxPos() > x) {
+                    x += xVel;
+                }
 
-            if (player.getyPos() < y) {
-                y -= yVel;
-            } else if (player.getyPos() > y) {
-                y += yVel;
-            }
-            ticker = 0;
+                if (player.getyPos() < y) {
+                    y -= yVel;
+                } else if (player.getyPos() > y) {
+                    y += yVel;
+                }
+                ticker = 0;
         } else {
             ticker++;
         }

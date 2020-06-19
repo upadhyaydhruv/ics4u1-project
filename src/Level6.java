@@ -6,7 +6,9 @@ public class Level6 extends Level {
 
     Rectangle platRec;
     Rectangle barrelsRec;
-    boolean levelComplete;
+    private int wave;
+    private int ticker;
+    private int point;
 
     int[] waveHold = new int[3];
 
@@ -22,19 +24,85 @@ public class Level6 extends Level {
 
     @Override
     public void createThings() {
+        this.wave = 0;
+        this.ticker = 0;
+        this.point = 0;
         player = Main.newPlayer(555, 500);
         platRec = new Rectangle(0, 0, 960, 720);
         barrelsRec = new Rectangle(253, 460, 100, 140);
         this.healthBar = new HealthBar(player);
 
         this.addThing(player);
+        this.addBomb();
+        this.addBomb();
+        this.addBomb();
+        this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+    }
+
+    private void addBulldog(int x, int y) {
+        Bulldog b = new Bulldog(x,y);
+        b.setTarget(player);
+        this.addThing(b);
+    }
+
+    private void addDrone(int x, int y) {
+        Drone d = new Drone(x,y,1,1);
+        d.setTarget(player);
+        d.setXVel(d.getXVel()+point);
+        d.setYVel(d.getXVel()+point);
+        d.setDelay(d.getDelay() - (point * 500));
+        this.addThing(d);
+    }
+
+    private void addBomb() {
+        Bomb bo = new Bomb();
+        this.addThing(bo);
     }
 
     @Override
     public String moveLevel() {
+        ticker ++;
         Screen.waveMove(waveHold);
         if (Main.ENABLE_DEBUG_FEATURES && player.getHealth() == 0)
             System.out.println("player died");
+        if (ticker == 500 && wave != -1) {
+            if (this.countThing(Bulldog.class, Drone.class) == 0) {
+                wave ++;
+                if (Main.ENABLE_DEBUG_FEATURES)
+                    System.out.printf("New Wave %d\n", wave);
+                if (wave == 1) {
+                    point ++;
+                    this.player.setHealth(player.getHealth() + 1);
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                }
+                else if (wave == 2) {
+                    point ++;
+                    this.player.setHealth(player.getHealth() + 1);
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    }
+                else if (wave == 3) {
+                    point ++;
+                    this.player.setHealth(player.getHealth() + 10);
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                }
+                else {
+                    wave = -1;
+                }
+            }
+            ticker = 0;
+        }
         return null;
     }
 

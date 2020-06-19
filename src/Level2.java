@@ -49,10 +49,10 @@ public class Level2 extends Level {
         this.addThing(player);
 
         this.addThing(player);
-        this.addDrone(400, 500);
-        this.addDrone(100, 360);
-        this.addBulldog(700, 0);
-        this.addBulldog(700, 500);
+        this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+        this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
         this.addBomb();
     }
 
@@ -71,21 +71,21 @@ public class Level2 extends Level {
 
                 if (wave == 1) {
                     this.player.setHealth(player.getHealth() + 1);
-                    this.addDrone(400, 500);
-                    this.addDrone(100, 360);
-                    this.addBulldog(0, 0);
-                    this.addBulldog(0, 500);
-                    this.addBulldog(0, 400);
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addBomb();
                     this.addBomb();
 
                 } else if (wave == 2) {
                     this.player.setHealth(player.getHealth() + 1);
-                    this.addDrone(400, 500);
-                    this.addDrone(100, 360);
-                    this.addDrone(480, 0);
-                    this.addBulldog(0, 0);
-                    this.addBulldog(0, 500);
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
+                    this.addBulldog((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addBomb();
                     this.addBomb();
                 } else {
