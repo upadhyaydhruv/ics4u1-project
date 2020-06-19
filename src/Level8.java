@@ -87,6 +87,11 @@ public class Level8 extends Level {
                 }
                 else if (wave == 2) {
                     this.addBomb();
+                    this.addBomb();
+                    this.addBomb();
+                    this.addBomb();
+                    this.addBomb();
+                    this.addBomb();
                     this.player.setHealth(player.getHealth() + 1);
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
                     this.addDrone((int)((Math.random()*875) + 1),(int)((Math.random()*500)+1));
