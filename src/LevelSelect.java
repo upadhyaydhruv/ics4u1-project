@@ -53,14 +53,14 @@ public class LevelSelect {
         if (Main.mouse.getLMB() && mousetoggle) {
             if (Main.mouse.intersects(backButtonRec)) nextScreen = "shipSelect";
             else if (Main.mouse.intersects(testButtonRec)) nextScreen = "testLevel";
-            else if (Main.mouse.intersects(L1ButtonRec)) nextScreen = "L1";
-            else if (Main.mouse.intersects(L2ButtonRec)) nextScreen = "L2";
-            else if (Main.mouse.intersects(L3ButtonRec)) nextScreen = "L3";
-            else if (Main.mouse.intersects(L4ButtonRec)) nextScreen = "L4";
-            else if (Main.mouse.intersects(L5ButtonRec)) nextScreen = "L5";
-            else if (Main.mouse.intersects(L6ButtonRec)) nextScreen = "L6";
-            else if (Main.mouse.intersects(L7ButtonRec)) nextScreen = "L7";
-            else if (Main.mouse.intersects(L8ButtonRec)) nextScreen = "L8";
+            else if (Main.mouse.intersects(L1ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L1"))) nextScreen = "L1";
+            else if (Main.mouse.intersects(L2ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L2"))) nextScreen = "L2";
+            else if (Main.mouse.intersects(L3ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L3"))) nextScreen = "L3";
+            else if (Main.mouse.intersects(L4ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L4"))) nextScreen = "L4";
+            else if (Main.mouse.intersects(L5ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L5"))) nextScreen = "L5";
+            else if (Main.mouse.intersects(L6ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L6"))) nextScreen = "L6";
+            else if (Main.mouse.intersects(L7ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L7"))) nextScreen = "L7";
+            else if (Main.mouse.intersects(L8ButtonRec) && (Main.ENABLE_DEBUG_FEATURES || Main.clearedLevels.contains("L8"))) nextScreen = "L8";
         }
         return nextScreen;
     }
@@ -81,5 +81,34 @@ public class LevelSelect {
         Screen.paint(L6ButtonRec, L6Button, thisFrame);
         Screen.paint(L7ButtonRec, L7Button, thisFrame);
         Screen.paint(L8ButtonRec, L8Button, thisFrame);
+
+        Paint old = thisFrame.getPaint();
+        thisFrame.setPaint(new Color(255,255,255, 128));
+        if (!Main.clearedLevels.contains("L1")) {
+            thisFrame.fill(L1ButtonRec);
+        }
+        if (!Main.clearedLevels.contains("L2")) {
+            thisFrame.fill(L2ButtonRec);
+        }
+        if (!Main.clearedLevels.contains("L3")) {
+            thisFrame.fill(L3ButtonRec);
+        }
+        if (!Main.clearedLevels.contains("L4")) {
+            thisFrame.fill(L4ButtonRec);
+        }
+        if (!Main.clearedLevels.contains("L5")) {
+            thisFrame.fill(L5ButtonRec);
+        }
+        if (!Main.clearedLevels.contains("L6")) {
+            thisFrame.fill(L6ButtonRec);
+        }
+        if (!Main.clearedLevels.contains("L7")) {
+            thisFrame.fill(L7ButtonRec);
+        }
+        if (!Main.clearedLevels.contains("L8")) {
+            thisFrame.fill(L8ButtonRec);
+        }
+        thisFrame.setPaint(old);
     }
+
 }

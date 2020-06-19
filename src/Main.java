@@ -1,6 +1,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
+import java.util.HashSet;
 /*
  Main.mouse.getX() gives you the x value
  Main.mouse.getY() gives you the y value
@@ -29,6 +31,7 @@ public class Main extends JPanel {
     public static Mouse mouse = new Mouse();
     public static Screen currentScreen = new Screen("start");
     public static int playerType;
+    public static HashSet<String> clearedLevels = new HashSet<>();
 
     public static Player newPlayer(int x, int y) {
         switch (playerType) {
@@ -53,6 +56,7 @@ public class Main extends JPanel {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setResizable(false);
+        clearedLevels.add("L1");
 
         while (true) {
 
